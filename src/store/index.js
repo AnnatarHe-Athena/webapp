@@ -27,7 +27,7 @@ const store = new Vuex.Store({
         cells(state) {
             return state.cells
         },
-        modalState(state) {
+        modalStatus(state) {
             return state.modalStatus
         },
         currentCell(state) {

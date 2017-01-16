@@ -1,10 +1,10 @@
 <template>
     <transition name="fade">
-        <div v-show="status" class="mask" @click="modelToggle">
+        <div v-show="status" class="mask" @click="modalToggle">
             <div class="modal-container">
-                <figure>
+                <figure class="cell-container">
                     <img :src="'http://ww4.sinaimg.cn/large/' + cell.img" alt="">
-                    <span>{{ cell.text }}</span>
+                    <span class="text">{{ cell.text }}</span>
                 </figure>
             </div>
         </div>
@@ -29,7 +29,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="stylus" scoped>
 .mask
     background-color rgba(255, 255, 255, .8)
     position fixed
@@ -38,4 +38,11 @@ export default {
     width 100vw
     height 100vh
     display flex
+    justify-content center
+    align-items center
+    .cell-container
+        display flex
+        flex-direction column
+    .text
+        text-align center
 </style>
