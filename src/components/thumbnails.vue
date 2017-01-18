@@ -1,16 +1,15 @@
 <template>
     <section class="thumbnails">
-        <section class="thumbnails-container">
-            <figure class="thumbnails-item" v-for="cell in cells" @click="openLargeImg(cell)" key="cell.id">
+        <transition-group name="fade" class="thumbnails-container" tag="section">
+            <figure class="thumbnails-item" v-for="cell in cells" @click="openLargeImg(cell)" :key="cell.id">
                 <img :src="'http://ww4.sinaimg.cn/bmiddle/' + cell.img" alt="">
-                <figcaption>{{ cell.text }}</figcaption>
+                <figcaption class="text">{{ cell.text }}</figcaption>
             </figure>
-        </section>
+        </transition-group>
         <div class="next-container">
             <button class="next" @click="nextPage">下一页</button>
         </div>
     </section>
-
 </template>
 <script>
 import { MODAL_TOGGLE, IMAGE_CURRENT_CHANGE } from '../constants/index'
@@ -48,6 +47,8 @@ $nextColor = #9e9e9e
         flex-direction column
         padding .2rem
         box-shadow 0 0 .5rem #888
+    .text
+        text-align center
 .next-container
     display flex
     justify-content center

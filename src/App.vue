@@ -29,7 +29,22 @@ export default {
   },
   created() {
     this.$store.dispatch('fetchCategories')
+    this.scrollObserver()
     // this.$store.dispatch('changeCurrentCategory', 1)
+  },
+  methods: {
+    getNextPage() {
+        this.$store.dispatch('getNextPage')
+    },
+    scrollObserver() {
+        window.addEventListener('scroll', e => {
+            const height = ~~document.body.getBoundingClientRect().height
+            const farFromTop = ~~window.scrollY + window.screen.height
+            if (farFromTop + 200 > height) {
+                this.getNextPage()
+            }
+        })
+    }
   }
 }
 </script>
