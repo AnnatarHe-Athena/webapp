@@ -13,6 +13,7 @@ import { mapGetters } from 'vuex'
 import NavHeader from './components/header'
 import Thumbnails from './components/thumbnails'
 import Modal from './components/modal'
+import { throttle } from './utils/throttle'
 
 export default {
   name: 'app',
@@ -30,7 +31,7 @@ export default {
   created() {
     this.$store.dispatch('fetchCategories')
     this.scrollObserver()
-    // this.$store.dispatch('changeCurrentCategory', 1)
+    this.$store.dispatch('changeCurrentCategory', 0)
   },
   methods: {
     getNextPage() {

@@ -15,7 +15,7 @@ const store = new Vuex.Store({
         cells: [],
         modalStatus: false,
         currentImage: {},
-        currentCategory: 0,
+        currentCategory: 1,
         categoriesLoading: true,
         currentPage: 0,
         loadNextPage: 'init' // init, loading, done, fail

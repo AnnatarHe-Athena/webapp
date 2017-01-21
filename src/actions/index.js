@@ -1,4 +1,4 @@
-const PAGE_SIZE = 20
+const PAGE_SIZE = 2
 
 import 'whatwg-fetch'
 import {
@@ -20,8 +20,11 @@ export function fetchCategories({ dispatch, commit }) {
         .then(res => commit(CATEGORY_FETCHED, res))
 }
 export function getNextPage({ dispatch, commit, state }) {
+    if (state.loadNextPage === 'loading') {
+        return
+    }
     commit(LOAD_NEXT_DOING)
-    fetch(`/api/meinv/${state.currentCategory}/${PAGE_SIZE}/${state.currentPage}`)
+    fetch(`/api/meinv/${state.currentCategory}/${PAGE_SIZE}/${state.currentPage * PAGE_SIZE}`)
         .then(res => res.json())
         .then(res => commit(LOAD_NEXT_DONE, res))
         // 更新当前状态
