@@ -2,7 +2,7 @@
     <section class="thumbnails">
         <transition-group name="fade" class="thumbnails-container" tag="section">
             <figure class="thumbnails-item" v-for="cell in cells" @click="openLargeImg(cell)" :key="cell.id">
-                <img :src="'http://ww4.sinaimg.cn/bmiddle/' + cell.img" alt="">
+                <img :src="'https://ww4.sinaimg.cn/bmiddle/' + cell.img" alt="">
                 <figcaption class="text">{{ cell.text }}</figcaption>
             </figure>
         </transition-group>
@@ -61,5 +61,5 @@ $nextColor = #9e9e9e
         border 0
         &:hover
             background-color darken($nextColor, 10%)
-        
+
 </style>

@@ -3,7 +3,7 @@
         <div v-show="status" class="mask" @click="modalToggle">
             <div class="modal-container">
                 <figure class="cell-container">
-                    <img :src="'http://ww4.sinaimg.cn/large/' + cell.img" alt="large image" class="photo">
+                    <img :src="'https://ww4.sinaimg.cn/large/' + cell.img" alt="large image" class="photo">
                     <span class="text">{{ cell.text }}</span>
                 </figure>
             </div>
