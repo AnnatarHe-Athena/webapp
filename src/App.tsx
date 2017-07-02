@@ -4,10 +4,9 @@ import { renderRoutes } from 'react-router-config'
 import { BrowserRouter } from 'react-router-dom'
 import store from './store/index'
 import routes from './routes/route'
-import './App.css';
+import './App.css'
 
-
-class App extends React.Component<{}, null> {
+class App extends React.PureComponent<{}, null> {
     render() {
         return (
             <Provider store={store}>

@@ -3,11 +3,7 @@ import { Observable } from "rxjs/Observable"
 // import "rxjs/add/observable/dom/ajax"
 // import "rxjs/add/observable/dom/AjaxObservable"
 import { apiServer } from '../config'
-
-interface fetchOptions {
-    method?: string,
-    body?: FormData | string
-}
+import { fetchOptions } from '../constants/interface'
 
 export function getUrl(url: string) {
     if (process.env.NODE_ENV !== 'production') {

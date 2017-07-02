@@ -1,13 +1,13 @@
 import * as Redux from 'redux'
 
-export interface ICategories {
+export interface ICategory {
     id: Number,
     name: String,
     src: Number
 }
 
 export interface categoriesActionTypes extends Redux.Action {
-    categories: ICategories
+    categories: ICategory
 }
 
 export interface categoryChangeActionType extends Redux.Action {

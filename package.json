@@ -9,10 +9,12 @@
     "react-redux": "^5.0.5",
     "react-router-config": "^1.0.0-beta.3",
     "react-router-dom": "^4.1.1",
+    "react-transition-group": "^1.2.0",
     "redux": "^3.6.0",
     "redux-immutable": "^4.0.0",
     "redux-observable": "^0.14.1",
-    "rxjs": "5"
+    "rxjs": "5",
+    "styled-components": "^2.1.0"
   },
   "devDependencies": {
     "@types/immutable": "^3.8.7",
@@ -23,15 +25,20 @@
     "@types/react-redux": "^4.4.42",
     "@types/react-router-config": "^1.0.1",
     "@types/react-router-dom": "^4.0.4",
+    "@types/react-transition-group": "^1.1.1",
     "@types/redux-immutable": "^3.0.33",
     "@types/rx": "^4.1.1",
     "@types/webpack": "^2.2.15",
+    "faker": "^4.1.0",
+    "json-server": "^0.10.3",
     "react-scripts-ts": "2.2.0"
   },
   "scripts": {
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
+    "mock": "json-server mock/db.js --routes mock/route.json --port 9000",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject"
-  }
+  },
+  "proxy": "http://localhost:9000"
 }
