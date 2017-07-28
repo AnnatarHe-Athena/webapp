@@ -1,0 +1,5 @@
+#  需要 graphql-tag/loader 支持，但是这里不能 eject。暂时先这样
+
+query Hello {
+  hello
+}

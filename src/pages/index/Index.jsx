@@ -1,11 +1,11 @@
 import React from 'react'
-import {
-  QueryRenderer,
-  graphql
-} from 'react-relay'
-import {
-  environment
-} from '../../setup/relay'
+import styled from 'styled-components'
+import { graphql, gql } from 'react-apollo'
+
+const Div = styled.div`
+  width: 100%;
+  background-color: red;
+`
 
 class Index extends React.PureComponent {
   constructor(props) {
@@ -14,23 +14,14 @@ class Index extends React.PureComponent {
 
   render() {
     return (
-      <QueryRenderer
-        environment={environment}
-        query={graphql`
-          query hello {
-            hello
-          }
-        `}
-        render={({ error, props }) => {
-          if (error) {
-            return <div>{error.message}</div>
-          }
-          return <div>{JSON.stringify(props)}</div>
-        }}
-      />
+      <Div>hello</Div>
     )
   }
 }
 
-export default Index
+export default graphql(gql`{
+  hello
+}`, {
+  options: { notifyOnNetworkStatusChange: true }
+})(Index)
 
