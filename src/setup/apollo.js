@@ -5,7 +5,7 @@ function getPrefix() {
 }
 const apolloClient = new ApolloClient({
   networkInterface: createNetworkInterface({
-    uri: `${getPrefix()}/graphql`
+    uri: `${getPrefix()}/graphql/v1`
   })
 })
 
