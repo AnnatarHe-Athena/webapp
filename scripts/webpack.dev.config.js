@@ -15,7 +15,7 @@ config.devServer = {
     contentBase: path.resolve(__dirname, '..'),
     historyApiFallback: true,
     proxy: {
-        '/api/*': {
+        '/graphql/v1/*': {
             target: 'http://127.0.0.1:9000',
             secure: false
         },

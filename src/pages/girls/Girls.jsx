@@ -1,17 +1,7 @@
 import React from 'react'
 import Nav from '../../components/Nav'
+import fetchGirlsQuery from '../../graphql/fetchGirls.graphql'
 import { graphql, gql } from 'react-apollo'
-
-const query = gql`
-  query fetchGirls($from: Int!, $take: Int!, $offset: Int!) {
-    girls(from: $from, take: $take, offset: $offset) {
-      id, img, text
-    },
-    categories {
-      id, name, src
-    }
-  }
-`
 
 const gqlProps = {
   options: props => ({
@@ -57,7 +47,7 @@ const gqlProps = {
   }
 }
 
-@graphql(query, gqlProps)
+@graphql(fetchGirlsQuery, gqlProps)
 class Girls extends React.PureComponent {
   constructor(props) {
     super(props)

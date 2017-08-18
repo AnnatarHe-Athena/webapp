@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import helloQuery from '../../graphql/hello.graphql'
 import { graphql, gql } from 'react-apollo'
 
 const Div = styled.div`
@@ -7,6 +8,7 @@ const Div = styled.div`
   background-color: red;
 `
 
+@graphql(helloQuery, {options: { notifyOnNetworkStatusChange: true }})
 class Index extends React.PureComponent {
   constructor(props) {
     super(props)
@@ -19,9 +21,4 @@ class Index extends React.PureComponent {
   }
 }
 
-export default graphql(gql`{
-  hello
-}`, {
-  options: { notifyOnNetworkStatusChange: true }
-})(Index)
-
+export default Index

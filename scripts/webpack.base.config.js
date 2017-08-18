@@ -63,11 +63,15 @@ const config = {
         }, {
             test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
             use: [{loader: 'url-loader', options: {limit: 10000, mimetype: 'image/svg+xml'}}]
-        }]
-    },
+        }, {
+            test: /\.(graphql|gql)$/,
+            exclude: /node_modules/,
+            loader: 'graphql-tag/loader',
+      }]
+  },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'Webpack Template',
+            title: 'Athena webapp',
             inject: 'body',
             template: path.resolve(__dirname, 'template.html')
         }),
