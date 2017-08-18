@@ -2,37 +2,6 @@ import React from 'react'
 import Nav from '../../components/Nav'
 import { graphql, gql } from 'react-apollo'
 
-class Girls extends React.PureComponent {
-  constructor(props) {
-    super(props)
-  }
-
-  changeCategory = src => {
-    if (this.props.loading) {
-      return
-    }
-    this.props.loadNewCategories(src)
-  }
-
-  scrollHandle = () => {
-    if (this.props.loading) {
-      return
-    }
-    this.props.loadMore()
-  }
-
-  render() {
-    const { categories, girls } = this.props
-    // TODO: add girls
-    return (
-      <div>
-        <Nav categories={categories || []} onChange={this.changeCategory} />
-
-      </div>
-    )
-  }
-}
-
 const query = gql`
   query fetchGirls($from: Int!, $take: Int!, $offset: Int!) {
     girls(from: $from, take: $take, offset: $offset) {
@@ -44,7 +13,7 @@ const query = gql`
   }
 `
 
-export default graphql(query, {
+const gqlProps = {
   options: props => ({
     variables: {
       from: 0, take: 20, offset: 0
@@ -86,5 +55,39 @@ export default graphql(query, {
 
     }
   }
-})(Girls)
+}
 
+@graphql(query, gqlProps)
+class Girls extends React.PureComponent {
+  constructor(props) {
+    super(props)
+  }
+
+  changeCategory = src => {
+    if (this.props.loading) {
+      return
+    }
+    this.props.loadNewCategories(src)
+  }
+
+  scrollHandle = () => {
+    if (this.props.loading) {
+      return
+    }
+    this.props.loadMore()
+  }
+
+  render() {
+    const { categories, girls } = this.props
+    // TODO: add girls
+    return (
+      <div>
+        <Nav categories={categories || []} onChange={this.changeCategory} />
+
+      </div>
+    )
+  }
+}
+
+
+export default Girls
