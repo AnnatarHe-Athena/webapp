@@ -1,8 +1,5 @@
 query fetchGirls($from: Int!, $take: Int!, $offset: Int!) {
   girls(from: $from, take: $take, offset: $offset) {
     id, img, text
-  },
-  categories {
-    id, name, src
   }
 }

@@ -5,11 +5,13 @@ import App from './App'
 import registerServiceWorker from './registerServiceWorker'
 import './index.css'
 
+const rootDOM = document.querySelector('#root')
+
 ReactDOM.render(
     <AppContainer>
         <App />
     </AppContainer>,
-    document.body.appendChild(document.createElement('div'))
+    rootDOM
 )
 registerServiceWorker()
 
@@ -20,7 +22,7 @@ if (module.hot) {
             <AppContainer>
                 <NextApp />
             </AppContainer>,
-        document.body.appendChild(document.createElement('div'))
+            rootDOM
         )
     })
 }
