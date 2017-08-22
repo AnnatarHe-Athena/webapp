@@ -6,7 +6,6 @@ import Photos from '../../components/photos/Photos'
 
 const Div = styled.div`
   width: 100%;
-  background-color: red;
 `
 
 // @graphql(helloQuery, {options: { notifyOnNetworkStatusChange: true }})

@@ -1,0 +1,34 @@
+$menu-height = 2rem
+
+.fade-enter
+    opacity 0.01
+
+.fade-enter.fade-enter-active
+    opacity 1
+    transition opacity 500ms ease-in
+
+.fade-leave
+    opacity 1
+
+.fade-leave.fade-leave-active
+    opacity 0.01
+    transition opacity 300ms ease-in
+
+// menu 折叠
+.menu-enter
+    width .01rem
+    opacity 0.01
+
+.menu-enter.menu-enter-active
+    width $menu-height
+    opacity 1
+    transition all .35s ease-in
+
+.menu-leave
+    width $menu-height
+    opacity 1
+
+.menu-leave.menu-leave-active
+    width .01rem
+    opacity 0.01
+    transition all .35s ease-in

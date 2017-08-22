@@ -1,9 +1,14 @@
 import React from 'react'
-import fetchGirlsQuery from '../../graphql/fetchGirls.graphql'
+import styled from 'styled-components'
 import { graphql, gql } from 'react-apollo'
+import Loading from '../Loading'
+import PhotoItem from './PhotoItem'
+import fetchGirlsQuery from '../../graphql/fetchGirls.graphql'
 
 const Container = styled.main`
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
 `
 
@@ -14,9 +19,8 @@ const gqlProps = {
     },
     fetchPolicy: 'cache-and-network'
   }),
-  props({ data: { categories, girls, loading, fetchMore, variables } }) {
+  props({ data: { girls, loading, fetchMore, variables } }) {
     return {
-      categories,
       girls,
       loading,
       loadMore() {
@@ -56,10 +60,28 @@ class Photos extends React.PureComponent {
     constructor(props) {
         super(props)
     }
+
+    renderPhotos() {
+        return this.props.girls.map((pic, index) => {
+            //wx3.sinaimg.cn/thumb150/bfc243a3gy1fisvjjysfsg20f00k0b2d
+            const src = pic.img.indexOf('http') === 0 ? pic.img : `https://wx3.sinaimg.cn/thumble/${pic.img}`
+            return (
+                <PhotoItem
+                    key={pic.id}
+                    src={src}
+                    desc={pic.desc}
+                    onClick={() => { console.log('clicked') }}
+                />
+            )
+        })
+    }
     render() {
+        if (this.props.loading) {
+            return <Loading />
+        }
         return (
             <Container>
-                todo
+                {this.renderPhotos()}
             </Container>
         )
     }

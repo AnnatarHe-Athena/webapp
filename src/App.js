@@ -6,6 +6,7 @@ import { Router, browserHistory, BrowserRouter } from 'react-router'
 import { apolloClient } from './setup/apollo'
 import store from './store/index'
 import routes from './routes/route'
+import './styles/index.styl'
 
 const App = () => {
   return (
