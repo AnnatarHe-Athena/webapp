@@ -7,7 +7,7 @@ const Container = styled.div`
     flex-direction: column;
     flex: 1;
     min-height: 100vh;
-    background: linear-gradient(to bottom, #808080,#ffffff);
+    background: linear-gradient(to bottom, #df3d46, #ef9ea3);
 `
 
 const BodyContainer = styled.div`

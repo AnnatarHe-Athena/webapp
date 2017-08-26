@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { graphql, gql } from 'react-apollo'
 import categoriesGQL from '../../graphql/categories.graphql'
+import { changeCategory } from '../../actions/category'
 import Nav from '../Nav'
 
 const HeaderEl = styled.header`
@@ -12,6 +13,7 @@ const HeaderEl = styled.header`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: .5rem;
 `
 
 const Bar = styled.div`
@@ -20,6 +22,10 @@ const Bar = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
+
+    div:first-child {
+        cursor: pointer;
+    }
 
     a {
         color: #ffffff;
@@ -32,19 +38,24 @@ const Bar = styled.div`
     }
     `
 
+// 第二版需要修改 UI， 需要改成路由获取categoryID
 @graphql(categoriesGQL)
+@connect(state => ({
+    categoryID: state.getIn(['app', 'categoryID'])
+}), dispatch => ({
+    changeCategory(id) { return dispatch(changeCategory(id)) }
+}))
 class Header extends React.PureComponent {
 
     state = {
         navVisable: false
     }
 
-    changeCategories = () => {
-
+    changeCategories = (id) => {
+        this.props.changeCategory(id)
     }
 
     changeNavVisable = () => {
-        console.log('changeNavVisable')
         this.setState({ navVisable: ! this.state.navVisable })
     }
 
