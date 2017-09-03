@@ -3354,16 +3354,6 @@ history@^3.0.0:
     query-string "^4.2.2"
     warning "^3.0.0"
 
-history@^4.5.1, history@^4.6.0:
-  version "4.6.3"
-  resolved "http://npm.dev.dr-social.cn/history/-/history-4.6.3.tgz#6d723a8712c581d6bef37e8c26f4aedc6eb86967"
-  dependencies:
-    invariant "^2.2.1"
-    loose-envify "^1.2.0"
-    resolve-pathname "^2.0.0"
-    value-equal "^0.2.0"
-    warning "^3.0.0"
-
 hmac-drbg@^1.0.0:
   version "1.0.1"
   resolved "http://npm.dev.dr-social.cn/hmac-drbg/-/hmac-drbg-1.0.1.tgz#d2745701025a6c775a6c545793ed502fc0c649a1"
@@ -3616,6 +3606,10 @@ internal-ip@^1.2.0:
 interpret@^1.0.0:
   version "1.0.3"
   resolved "http://npm.dev.dr-social.cn/interpret/-/interpret-1.0.3.tgz#cbc35c62eeee73f19ab7b10a801511401afc0f90"
+
+intersection-observer@^0.4.0:
+  version "0.4.0"
+  resolved "http://registry.npm.taobao.org/intersection-observer/download/intersection-observer-0.4.0.tgz#e7c3580be96fc1698170250b500da986c59824fb"
 
 invariant@^2.0.0, invariant@^2.2.0, invariant@^2.2.1, invariant@^2.2.2:
   version "2.2.2"
@@ -5073,7 +5067,7 @@ path-to-regexp@0.1.7:
   version "0.1.7"
   resolved "http://npm.dev.dr-social.cn/path-to-regexp/-/path-to-regexp-0.1.7.tgz#df604178005f522f15eb4490e7247a1bfaa67f8c"
 
-path-to-regexp@^1.0.1, path-to-regexp@^1.5.3:
+path-to-regexp@^1.0.1:
   version "1.7.0"
   resolved "http://npm.dev.dr-social.cn/path-to-regexp/-/path-to-regexp-1.7.0.tgz#59fde0f435badacba103a84e9d3bc64e96b9937d"
   dependencies:
@@ -5711,19 +5705,6 @@ react-redux@^5.0.5:
     loose-envify "^1.1.0"
     prop-types "^15.5.10"
 
-react-router-config@^1.0.0-beta.3:
-  version "1.0.0-beta.3"
-  resolved "http://npm.dev.dr-social.cn/react-router-config/-/react-router-config-1.0.0-beta.3.tgz#b16d38d6f210960434d929c78cc358f684a6c11e"
-
-react-router-dom@^4.1.2:
-  version "4.1.2"
-  resolved "http://npm.dev.dr-social.cn/react-router-dom/-/react-router-dom-4.1.2.tgz#7f8a7ca868d32acadd19ca09543b40d26df8ec37"
-  dependencies:
-    history "^4.5.1"
-    loose-envify "^1.3.1"
-    prop-types "^15.5.4"
-    react-router "^4.1.1"
-
 react-router@3:
   version "3.0.5"
   resolved "http://npm.dev.dr-social.cn/react-router/-/react-router-3.0.5.tgz#c3b7873758045a8bbc9562aef4ff4bc8cce7c136"
@@ -5734,18 +5715,6 @@ react-router@3:
     invariant "^2.2.1"
     loose-envify "^1.2.0"
     prop-types "^15.5.6"
-    warning "^3.0.0"
-
-react-router@^4.1.1:
-  version "4.1.2"
-  resolved "http://npm.dev.dr-social.cn/react-router/-/react-router-4.1.2.tgz#7ae027341abc42eb08ad9f7a8cac08d0563672ce"
-  dependencies:
-    history "^4.6.0"
-    hoist-non-react-statics "^1.2.0"
-    invariant "^2.2.2"
-    loose-envify "^1.3.1"
-    path-to-regexp "^1.5.3"
-    prop-types "^15.5.4"
     warning "^3.0.0"
 
 react-scripts@1.0.10:
@@ -6110,10 +6079,6 @@ requires-port@1.0.x, requires-port@1.x.x:
 resolve-from@^1.0.0:
   version "1.0.1"
   resolved "http://npm.dev.dr-social.cn/resolve-from/-/resolve-from-1.0.1.tgz#26cbfe935d1aeeeabb29bc3fe5aeb01e93d44226"
-
-resolve-pathname@^2.0.0:
-  version "2.1.0"
-  resolved "http://npm.dev.dr-social.cn/resolve-pathname/-/resolve-pathname-2.1.0.tgz#e8358801b86b83b17560d4e3c382d7aef2100944"
 
 resolve@1.1.7:
   version "1.1.7"
@@ -7018,10 +6983,6 @@ validate-npm-package-license@^3.0.1:
   dependencies:
     spdx-correct "~1.0.0"
     spdx-expression-parse "~1.0.0"
-
-value-equal@^0.2.0:
-  version "0.2.1"
-  resolved "http://npm.dev.dr-social.cn/value-equal/-/value-equal-0.2.1.tgz#c220a304361fce6994dbbedaa3c7e1a1b895871d"
 
 vary@~1.1.1:
   version "1.1.1"

@@ -4,6 +4,7 @@ import { AppContainer } from 'react-hot-loader'
 import App from './App'
 import registerServiceWorker from './registerServiceWorker'
 import './index.css'
+import 'intersection-observer'
 
 const rootDOM = document.querySelector('#root')
 
