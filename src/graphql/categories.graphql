@@ -1,0 +1,5 @@
+query fetchCategories {
+  categories {
+    id, name, src
+  }
+}

@@ -1,59 +1,18 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-Vue.use(Vuex)
+import { createStore, compose, applyMiddleware } from 'redux'
+import createSagaMiddleware from 'redux-saga'
+import rootReducer from '../reducers/index'
+import sagas from '../sagas/index'
 
-import {
-    changeCurrentCategory,
-    fetchCategories,
-    getNextPage
-} from '../actions/index'
-import mutations from './mutations'
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const sagaMiddleware = createSagaMiddleware()
 
-const store = new Vuex.Store({
-    state: {
-        categories: [{id: -1, name: 'loading'}],
-        cells: [],
-        modalStatus: false,
-        currentImage: {},
-        currentCategory: 1,
-        categoriesLoading: true,
-        currentPage: 0,
-        loadNextPage: 'init' // init, loading, done, fail
-    },
-    getters: {
-        categories(state) {
-            return state.categories
-        },
-        cells(state) {
-            return state.cells
-        },
-        modalStatus(state) {
-            return state.modalStatus
-        },
-        currentCell(state) {
-            return state.currentImage
-        }
-    },
-    mutations,
-    actions: {
-        changeCurrentCategory,
-        fetchCategories,
-        getNextPage
-    },
-    strict: false
-})
+const store = createStore(
+    rootReducer,
+    composeEnhancers(
+        applyMiddleware(sagaMiddleware)
+    )
+)
 
-if (module.hot) {
-  // 使 actions 和 mutations 成为可热重载模块
-  module.hot.accept(['./mutations'], () => {
-    // 获取更新后的模块
-    // 因为 babel 6 的模块编译格式问题，这里需要加上 .default
-    const newMutations = require('./mutations').default
-    // 加载新模块 
-    store.hotUpdate({
-      mutations: newMutations,
-    })
-  })
-}
+sagaMiddleware.run(sagas)
 
 export default store
