@@ -1,4 +1,8 @@
-import { fork, all } from 'redux-saga/effects'
+import {
+    SAGA_SYNC_AUTH_TOKEN
+} from '../constants/auth'
+import { syncToken } from './auth'
+import { fork, all, take } from 'redux-saga/effects'
 
 function echo() {
   return new Promise((resolve, reject) => {
@@ -8,6 +12,7 @@ function echo() {
 
 export default function* root () {
   yield all([
-    fork(echo)
+    fork(echo),
+    take(SAGA_SYNC_AUTH_TOKEN, syncToken)
   ])
 }

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 import styled from 'styled-components'
 
 const NavContainer = styled.nav`
@@ -13,9 +14,11 @@ const NavContainer = styled.nav`
     li {
         margin: 0 .5rem;
         background-color: rgba(255, 255, 255, .8);
-        padding: .5rem 1rem;
-        border-radius: 4px;
-        cursor: pointer;
+        a {
+            display: block;
+            padding: .5rem 1rem;
+            border-radius: 4px;
+        }
     }
 
     li:hover {
@@ -23,9 +26,13 @@ const NavContainer = styled.nav`
     }
 `
 
-const Nav = ({ categories, onChange }) => {
+const Nav = ({ categories }) => {
     const navs = categories.map(c => {
-        return (<li key={c.id} onClick={() => { onChange(c.id)}}>{c.name}</li> )
+        return (
+            <li key={c.id}>
+                <Link to={'/category/' + c.id }>{c.name}</Link>
+            </li>
+            )
     })
     return (
         <NavContainer>

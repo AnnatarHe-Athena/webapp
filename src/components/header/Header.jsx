@@ -4,9 +4,15 @@ import CSSTransitionGroup from 'react-addons-css-transition-group'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { graphql, gql } from 'react-apollo'
-import categoriesGQL from '../../graphql/categories.graphql'
+import categoriesGQL from '../../../../schema/categories.graphql'
 import { changeCategory } from '../../actions/category'
 import Nav from '../Nav'
+
+const defaultCategories = process.env.NODE_ENV === 'production' ? [] : [
+    {id: 1, name: 'hello'},
+    {id: 2, name: 'world'},
+    {id: 3, name: 'alo'}
+]
 
 const HeaderEl = styled.header`
     display: flex;
@@ -38,10 +44,7 @@ const Bar = styled.div`
     }
     `
 
-// 第二版需要修改 UI， 需要改成路由获取categoryID
-@graphql(categoriesGQL)
 @connect(state => ({
-    categoryID: state.getIn(['app', 'categoryID'])
 }), dispatch => ({
     changeCategory(id) { return dispatch(changeCategory(id)) }
 }))
@@ -51,21 +54,18 @@ class Header extends React.PureComponent {
         navVisable: false
     }
 
-    changeCategories = (id) => {
-        this.props.changeCategory(id)
-    }
-
     changeNavVisable = () => {
         this.setState({ navVisable: ! this.state.navVisable })
     }
 
     render() {
+        const { categories } = this.props
         return (
             <HeaderEl>
                 <Bar>
                     <div onClick={this.changeNavVisable}><i className="fa fa-cube fa-lg" /><span>Categories</span></div>
                     <div><h2>Athena</h2></div>
-                    <div><Link to="/login"><i className="fa fa-user-o fa-lg" /></Link></div>
+                    <div><Link to="/auth"><i className="fa fa-user-o fa-lg" /></Link></div>
                 </Bar>
                 <CSSTransitionGroup
                     component="div"
@@ -75,7 +75,9 @@ class Header extends React.PureComponent {
                     transitionLeaveTimeout={350}
                 >
                     {this.state.navVisable ? (
-                        <Nav categories={this.props.data.categories || []} onChange={this.changeCategories} />
+                        <Nav
+                            categories={categories || defaultCategories}
+                        />
                     ) : null}
                 </CSSTransitionGroup>
             </HeaderEl>

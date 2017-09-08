@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 import { graphql, gql } from 'react-apollo'
 import Loading from '../Loading'
 import PhotoItem from './PhotoItem'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 // import Footer from '../footer/Footer'
 import Button from '../button/Button'
-import fetchGirlsQuery from '../../graphql/fetchGirls.graphql'
+import fetchGirlsQuery from '../../../../schema/fetchGirlsQuery.graphql'
 
 const Container = styled.main`
     display: flex;
@@ -66,9 +66,9 @@ const gqlProps = {
     }
   }
 }
-@connect(state => ({
-    categoryID: state.getIn(['app', 'categoryID'])
-}))
+// @connect(state => ({
+//     categoryID: state.getIn(['app', 'categoryID'])
+// }))
 @graphql(fetchGirlsQuery, gqlProps)
 class Photos extends React.PureComponent {
     constructor(props) {

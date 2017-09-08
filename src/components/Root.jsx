@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import initialQuery from '../../../schema/categoriesQuery.graphql'
+import { graphql, gql } from 'react-apollo'
 import Header from './header/Header'
 
 const Container = styled.div`
@@ -15,13 +17,20 @@ const BodyContainer = styled.div`
     flex: 1;
 `
 
-function Root({ children }) {
-    return (
+@graphql(initialQuery)
+class Root extends React.PureComponent {
+    render() {
+        const { children, params } = this.props
+        return (
         <Container>
-            <Header />
+            <Header
+                categoryID={params.categoryID || -1}
+                categories={this.props.data.categories}
+            />
             <BodyContainer>{ children }</BodyContainer>
         </Container>
-    )
+        )
+    }
 }
 
 export default Root

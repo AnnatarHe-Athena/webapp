@@ -1,6 +1,6 @@
 import React from 'react'
 import Nav from '../../components/Nav'
-import fetchGirlsQuery from '../../graphql/fetchGirls.graphql'
+import fetchGirlsQuery from '../../../../schema/fetchGirlsQuery.graphql'
 import { graphql, gql } from 'react-apollo'
 
 const gqlProps = {
@@ -73,7 +73,6 @@ class Girls extends React.PureComponent {
     return (
       <div>
         <Nav categories={categories || []} onChange={this.changeCategory} />
-
       </div>
     )
   }

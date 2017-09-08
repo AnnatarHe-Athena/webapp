@@ -66,6 +66,7 @@ const config = {
         }, {
             test: /\.(graphql|gql)$/,
             exclude: /node_modules/,
+            // include: [path.resolve('..', '..', 'schema')],
             loader: 'graphql-tag/loader',
       }]
   },
