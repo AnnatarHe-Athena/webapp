@@ -1,8 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Photos from '../../components/photos/Photos'
-// import helloQuery from '../../graphql/hello.graphql'
-// import { graphql, gql } from 'react-apollo'
+import Photos from './Photos'
 
 const Div = styled.div`
   width: 100%;

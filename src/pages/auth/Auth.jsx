@@ -6,20 +6,13 @@ import authMutationGraphql from '../../../../schema/mutations/auth.graphql'
 import Button from '../../components/button/Button'
 import Card from '../../components/card/Card'
 import PageContainer from '../../components/PageContainer'
+import Separator from '../../components/Separator'
 import Status from './Status'
 
 const innerContainerOtherStyles = `
     h2 {
         margin: 0;
         color: #222;
-    }
-
-    hr {
-        margin: 1rem 0 3rem 0;
-        border: none;
-        background-color: #d8d7d7;
-        height: 1px;
-        width: 100%;
     }
 
     span {
@@ -80,7 +73,7 @@ class Auth extends React.PureComponent {
             <PageContainer>
                 <Card isFar others={innerContainerOtherStyles}>
                     <h2>Auth</h2>
-                    <hr />
+                    <Separator />
                     <Field>
                         <input
                             value={this.state.email}
