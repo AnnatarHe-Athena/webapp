@@ -10,6 +10,10 @@ const colorMap = {
     blue: {
         bgc: '#2196f3',
         font: '#fff'
+    },
+    ghost: {
+      bgc: 'transparent',
+      font: '#000'
     }
 }
 

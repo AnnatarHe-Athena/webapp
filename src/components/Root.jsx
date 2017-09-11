@@ -1,7 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
+import { graphql, withApollo } from 'react-apollo'
+import { updateCategories } from '../actions/category'
 import initialQuery from '../../../schema/categoriesQuery.graphql'
-import { graphql, gql } from 'react-apollo'
+
 import Header from './header/Header'
 
 const Container = styled.div`
@@ -17,15 +20,29 @@ const BodyContainer = styled.div`
     flex: 1;
 `
 
-@graphql(initialQuery)
+
+
+@connect(state => ({
+  categories: state.getIn(['app', 'categories'])
+}), dispatch => ({
+  updateCategories(categories) { return dispatch(updateCategories(categories)) }
+}))
+@withApollo
 class Root extends React.PureComponent {
+  componentDidMount() {
+    this.props.client.query({
+      query: initialQuery
+    }).then(result => {
+      this.props.updateCategories(result.data.categories)
+    })
+  }
     render() {
         const { children, params } = this.props
         return (
         <Container>
             <Header
                 categoryID={params.categoryID || -1}
-                categories={this.props.data.categories}
+                categories={this.props.categories.toJS()}
             />
             <BodyContainer>{ children }</BodyContainer>
         </Container>

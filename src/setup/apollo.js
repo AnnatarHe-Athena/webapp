@@ -23,7 +23,8 @@ networkInterface.use([{
 
 const apolloClient = new ApolloClient({
     reduxRootSelector(store) { return store.get('apollo') },
-    networkInterface
+    networkInterface,
+    addTypename: true
 })
 
 export { apolloClient }

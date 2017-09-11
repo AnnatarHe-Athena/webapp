@@ -6,9 +6,26 @@ const Container = styled.section`
 `
 
 const Header = styled.header`
+  display: flex;
+
+  button {
+    display: flex;
+    flex: 1;
+    border: none;
+    background-color: rgba(236, 140, 146, 1);
+    outline: none;
+    transition: all .35s;
+    padding: 1rem;
+    color: #fff;
+    &:hover {
+      background-color rgba(236, 140, 146, .7);
+    }
+  }
 `
 
 const Body = styled.div`
+  min-height: 1rem;
+
 `
 const Content = styled.div`
 `

@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { graphql } from 'react-apollo'
-import authMutationGraphql from '../../../../schema/mutations/auth.graphql'
+import { graphql, withApollo } from 'react-apollo'
+import authGraphql from '../../../../schema/queries/auth.graphql'
 import Button from '../../components/button/Button'
 import Card from '../../components/card/Card'
 import PageContainer from '../../components/PageContainer'
@@ -37,19 +37,7 @@ const Field = styled.div`
 @connect(null, dispatch => ({
     syncToken(token) { return dispatch }
 }))
-@graphql(authMutationGraphql, {
-    props({ ownProps, mutate }) {
-        return {
-            auth({ email, password }) {
-                return mutate({
-                    variables: { email, password }
-                }).then(result => {
-                    return ownProps.syncToken(result.data)
-                })
-            }
-        }
-    } 
-})
+@withApollo
 class Auth extends React.PureComponent {
     state = {
         email: '',
@@ -65,7 +53,11 @@ class Auth extends React.PureComponent {
             return
         }
 
-        this.props.auth({ email, password: pwd })
+        // this.props.auth({ email, password: pwd })
+        this.props.client.query({
+          query: authGraphql,
+          variables: { email, password:pwd }
+        })
     }
 
     render() {

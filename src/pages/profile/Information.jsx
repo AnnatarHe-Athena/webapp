@@ -25,7 +25,6 @@ const schemaCanShow = [{
 }]
 
 const Information = ({ user }) => {
-  console.log(user)
   return (
     <Container>
       <Avatar>

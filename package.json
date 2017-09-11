@@ -13,6 +13,7 @@
     "react-router": "3",
     "react-router-redux": "^4.0.8",
     "react-scripts": "1.0.10",
+    "react-select": "^1.0.0-rc.7",
     "redux": "^3.7.2",
     "redux-immutable": "^4.0.0",
     "redux-logger": "^3.0.6",
