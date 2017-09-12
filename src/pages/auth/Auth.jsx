@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { graphql, withApollo } from 'react-apollo'
+import { syncAuthStatus } from '../../actions/auth'
 import authGraphql from '../../../../schema/queries/auth.graphql'
 import Button from '../../components/button/Button'
 import Card from '../../components/card/Card'
@@ -34,8 +35,10 @@ const Field = styled.div`
     }
 `
 
+import { push } from 'react-router-redux'
+
 @connect(null, dispatch => ({
-    syncToken(token) { return dispatch }
+    syncToken(token, id) { return dispatch(syncAuthStatus(token, id)) }
 }))
 @withApollo
 class Auth extends React.PureComponent {
@@ -57,6 +60,9 @@ class Auth extends React.PureComponent {
         this.props.client.query({
           query: authGraphql,
           variables: { email, password:pwd }
+        }).then(result => {
+          const { token, id } = result.data.auth
+          this.props.syncToken(token, id)
         })
     }
 

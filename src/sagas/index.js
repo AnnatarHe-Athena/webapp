@@ -9,10 +9,12 @@ function echo() {
     resolve(100)
   })
 }
-
 export default function* root () {
-  yield all([
-    fork(echo),
-    take(SAGA_SYNC_AUTH_TOKEN, syncToken)
-  ])
+  yield [
+    fork(syncToken)
+  ]
+  // yield all([
+  //   fork(echo),
+  //   take(SAGA_SYNC_AUTH_TOKEN, syncToken)
+  // ])
 }

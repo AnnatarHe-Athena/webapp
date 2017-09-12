@@ -6,6 +6,7 @@ import { Link } from 'react-router'
 import { graphql, withApollo } from 'react-apollo'
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
+import Notification from 'rc-notification'
 import { profileGot } from '../../actions/auth'
 import Card from '../../components/card/Card'
 import addGirlCells from '../../../../schema/mutations/addGirlCells.graphql'
@@ -72,103 +73,125 @@ const Submits = styled.div`
 }))
 @withApollo
 class CreateItems extends React.PureComponent {
-    constructor(props) {
-        super(props)
-        this.state = {
-          cells: fromJS([{url: 'sjfd', text: 'lsjdfs', cate: 0}]),
-          input: fromJS({
-            url: '', text: '', cate: props.categories.getIn([0, 'id'])
-          })
-        }
-    }
-
-    metaUpdateInput = (type) => e => {
-      const val = e.target ? e.target.value : e.value
-      this.setState({
-        input: this.state.input.update(type, _ => val)
+  constructor(props) {
+    super(props)
+    this.state = {
+      loading: false,
+      cells: fromJS([]),
+      input: fromJS({
+        url: '', text: '', cate: props.categories.getIn([0, 'id'])
       })
     }
+    this.notification = Notification.newInstance({
+      prefixCls: 'notification',
+      style: {}
+    })
+  }
 
-    renderTableHeader() {
-      return ['img', 'text', 'cate'].map((x, i) => {
-        return <th key={i}>{x}</th>
+  metaUpdateInput = (type) => e => {
+    const val = e.target ? e.target.value : e.value
+    this.setState({
+      input: this.state.input.update(type, _ => val)
+    })
+  }
+
+  renderTableHeader() {
+    return ['img', 'text', 'cate'].map((x, i) => {
+      return <th key={i}>{x}</th>
+    })
+  }
+
+  renderTableContent() {
+    return this.state.cells.toJS().map((x, i) => {
+      return (
+        <tr key={i}>
+          {Object.keys(x).map((k, ind) => {
+            return <td key={ind}>{x[k]}</td>
+          })}
+        </tr>
+      )
+    })
+  }
+
+  upload = () => {
+    const cells = this.state.cells.map(x => {
+      return x.update('img', _ => x.get('url')).delete('url')
+    }).toJS()
+    if (cells.length === 0) {
+      this.notification.notice({
+        content: 'need information to upload'
       })
+      return
     }
-
-    renderTableContent() {
-      console.log(this.state.cells.toJS())
-      return this.state.cells.toJS().map((x, i) => {
-        return (
-          <tr key={i}>
-            {Object.keys(x).map((k, ind) => {
-              return <td key={ind}>{x[k]}</td>
-            })}
-          </tr>
-        )
+    this.setState({ loading: true })
+    this.props.client.mutate({
+      mutation: addGirlCells,
+      variables: { cells }
+    }).then(result => {
+      this.notification.notice({
+        content: 'upload nice'
       })
-    }
-
-    upload = () => {
-      const cells = this.state.cells.map(x => {
-        return x.update('img', _ => x.get('url')).delete('url')
-      }).toJS()
-      this.props.client.mutate({
-        mutation: addGirlCells,
-        variables: { cells }
-      }).then(result => {
-        console.log(result)
-      }).catch(err => {
-        console.error(err)
+    }).catch(err => {
+      this.notification.notice({
+        content: 'upload Error'
       })
-    }
+    }).then(() => {
+      this.setState({ loading: false, cells: fromJS([]) })
+    })
+  }
 
-    render() {
-      const categories = this.props.categories.map(x => ({ value: ~~x.get('id'), label: x.get('name') }))
-        return (
-          <PageContainer>
-            <Card>
-              <H2>Create Cells</H2>
-              <Separator />
-              <ReadyToUpload>
-                <thead>
-                  <tr>{this.renderTableHeader()}</tr>
-                </thead>
-                <tbody>
-                  {this.renderTableContent()}
-                </tbody>
-              </ReadyToUpload>
-              <Separator />
-              <InputField>
-                <input type="url" onChange={this.metaUpdateInput('url')} placeholder="URL" value={this.state.input.get('url')} />
-                <input type="text" onChange={this.metaUpdateInput('text')} placeholder="TEXT" value={this.state.input.get('text')} />
-                <Select 
-                  name="categories"
-                  value={this.state.input.get('cate')}
-                  options={categories.toJS()}
-                  onChange={this.metaUpdateInput('cate')}
-                />
-              </InputField>
-              <Submits>
-                <Button
-                  color="ghost"
-                  size="medium"
-                  onClick={() => {
-                    this.setState({
-                      cells: this.state.cells.push(this.state.input),
-                      input: fromJS({ url: '', text: '', cate: this.props.categories.getIn([0, 'id'])})
-                    })
-                  }}
-                >Save</Button>
-                <Button
-                  color="blue"
-                  size="medium"
-                  onClick={this.upload}
-                >Upload</Button>
-              </Submits>
-            </Card>
-          </PageContainer>
-        )
-    }
+  componentWillUnmount() {
+    this.notification.destroy()
+    this.notification = null
+  }
+
+  render() {
+    const categories = this.props.categories.map(x => ({ value: ~~x.get('id'), label: x.get('name') }))
+    return (
+      <PageContainer>
+        <Card>
+          <H2>Create Cells</H2>
+          <Separator />
+          <ReadyToUpload>
+            <thead>
+              <tr>{this.renderTableHeader()}</tr>
+            </thead>
+            <tbody>
+              {this.renderTableContent()}
+            </tbody>
+          </ReadyToUpload>
+          <Separator />
+          <InputField>
+            <input type="url" onChange={this.metaUpdateInput('url')} placeholder="URL" value={this.state.input.get('url')} />
+            <input type="text" onChange={this.metaUpdateInput('text')} placeholder="TEXT" value={this.state.input.get('text')} />
+            <Select
+              name="categories"
+              value={this.state.input.get('cate')}
+              options={categories.toJS()}
+              onChange={this.metaUpdateInput('cate')}
+            />
+          </InputField>
+          <Submits>
+            <Button
+              color="ghost"
+              size="medium"
+              onClick={() => {
+                this.setState({
+                  cells: this.state.cells.push(this.state.input),
+                  input: fromJS({ url: '', text: '', cate: this.props.categories.getIn([0, 'id']) })
+                })
+              }}
+            >Save</Button>
+            <Button
+              color="blue"
+              size="medium"
+              onClick={this.upload}
+            >Upload</Button>
+          </Submits>
+        </Card>
+      </PageContainer>
+    )
+  }
 }
 
 export default CreateItems

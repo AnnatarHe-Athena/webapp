@@ -5,6 +5,7 @@
   "dependencies": {
     "immutable": "^3.8.1",
     "intersection-observer": "^0.4.0",
+    "rc-notification": "^2.0.5",
     "react": "^15.6.1",
     "react-addons-css-transition-group": "^15.6.0",
     "react-apollo": "^1.4.8",
