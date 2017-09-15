@@ -6,7 +6,7 @@ import { Link } from 'react-router'
 import { graphql, withApollo } from 'react-apollo'
 import { profileGot } from '../../actions/auth'
 import Card from '../../components/card/Card'
-import fetchProfileQuery from '../../../../schema/queries/profileWithCollection.graphql'
+import fetchProfileQuery from 'AthenaSchema/queries/profileWithCollection.graphql'
 
 import PhotoList from '../../components/photos/Photos'
 import PageContainer from '../../components/PageContainer'

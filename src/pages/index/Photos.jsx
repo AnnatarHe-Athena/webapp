@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { graphql, gql } from 'react-apollo'
 import PhotoList from '../../components/photos/Photos'
-import fetchGirlsQuery from '../../../../schema/fetchGirlsQuery.graphql'
+import fetchGirlsQuery from 'AthenaSchema/fetchGirlsQuery.graphql'
 
 const Container = styled.main`
     display: flex;

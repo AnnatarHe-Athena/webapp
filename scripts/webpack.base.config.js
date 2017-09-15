@@ -100,7 +100,11 @@ const config = {
         })
     ],
     resolve: {
-        extensions: ['.js', '.jsx', '.styl']
+      extensions: ['.js', '.jsx', '.styl'],
+      alias: {
+        AthenaSchema: path.resolve(__dirname, '..', '..', 'schema'),
+        AthenaComponents: path.resolve(__dirname, '..', 'src', 'components')
+      }
     }
 }
 

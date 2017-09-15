@@ -9,7 +9,7 @@ import 'react-select/dist/react-select.css';
 import Notification from 'rc-notification'
 import { profileGot } from '../../actions/auth'
 import Card from '../../components/card/Card'
-import addGirlCells from '../../../../schema/mutations/addGirlCells.graphql'
+import addGirlCells from 'AthenaSchema/mutations/addGirlCells.graphql'
 
 import PhotoList from '../../components/photos/Photos'
 import PageContainer from '../../components/PageContainer'

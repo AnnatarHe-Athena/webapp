@@ -1,6 +1,6 @@
 import React from 'react'
 import Nav from '../../components/Nav'
-import fetchGirlsQuery from '../../../../schema/fetchGirlsQuery.graphql'
+import fetchGirlsQuery from 'AthenaSchema/fetchGirlsQuery.graphql'
 import { graphql, gql } from 'react-apollo'
 
 const gqlProps = {
