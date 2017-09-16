@@ -67,6 +67,15 @@ const Submits = styled.div`
   align-items: center;
 `
 
+const premissionOptions = [{
+  value: 2,
+  label: 'Public'
+}, {
+  value: 3,
+  // visiable user him/herself only
+  label: 'Private'
+}]
+
 
 @connect(state => ({
   categories: state.getIn(['app', 'categories'])
@@ -79,7 +88,7 @@ class CreateItems extends React.PureComponent {
       loading: false,
       cells: fromJS([]),
       input: fromJS({
-        url: '', text: '', cate: props.categories.getIn([0, 'id'])
+        url: '', text: '', cate: props.categories.getIn([0, 'id']), premission: premissionOptions[0].value
       })
     }
     this.notification = Notification.newInstance({
@@ -113,9 +122,12 @@ class CreateItems extends React.PureComponent {
     })
   }
 
-  upload = () => {
+  upload = async () => {
     const cells = this.state.cells.map(x => {
-      return x.update('img', _ => x.get('url')).delete('url')
+      return x.update('img', _ => {
+        const lastUrl = x.get('url').split('/')
+        return lastUrl[lastUrl.length - 1]
+      }).delete('url')
     }).toJS()
     if (cells.length === 0) {
       this.notification.notice({
@@ -124,20 +136,22 @@ class CreateItems extends React.PureComponent {
       return
     }
     this.setState({ loading: true })
-    this.props.client.mutate({
-      mutation: addGirlCells,
-      variables: { cells }
-    }).then(result => {
+    try {
+      const result = await this.props.client.mutate({
+        mutation: addGirlCells,
+        variables: { cells }
+      })
+
       this.notification.notice({
         content: 'upload nice'
       })
-    }).catch(err => {
+    } catch(e) {
       this.notification.notice({
         content: 'upload Error'
       })
-    }).then(() => {
+    } finally {
       this.setState({ loading: false, cells: fromJS([]) })
-    })
+    }
   }
 
   componentWillUnmount() {
@@ -168,9 +182,18 @@ class CreateItems extends React.PureComponent {
               name="categories"
               value={this.state.input.get('cate')}
               options={categories.toJS()}
+              placeholder="Category"
               onChange={this.metaUpdateInput('cate')}
             />
+            <Select
+              name="Premission"
+              value={this.state.input.get('premission')}
+              options={premissionOptions}
+              placeholder="Premission"
+              onChange={this.metaUpdateInput('premission')}
+            />
           </InputField>
+          <p>Only image that uploaded to weibo can be save in there. just content url. not full url</p>
           <Submits>
             <Button
               color="ghost"

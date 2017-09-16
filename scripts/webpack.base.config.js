@@ -74,7 +74,7 @@ const config = {
         new HtmlWebpackPlugin({
             title: 'Athena webapp',
             inject: 'body',
-            template: path.resolve(__dirname, 'template.html')
+            template: path.resolve(__dirname, `template${process.env.NODE_ENV === 'production' ? '-prod' : ''}.html`)
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'common',

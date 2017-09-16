@@ -9,11 +9,23 @@ function asyncLoadComponent(path) {
     .catch(err => console.error(err))
 }
 
+function _isLogged() {
+  return sessionStorage.getItem('athena-token') 
+}
+
 function checkAuthStatus(ns, replace) {
-  if (!sessionStorage.getItem('athena-token')) {
+  if (!_isLogged()) {
     replace('/auth')
   }
 }
+
+function redirectToProfile(ns, replace) {
+  const userToken = _isLogged()
+  if (userToken) {
+    replace(`/profile/${userToken.split('|')[0]}`)
+  }
+}
+
 
 const routes = {
   path: '/',
@@ -25,7 +37,8 @@ const routes = {
     onEnter: checkAuthStatus
   }, {
     path: 'auth',
-    getComponent: asyncLoadComponent("auth/Auth")
+    getComponent: asyncLoadComponent("auth/Auth"),
+    onEnter: redirectToProfile
   }, {
     path: 'profile/:id',
     getComponent: asyncLoadComponent("profile/Profile"),

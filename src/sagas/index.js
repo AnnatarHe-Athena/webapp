@@ -1,7 +1,7 @@
 import {
     SAGA_SYNC_AUTH_TOKEN
 } from '../constants/auth'
-import { syncToken } from './auth'
+import { syncToken, logout } from './auth'
 import { fork, all, take } from 'redux-saga/effects'
 
 function echo() {
@@ -11,7 +11,8 @@ function echo() {
 }
 export default function* root () {
   yield [
-    fork(syncToken)
+    fork(syncToken),
+    fork(logout)
   ]
   // yield all([
   //   fork(echo),

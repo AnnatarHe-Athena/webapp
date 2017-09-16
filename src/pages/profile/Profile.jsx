@@ -25,8 +25,13 @@ const AddButton = styled.div`
 @withApollo
 class Profile extends React.PureComponent {
 
-  state = {
-    collections: fromJS([])
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      collections: fromJS([])
+    }
+    this.variableFrom = 0
   }
 
   componentDidMount() {
@@ -42,7 +47,7 @@ class Profile extends React.PureComponent {
       query: fetchProfileQuery,
       variables: {
         id: this.props.params.id,
-        from: 0,
+        from: this.variableFrom,
         size: 20
       }
     }).then(result => {
@@ -61,6 +66,7 @@ class Profile extends React.PureComponent {
     }).catch(err => {
       console.error(err)
     })
+    this.variableFrom += 20
   }
 
   loadMore = () => {
@@ -81,18 +87,17 @@ class Profile extends React.PureComponent {
     }).catch(err => {
       console.error(err)
     })
-
+    // 可以重构一下，而且应该更新这个值在 async 内部
+    this.variableFrom += 20
   }
 
   render() {
     const collectionBody = (
-      <div>
         <PhotoList
           loading={false}
           loadMore={this.loadMore}
-          cells={this.state.collections}
+          cells={this.state.collections.toJS()}
         />
-      </div>
     )
     return (
       <PageContainer>
@@ -102,7 +107,7 @@ class Profile extends React.PureComponent {
           />
           <Separator />
           <AddButton>
-            <Link to={"/profile/" + this.props.params.id + "/create"}>Hello</Link>
+            <Link to={"/profile/" + this.props.params.id + "/create"}>Create</Link>
           </AddButton>
           <Separator />
           <Tab
