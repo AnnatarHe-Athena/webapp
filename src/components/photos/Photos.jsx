@@ -52,12 +52,14 @@ class Photos extends React.PureComponent {
         this.io = null
     }
 
-    renderPhotos() {
+    requestBigPic = () => {
+      console.log('request big pic')
+    }
 
+    renderPhotos() {
         if (!this.props.cells || this.props.cells.length === 0) {
             return null
         }
-
         return this.props.cells.map((pic, index) => {
             //wx3.sinaimg.cn/thumb150/bfc243a3gy1fisvjjysfsg20f00k0b2d
             const src = pic.img.indexOf('http') === 0 ? pic.img : `https://wx3.sinaimg.cn/bmiddle/${pic.img}`
@@ -65,8 +67,8 @@ class Photos extends React.PureComponent {
                 <PhotoItem
                     key={pic.id}
                     src={src}
-                    desc={pic.desc}
-                    onClick={() => { console.log('clicked') }}
+                    desc={pic.text}
+                    onClick={this.requestBigPic}
                 />
             )
         })

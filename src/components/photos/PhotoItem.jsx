@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Container = styled.div`
+const Container = styled.picture`
   flex-grow: 1;
   img {
     width: 100%;
@@ -9,9 +9,11 @@ const Container = styled.div`
 `
 
 const PhotoItem = ({ src, desc, onClick }) => {
+  src = 'http://via.placeholder.com/350x150'
   return (
     <Container onClick={onClick}>
-      <img src={src} />
+      <source srcSet={src} />
+      <img src={src} alt={desc} />
       {/*<span>{desc}</span>*/}
     </Container>
   )

@@ -15,6 +15,17 @@ import Information from './Information'
 import Separator from '../../components/Separator'
 
 const AddButton = styled.div`
+  a {
+    background-color: #03a9f4;
+    padding: .25rem .5rem;
+    border-radius: 4px;
+    box-shadow: 0 0 .5rem #888;
+    color: #fff;
+    transition: all .35s;
+    &:hover {
+      padding: .5rem;
+    }
+  }
 `
 
 @connect(store => ({
@@ -101,7 +112,7 @@ class Profile extends React.PureComponent {
     )
     return (
       <PageContainer>
-        <Card isFar>
+        <Card >
           <Information
             user={this.props.user}
           />
@@ -112,7 +123,7 @@ class Profile extends React.PureComponent {
           <Separator />
           <Tab
             tab={[{
-              title: 'title',
+              title: 'collections',
               body: collectionBody
             }]}
           />
