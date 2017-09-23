@@ -9,7 +9,9 @@ const Container = styled.picture`
 `
 
 const PhotoItem = ({ src, desc, onClick }) => {
-  src = 'http://via.placeholder.com/350x150'
+  if (process.env.NODE_ENV !=== 'production') {
+    src = 'http://via.placeholder.com/350x150'
+  }
   return (
     <Container onClick={onClick}>
       <source srcSet={src} />
