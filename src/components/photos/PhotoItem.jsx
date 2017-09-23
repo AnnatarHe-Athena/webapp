@@ -9,7 +9,7 @@ const Container = styled.picture`
 `
 
 const PhotoItem = ({ src, desc, onClick }) => {
-  if (process.env.NODE_ENV !=== 'production') {
+  if (process.env.NODE_ENV !== 'production') {
     src = 'http://via.placeholder.com/350x150'
   }
   return (
