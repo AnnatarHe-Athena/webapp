@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const AddAssertHtmlPlugin = require('add-asset-html-webpack-plugin')
 const poststylus = require('poststylus')
 
 const config = {
@@ -74,7 +75,7 @@ const config = {
         new HtmlWebpackPlugin({
             title: 'Athena webapp',
             inject: 'body',
-            template: path.resolve(__dirname, `template${process.env.NODE_ENV === 'production' ? '-prod' : ''}.html`)
+            template: path.resolve(__dirname, 'template.html')
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'common',
@@ -86,9 +87,9 @@ const config = {
             disable: false,
             allChunks: true
         }),
-        new webpack.DllReferencePlugin({
-            context: __dirname,
-            manifest: require('../dist/manifest.json')
+        new AddAssertHtmlPlugin({
+          filepath: path.resolve(__dirname, '..', 'dist', '*.dll.js'),
+          includeSourcemap: process.env.NODE_ENV !== 'production'
         }),
         new webpack.LoaderOptionsPlugin({
             debug: true,
@@ -107,5 +108,15 @@ const config = {
       }
     }
 }
+
+const dllRefs = ['utils', 'vendors', 'plugins']
+dllRefs.forEach(x => {
+  config.plugins.push(
+    new webpack.DllReferencePlugin({
+      context: __dirname,
+      manifest: require(`../dist/${x}-manifest.json`)
+    })
+  )
+})
 
 module.exports = config
