@@ -8,7 +8,7 @@ import 'intersection-observer'
 
 const rootDOM = document.querySelector('#root')
 
-ReactDOM.hydrate(
+ReactDOM.render(
     <AppContainer>
         <App />
     </AppContainer>,
@@ -19,7 +19,7 @@ registerServiceWorker()
 if (module.hot) {
     module.hot.accept('./App', () => {
         const NextApp = require('./App').default
-        ReactDOM.hydrate(
+        ReactDOM.render(
             <AppContainer>
                 <NextApp />
             </AppContainer>,

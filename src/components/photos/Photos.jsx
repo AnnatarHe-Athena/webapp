@@ -1,13 +1,15 @@
 import React from 'react'
+import { fromJS } from 'immutable'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { graphql, gql } from 'react-apollo'
 import Loading from '../Loading'
 import PhotoItem from './PhotoItem'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import Preview from '../preview/Preview'
 // import Footer from '../footer/Footer'
 import Button from '../button/Button'
-import fetchGirlsQuery from '../../../../schema/fetchGirlsQuery.graphql'
+import fetchGirlsQuery from 'AthenaSchema/fetchGirlsQuery.graphql'
 
 const Container = styled.main`
     display: flex;
@@ -31,6 +33,10 @@ const PhotoLists = styled.div`
 class Photos extends React.PureComponent {
     constructor(props) {
         super(props)
+
+        this.state = {
+          currentCell: fromJS({})
+        }
     }
 
     componentDidMount() {
@@ -52,8 +58,8 @@ class Photos extends React.PureComponent {
         this.io = null
     }
 
-    requestBigPic = () => {
-      console.log('request big pic')
+    requestBigPic = (id, src, desc) => {
+      this.setState({ currentCell: fromJS({id, src, desc}) })
     }
 
     renderPhotos() {
@@ -61,12 +67,11 @@ class Photos extends React.PureComponent {
             return null
         }
         return this.props.cells.map((pic, index) => {
-            //wx3.sinaimg.cn/thumb150/bfc243a3gy1fisvjjysfsg20f00k0b2d
-            const src = pic.img.indexOf('http') === 0 ? pic.img : `https://wx3.sinaimg.cn/bmiddle/${pic.img}`
             return (
                 <PhotoItem
                     key={pic.id}
-                    src={src}
+                    id={pic.id}
+                    src={pic.img}
                     desc={pic.text}
                     onClick={this.requestBigPic}
                 />
@@ -74,20 +79,21 @@ class Photos extends React.PureComponent {
         })
     }
     render() {
-        return (
-            <Container>
-                <ReactCSSTransitionGroup
-                    component={PhotoLists}
-                    transitionName="fade"
-                    transitionEnterTimeout={500}
-                    transitionLeaveTimeout={300}
-                >
-                    {this.renderPhotos()}
-                </ReactCSSTransitionGroup>
-                <Button size="large" color="red" disabled={this.props.loading} className="athena-obs-more"> Load More </Button>
-                {this.props.loading && (<Loading />)}
-            </Container>
-        )
+      return (
+          <Container>
+              <ReactCSSTransitionGroup
+                  component={PhotoLists}
+                  transitionName="fade"
+                  transitionEnterTimeout={500}
+                  transitionLeaveTimeout={300}
+              >
+                  {this.renderPhotos()}
+              </ReactCSSTransitionGroup>
+              <Button size="large" color="red" disabled={this.props.loading} className="athena-obs-more"> Load More </Button>
+              {this.props.loading && (<Loading />)}
+              <Preview cell={this.state.currentCell.toJS()} />
+          </Container>
+      )
     }
 }
 

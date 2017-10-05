@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { fromJS } from 'immutable'
 import { Link } from 'react-router'
 import { graphql, withApollo } from 'react-apollo'
-import Select from 'react-select';
+import Select from 'AthenaComponents/select/Select'
 import 'react-select/dist/react-select.css';
 import Notification from 'rc-notification'
 import { profileGot } from '../../actions/auth'
@@ -21,12 +21,23 @@ const H2 = styled.h2`
 
 `
 
+const TextTip = styled.span`
+  padding: 1rem 0;
+  font-size: 14px;
+  display: block;
+  font-style: italic;
+  a {
+    color: #03a9f4;
+  }
+`
+
 const ReadyToUpload = styled.table`
   box-sizing: border-box;
   background: #ffffff;
   border: 1px solid #e5e5e5;
   border-collapse: collapse;
   border-spacing: 0;
+  width: 100%;
 
   thead tr:first-child {
     background-color: #f7f7f7;
@@ -105,16 +116,23 @@ class CreateItems extends React.PureComponent {
   }
 
   renderTableHeader() {
-    return ['img', 'text', 'cate'].map((x, i) => {
+    return ['图片URL', '图片简单介绍', '分类', '权限'].map((x, i) => {
       return <th key={i}>{x}</th>
     })
   }
 
   renderTableContent() {
+    const categories = this.props.categories
     return this.state.cells.toJS().map((x, i) => {
       return (
         <tr key={i}>
           {Object.keys(x).map((k, ind) => {
+            if (ind === 2) {
+              return <td key={ind}>{categories.find(item => item.get('id') === x[k]).get('name') }</td>
+            }
+            if (ind === 3) {
+              return <td key={ind}>{premissionOptions.find(item => item.value === x[k]).label}</td>
+            }
             return <td key={ind}>{x[k]}</td>
           })}
         </tr>
@@ -125,8 +143,13 @@ class CreateItems extends React.PureComponent {
   upload = async () => {
     const cells = this.state.cells.map(x => {
       return x.update('img', _ => {
-        const lastUrl = x.get('url').split('/')
-        return lastUrl[lastUrl.length - 1]
+        const url = x.get('url')
+        // 判定当前是否是新浪图床的图片，是的话只截取对应的部分 url， 否则截取全体的
+        if (url.indexOf('.sinaimg.cn') < 15 && url.indexOf('.sinaimg.cn') > 5) {
+          const lastUrl = url.split('/')
+          return lastUrl[lastUrl.length - 1]
+        }
+        return url
       }).delete('url')
     }).toJS()
     if (cells.length === 0) {
@@ -157,6 +180,10 @@ class CreateItems extends React.PureComponent {
   componentWillUnmount() {
     this.notification.destroy()
     this.notification = null
+  }
+
+  componentDidCatch(info, err) {
+    console.error(info, err)
   }
 
   render() {
@@ -193,7 +220,7 @@ class CreateItems extends React.PureComponent {
               onChange={this.metaUpdateInput('premission')}
             />
           </InputField>
-          <p>Only image that uploaded to weibo can be save in there. just content url. not full url</p>
+          <TextTip>强烈推荐使用新浪微博图床上传优秀的照片，其他服务也是允许的。 <a href="https://chrome.google.com/webstore/detail/%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A%E5%9B%BE%E5%BA%8A/fdfdnfpdplfbbnemmmoklbfjbhecpnhf?hl=zh-CN" target="_blank">新浪微博图床</a></TextTip>
           <Submits>
             <Button
               color="ghost"
@@ -201,14 +228,16 @@ class CreateItems extends React.PureComponent {
               onClick={() => {
                 this.setState({
                   cells: this.state.cells.push(this.state.input),
-                  input: fromJS({ url: '', text: '', cate: this.props.categories.getIn([0, 'id']) })
+                  input: fromJS({ url: '', text: '', cate: this.props.categories.getIn([0, 'id']), premission: this.state.input.get('premission') })
                 })
               }}
+              disabled={this.state.input.some(x => !x || x === '')}
             >Save</Button>
             <Button
               color="blue"
               size="medium"
               onClick={this.upload}
+              disabled={this.state.cells.size === 0}
             >Upload</Button>
           </Submits>
         </Card>

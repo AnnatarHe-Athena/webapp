@@ -13,7 +13,6 @@ class Index extends React.PureComponent {
   }
 
   render() {
-    console.log(this.props.params)
     return (
       <Div>
         <Photos categoryID={this.props.params.cid || -1} />
