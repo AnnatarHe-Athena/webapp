@@ -49,6 +49,11 @@ class PreviewImage extends React.PureComponent {
 
   render() {
     const { id, src, desc } = this.props
+
+    if (!id || !src || !desc) {
+      return null
+    }
+
     const bigSrc = getRealSrcLink(src, 'large')
     return (
       <Mask>

@@ -37,7 +37,7 @@ const config = {
     vendors: split2,
     plugins: split3
   },
-  devtool: '#source-map',
+  devtool: process.env.NODE_ENV !== 'production' ? '#source-map' : false,
   plugins: [
     new webpack.DllPlugin({
       path: path.resolve(__dirname, '..', 'dist', '[name]-manifest.json'),
