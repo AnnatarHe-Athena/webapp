@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Card from '../card/Card'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import { CSSTransitionGroup } from 'react-transition-group'
 
 const Mask = styled.div`
   background-color: rgba(255, 255, 255, .8);
@@ -10,13 +10,13 @@ const Mask = styled.div`
 // TODO:
 const Dialog = ({ visibility, children }) => {
   return (
-    <ReactCSSTransitionGroup
+    <CSSTransitionGroup
       transitionName="fade"
       transitionEnterTimeout={500}
       transitionLeaveTimeout={300}
     >
       { visibility ? children : null }
-    </ReactCSSTransitionGroup>
+    </CSSTransitionGroup>
   )
 }
 
