@@ -16,7 +16,7 @@ const split1 = [
   'react-dom',
   'react-redux',
   'react-router',
-  'react-addons-css-transition-group',
+  'react-transition-group',
 ]
 
 const split3 = [

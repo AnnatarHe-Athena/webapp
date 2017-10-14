@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import CSSTransitionGroup from 'react-addons-css-transition-group'
+import { CSSTransitionGroup } from 'react-transition-group'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { graphql, gql } from 'react-apollo'

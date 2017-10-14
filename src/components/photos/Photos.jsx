@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { graphql, gql } from 'react-apollo'
 import Loading from '../Loading'
 import PhotoItem from './PhotoItem'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import { CSSTransitionGroup } from 'react-transition-group'
 import Preview from '../preview/Preview'
 // import Footer from '../footer/Footer'
 import Button from '../button/Button'
@@ -81,14 +81,14 @@ class Photos extends React.PureComponent {
     render() {
       return (
           <Container>
-              <ReactCSSTransitionGroup
+              <CSSTransitionGroup
                   component={PhotoLists}
                   transitionName="fade"
                   transitionEnterTimeout={500}
                   transitionLeaveTimeout={300}
               >
                   {this.renderPhotos()}
-              </ReactCSSTransitionGroup>
+              </CSSTransitionGroup>
               <Button size="large" color="red" disabled={this.props.loading} className="athena-obs-more"> Load More </Button>
               {this.props.loading && (<Loading />)}
               <Preview cell={this.state.currentCell.toJS()} />
