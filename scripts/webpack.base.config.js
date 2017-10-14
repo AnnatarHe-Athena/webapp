@@ -4,6 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const AddAssertHtmlPlugin = require('add-asset-html-webpack-plugin')
 const poststylus = require('poststylus')
+const OfflinePlugin = require('offline-plugin')
 
 const config = {
   entry: [
@@ -118,5 +119,7 @@ dllRefs.forEach(x => {
     })
   )
 })
+
+config.plugins.push(new OfflinePlugin())
 
 module.exports = config
