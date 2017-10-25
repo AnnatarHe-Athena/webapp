@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import styled from 'styled-components'
 import { withApollo } from 'react-apollo'
 import { getRealSrcLink } from '../../utils/index'
+import addCollectionMutation from "AthenaSchema/mutations/addCollection.graphql";
 
 const dom = document.querySelector('#preview')
 
@@ -35,15 +36,23 @@ class PreviewImage extends React.PureComponent {
 
   componentDidMount() {
     // send request to load this picture is liked or not
-
   }
 
   handleLike = () => {
-
+    // TODO:
   }
 
-  handleCollect = () => {
-    
+  handleCollect = async (e) => {
+    const result = await this.props.client.mutate({
+      mutation: addCollectionMutation,
+      variables: [this.props.id]
+    })
+
+    console.log(result)
+  }
+
+  handleDelete = (e) => {
+    // TODO:
   }
 
 
@@ -63,8 +72,9 @@ class PreviewImage extends React.PureComponent {
             <img src={bigSrc} alt={desc} />
           </picture>
           <Extra>
-            <button>Like</button>
-            <button>Collect</button>
+            {/*<button>Like</button>*/}
+            <button onClick={this.handleCollect}>Collect</button>
+            <button onClick={this.handleDelete}>Delete</button>
           </Extra>
         </Dialog>
       </Mask>
