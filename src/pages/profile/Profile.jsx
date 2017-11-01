@@ -3,16 +3,17 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { fromJS } from 'immutable'
 import { Link } from 'react-router'
-import { graphql, withApollo } from 'react-apollo'
+import { withApollo } from 'react-apollo'
+import PropTypes from 'prop-types'
 import { profileGot } from '../../actions/auth'
-import Card from '../../components/card/Card'
+import Card from 'AthenaComponents/card/Card'
 import fetchProfileQuery from 'AthenaSchema/queries/profileWithCollection.graphql'
 
-import PhotoList from '../../components/photos/Photos'
-import PageContainer from '../../components/PageContainer'
-import Tab from '../../components/tab/Tab'
+import PhotoList from 'AthenaComponents/photos/Photos'
+import PageContainer from 'AthenaComponents/PageContainer'
+import Tab from 'AthenaComponents/tab/Tab'
 import Information from './Information'
-import Separator from '../../components/Separator'
+import Separator from 'AthenaComponents/Separator'
 
 const AddButton = styled.div`
   a {
@@ -75,7 +76,9 @@ class Profile extends React.PureComponent {
         this.props.syncUserInfo(user)
       }
     }).catch(err => {
-      console.error(err)
+      if (__DEV__) {
+        console.error(err) // eslint-disable-line no-console
+      }
     })
     this.variableFrom += 20
   }
@@ -96,7 +99,9 @@ class Profile extends React.PureComponent {
         })
       }
     }).catch(err => {
-      console.error(err)
+      if (__DEV__) {
+        console.error(err) // eslint-disable-line no-console
+      }
     })
     // 可以重构一下，而且应该更新这个值在 async 内部
     this.variableFrom += 20
@@ -104,11 +109,11 @@ class Profile extends React.PureComponent {
 
   render() {
     const collectionBody = (
-        <PhotoList
-          loading={false}
-          loadMore={this.loadMore}
-          cells={this.state.collections.toJS()}
-        />
+      <PhotoList
+        loading={false}
+        loadMore={this.loadMore}
+        cells={this.state.collections.toJS()}
+      />
     )
     return (
       <PageContainer>
@@ -118,7 +123,7 @@ class Profile extends React.PureComponent {
           />
           <Separator />
           <AddButton>
-            <Link to={"/profile/" + this.props.params.id + "/create"}>Create</Link>
+            <Link to={'/profile/' + this.props.params.id + '/create'}>Create</Link>
           </AddButton>
           <Separator />
           <Tab
@@ -131,6 +136,13 @@ class Profile extends React.PureComponent {
       </PageContainer>
     )
   }
+}
+
+Profile.propTypes = {
+  user: PropTypes.any,
+  client: PropTypes.any,
+  syncUserInfo: PropTypes.func,
+  params: PropTypes.any
 }
 
 export default Profile

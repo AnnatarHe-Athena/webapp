@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 import Photos from './Photos'
 
 const Div = styled.div`
@@ -19,6 +20,10 @@ class Index extends React.PureComponent {
       </Div>
     )
   }
+}
+
+Index.propTypes = {
+  params: PropTypes.any
 }
 
 export default Index

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import styled from 'styled-components'
 import { withApollo } from 'react-apollo'
 import { getRealSrcLink } from '../../utils/index'
+import PropTypes from 'prop-types'
 
 const dom = document.querySelector('#preview')
 
@@ -73,7 +74,14 @@ class PreviewImage extends React.PureComponent {
 }
 
 const Preview = (props) => {
-    return ReactDOM.createPortal(<PreviewImage {...props} />, dom)
+  return ReactDOM.createPortal(<PreviewImage {...props} />, dom)
+}
+
+PreviewImage.propTypes = {
+  id: PropTypes.number.isRequired,
+  src: PropTypes.string.isRequired,
+  desc: PropTypes.string,
+  onClick: PropTypes.func
 }
 
 export default Preview

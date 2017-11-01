@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { graphql, gql } from 'react-apollo'
-import PhotoList from '../../components/photos/Photos'
+import { graphql } from 'react-apollo'
+import PropTypes from 'prop-types'
+import PhotoList from 'AthenaComponents/photos/Photos'
 import fetchGirlsQuery from 'AthenaSchema/fetchGirlsQuery.graphql'
 
 const Container = styled.main`
@@ -56,28 +57,37 @@ const gqlProps = {
 
 @graphql(fetchGirlsQuery, gqlProps)
 class Photos extends React.PureComponent {
-    constructor(props) {
-        super(props)
-    }
+  constructor(props) {
+    super(props)
+  }
 
-    componentWillReceiveProps(np) {
-        if (np.categoryID !== this.props.categoryID) {
-            this.props.loadNewCategories(np.categoryID)
-        }
+  componentWillReceiveProps(np) {
+    if (np.categoryID !== this.props.categoryID) {
+      this.props.loadNewCategories(np.categoryID)
     }
+  }
 
-    render() {
-      const { loading, loadMore, girls } = this.props
-        return (
-            <Container>
-              <PhotoList
-                loading={loading}
-                loadMore={loadMore}
-                cells={girls}
-              />
-            </Container>
-        )
-    }
+  render() {
+    const { loading, loadMore, girls } = this.props
+    return (
+      <Container>
+        <PhotoList
+          loading={loading}
+          loadMore={loadMore}
+          cells={girls}
+        />
+      </Container>
+    )
+  }
+}
+
+Photos.propTypes = {
+  loading: PropTypes.bool,
+  categories: PropTypes.arrayOf(PropTypes.any),
+  girls: PropTypes.arrayOf(PropTypes.any),
+  loadMore: PropTypes.func,
+  loadNewCategories: PropTypes.func,
+  categoryID: PropTypes.number
 }
 
 export default Photos
