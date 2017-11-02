@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import Photos from './Photos'
+import { report } from '../../utils/sentry'
 
 const Div = styled.div`
   width: 100%;
@@ -11,6 +12,10 @@ const Div = styled.div`
 class Index extends React.PureComponent {
   constructor(props) {
     super(props)
+  }
+
+  componentDidCatch(err, info) {
+    report(err, info)
   }
 
   render() {

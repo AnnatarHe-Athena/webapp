@@ -5,7 +5,10 @@ import App from './App'
 import registerServiceWorker from './registerServiceWorker'
 import './index.css'
 import 'intersection-observer'
-import * as OfflinePluginRuntime from 'offline-plugin/runtime'
+import './utils/offline'
+import setupSentry from './utils/sentry'
+
+setupSentry()
 
 const rootDOM = document.querySelector('#root')
 
@@ -27,8 +30,4 @@ if (module.hot) {
       rootDOM
     )
   })
-}
-
-if (!__DEV__) {
-  OfflinePluginRuntime.install()
 }

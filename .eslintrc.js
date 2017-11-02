@@ -5,7 +5,8 @@ module.exports = {
     "node": true
   },
   "globals": {
-    "__DEV__": true
+    "__DEV__": true,
+    "Raven": true
   },
   "extends": [
     "eslint:recommended",
