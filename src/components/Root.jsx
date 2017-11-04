@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { graphql, withApollo } from 'react-apollo'
+import { withApollo } from 'react-apollo'
+import PropTypes from 'prop-types'
 import { updateCategories } from '../actions/category'
 import initialQuery from '../../../schema/categoriesQuery.graphql'
 
@@ -36,18 +37,27 @@ class Root extends React.PureComponent {
       this.props.updateCategories(result.data.categories)
     })
   }
-    render() {
-        const { children, params } = this.props
-        return (
-        <Container>
-            <Header
-                categoryID={params.categoryID || -1}
-                categories={this.props.categories.toJS()}
-            />
-            <BodyContainer>{ children }</BodyContainer>
-        </Container>
-        )
-    }
+  render() {
+    const { children, params } = this.props
+    return (
+      <Container>
+        <Header
+          categoryID={params.categoryID || -1}
+          categories={this.props.categories.toJS()}
+        />
+        <BodyContainer>{ children }</BodyContainer>
+      </Container>
+    )
+  }
 }
+
+Root.propTypes = {
+  client: PropTypes.any.isRequired,
+  updateCategories: PropTypes.func,
+  children: PropTypes.elements,
+  params: PropTypes.any,
+  categories: PropTypes.arrayOf(PropTypes.any)
+}
+
 
 export default Root

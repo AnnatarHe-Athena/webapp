@@ -4,9 +4,9 @@ import {
   LOGOUT
 } from '../constants/auth'
 import { push } from 'react-router-redux'
-import { put, call, take, fork } from 'redux-saga/effects'
+import { put, take } from 'redux-saga/effects'
 
-export function* syncToken(action) {
+export function* syncToken() {
   while (true) {
     const { token, id } = yield take(SAGA_SYNC_AUTH_TOKEN)
     // todo: 
@@ -25,7 +25,7 @@ export function* syncToken(action) {
   }
 }
 
-export function* logout(action) {
+export function* logout() {
   while(true) {
     yield take(LOGOUT)
     sessionStorage.removeItem('athena-token')

@@ -1,31 +1,30 @@
-import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const colorMap = {
-    red: {
-        bgc: '#e91e63',
-        font: '#ffffff'
-    },
-    blue: {
-        bgc: '#2196f3',
-        font: '#fff'
-    },
-    ghost: {
-      bgc: 'transparent',
-      font: '#000'
-    }
+  red: {
+    bgc: '#e91e63',
+    font: '#ffffff'
+  },
+  blue: {
+    bgc: '#2196f3',
+    font: '#fff'
+  },
+  ghost: {
+    bgc: 'transparent',
+    font: '#000'
+  }
 }
 
 const sizeMap = {
-    large: {
-        padding: '2rem 5rem',
-        fontSize: '22px'
-    },
-    medium: {
-        padding: '1rem 2.5rem',
-        fontSize: '18px'
-    }
+  large: {
+    padding: '2rem 5rem',
+    fontSize: '22px'
+  },
+  medium: {
+    padding: '1rem 2.5rem',
+    fontSize: '18px'
+  }
 }
 
 const Button = styled.button`
@@ -53,9 +52,9 @@ const Button = styled.button`
 `
 
 Button.propTypes = {
-    color: PropTypes.string.isRequired,
-    size: PropTypes.string.isRequired,
-    fill: PropTypes.boolean
+  color: PropTypes.string.isRequired,
+  size: PropTypes.string.isRequired,
+  fill: PropTypes.boolean
 }
 
 export default Button

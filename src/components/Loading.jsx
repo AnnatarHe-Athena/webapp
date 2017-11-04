@@ -24,6 +24,7 @@ const Container = styled.div`
     height: 100%;
 `
 
+/*
 const Icon = styled.div`
     display: flex;
     flex-direction: column;
@@ -35,6 +36,7 @@ const Icon = styled.div`
         margin-top: 1rem;
     }
 `
+*/
 
 // loading types
 const Loading = () => {
@@ -43,7 +45,7 @@ const Loading = () => {
     <Container>
       <Spinner name={loadingName} />
     </Container>
-   )
+  )
 }
 
 

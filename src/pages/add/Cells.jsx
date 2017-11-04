@@ -1,6 +1,4 @@
 import React from 'react'
-import styled from 'styled-components'
-
 
 class AddCells extends React.PureComponent {
   constructor(props) {
@@ -9,7 +7,7 @@ class AddCells extends React.PureComponent {
   
   render() {
     return (
-       <div></div>
+      <div></div>
     )
   }
 }

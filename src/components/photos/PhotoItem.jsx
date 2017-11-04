@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { getRealSrcLink } from '../../utils/index'
+import PropTypes from 'prop-types'
 
 const Container = styled.picture`
   flex-grow: 1;
@@ -19,6 +20,13 @@ const PhotoItem = ({ id, src, desc, onClick }) => {
       {/*<span>{desc}</span>*/}
     </Container>
   )
+}
+
+PhotoItem.propTypes = {
+  id: PropTypes.number.isRequired,
+  src: PropTypes.string.isRequired,
+  desc: PropTypes.string,
+  onClick: PropTypes.func
 }
 
 export default PhotoItem

@@ -28,21 +28,21 @@ const SelectStyleContainer = styled.div`
 */
 
 class Select extends React.PureComponent {
-    constructor(props) {
-        super(props)
-    }
+  constructor(props) {
+    super(props)
+  }
 
-    renderOptions() {
-      return this.props.options.map((x, i) => {
-        return (
-          <option
-            key={i}
-          >
-            {x.label}
-          </option>
-        )
-      })
-    }
+  renderOptions() {
+    return this.props.options.map((x, i) => {
+      return (
+        <option
+          key={i}
+        >
+          {x.label}
+        </option>
+      )
+    })
+  }
 
     handleChange = e => {
       this.props.onChange(e)

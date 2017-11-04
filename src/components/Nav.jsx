@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 const NavContainer = styled.nav`
     ul {
@@ -27,18 +28,22 @@ const NavContainer = styled.nav`
 `
 
 const Nav = ({ categories }) => {
-    const navs = categories.map(c => {
-        return (
-            <li key={c.id}>
-                <Link to={'/category/' + c.id }>{c.name}</Link>
-            </li>
-            )
-    })
+  const navs = categories.map(c => {
     return (
-        <NavContainer>
-            <ul>{navs}</ul>
-        </NavContainer>
+      <li key={c.id}>
+        <Link to={'/category/' + c.id }>{c.name}</Link>
+      </li>
     )
+  })
+  return (
+    <NavContainer>
+      <ul>{navs}</ul>
+    </NavContainer>
+  )
+}
+
+Nav.propTypes = {
+  categories: PropTypes.arrayOf(PropTypes.any)
 }
 
 export default Nav

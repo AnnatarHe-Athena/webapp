@@ -99,6 +99,9 @@ const config = {
           use: [poststylus([require('autoprefixer')])]
         }
       }
+    }),
+    new webpack.DefinePlugin({
+      __DEV__: process.env.NODE_ENV === 'development'
     })
   ],
   resolve: {
