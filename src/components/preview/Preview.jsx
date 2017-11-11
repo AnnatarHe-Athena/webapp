@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { withApollo } from 'react-apollo'
 import { getRealSrcLink } from '../../utils/index'
 import addCollectionMutation from "AthenaSchema/mutations/addCollection.graphql";
+import removeGirlCellMutation from "AthenaSchema/mutations/removeGirlCell.graphql";
 
 const dom = document.querySelector('#preview')
 
@@ -45,16 +46,25 @@ class PreviewImage extends React.PureComponent {
   handleCollect = async (e) => {
     const result = await this.props.client.mutate({
       mutation: addCollectionMutation,
-      variables: [this.props.id]
+      variables: {
+        cells: [~~this.props.id]
+      }
     })
 
     console.log(result)
   }
 
-  handleDelete = (e) => {
-    // TODO:
+  handleDelete = async (e) => {
+    console.log(this.props)
+    // todo
+    const result = await this.props.client.mutate({
+      mutation: removeGirlCellMutation,
+      variables: {
+        cells: [~~this.props.id]
+      }
+    })
+    console.log(result)
   }
-
 
   render() {
     const { id, src, desc } = this.props
@@ -74,7 +84,9 @@ class PreviewImage extends React.PureComponent {
           <Extra>
             {/*<button>Like</button>*/}
             <button onClick={this.handleCollect}>Collect</button>
-            <button onClick={this.handleDelete}>Delete</button>
+            <button onClick={(e) => {
+               this.handleDelete(e)
+            }}>Delete</button>
           </Extra>
         </Dialog>
       </Mask>
@@ -83,7 +95,7 @@ class PreviewImage extends React.PureComponent {
 }
 
 const Preview = (props) => {
-    return ReactDOM.createPortal(<PreviewImage {...props} />, dom)
+    return ReactDOM.createPortal(<PreviewImage {...props.data} />, dom)
 }
 
 export default Preview

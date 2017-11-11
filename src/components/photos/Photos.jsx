@@ -58,10 +58,6 @@ class Photos extends React.PureComponent {
         this.io = null
     }
 
-    requestBigPic = (id, src, desc) => {
-      this.setState({ currentCell: fromJS({id, src, desc}) })
-    }
-
     renderPhotos() {
         if (!this.props.cells || this.props.cells.length === 0) {
             return null
@@ -73,7 +69,6 @@ class Photos extends React.PureComponent {
                     id={pic.id}
                     src={pic.img}
                     desc={pic.text}
-                    onClick={this.requestBigPic}
                 />
             )
         })
