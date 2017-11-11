@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import Preview from '../preview/Preview'
 import { getRealSrcLink } from '../../utils/index'
 import PropTypes from 'prop-types'
 
@@ -10,16 +11,34 @@ const Container = styled.picture`
   }
 `
 
-const PhotoItem = ({ id, src, desc, onClick }) => {
-  //wx3.sinaimg.cn/thumb150/bfc243a3gy1fisvjjysfsg20f00k0b2d
-  const bmiddleSrc = getRealSrcLink(src)
-  return (
-    <Container onClick={() => { onClick(id, src, desc) }}>
-      <source srcSet={bmiddleSrc} />
-      <img src={bmiddleSrc} alt={desc} />
-      {/*<span>{desc}</span>*/}
-    </Container>
-  )
+class PhotoItem extends React.PureComponent {
+
+  state = {
+      visiable: false
+  }
+
+  togglePreview = () => {
+    console.log(this.state)
+    this.setState(ps => ({ visiable: !ps.visiable }))
+  }
+
+  componentDidCatch(err, info) {
+    console.error(err, info)
+  }
+
+  render() {
+    const { id, src, desc } = this.props
+    const bmiddleSrc = getRealSrcLink(src)
+    const previewData = this.state.visiable ? { id, src, desc } : null
+    return (
+      <Container onClick={() => { this.setState({ visiable: ! this.state.visiable })}}>
+        <source srcSet={bmiddleSrc} />
+        <img src={bmiddleSrc} alt={desc} />
+        {/*<span>{desc}</span>*/}
+        <Preview data={previewData} />
+      </Container>
+    )
+  }
 }
 
 PhotoItem.propTypes = {

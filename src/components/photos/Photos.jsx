@@ -58,25 +58,20 @@ class Photos extends React.PureComponent {
     this.io = null
   }
 
-    requestBigPic = (id, src, desc) => {
-      this.setState({ currentCell: fromJS({id, src, desc}) })
-    }
-
     renderPhotos() {
-      if (!this.props.cells || this.props.cells.length === 0) {
-        return null
-      }
-      return this.props.cells.map(pic => {
-        return (
-          <PhotoItem
-            key={pic.id}
-            id={pic.id}
-            src={pic.img}
-            desc={pic.text}
-            onClick={this.requestBigPic}
-          />
-        )
-      })
+        if (!this.props.cells || this.props.cells.length === 0) {
+            return null
+        }
+        return this.props.cells.map((pic, index) => {
+            return (
+                <PhotoItem
+                    key={pic.id}
+                    id={pic.id}
+                    src={pic.img}
+                    desc={pic.text}
+                />
+            )
+        })
     }
     render() {
       return (
