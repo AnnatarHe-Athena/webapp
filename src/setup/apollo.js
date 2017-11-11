@@ -5,26 +5,26 @@ function getPrefix() {
 }
 
 const networkInterface = createNetworkInterface({
-    uri: `${getPrefix()}/graphql/v1`,
-    opts: {
-        credentials: 'include',
-    }
+  uri: `${getPrefix()}/graphql/v1`,
+  opts: {
+    credentials: 'include',
+  }
 })
 
 networkInterface.use([{
-    applyMiddleware(req, next) {
-        const token = sessionStorage.getItem('athena-token') || ""
-        req.options.headers = {
-            'athena-token': token
-        }
-        next()
+  applyMiddleware(req, next) {
+    const token = sessionStorage.getItem('athena-token') || ''
+    req.options.headers = {
+      'athena-token': token
     }
+    next()
+  }
 }])
 
 const apolloClient = new ApolloClient({
-    reduxRootSelector(store) { return store.get('apollo') },
-    networkInterface,
-    addTypename: true
+  reduxRootSelector(store) { return store.get('apollo') },
+  networkInterface,
+  addTypename: true
 })
 
 export { apolloClient }

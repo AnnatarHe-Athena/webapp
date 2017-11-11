@@ -1,10 +1,11 @@
 import React from 'react'
-import Nav from '../../components/Nav'
+import Nav from 'AthenaComponents/Nav'
+import PropTypes from 'prop-types'
 import fetchGirlsQuery from 'AthenaSchema/fetchGirlsQuery.graphql'
-import { graphql, gql } from 'react-apollo'
+import { graphql } from 'react-apollo'
 
 const gqlProps = {
-  options: props => ({
+  options: () => ({
     variables: {
       from: 0, take: 20, offset: 0
     },
@@ -17,7 +18,7 @@ const gqlProps = {
       loading,
       loadMore() {
         return fetchMore({
-          query,
+          query: fetchGirlsQuery,
           variables: {
             from: variables.from, take: variables.take, offset: girls.length
           },
@@ -30,7 +31,7 @@ const gqlProps = {
       },
       loadNewCategories(from) {
         return fetchMore({
-          query,
+          query: fetchGirlsQuery,
           variables: {
             from , take: variables.take, offset: 0
           },
@@ -68,7 +69,7 @@ class Girls extends React.PureComponent {
   }
 
   render() {
-    const { categories, girls } = this.props
+    const { categories } = this.props
     // TODO: add girls
     return (
       <div>
@@ -76,6 +77,14 @@ class Girls extends React.PureComponent {
       </div>
     )
   }
+}
+
+Girls.propTypes = {
+  loading: PropTypes.bool,
+  categories: PropTypes.arrayOf(PropTypes.any),
+  girls: PropTypes.arrayOf(PropTypes.any),
+  loadMore: PropTypes.func,
+  loadNewCategories: PropTypes.func
 }
 
 

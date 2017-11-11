@@ -5,7 +5,6 @@ import {
 } from '../constants/categories'
 
 import {
-  SAGA_SYNC_AUTH_TOKEN,
   SYNC_AUTH_TOKEN
 } from '../constants/auth'
 
@@ -17,14 +16,14 @@ const init = fromJS({
 
 const reducer = (state = init, action) => {
   switch (action.type) {
-    case CHANGE_CATEGORIES:
-      return state.update('categoryID', _ => action.categoryID)
-    case SYNC_AUTH_TOKEN:
-      return state.update('token', _ => action.token)
-    case UPDATE_CATEGORIES:
-      return state.update('categories', _ => fromJS(action.categories))
-    default:
-      return state
+  case CHANGE_CATEGORIES:
+    return state.update('categoryID', () => action.categoryID)
+  case SYNC_AUTH_TOKEN:
+    return state.update('token', () => action.token)
+  case UPDATE_CATEGORIES:
+    return state.update('categories', () => fromJS(action.categories))
+  default:
+    return state
   }
 }
 

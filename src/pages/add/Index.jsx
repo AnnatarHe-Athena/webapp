@@ -2,20 +2,18 @@ import React from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { fromJS } from 'immutable'
-import { Link } from 'react-router'
-import { graphql, withApollo } from 'react-apollo'
+// import { Link } from 'react-router'
+import { withApollo } from 'react-apollo'
 import Select from 'AthenaComponents/select/Select'
-import 'react-select/dist/react-select.css';
+import 'react-select/dist/react-select.css'
 import Notification from 'rc-notification'
-import { profileGot } from '../../actions/auth'
-import Card from '../../components/card/Card'
+import PropTypes from 'prop-types'
+import Card from 'AthenaComponents/card/Card'
 import addGirlCells from 'AthenaSchema/mutations/addGirlCells.graphql'
 
-import PhotoList from '../../components/photos/Photos'
-import PageContainer from '../../components/PageContainer'
-import Tab from '../../components/tab/Tab'
-import Button from '../../components/button/Button'
-import Separator from '../../components/Separator'
+import PageContainer from 'AthenaComponents/PageContainer'
+import Button from 'AthenaComponents/button/Button'
+import Separator from 'AthenaComponents/Separator'
 
 const H2 = styled.h2`
 
@@ -111,7 +109,7 @@ class CreateItems extends React.PureComponent {
   metaUpdateInput = (type) => e => {
     const val = e.target ? e.target.value : e.value
     this.setState({
-      input: this.state.input.update(type, _ => val)
+      input: this.state.input.update(type, () => val)
     })
   }
 
@@ -142,7 +140,7 @@ class CreateItems extends React.PureComponent {
 
   upload = async () => {
     const cells = this.state.cells.map(x => {
-      return x.update('img', _ => {
+      return x.update('img', () => {
         const url = x.get('url')
         // 判定当前是否是新浪图床的图片，是的话只截取对应的部分 url， 否则截取全体的
         if (url.indexOf('.sinaimg.cn') < 15 && url.indexOf('.sinaimg.cn') > 5) {
@@ -160,7 +158,7 @@ class CreateItems extends React.PureComponent {
     }
     this.setState({ loading: true })
     try {
-      const result = await this.props.client.mutate({
+      await this.props.client.mutate({
         mutation: addGirlCells,
         variables: { cells }
       })
@@ -183,7 +181,8 @@ class CreateItems extends React.PureComponent {
   }
 
   componentDidCatch(info, err) {
-    console.error(info, err)
+    // TODO: Add sentry do error handler
+    console.error(info, err) // eslint-disable-line no-console
   }
 
   render() {
@@ -220,7 +219,7 @@ class CreateItems extends React.PureComponent {
               onChange={this.metaUpdateInput('premission')}
             />
           </InputField>
-          <TextTip>强烈推荐使用新浪微博图床上传优秀的照片，其他服务也是允许的。 <a href="https://chrome.google.com/webstore/detail/%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A%E5%9B%BE%E5%BA%8A/fdfdnfpdplfbbnemmmoklbfjbhecpnhf?hl=zh-CN" target="_blank">新浪微博图床</a></TextTip>
+          <TextTip>强烈推荐使用新浪微博图床上传优秀的照片，其他服务也是允许的。 <a href="https://chrome.google.com/webstore/detail/%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A%E5%9B%BE%E5%BA%8A/fdfdnfpdplfbbnemmmoklbfjbhecpnhf?hl=zh-CN" target="_blank" rel="noopener noreferrer">新浪微博图床</a></TextTip>
           <Submits>
             <Button
               color="ghost"
@@ -244,6 +243,11 @@ class CreateItems extends React.PureComponent {
       </PageContainer>
     )
   }
+}
+
+CreateItems.propTypes = {
+  client: PropTypes.any,
+  categories: PropTypes.arrayOf(PropTypes.any)
 }
 
 export default CreateItems

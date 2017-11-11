@@ -5,7 +5,7 @@ import profile from './profile'
 import app from './app'
 
 export default combineReducers({
-    routing: routerReducer,
-    apollo: apolloClient.reducer(),
-    app, profile
+  routing: routerReducer,
+  apollo: apolloClient.reducer(),
+  app, profile
 })

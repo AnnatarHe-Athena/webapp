@@ -5,6 +5,7 @@ import { withApollo } from 'react-apollo'
 import { getRealSrcLink } from '../../utils/index'
 import addCollectionMutation from "AthenaSchema/mutations/addCollection.graphql";
 import removeGirlCellMutation from "AthenaSchema/mutations/removeGirlCell.graphql";
+import PropTypes from 'prop-types'
 
 const dom = document.querySelector('#preview')
 
@@ -96,6 +97,13 @@ class PreviewImage extends React.PureComponent {
 
 const Preview = (props) => {
     return ReactDOM.createPortal(<PreviewImage {...props.data} />, dom)
+}
+
+PreviewImage.propTypes = {
+  id: PropTypes.number.isRequired,
+  src: PropTypes.string.isRequired,
+  desc: PropTypes.string,
+  onClick: PropTypes.func
 }
 
 export default Preview

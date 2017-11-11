@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import { defaultAvatar } from '../../constants/defaults'
 import { LOGOUT } from '../../constants/auth'
 
@@ -64,6 +65,11 @@ class Information extends React.PureComponent {
       </Container>
     )
   }
+}
+
+Information.propTypes = {
+  logout: PropTypes.func,
+  user: PropTypes.any
 }
 
 export default Information
