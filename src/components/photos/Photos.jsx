@@ -58,38 +58,38 @@ class Photos extends React.PureComponent {
     this.io = null
   }
 
-    renderPhotos() {
-        if (!this.props.cells || this.props.cells.length === 0) {
-            return null
-        }
-        return this.props.cells.map((pic, index) => {
-            return (
-                <PhotoItem
-                    key={pic.id}
-                    id={pic.id}
-                    src={pic.img}
-                    desc={pic.text}
-                />
-            )
-        })
+  renderPhotos() {
+    if (!this.props.cells || this.props.cells.length === 0) {
+      return null
     }
-    render() {
+    return this.props.cells.map(pic => {
       return (
-        <Container>
-          <CSSTransitionGroup
-            component={PhotoLists}
-            transitionName="fade"
-            transitionEnterTimeout={500}
-            transitionLeaveTimeout={300}
-          >
-            {this.renderPhotos()}
-          </CSSTransitionGroup>
-          <Button size="large" color="red" disabled={this.props.loading} className="athena-obs-more"> Load More </Button>
-          {this.props.loading && (<Loading />)}
-          <Preview cell={this.state.currentCell.toJS()} />
-        </Container>
+        <PhotoItem
+          key={pic.id}
+          id={pic.id}
+          src={pic.img}
+          desc={pic.text}
+        />
       )
-    }
+    })
+  }
+  render() {
+    return (
+      <Container>
+        <CSSTransitionGroup
+          component={PhotoLists}
+          transitionName="fade"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}
+        >
+          {this.renderPhotos()}
+        </CSSTransitionGroup>
+        <Button size="large" color="red" disabled={this.props.loading} className="athena-obs-more"> Load More </Button>
+        {this.props.loading && (<Loading />)}
+        <Preview cell={this.state.currentCell.toJS()} />
+      </Container>
+    )
+  }
 }
 
 Photos.propTypes = {

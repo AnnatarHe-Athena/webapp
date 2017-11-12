@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom'
 import styled from 'styled-components'
 import { withApollo } from 'react-apollo'
 import { getRealSrcLink } from '../../utils/index'
-import addCollectionMutation from "AthenaSchema/mutations/addCollection.graphql";
-import removeGirlCellMutation from "AthenaSchema/mutations/removeGirlCell.graphql";
+import addCollectionMutation from 'AthenaSchema/mutations/addCollection.graphql'
+import removeGirlCellMutation from 'AthenaSchema/mutations/removeGirlCell.graphql'
 import PropTypes from 'prop-types'
 
 const dom = document.querySelector('#preview')
@@ -44,27 +44,24 @@ class PreviewImage extends React.PureComponent {
     // TODO:
   }
 
-  handleCollect = async (e) => {
-    const result = await this.props.client.mutate({
+  handleCollect = async () => {
+    // TODO: show snakerbar
+    await this.props.client.mutate({
       mutation: addCollectionMutation,
       variables: {
         cells: [~~this.props.id]
       }
     })
-
-    console.log(result)
   }
 
-  handleDelete = async (e) => {
-    console.log(this.props)
-    // todo
-    const result = await this.props.client.mutate({
+  handleDelete = async () => {
+    // TODO: show snakerbar
+    await this.props.client.mutate({
       mutation: removeGirlCellMutation,
       variables: {
         cells: [~~this.props.id]
       }
     })
-    console.log(result)
   }
 
   render() {
@@ -86,7 +83,7 @@ class PreviewImage extends React.PureComponent {
             {/*<button>Like</button>*/}
             <button onClick={this.handleCollect}>Collect</button>
             <button onClick={(e) => {
-               this.handleDelete(e)
+              this.handleDelete(e)
             }}>Delete</button>
           </Extra>
         </Dialog>
@@ -96,14 +93,15 @@ class PreviewImage extends React.PureComponent {
 }
 
 const Preview = (props) => {
-    return ReactDOM.createPortal(<PreviewImage {...props.data} />, dom)
+  return ReactDOM.createPortal(<PreviewImage {...props.data} />, dom)
 }
 
 PreviewImage.propTypes = {
   id: PropTypes.number.isRequired,
   src: PropTypes.string.isRequired,
   desc: PropTypes.string,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  client: PropTypes.any
 }
 
 export default Preview

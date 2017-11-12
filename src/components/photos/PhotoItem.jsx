@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Preview from '../preview/Preview'
 import { getRealSrcLink } from '../../utils/index'
+import { report } from '../../utils/sentry'
 import PropTypes from 'prop-types'
 
 const Container = styled.picture`
@@ -14,16 +15,15 @@ const Container = styled.picture`
 class PhotoItem extends React.PureComponent {
 
   state = {
-      visiable: false
+    visiable: false
   }
 
   togglePreview = () => {
-    console.log(this.state)
     this.setState(ps => ({ visiable: !ps.visiable }))
   }
 
   componentDidCatch(err, info) {
-    console.error(err, info)
+    report(err, info)
   }
 
   render() {
