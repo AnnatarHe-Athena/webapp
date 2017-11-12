@@ -14,7 +14,10 @@ config.plugins.push(
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
-      }
+      },
+      uglifyOptions: { ecma: 8 },
+      parallel: true,
+      sourceMap: true
     }),
     new WebpackPwaManifest({
       name: 'Athena',
