@@ -8,7 +8,7 @@ coverage/
 
 # production
 build/
-/dist.zip/
+dist.zip
 # misc
 /.DS_Store/
 .env.local

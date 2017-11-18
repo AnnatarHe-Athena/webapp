@@ -48,3 +48,23 @@ $menu-height = 2rem
     transform: scale(0.01)
     transition opacity 300ms ease-in
 
+
+
+// slide 折叠
+.slide-enter
+    transform: translate3d(0, -1rem, 0);
+    opacity 0.01
+
+.slide-enter.slide-enter-active
+    transform: translate3d(0, 0, 0);
+    opacity 1
+    transition all .35s
+
+.slide-leave
+    transform: translate3d(0, 0, 0);
+    opacity 1
+
+.slide-leave.slide-leave-active
+    transform: translate3d(0, -1rem, 0);
+    opacity 0.01
+    transition all .35s

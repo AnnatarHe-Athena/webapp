@@ -34,6 +34,10 @@ const Bar = styled.div`
         cursor: pointer;
     }
 
+    h2 {
+      font-weight: 400;
+    }
+
     a {
         color: #ffffff;
         &:visited {
@@ -43,7 +47,7 @@ const Bar = styled.div`
             background-color: rgba(255, 255, 255, .8);
         }
     }
-    `
+`
 
 @connect(null, dispatch => ({
   changeCategory(id) { return dispatch(changeCategory(id)) }
@@ -63,7 +67,7 @@ class Header extends React.PureComponent {
       return (
         <HeaderEl>
           <Bar>
-            <div onClick={this.changeNavVisable}><i className="fa fa-cube fa-lg" /><span>Categories</span></div>
+            <div onClick={this.changeNavVisable}><i className="fa fa-cube fa-lg" /> <span>Categories</span></div>
             <div><h2>Athena</h2></div>
             <div><Link to="/auth"><i className="fa fa-user-o fa-lg" /></Link></div>
           </Bar>

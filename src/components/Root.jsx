@@ -4,7 +4,9 @@ import { connect } from 'react-redux'
 import { withApollo } from 'react-apollo'
 import PropTypes from 'prop-types'
 import { updateCategories } from '../actions/category'
-import initialQuery from '../../../schema/categoriesQuery.graphql'
+import initialQuery from 'AthenaSchema/categoriesQuery.graphql'
+
+import { liteYellow, liteBlue } from '../styles/variables'
 
 import Header from './header/Header'
 
@@ -13,7 +15,7 @@ const Container = styled.div`
     flex-direction: column;
     flex: 1;
     min-height: 100vh;
-    background: linear-gradient(to bottom, #df3d46, #ef9ea3);
+    background: linear-gradient(45deg, ${liteYellow}, ${liteBlue});
 `
 
 const BodyContainer = styled.div`

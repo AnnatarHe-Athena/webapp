@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 import styled from 'styled-components'
 import { withApollo } from 'react-apollo'
 import { getRealSrcLink } from '../../utils/index'
+import { liteYellow } from '../../styles/variables'
+import { CSSTransitionGroup } from 'react-transition-group'
 import addCollectionMutation from 'AthenaSchema/mutations/addCollection.graphql'
 import removeGirlCellMutation from 'AthenaSchema/mutations/removeGirlCell.graphql'
 import PropTypes from 'prop-types'
@@ -22,22 +24,55 @@ const Mask = styled.div`
 `
 
 const Dialog = styled.div`
-  max-width: 80%;
-  max-height: 80%;
-  box-shadow: 0 0 .5rem #888;
-  padding: 1rem;
   background-color: #888;
   border-radius: 4px;
+
+  picture, img {
+    max-height: 100vh;
+    border-radius: 4px;
+  }
 `
 
 const Extra = styled.div`
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, .8));
+  display: flex;
+  position: fixed;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem;
+  justify-content: flex-end;
+  align-items: center;
+`
+
+const ExtraButton = styled.button`
+  border: 0;
+  outline: 0;
+  background-color: ${liteYellow};
+  padding: .5rem;
+  border-radius: 5px;
+  color: #222;
+
+
+  margin-right: .5rem;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
 `
 
 @withApollo
 class PreviewImage extends React.PureComponent {
 
+  state = {
+    extraVisiable: false
+  }
+
   componentDidMount() {
     // send request to load this picture is liked or not
+    this.changeExtraVisiable()
   }
 
   handleLike = () => {
@@ -64,36 +99,59 @@ class PreviewImage extends React.PureComponent {
     })
   }
 
+  changeExtraVisiable = e => {
+    console.log('changeExtraVisiable')
+    this.setState(s => ({
+      extraVisiable: !s.extraVisiable
+    }))
+  }
+
+  componentWillUnmount() {
+    this.changeExtraVisiable()
+  }
+
   render() {
     const { id, src, desc } = this.props
-
-    if (!id || !src || !desc) {
-      return null
-    }
 
     const bigSrc = getRealSrcLink(src, 'large')
     return (
       <Mask>
+        <CSSTransitionGroup
+          component="div"
+          transitionName="slide"
+          transitionEnterTimeout={350}
+          transitionLeaveTimeout={350}
+        >
+          {this.state.extraVisiable ? <Extra>
+            {/*<button>Like</button>*/}
+            <ExtraButton onClick={this.handleCollect}>Collect</ExtraButton>
+            <ExtraButton onClick={this.handleDelete}>Delete</ExtraButton>
+          </Extra> : null }
+        </CSSTransitionGroup>
         <Dialog>
           <picture>
             <source srcSet={bigSrc} />
             <img src={bigSrc} alt={desc} />
           </picture>
-          <Extra>
-            {/*<button>Like</button>*/}
-            <button onClick={this.handleCollect}>Collect</button>
-            <button onClick={(e) => {
-              this.handleDelete(e)
-            }}>Delete</button>
-          </Extra>
         </Dialog>
       </Mask>
     )
   }
 }
 
-const Preview = (props) => {
-  return ReactDOM.createPortal(<PreviewImage {...props.data} />, dom)
+const Preview = ({ data }) => {
+  if (!data) { return null }
+  console.log(data)
+
+  const { id, src, desc } = data
+
+  if (!id || !src || !desc) {
+    return null
+  }
+
+  return ReactDOM.createPortal(
+      <PreviewImage {...data} />
+    , dom)
 }
 
 PreviewImage.propTypes = {

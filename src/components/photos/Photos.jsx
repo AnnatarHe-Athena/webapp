@@ -86,7 +86,6 @@ class Photos extends React.PureComponent {
         </CSSTransitionGroup>
         <Button size="large" color="red" disabled={this.props.loading} className="athena-obs-more"> Load More </Button>
         {this.props.loading && (<Loading />)}
-        <Preview cell={this.state.currentCell.toJS()} />
       </Container>
     )
   }

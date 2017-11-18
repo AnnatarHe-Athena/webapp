@@ -9,6 +9,7 @@ const Container = styled.picture`
   flex-grow: 1;
   img {
     width: 100%;
+    border-radius: 4px;
   }
 `
 
