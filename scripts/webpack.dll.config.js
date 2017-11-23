@@ -22,6 +22,10 @@ const split1 = [
 const split3 = [
   'react-apollo',
   'apollo-client',
+  'apollo-cache-inmemory',
+  'apollo-link-error',
+  'apollo-link-context',
+  'apollo-link',
   'styled-components',
   'graphql'
 ]
