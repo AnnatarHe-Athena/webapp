@@ -99,11 +99,8 @@ class PreviewImage extends React.PureComponent {
     })
   }
 
-  changeExtraVisiable = e => {
-    console.log('changeExtraVisiable')
-    this.setState(s => ({
-      extraVisiable: !s.extraVisiable
-    }))
+  changeExtraVisiable = () => {
+    this.setState(s => ({ extraVisiable: !s.extraVisiable }))
   }
 
   componentWillUnmount() {
@@ -111,7 +108,7 @@ class PreviewImage extends React.PureComponent {
   }
 
   render() {
-    const { id, src, desc } = this.props
+    const { src, desc } = this.props
 
     const bigSrc = getRealSrcLink(src, 'large')
     return (
@@ -141,7 +138,6 @@ class PreviewImage extends React.PureComponent {
 
 const Preview = ({ data }) => {
   if (!data) { return null }
-  console.log(data)
 
   const { id, src, desc } = data
 
@@ -150,7 +146,7 @@ const Preview = ({ data }) => {
   }
 
   return ReactDOM.createPortal(
-      <PreviewImage {...data} />
+    <PreviewImage {...data} />
     , dom)
 }
 
