@@ -94,7 +94,8 @@ class PreviewImage extends React.PureComponent {
     await this.props.client.mutate({
       mutation: removeGirlCellMutation,
       variables: {
-        cells: [~~this.props.id]
+        cells: [~~this.props.id],
+        toRemove: false
       }
     })
   }

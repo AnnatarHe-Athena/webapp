@@ -15,7 +15,8 @@ const Container = styled.main`
 const gqlProps = {
   options: props => ({
     variables: {
-      from: props.categoryID, take: 20, offset: 0
+      from: props.categoryID, take: 20, offset: 0,
+      hideOnly: false
     },
     fetchPolicy: 'cache-and-network'
   }),
@@ -27,7 +28,8 @@ const gqlProps = {
         return fetchMore({
           fetchGirlsQuery,
           variables: {
-            from: variables.from, take: variables.take, offset: girls.length
+            from: variables.from, take: variables.take, offset: girls.length,
+            hideOnly: false
           },
           updateQuery: (pResult, { fetchMoreResult }) => {
             return {
