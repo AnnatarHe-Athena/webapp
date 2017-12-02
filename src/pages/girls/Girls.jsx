@@ -20,7 +20,8 @@ const gqlProps = {
         return fetchMore({
           query: fetchGirlsQuery,
           variables: {
-            from: variables.from, take: variables.take, offset: girls.length
+            from: variables.from, take: variables.take, offset: girls.length,
+            hideOnly: false
           },
           updateQuery: (pResult, { fetchMoreResult }) => {
             return {
