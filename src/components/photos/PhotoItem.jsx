@@ -10,11 +10,13 @@ const Container = styled.picture`
   img {
     width: 100%;
     border-radius: 4px;
+    @media (max-width: 768px) {
+      max-width: 25vw;
+    }
   }
 `
 
 class PhotoItem extends React.PureComponent {
-
   state = {
     visiable: false
   }

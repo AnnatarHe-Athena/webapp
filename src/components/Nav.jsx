@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import { randomCategory } from '../constants/defaults'
 
 const NavContainer = styled.nav`
     ul {
@@ -28,7 +29,7 @@ const NavContainer = styled.nav`
 `
 
 const Nav = ({ categories }) => {
-  const navs = categories.map(c => {
+  const navs = categories.concat(randomCategory).map(c => {
     return (
       <li key={c.id}>
         <Link to={'/category/' + c.id }>{c.name}</Link>
