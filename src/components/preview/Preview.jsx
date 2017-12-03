@@ -81,6 +81,7 @@ class PreviewImage extends React.PureComponent {
 
   handleCollect = async () => {
     // TODO: show snakerbar
+    // TODO: delete from local storage (redux store)
     await this.props.client.mutate({
       mutation: addCollectionMutation,
       variables: {
@@ -94,9 +95,11 @@ class PreviewImage extends React.PureComponent {
     await this.props.client.mutate({
       mutation: removeGirlCellMutation,
       variables: {
-        cells: [~~this.props.id]
+        cells: [~~this.props.id],
+        toRemove: false
       }
     })
+
   }
 
   changeExtraVisiable = () => {

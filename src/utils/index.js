@@ -1,5 +1,8 @@
 
 export function getRealSrcLink(url, type = 'bmiddle') {
+  if (url.lastIndexOf('=') === url.length - 1) {
+    url = window.atob(url)
+  }
   // if (process.env.NODE_ENV !== 'production') {
   //   return 'http://via.placeholder.com/350x150'
   // }
