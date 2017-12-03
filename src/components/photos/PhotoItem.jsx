@@ -7,12 +7,13 @@ import PropTypes from 'prop-types'
 
 const Container = styled.picture`
   flex-grow: 1;
+
+  @media (min-width: 768px) {
+    max-width: 24vw;
+  }
   img {
     width: 100%;
     border-radius: 4px;
-    @media (max-width: 768px) {
-      max-width: 25vw;
-    }
   }
 `
 
