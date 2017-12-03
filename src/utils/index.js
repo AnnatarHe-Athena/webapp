@@ -7,7 +7,7 @@ export function getRealSrcLink(url, type = 'bmiddle') {
     return url
   }
   if (url.indexOf('qn://') === 0) {
-    return url.replace('qn://', 'http://7xjhkb.com1.z0.glb.clouddn.com/')
+    return url.replace('qn://', 'https://cdn.annatarhe.com/')
   }
   return `https://wx3.sinaimg.cn/${type}/${url}`
 }
