@@ -1,8 +1,6 @@
 
 export function getRealSrcLink(url, type = 'bmiddle') {
-  if (url.lastIndexOf('=') === url.length - 1) {
-    url = window.atob(url)
-  }
+  url = window.atob(url)
   // if (process.env.NODE_ENV !== 'production') {
   //   return 'http://via.placeholder.com/350x150'
   // }
@@ -10,7 +8,7 @@ export function getRealSrcLink(url, type = 'bmiddle') {
     return url
   }
   if (url.indexOf('qn://') === 0) {
-    return url.replace('qn://', 'https://cdn.annatarhe.com/').join('copyrightDB', '-')
+    return url.replace('qn://', 'https://cdn.annatarhe.com/') + '-copyrightDB'
   }
   return `https://wx3.sinaimg.cn/${type}/${url}`
 }

@@ -38,7 +38,7 @@
     "mock": "json-server mock/db.js --routes mock/routes.json --port 9000",
     "lint": "eslint --ext .jsx --ext .js src/",
     "lint:fix": "eslint --ext .jsx --ext .js --fix src/",
-    "build": "npm run prod:dll && npm run prod"
+    "build": "npm run prod:dll && npm run prod && bestzip dist.zip dist/"
   },
   "devDependencies": {
     "add-asset-html-webpack-plugin": "^2.1.2",
@@ -54,6 +54,7 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "bestzip": "^1.1.4",
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.5",
     "eslint": "^4.9.0",
