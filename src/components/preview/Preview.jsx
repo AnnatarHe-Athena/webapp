@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import styled from 'styled-components'
 import { withApollo } from 'react-apollo'
-import { getRealSrcLink } from '../../utils/index'
+import { getRealSrcLink, getUserInfoURL } from '../../utils/index'
 import { liteYellow } from '../../styles/variables'
 import { CSSTransitionGroup } from 'react-transition-group'
 import addCollectionMutation from 'AthenaSchema/mutations/addCollection.graphql'
@@ -12,7 +12,7 @@ import PropTypes from 'prop-types'
 const dom = document.querySelector('#preview')
 
 const Mask = styled.div`
-  background-color: rgba(0, 0, 0, .7);
+  background-color: rgba(0, 0, 0, .3);
   position: fixed;
   top: 0;
   left: 0;
@@ -42,8 +42,14 @@ const Extra = styled.div`
   left: 0;
   width: 100%;
   padding: 1rem;
-  justify-content: flex-end;
+  justify-content: space-around;
   align-items: center;
+
+  a, h2 {
+    color: #fff;
+    font-weight: 400;
+    margin: 0;
+  }
 `
 
 const ExtraButton = styled.button`
@@ -73,6 +79,8 @@ class PreviewImage extends React.PureComponent {
   componentDidMount() {
     // send request to load this picture is liked or not
     this.changeExtraVisiable()
+    console.log('opened')
+    document.querySelector('#root').classList.add('gaussian-blur')
   }
 
   handleLike = () => {
@@ -107,11 +115,24 @@ class PreviewImage extends React.PureComponent {
   }
 
   componentWillUnmount() {
+    document.querySelector('#root').classList.remove('gaussian-blur')
     this.changeExtraVisiable()
   }
 
   render() {
-    const { src, desc } = this.props
+    const { src, desc, fromID, fromURL } = this.props
+
+    const leftUserInfo = fromID ? (
+      <div>
+        <a href={getUserInfoURL(fromID, fromURL)} target="_blank">我的信息</a>
+      </div>
+    ) : null
+
+    const middleTitle = (
+      <div>
+        <a href={fromURL} target="_blank"><h2>{desc}</h2></a>
+      </div>
+    )
 
     const bigSrc = getRealSrcLink(src, 'large')
     return (
@@ -123,9 +144,12 @@ class PreviewImage extends React.PureComponent {
           transitionLeaveTimeout={350}
         >
           {this.state.extraVisiable ? <Extra>
-            {/*<button>Like</button>*/}
-            <ExtraButton onClick={this.handleCollect}>Collect</ExtraButton>
-            <ExtraButton onClick={this.handleDelete}>Delete</ExtraButton>
+            {leftUserInfo}
+            {middleTitle}
+            <div>
+              <ExtraButton onClick={this.handleCollect}>Collect</ExtraButton>
+              <ExtraButton onClick={this.handleDelete}>Delete</ExtraButton>
+            </div>
           </Extra> : null }
         </CSSTransitionGroup>
         <Dialog>
@@ -154,7 +178,7 @@ const Preview = ({ data }) => {
 }
 
 PreviewImage.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   src: PropTypes.string.isRequired,
   desc: PropTypes.string,
   onClick: PropTypes.func,

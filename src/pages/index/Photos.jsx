@@ -22,18 +22,19 @@ const gqlProps = {
     },
     fetchPolicy: 'cache-and-network'
   }),
-  props({ data: { girls, loading, fetchMore, variables } }, categories) {
+  props({ data: { girls, loading, fetchMore, variables }, ownProps: { categories} }) {
     return {
       girls,
       loading,
+      categories,
       loadMore() {
         // if is random category, just random params
         let from = variables.from
         let offset = girls.length
         if (from === randomCategory.id) {
-          const randomIndexItem = Math.floor(Math.random() * (categories.length - 1))
-          from = categories[randomIndexItem].id
-          offset = Math.floor(Math.random() * (categories.count - variables.take))
+          const randomIndexItem = Math.floor(Math.random() * (categories.size - 1))
+          from = categories.getIn([randomIndexItem, 'id'])
+          offset = Math.floor(Math.random() * (categories.getIn([randomIndexItem, 'count'])- variables.take))
         }
         return fetchMore({
           fetchGirlsQuery,
@@ -52,9 +53,9 @@ const gqlProps = {
         // if is random category, just random params
         let offset = 0
         if (from === randomCategory.id) {
-          const randomIndexItem = Math.floor(Math.random() * (categories.length - 1))
-          from = categories[randomIndexItem].id
-          offset = Math.floor(Math.random() * (categories.count - variables.take))
+          const randomIndexItem = Math.floor(Math.random() * (categories.size - 1))
+          from = categories.getIn([randomIndexItem, 'id'])
+          offset = Math.floor(Math.random() * (categories.getIn([randomIndexItem, 'count'])- variables.take))
         }
         return fetchMore({
           fetchGirlsQuery,
@@ -72,8 +73,8 @@ const gqlProps = {
   }
 }
 
+@connect(store => ({ categories: store.getIn(['app', 'categories']) }))
 @graphql(fetchGirlsQuery, gqlProps)
-@connect(store => ({ categories: store.app.categories }))
 class Photos extends React.PureComponent {
   constructor(props) {
     super(props)

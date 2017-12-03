@@ -30,9 +30,9 @@ class PhotoItem extends React.PureComponent {
   }
 
   render() {
-    const { id, src, desc } = this.props
+    const { id, src, desc, fromID, fromURL } = this.props
     const bmiddleSrc = getRealSrcLink(src)
-    const previewData = this.state.visiable ? { id, src, desc } : null
+    const previewData = this.state.visiable ? { id, src, desc, fromID, fromURL } : null
     return (
       <Container onClick={() => { this.setState({ visiable: ! this.state.visiable })}}>
         <source srcSet={bmiddleSrc} />
@@ -48,7 +48,9 @@ PhotoItem.propTypes = {
   id: PropTypes.number.isRequired,
   src: PropTypes.string.isRequired,
   desc: PropTypes.string,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  fromURL: PropTypes.string,
+  fromID: PropTypes.string
 }
 
 export default PhotoItem

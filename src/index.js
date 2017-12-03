@@ -18,7 +18,7 @@ ReactDOM.render(
   </AppContainer>,
   rootDOM
 )
-registerServiceWorker()
+// registerServiceWorker()
 
 if (module.hot) {
   module.hot.accept('./App', () => {
