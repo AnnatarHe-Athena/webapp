@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import styled from 'styled-components'
 import { withApollo } from 'react-apollo'
-import { getRealSrcLink, getUserInfoURL } from '../../utils/index'
+import { getRealSrcLink, getUserInfoURL, getTitleHref } from '../../utils/index'
 import { liteYellow } from '../../styles/variables'
 import { CSSTransitionGroup } from 'react-transition-group'
 import addCollectionMutation from 'AthenaSchema/mutations/addCollection.graphql'
@@ -130,7 +130,7 @@ class PreviewImage extends React.PureComponent {
 
     const middleTitle = (
       <div>
-        <a href={fromURL} target="_blank"><h2>{desc}</h2></a>
+        <a href={getTitleHref(fromURL)} target="_blank"><h2>{desc}</h2></a>
       </div>
     )
 

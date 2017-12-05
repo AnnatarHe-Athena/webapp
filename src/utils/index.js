@@ -8,7 +8,13 @@ export function getRealSrcLink(url, type = 'bmiddle') {
     return url
   }
   if (url.indexOf('qn://') === 0) {
-    return url.replace('qn://', 'https://cdn.annatarhe.com/') + '-copyrightDB'
+    const qnBaseURL = url.replace('qn://', 'https://cdn.annatarhe.com/')
+    switch (type) {
+      case 'bmiddle':
+        return qnBaseURL + '-thumbnails'
+      case 'large':
+        return qnBaseURL + '-copyrightDB'
+    }
   }
   return `https://wx3.sinaimg.cn/${type}/${url}`
 }
@@ -28,4 +34,13 @@ export function getUserInfoURL(id, origin) {
     }
   }
   return 'javascript:;'
+}
+
+export function getTitleHref(origin) {
+  if (origin.indexOf('zhihu.com') > 0) {
+    const _infoArr = origin.split('/')
+    const id = _infoArr[_infoArr.length - 1]
+    return 'https://www.zhihu.com/answer/' + id
+  }
+  return origin
 }
