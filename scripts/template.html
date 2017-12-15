@@ -10,9 +10,22 @@
         <meta name="renderer" content="webkit">
         <meta http-equiv="Cache-Control" content="no-siteapp" />
         <title><%= htmlWebpackPlugin.options.title %></title>
-        <script src="https://cdn.ravenjs.com/3.19.1/raven.min.js" crossorigin="anonymous"></script>
         <link href="https://cdn.bootcss.com/normalize/7.0.0/normalize.min.css" rel="stylesheet" />
         <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+        <script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
+        <script>
+          // Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyDHp4r4GfkP7MnQKzsWFKvb8rXP0nsTpvY",
+            authDomain: "athena-3fd29.firebaseapp.com",
+            databaseURL: "https://athena-3fd29.firebaseio.com",
+            projectId: "athena-3fd29",
+            storageBucket: "",
+            messagingSenderId: "471042790893"
+          };
+          firebase.initializeApp(config);
+        </script>
+        <script src="https://cdn.ravenjs.com/3.19.1/raven.min.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <div id="root" class="root"></div>
