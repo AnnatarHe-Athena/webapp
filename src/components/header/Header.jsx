@@ -4,16 +4,9 @@ import PropTypes from 'prop-types'
 import { CSSTransitionGroup } from 'react-transition-group'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
-// import { graphql, gql } from 'react-apollo'
-// import categoriesGQL from '../../../../schema/categories.graphql'
+import Dialog from '../dialog/Dialog'
 import { changeCategory } from '../../actions/category'
 import Nav from '../Nav'
-
-const defaultCategories = __DEV__ ? [
-  {id: 1, name: 'hello'},
-  {id: 2, name: 'world'},
-  {id: 3, name: 'alo'}
-] : []
 
 const HeaderEl = styled.header`
     display: flex;
@@ -54,39 +47,29 @@ const Bar = styled.div`
 }))
 class Header extends React.PureComponent {
 
-    state = {
-      navVisable: false
-    }
+  state = {
+    navVisible: false
+  }
 
-    changeNavVisable = () => {
-      this.setState({ navVisable: ! this.state.navVisable })
-    }
+  changeNavVisible = () => {
+    this.setState({ navVisible: ! this.state.navVisible })
+  }
 
-    render() {
-      const { categories } = this.props
-      return (
-        <HeaderEl>
-          <Bar>
-            <div onClick={this.changeNavVisable}><i className="fa fa-cube fa-lg" /> <span>Categories</span></div>
-            <div><h2>Athena</h2></div>
-            <div><Link to="/auth"><i className="fa fa-user-o fa-lg" /></Link></div>
-          </Bar>
-          <CSSTransitionGroup
-            component="div"
-            className=""
-            transitionName="menu"
-            transitionEnterTimeout={350}
-            transitionLeaveTimeout={350}
-          >
-            {this.state.navVisable ? (
-              <Nav
-                categories={categories || defaultCategories}
-              />
-            ) : null}
-          </CSSTransitionGroup>
-        </HeaderEl>
-      )
-    }
+  render() {
+    const { categories } = this.props
+    return (
+      <HeaderEl>
+        <Bar>
+          <div onClick={this.changeNavVisible}><i className="fa fa-cube fa-lg" /> <span>Categories</span></div>
+          <div><h2>Athena</h2></div>
+          <div><Link to="/auth"><i className="fa fa-user-o fa-lg" /></Link></div>
+        </Bar>
+        <Dialog visible={this.state.navVisible} onClose={this.changeNavVisible}>
+          <Nav categories={categories} onSelected={this.changeNavVisible} />
+        </Dialog>
+      </HeaderEl>
+    )
+  }
 }
 
 Header.propTypes = {

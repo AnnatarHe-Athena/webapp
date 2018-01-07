@@ -1,5 +1,9 @@
 
 export function getRealSrcLink(url, type = 'bmiddle') {
+  if (!url) {
+    throw new Error('must provide a url')
+    return
+  }
   url = window.atob(url)
   // if (process.env.NODE_ENV !== 'production') {
   //   return 'http://via.placeholder.com/350x150'
@@ -37,7 +41,7 @@ export function getUserInfoURL(id, origin) {
 }
 
 export function getTitleHref(origin) {
-  if (origin.indexOf('zhihu.com') > 0) {
+  if (origin && origin.indexOf('zhihu.com') > 0) {
     const _infoArr = origin.split('/')
     const id = _infoArr[_infoArr.length - 1]
     return 'https://www.zhihu.com/answer/' + id

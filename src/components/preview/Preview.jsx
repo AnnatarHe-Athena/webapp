@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import styled from 'styled-components'
+import CommonDialog from '../dialog/Dialog'
 import { withApollo } from 'react-apollo'
 import { getRealSrcLink, getUserInfoURL, getTitleHref } from '../../utils/index'
 import { liteYellow } from '../../styles/variables'
@@ -9,27 +10,20 @@ import addCollectionMutation from 'AthenaSchema/mutations/addCollection.graphql'
 import removeGirlCellMutation from 'AthenaSchema/mutations/removeGirlCell.graphql'
 import PropTypes from 'prop-types'
 
-const dom = document.querySelector('#preview')
-
-const Mask = styled.div`
-  background-color: rgba(0, 0, 0, .3);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
-
-const Dialog = styled.div`
-  background-color: #888;
+const Figure = styled.figure`
   border-radius: 4px;
+  padding: 1rem;
+  box-shadow: 0 0 0.5rem #888;
+  background-color: rgba(255, 255, 255, .1);
 
   picture, img {
     max-height: 100vh;
     border-radius: 4px;
+  }
+  figcaption {
+    text-align: right;
+    font-size: 12px;
+    padding: .1rem;
   }
 `
 
@@ -55,13 +49,19 @@ const Extra = styled.div`
 const ExtraButton = styled.button`
   border: 0;
   outline: 0;
-  background-color: ${liteYellow};
   padding: .5rem;
-  border-radius: 5px;
-  color: #222;
-
-
+  border-radius: 1px;
+  color: #fff;
+  font-weight: 300;
+  box-shadow: 0 0 0.5rem #888;
+  background: rgba(255,255,255,.1);
   margin-right: .5rem;
+  transition: all .35s;
+  font-size: 12px;
+
+  &:hover {
+    background: rgba(255,255,255,.3);
+  }
 
   &:last-child {
     margin-right: 0;
@@ -79,8 +79,6 @@ class PreviewImage extends React.PureComponent {
   componentDidMount() {
     // send request to load this picture is liked or not
     this.changeExtraVisiable()
-    console.log('opened')
-    document.querySelector('#root').classList.add('gaussian-blur')
   }
 
   handleLike = () => {
@@ -115,12 +113,14 @@ class PreviewImage extends React.PureComponent {
   }
 
   componentWillUnmount() {
-    document.querySelector('#root').classList.remove('gaussian-blur')
     this.changeExtraVisiable()
   }
 
   render() {
     const { src, desc, fromID, fromURL } = this.props
+    if (!src || !desc) {
+      return null
+    }
 
     const leftUserInfo = fromID ? (
       <div>
@@ -136,7 +136,7 @@ class PreviewImage extends React.PureComponent {
 
     const bigSrc = getRealSrcLink(src, 'large')
     return (
-      <Mask>
+      <div>
         <CSSTransitionGroup
           component="div"
           transitionName="slide"
@@ -152,29 +152,24 @@ class PreviewImage extends React.PureComponent {
             </div>
           </Extra> : null }
         </CSSTransitionGroup>
-        <Dialog>
-          <picture>
+        <Figure>
+          <picture onClick={this.props.onClose}>
             <source srcSet={bigSrc} />
             <img src={bigSrc} alt={desc} />
+            <figcaption>{desc}</figcaption>
           </picture>
-        </Dialog>
-      </Mask>
+        </Figure>
+      </div>
     )
   }
 }
 
-const Preview = ({ data }) => {
-  if (!data) { return null }
-
-  const { id, src, desc } = data
-
-  if (!id || !src || !desc) {
-    return null
-  }
-
-  return ReactDOM.createPortal(
-    <PreviewImage {...data} />
-    , dom)
+const Preview = ({ data, visible, onClose }) => {
+  return (
+    <CommonDialog visible={visible} onClose={onClose}>
+      <PreviewImage {...data} onClose={onClose}/>
+    </CommonDialog>
+  )
 }
 
 PreviewImage.propTypes = {

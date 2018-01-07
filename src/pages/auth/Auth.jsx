@@ -12,28 +12,30 @@ import Separator from '../../components/Separator'
 import Status from './Status'
 
 const innerContainerOtherStyles = `
-    h2 {
-        margin: 0;
-        color: #222;
-    }
+  h2 {
+    margin: 0;
+    color: #222;
+    font-weight: 300;
+  }
 
-    span {
-        font-size: 12px;
-        font-style: italic;
-        color: #888;
-    }
+  span {
+    font-size: 12px;
+    font-style: italic;
+    color: #888;
+  }
 `
 
 const Field = styled.div`
-    margin: 1rem 0;
-    input {
-        outline: none;
-        border: none;
-        height: 1.5rem;
-        width: 20rem;
-        padding: .2rem;
-        border-bottom: 1px solid #888;
-    }
+  margin: 1rem 0;
+  input {
+    outline: none;
+    border: none;
+    height: 1.5rem;
+    width: 20rem;
+    padding: .2rem;
+    border-bottom: 1px solid #999;
+    font-weight: 300;
+  }
 `
 
 @connect(null, dispatch => ({
@@ -99,7 +101,7 @@ class Auth extends React.PureComponent {
                 <Status loading={this.props.loading} />
               </Button>
             </Field>
-            <span>NO registry method</span>
+            <span>不支持用户注册，非盈利项目</span>
           </Card>
         </PageContainer>
       )

@@ -7,6 +7,8 @@ import PropTypes from 'prop-types'
 
 const Container = styled.picture`
   flex-grow: 1;
+  min-width: 10rem;
+  min-height: 10rem;
 
   @media (min-width: 768px) {
     max-width: 24vw;
@@ -19,11 +21,11 @@ const Container = styled.picture`
 
 class PhotoItem extends React.PureComponent {
   state = {
-    visiable: false
+    visible: false
   }
 
   togglePreview = () => {
-    this.setState(ps => ({ visiable: !ps.visiable }))
+    this.setState(ps => ({ visible: !ps.visible }))
   }
 
   componentDidCatch(err, info) {
@@ -33,13 +35,12 @@ class PhotoItem extends React.PureComponent {
   render() {
     const { id, src, desc, fromID, fromURL } = this.props
     const bmiddleSrc = getRealSrcLink(src)
-    const previewData = this.state.visiable ? { id, src, desc, fromID, fromURL } : null
     return (
-      <Container onClick={() => { this.setState({ visiable: ! this.state.visiable })}}>
-        <source srcSet={bmiddleSrc} />
-        <img src={bmiddleSrc} alt={desc} />
+      <Container>
+        <source srcSet={bmiddleSrc} onClick={() => { this.setState({ visible: true })}} />
+        <img src={bmiddleSrc} alt={desc}  onClick={() => { this.setState({ visible: true })}}/>
         {/*<span>{desc}</span>*/}
-        <Preview data={previewData} />
+        <Preview data={{ id, src, desc, fromID, fromURL }} visible={this.state.visible} onClose={this.togglePreview} />
       </Container>
     )
   }

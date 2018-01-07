@@ -17,16 +17,16 @@ const split1 = [
   'react-redux',
   'react-router',
   'react-transition-group',
+  'react-apollo',
+  'styled-components',
 ]
 
 const split3 = [
-  'react-apollo',
   'apollo-client',
   'apollo-cache-inmemory',
   'apollo-link-error',
   'apollo-link-context',
   'apollo-link',
-  'styled-components',
   'graphql'
 ]
 
@@ -57,7 +57,6 @@ const config = {
 if (process.env.NODE_ENV === 'production') {
   config.plugins.push(
     new webpack.DefinePlugin({ 'process.env': { NODE_ENV: '"production"' } })
-    // new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } })
   )
 }
 

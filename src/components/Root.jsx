@@ -23,8 +23,6 @@ const BodyContainer = styled.div`
     flex: 1;
 `
 
-
-
 @connect(state => ({
   categories: state.getIn(['app', 'categories'])
 }), dispatch => ({
