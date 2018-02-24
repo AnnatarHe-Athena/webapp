@@ -1,11 +1,12 @@
 import Root from '../components/Root'
 import Index from '../pages/index/Index'
+import { report } from '../utils/sentry'
 
 function asyncLoadComponent(path) {
   return (ns, cb) => import('../pages/' + path)
     .then(mod => mod.default)
     .then(mod => cb(null, mod))
-    .catch(err => console.error(err)) // eslint-disable-line no-console
+    .catch(report)
 }
 
 function _isLogged() {
@@ -46,6 +47,9 @@ const routes = {
     path: 'profile/:id/create',
     getComponent: asyncLoadComponent('add/Index'),
     onEnter: checkAuthStatus
+  }, {
+    path: 'about',
+    getComponent: asyncLoadComponent('info/Info')
   }]
 }
 
