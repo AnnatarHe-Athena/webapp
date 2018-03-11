@@ -68,8 +68,8 @@ class Photos extends React.PureComponent {
           id={pic.id}
           src={pic.img}
           desc={pic.text}
-          fromID={pic.from_id}
-          fromURL={pic.from_url}
+          fromID={pic.fromID}
+          fromURL={pic.fromURL}
         />
       )
     })
@@ -85,7 +85,13 @@ class Photos extends React.PureComponent {
         >
           {this.renderPhotos()}
         </CSSTransitionGroup>
-        <Button size="large" color="red" disabled={this.props.loading} className="athena-obs-more"> Load More </Button>
+        <Button
+          size="large"
+          color="red"
+          disabled={this.props.loading}
+          className="athena-obs-more"
+          onClick={this.props.loadMore}
+        >Load More </Button>
         {this.props.loading && (<Loading />)}
       </Container>
     )

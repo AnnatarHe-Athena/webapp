@@ -6,6 +6,7 @@ import { Link } from 'react-router'
 import { withApollo } from 'react-apollo'
 import PropTypes from 'prop-types'
 import { profileGot } from '../../actions/auth'
+import { report } from '../../utils/sentry'
 import Card from 'AthenaComponents/card/Card'
 import fetchProfileQuery from 'AthenaSchema/queries/profileWithCollection.graphql'
 
@@ -36,7 +37,6 @@ const AddButton = styled.div`
 }))
 @withApollo
 class Profile extends React.PureComponent {
-
 
   constructor(props) {
     super(props)
@@ -75,11 +75,7 @@ class Profile extends React.PureComponent {
       if (user && user.email) {
         this.props.syncUserInfo(user)
       }
-    }).catch(err => {
-      if (__DEV__) {
-        console.error(err) // eslint-disable-line no-console
-      }
-    })
+    }).catch(report)
     this.variableFrom += 20
   }
 
@@ -98,11 +94,7 @@ class Profile extends React.PureComponent {
           collections: this.state.collections.concat(result.data.collections)
         })
       }
-    }).catch(err => {
-      if (__DEV__) {
-        console.error(err) // eslint-disable-line no-console
-      }
-    })
+    }).catch(report)
     // 可以重构一下，而且应该更新这个值在 async 内部
     this.variableFrom += 20
   }

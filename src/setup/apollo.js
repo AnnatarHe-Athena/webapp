@@ -2,8 +2,10 @@ import { ApolloClient } from 'apollo-client'
 import { HttpLink } from 'apollo-link-http'
 import { ApolloLink, from } from 'apollo-link'
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import {  } from 'apollo-link-context'
+// import {  } from 'apollo-link-context'
 import { onError } from 'apollo-link-error'
+
+import { sendNotification } from '../utils/notification'
 
 function getPrefix() {
   return process.env.NODE_ENV === 'production' ? 'https://api.dbg.annatarhe.com' : ''
@@ -16,11 +18,12 @@ const authMiddleware = new ApolloLink((operation, forward) => {
   return forward(operation)
 })
 
-const errorLink = onError(({ networkError, graphQLErrors, response }) => {
-  // error handle
-  if (networkError.statusCode === 401) {
+// error handle
+const errorLink = onError(({ graphQLErrors, response }) => {
+  graphQLErrors.forEach(err => {
     console.log('error', graphQLErrors, response) // eslint-disable-line no-console
-  }
+    sendNotification({ title: err.message })
+  })
 })
 
 const link = new HttpLink({

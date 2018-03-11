@@ -1,9 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { connect } from 'react-redux'
 import styled from 'styled-components'
 import CommonDialog from '../dialog/Dialog'
 import { withApollo } from 'react-apollo'
 import { getRealSrcLink, getUserInfoURL, getTitleHref } from '../../utils/index'
+import { getPermissionObj } from '../../utils/permission'
 import { liteYellow } from '../../styles/variables'
 import { CSSTransitionGroup } from 'react-transition-group'
 import addCollectionMutation from 'AthenaSchema/mutations/addCollection.graphql'
@@ -68,7 +70,9 @@ const ExtraButton = styled.button`
   }
 
 `
-
+@connect(store => ({
+  user: store.get(['profile', 'info'])
+}))
 @withApollo
 class PreviewImage extends React.PureComponent {
 
@@ -122,6 +126,8 @@ class PreviewImage extends React.PureComponent {
       return null
     }
 
+    const { softRemove } = getPermissionObj(this.props.user)
+
     const leftUserInfo = fromID ? (
       <div>
         <a href={getUserInfoURL(fromID, fromURL)} target="_blank">我的信息</a>
@@ -148,7 +154,7 @@ class PreviewImage extends React.PureComponent {
             {middleTitle}
             <div>
               <ExtraButton onClick={this.handleCollect}>Collect</ExtraButton>
-              <ExtraButton onClick={this.handleDelete}>Delete</ExtraButton>
+              { softRemove && <ExtraButton onClick={this.handleDelete}>Delete</ExtraButton> }
             </div>
           </Extra> : null }
         </CSSTransitionGroup>

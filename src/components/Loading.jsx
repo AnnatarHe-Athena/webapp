@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import Spinner from 'react-spinkit'
 
 const spinnerNames = [
   'circle',
@@ -24,7 +23,6 @@ const Container = styled.div`
     height: 100%;
 `
 
-/*
 const Icon = styled.div`
     display: flex;
     flex-direction: column;
@@ -36,24 +34,15 @@ const Icon = styled.div`
         margin-top: 1rem;
     }
 `
-*/
 
 // loading types
 const Loading = () => {
-  const loadingName = spinnerNames[Math.ceil(Math.random() * spinnerNames.length) + 1]
   return (
-    <Container>
-      <Spinner name={loadingName} />
-    </Container>
+    <icon>
+      <i className="fa fa-spinner fa-pulse fa-3x fa-fw" />
+      <span> loading... </span>
+    </icon>
   )
 }
-
-
-/*
-  <icon>
-      <i classname="fa fa-spinner fa-pulse fa-3x fa-fw" />
-      <span> loading... </span>
-  </icon>
-*/
 
 export default Loading

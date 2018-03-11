@@ -35,6 +35,12 @@ const NavContainer = styled.nav`
   }
 `
 
+const Extra = styled.div`
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+`
+
 const Nav = ({ categories, onSelected }) => {
   const navs = categories.concat(randomCategory).map(c => {
     return (
@@ -46,6 +52,9 @@ const Nav = ({ categories, onSelected }) => {
   return (
     <NavContainer>
       <ul>{navs}</ul>
+      <Extra>
+        <Link to={'/about'}>关于</Link>
+      </Extra>
     </NavContainer>
   )
 }

@@ -38,6 +38,7 @@ const Button = styled.button`
     margin: .5rem 0;
     box-shadow: 0 0 .5rem #888888;
     transition: all .35s;
+    outline: none;
 
     &:hover {
         transform: scale(1.1);
