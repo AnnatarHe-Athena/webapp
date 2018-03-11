@@ -4,9 +4,12 @@ import { connect } from 'react-redux'
 import { withApollo } from 'react-apollo'
 import PropTypes from 'prop-types'
 import { syncAuthStatus } from '../../actions/auth'
+import { red } from '../../styles/variables'
 import authGraphql from 'AthenaSchema/queries/auth.graphql'
 import Button from '../../components/button/Button'
 import Card from '../../components/card/Card'
+import { updateCategories } from '../../actions/category'
+import initialQuery from 'AthenaSchema/categoriesQuery.graphql'
 import PageContainer from '../../components/PageContainer'
 import Separator from '../../components/Separator'
 import Status from './Status'
@@ -38,22 +41,52 @@ const Field = styled.div`
   }
 `
 
-@connect(null, dispatch => ({
-  syncToken(token, id) { return dispatch(syncAuthStatus(token, id)) }
-}))
+const Errors = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+  li {
+    padding: .5rem 0 .5rem 1rem;
+    border-radius: 4px;
+    background-color: ${red};
+    margin-bottom: .5rem;
+    color: #fff;
+  }
+`
+
+@connect(
+  null, 
+  dispatch => ({
+    updateCategories(categories) { return dispatch(updateCategories(categories)) },
+    syncToken(token, id) { return dispatch(syncAuthStatus(token, id)) }
+  })
+)
 @withApollo
 class Auth extends React.PureComponent {
     state = {
       email: '',
-      pwd: ''
+      pwd: '',
+      errors: ['失误']
+    }
+
+    showError = (msgs) => {
+      this.setState({
+        errors: msgs
+      })
+      let timer = setTimeout(() => {
+        this.setState({ errors: [] })
+        clearTimeout(timer)
+      }, 3000)
     }
 
     doAuth = () => {
       const { email, pwd } = this.state
       if (email.indexOf('@') === -1) {
+        this.showError(['邮箱不正确'])
         return
       }
       if (pwd.length < 6) {
+        this.showError(['密码不正确'])
         return
       }
 
@@ -64,6 +97,17 @@ class Auth extends React.PureComponent {
       }).then(result => {
         const { token, id } = result.data.auth
         this.props.syncToken(token, id)
+        this.syncCategory()
+      })
+    }
+
+    syncCategory() {
+      console.log(this)
+      return this.props.client.query({
+        query: initialQuery
+      }).then(result => {
+        console.log(result)
+        this.props.updateCategories(result.data.categories)
       })
     }
 
@@ -73,6 +117,11 @@ class Auth extends React.PureComponent {
           <Card isFar others={innerContainerOtherStyles}>
             <h2>Auth</h2>
             <Separator />
+            <Errors>
+              {this.state.errors.map((e, i) => (
+                <li key={i}>{e}</li>
+              ))}
+            </Errors>
             <Field>
               <input
                 value={this.state.email}

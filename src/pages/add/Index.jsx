@@ -97,7 +97,8 @@ class CreateItems extends React.PureComponent {
       loading: false,
       cells: fromJS([]),
       input: fromJS({
-        url: '', text: '', cate: props.categories.getIn([0, 'id']), premission: premissionOptions[0].value
+        url: '', text: '', cate: props.categories.getIn([0, 'id']) || 11, permission: premissionOptions[0].value,
+        fromID: '', fromURL: ''
       })
     }
     this.notification = Notification.newInstance({
@@ -204,6 +205,8 @@ class CreateItems extends React.PureComponent {
           <InputField>
             <input type="url" onChange={this.metaUpdateInput('url')} placeholder="URL" value={this.state.input.get('url')} />
             <input type="text" onChange={this.metaUpdateInput('text')} placeholder="TEXT" value={this.state.input.get('text')} />
+            <input type="text" onChange={this.metaUpdateInput('fromID')} placeholder="FROM ID" value={this.state.input.get('fromID')} />
+            <input type="text" onChange={this.metaUpdateInput('fromURL')} placeholder="FROM URL" value={this.state.input.get('fromURL')} />
             <Select
               name="categories"
               value={this.state.input.get('cate')}
@@ -212,11 +215,11 @@ class CreateItems extends React.PureComponent {
               onChange={this.metaUpdateInput('cate')}
             />
             <Select
-              name="Premission"
-              value={this.state.input.get('premission')}
+              name="Permission"
+              value={this.state.input.get('permission')}
               options={premissionOptions}
               placeholder="Premission"
-              onChange={this.metaUpdateInput('premission')}
+              onChange={this.metaUpdateInput('permission')}
             />
           </InputField>
           <TextTip>强烈推荐使用新浪微博图床上传优秀的照片，其他服务也是允许的。 <a href="https://chrome.google.com/webstore/detail/%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A%E5%9B%BE%E5%BA%8A/fdfdnfpdplfbbnemmmoklbfjbhecpnhf?hl=zh-CN" target="_blank" rel="noopener noreferrer">新浪微博图床</a></TextTip>
@@ -225,9 +228,17 @@ class CreateItems extends React.PureComponent {
               color="ghost"
               size="medium"
               onClick={() => {
+                console.log(this.state.input.toJS())
                 this.setState({
-                  cells: this.state.cells.push(this.state.input),
-                  input: fromJS({ url: '', text: '', cate: this.props.categories.getIn([0, 'id']), premission: this.state.input.get('premission') })
+                  cells: this.state.cells.concat(this.state.input),
+                  input: fromJS({
+                    url: '',
+                    text: '',
+                    cate: this.props.categories.getIn([0, 'id']),
+                    permission: this.state.input.get('permission'),
+                    fromID: '',
+                    fromURL: ''
+                    })
                 })
               }}
               disabled={this.state.input.some(x => !x || x === '')}

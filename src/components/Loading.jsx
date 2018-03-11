@@ -39,7 +39,7 @@ const Icon = styled.div`
 const Loading = () => {
   return (
     <icon>
-      <i classname="fa fa-spinner fa-pulse fa-3x fa-fw" />
+      <i className="fa fa-spinner fa-pulse fa-3x fa-fw" />
       <span> loading... </span>
     </icon>
   )

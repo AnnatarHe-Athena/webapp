@@ -68,8 +68,8 @@ class Photos extends React.PureComponent {
           id={pic.id}
           src={pic.img}
           desc={pic.text}
-          fromID={pic.from_id}
-          fromURL={pic.from_url}
+          fromID={pic.fromID}
+          fromURL={pic.fromURL}
         />
       )
     })

@@ -21,8 +21,9 @@ function checkAuthStatus(ns, replace) {
 
 function redirectToProfile(ns, replace) {
   const userToken = _isLogged()
-  if (userToken) {
-    replace(`/profile/${userToken.split('|')[0]}`)
+  const userId = sessionStorage.getItem('athena-user-id')
+  if (userToken && userId) {
+    replace(`/profile/${userId}`)
   }
 }
 

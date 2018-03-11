@@ -1,11 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-component'
-import infoQuery from 'AthenaSchema/query/info.graphql'
-import Card from 'AthenaComponents/card/Card'
+import styled from 'styled-components'
 import { graphql } from 'react-apollo'
+import infoQuery from 'AthenaSchema/queries/info.graphql'
+import Card from 'AthenaComponents/card/Card'
+import { red } from '../../styles/variables'
 
 const Container = styled.main`
+  width: 100%;
+  a {
+    color: ${red};
+    padding: 0 .1rem;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 
 const InfoTip = styled.p`
@@ -18,13 +30,23 @@ const InfoTip = styled.p`
 // TODO: 加入客户端下载支持的功能
 @graphql(infoQuery)
 class InfoPage extends React.PureComponent {
+
+  componentDidCatch(err, info) {
+    console.log(err, info)
+  }
+
   render() {
-    const { userCount, cellCount, fee, email, copyright } = this.props.data
+    const { data, loading } = this.props
+    if (loading || (!data) || (!data.info)) {
+      return <div />
+    }
+
+    const { userCount, cellCount, fee, email, copyright } = data.info
     return (
       <Container>
-        <Card>
+        <Card others={`max-width: 50rem;`}>
           <InfoTip>已有 <strong>{cellCount}</strong> 张图片，和 <strong>{userCount}</strong> 名用户。</InfoTip>
-          <InfoTip>暂无法注册，需要联系 <a href={"mailto:" + email}>{copyright}</a>申请，如果通过，需要付费可能是 <small>{fee}</small></InfoTip>
+          <InfoTip>暂无法注册，需要联系 <a href={"mailto:" + email}>{copyright}</a> 申请，如果通过，需要付费可能是 <small>{fee}</small></InfoTip>
 
           <hr />
 

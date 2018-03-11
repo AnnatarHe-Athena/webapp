@@ -38,7 +38,6 @@ const AddButton = styled.div`
 @withApollo
 class Profile extends React.PureComponent {
 
-
   constructor(props) {
     super(props)
     this.state = {

@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { withApollo } from 'react-apollo'
 import PropTypes from 'prop-types'
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import { updateCategories } from '../actions/category'
 import initialQuery from 'AthenaSchema/categoriesQuery.graphql'
 
@@ -45,7 +46,16 @@ class Root extends React.PureComponent {
           categoryID={params.categoryID || -1}
           categories={this.props.categories.toJS()}
         />
-        <BodyContainer>{ children }</BodyContainer>
+        <CSSTransitionGroup
+          component={BodyContainer}
+          transitionName="scale"
+          transitionEnterTimeout={350}
+          transitionLeaveTimeout={350}
+        >
+          {React.cloneElement(children, {
+            key: location.pathname
+          })}
+        </CSSTransitionGroup>
       </Container>
     )
   }
