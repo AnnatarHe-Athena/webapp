@@ -16,7 +16,7 @@ const config = {
   output: {
     path: path.resolve(__dirname, '..', 'dist'),
     publicPath: '/',
-    filename: 'bundle.[hash].js'
+    filename: 'bundle.[chunkhash].js'
   },
   module: {
     rules: [{

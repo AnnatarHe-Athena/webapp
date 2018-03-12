@@ -122,7 +122,7 @@ class PreviewImage extends React.PureComponent {
 
   render() {
     const { src, desc, fromID, fromURL } = this.props
-    if (!src || !desc) {
+    if (!src) {
       return null
     }
 
@@ -136,7 +136,7 @@ class PreviewImage extends React.PureComponent {
 
     const middleTitle = (
       <div>
-        <a href={getTitleHref(fromURL)} target="_blank"><h2>{desc}</h2></a>
+        <a href={getTitleHref(fromURL)} target="_blank"><h2>{desc || "主题"}</h2></a>
       </div>
     )
 
