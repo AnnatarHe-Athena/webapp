@@ -34,7 +34,8 @@ const gqlProps = {
         if (from === randomCategory.id) {
           const randomIndexItem = Math.floor(Math.random() * (categories.size - 1))
           from = categories.getIn([randomIndexItem, 'id'])
-          offset = Math.floor(Math.random() * (categories.getIn([randomIndexItem, 'count'])- variables.take))
+          offset = Math.floor(Math.random() * (categories.getIn([randomIndexItem, 'count']) - variables.take))
+          offset = offset < 0 ? 0 : offset
         }
         return fetchMore({
           fetchGirlsQuery,
@@ -75,7 +76,7 @@ const gqlProps = {
 
 @connect(store => ({ categories: store.getIn(['app', 'categories']) }))
 @graphql(fetchGirlsQuery, gqlProps)
-class Photos extends React.PureComponent {
+class Photos extends React.Component {
   constructor(props) {
     super(props)
   }

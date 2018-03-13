@@ -70,9 +70,10 @@ const ExtraButton = styled.button`
   }
 
 `
+
 @connect(store => ({
-  user: store.get(['profile', 'info'])
-}))
+  user: store.getIn(['profile', 'info'])
+}), null)
 @withApollo
 class PreviewImage extends React.PureComponent {
 
@@ -126,7 +127,7 @@ class PreviewImage extends React.PureComponent {
       return null
     }
 
-    const { softRemove } = getPermissionObj(this.props.user)
+    const { softRemove } = getPermissionObj(this.props.user.toJS())
 
     const leftUserInfo = fromID ? (
       <div>

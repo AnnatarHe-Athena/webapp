@@ -16,11 +16,11 @@ config.devServer = {
     historyApiFallback: true,
     proxy: {
         '/graphql/v1/*': {
-            target: 'http://127.0.0.1:9000',
+            target: 'http://127.0.0.1:9009',
             secure: false
         },
         '/public/*': {
-            target: 'http://127.0.0.1:9000',
+            target: 'http://127.0.0.1:9009',
             secure: false
         }
     }

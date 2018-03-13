@@ -35,9 +35,7 @@ class Select extends React.PureComponent {
   renderOptions() {
     return this.props.options.map((x, i) => {
       return (
-        <option
-          key={i}
-        >
+        <option key={i} value={x.value}>
           {x.label}
         </option>
       )

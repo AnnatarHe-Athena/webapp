@@ -66,7 +66,7 @@ class Auth extends React.PureComponent {
     state = {
       email: '',
       pwd: '',
-      errors: ['失误']
+      errors: []
     }
 
     showError = (msgs) => {

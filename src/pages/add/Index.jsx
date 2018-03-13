@@ -47,6 +47,7 @@ const ReadyToUpload = styled.table`
     padding: .6923rem 4.15rem .6923rem 1.077rem;
     color: #333333;
     border: 0;
+    max-width: 2rem;
   }
   thead th {
     font-weight: 400;
@@ -97,8 +98,8 @@ class CreateItems extends React.PureComponent {
       loading: false,
       cells: fromJS([]),
       input: fromJS({
-        url: '', text: '', cate: props.categories.getIn([0, 'id']) || 11, permission: premissionOptions[0].value,
-        fromID: '', fromURL: ''
+        url: '1', text: '1', cate: props.categories.getIn([0, 'id']) || 11, permission: premissionOptions[0].value,
+        fromID: '1', fromURL: '1'
       })
     }
     this.notification = Notification.newInstance({
@@ -115,7 +116,7 @@ class CreateItems extends React.PureComponent {
   }
 
   renderTableHeader() {
-    return ['图片URL', '图片简单介绍', '分类', '权限'].map((x, i) => {
+    return ['图片URL', '图片简单介绍', '分类', '权限', 'fromID', 'fromURL'].map((x, i) => {
       return <th key={i}>{x}</th>
     })
   }
@@ -127,6 +128,7 @@ class CreateItems extends React.PureComponent {
         <tr key={i}>
           {Object.keys(x).map((k, ind) => {
             if (ind === 2) {
+              console.log(categories.toJS(), x, k)
               return <td key={ind}>{categories.find(item => item.get('id') === x[k]).get('name') }</td>
             }
             if (ind === 3) {
@@ -140,6 +142,7 @@ class CreateItems extends React.PureComponent {
   }
 
   upload = async () => {
+    console.log(this)
     const cells = this.state.cells.map(x => {
       return x.update('img', () => {
         const url = x.get('url')
@@ -228,9 +231,9 @@ class CreateItems extends React.PureComponent {
               color="ghost"
               size="medium"
               onClick={() => {
-                console.log(this.state.input.toJS())
+                console.log('input', this.state.input.toJS())
                 this.setState({
-                  cells: this.state.cells.concat(this.state.input),
+                  cells: this.state.cells.push(this.state.input),
                   input: fromJS({
                     url: '',
                     text: '',

@@ -20,7 +20,10 @@ function requestPermission() {
 
 export function sendNotification(info) {
     return requestPermission().then(() => {
-        new Notification(info.title, { body: info.desc })
+        const n = new Notification(info.title, { body: info.desc })
+        setTimeout(() => {
+          n.close()
+        }, 5000)
     }).catch(err => {
         alert(`${err}, ${info.title}`)
     })
