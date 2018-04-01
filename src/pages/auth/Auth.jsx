@@ -93,7 +93,7 @@ class Auth extends React.PureComponent {
       // this.props.auth({ email, password: pwd })
       this.props.client.query({
         query: authGraphql,
-        variables: { email, password:pwd }
+        variables: { email, password: pwd }
       }).then(result => {
         const { token, id } = result.data.auth
         this.props.syncToken(token, id)
@@ -102,7 +102,6 @@ class Auth extends React.PureComponent {
     }
 
     syncCategory() {
-      console.log(this)
       return this.props.client.query({
         query: initialQuery
       }).then(result => {
