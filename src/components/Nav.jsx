@@ -42,7 +42,7 @@ const Extra = styled.div`
 `
 
 const Nav = ({ categories, onSelected }) => {
-  const navs = categories.concat(randomCategory).map(c => {
+  const navs = categories.map(c => {
     return (
       <li key={c.id} onClick={onSelected}>
         <Link to={'/category/' + c.id }>{c.name}</Link>

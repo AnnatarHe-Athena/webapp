@@ -8,6 +8,9 @@ export function getPermissionObj(user) {
   if (role > 90) {
     permissionObj.softRemove = true
   }
+  if (role > 110) {
+    permissionObj.remove = true
+  }
 
   return permissionObj
 }

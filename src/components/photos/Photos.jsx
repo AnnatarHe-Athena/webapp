@@ -70,6 +70,7 @@ class Photos extends React.PureComponent {
           desc={pic.text}
           fromID={pic.fromID}
           fromURL={pic.fromURL}
+          forceDeleteable={this.props.forceDeleteable}
         />
       )
     })

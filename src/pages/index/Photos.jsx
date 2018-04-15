@@ -5,7 +5,8 @@ import { graphql } from 'react-apollo'
 import PropTypes from 'prop-types'
 import PhotoList from 'AthenaComponents/photos/Photos'
 import fetchGirlsQuery from 'AthenaSchema/fetchGirlsQuery.graphql'
-import { randomCategory } from '../../constants/defaults'
+import { randomCategory, legacyCategory } from '../../constants/defaults'
+import { getPermissionObj } from '../../utils/permission'
 
 const Container = styled.main`
     display: flex;
@@ -37,11 +38,12 @@ const gqlProps = {
           offset = Math.floor(Math.random() * (categories.getIn([randomIndexItem, 'count']) - variables.take))
           offset = offset < 0 ? 0 : offset
         }
+        const hideOnly = from === legacyCategory.id
         return fetchMore({
           fetchGirlsQuery,
           variables: {
             from, take: variables.take, offset,
-            hideOnly: false
+            hideOnly
           },
           updateQuery: (pResult, { fetchMoreResult }) => {
             return {
@@ -58,9 +60,10 @@ const gqlProps = {
           from = categories.getIn([randomIndexItem, 'id'])
           offset = Math.floor(Math.random() * (categories.getIn([randomIndexItem, 'count'])- variables.take))
         }
+        const hideOnly = from === legacyCategory.id
         return fetchMore({
           fetchGirlsQuery,
-          variables: { from, take: variables.take, offset },
+          variables: { from, take: variables.take, offset, hideOnly },
           updateQuery(pResult, { fetchMoreResult }) {
             return {
               variables: { ...variables, from, offset: 20 },
@@ -74,7 +77,10 @@ const gqlProps = {
   }
 }
 
-@connect(store => ({ categories: store.getIn(['app', 'categories']) }))
+@connect(store => ({
+ categories: store.getIn(['app', 'categories']),
+ canRemove: getPermissionObj(store.getIn(['profile', 'info']).toJS()).remove
+}))
 @graphql(fetchGirlsQuery, gqlProps)
 class Photos extends React.Component {
   constructor(props) {
@@ -88,13 +94,14 @@ class Photos extends React.Component {
   }
 
   render() {
-    const { loading, loadMore, girls } = this.props
+    const { loading, loadMore, girls, canRemove, categoryID } = this.props
     return (
       <Container>
         <PhotoList
           loading={loading}
           loadMore={loadMore}
           cells={girls}
+          forceDeleteable={canRemove && categoryID === legacyCategory.id}
         />
       </Container>
     )

@@ -1,5 +1,9 @@
 
 export function getRealSrcLink(url, type = 'bmiddle') {
+  if (__DEV__) {
+    return 'https://via.placeholder.com/450x450'
+  }
+
   if (!url) {
     throw new Error('must provide a url')
     return

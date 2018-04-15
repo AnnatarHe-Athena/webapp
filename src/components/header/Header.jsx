@@ -6,6 +6,8 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import Dialog from '../dialog/Dialog'
 import { changeCategory } from '../../actions/category'
+import { randomCategory, legacyCategory } from '../../constants/defaults'
+import { getPermissionObj } from '../../utils/permission'
 import Nav from '../Nav'
 
 const HeaderEl = styled.header`
@@ -67,7 +69,9 @@ const MenuItem = styled.div`
   }
 `
 
-@connect(null, dispatch => ({
+@connect(store => ({
+  canRemove: getPermissionObj(store.getIn(['profile', 'info']).toJS()).remove
+}), dispatch => ({
   changeCategory(id) { return dispatch(changeCategory(id)) }
 }))
 class Header extends React.PureComponent {
@@ -81,7 +85,8 @@ class Header extends React.PureComponent {
   }
 
   render() {
-    const { categories } = this.props
+    const { categories, canRemove } = this.props
+    const newCate = categories.concat(canRemove ? [randomCategory, legacyCategory] : randomCategory)
     return (
       <HeaderEl>
         <Bar>
@@ -92,7 +97,7 @@ class Header extends React.PureComponent {
           </Menus>
         </Bar>
         <Dialog visible={this.state.navVisible} onClose={this.changeNavVisible}>
-          <Nav categories={categories} onSelected={this.changeNavVisible} />
+          <Nav categories={newCate} onSelected={this.changeNavVisible} />
         </Dialog>
       </HeaderEl>
     )

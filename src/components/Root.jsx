@@ -48,7 +48,7 @@ class Root extends React.PureComponent {
         />
         <CSSTransitionGroup
           component={BodyContainer}
-          transitionName="fade"
+          transitionName="slide"
           transitionEnterTimeout={350}
           transitionLeaveTimeout={350}
         >

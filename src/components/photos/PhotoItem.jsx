@@ -33,7 +33,9 @@ class PhotoItem extends React.PureComponent {
   }
 
   render() {
-    const { id, src, desc, fromID, fromURL } = this.props
+    const { id, src, desc, fromID, fromURL, forceDeleteable } = this.props
+    // TODO: forceDeleteable 真正删除文件，从七牛里面删掉
+
     const bmiddleSrc = getRealSrcLink(src)
     return (
       <Container>

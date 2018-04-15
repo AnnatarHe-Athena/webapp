@@ -5,7 +5,7 @@ $menu-height = 2rem
 
 .fade-enter.fade-enter-active
     opacity 1
-    transition opacity 500ms ease-in
+    transition opacity 300ms ease-in
 
 .fade-leave
     opacity 1
@@ -39,14 +39,14 @@ $menu-height = 2rem
 
 .scale-enter.scale-enter-active
     transform: scale(1)
-    transition opacity 500ms ease-in
+    transition all 300ms ease-in
 
 .scale-leave
     transform: scale(1)
 
 .scale-leave.scale-leave-active
     transform: scale(0.01)
-    transition opacity 300ms ease-in
+    transition all 300ms ease-in
 
 
 
@@ -68,3 +68,17 @@ $menu-height = 2rem
     transform: translate3d(0, -1rem, 0);
     opacity 0.01
     transition all .35s
+    
+// .fade-enter
+//     opacity 0.01
+
+// .fade-enter.fade-enter-active
+//     opacity 1
+//     transition opacity 300ms ease-in
+
+// .fade-leave
+//     opacity 1
+
+// .fade-leave.fade-leave-active
+//     opacity 0.01
+//     transition opacity 300ms ease-in
