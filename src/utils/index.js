@@ -9,9 +9,6 @@ export function getRealSrcLink(url, type = 'bmiddle') {
     return
   }
   url = window.atob(url)
-  if (process.env.NODE_ENV !== 'production') {
-    return 'http://via.placeholder.com/350x150'
-  }
   if (url.indexOf('http') === 0) {
     return url
   }

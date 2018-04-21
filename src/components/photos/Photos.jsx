@@ -70,6 +70,7 @@ class Photos extends React.PureComponent {
           desc={pic.text}
           fromID={pic.fromID}
           fromURL={pic.fromURL}
+          content={pic.content}
           forceDeleteable={this.props.forceDeleteable}
         />
       )
@@ -106,7 +107,8 @@ Photos.propTypes = {
     text: PropTypes.string
   })),
   loading: PropTypes.boolean,
-  loadMore: PropTypes.func.isRequired
+  loadMore: PropTypes.func.isRequired,
+  forceDeleteable: PropTypes.bool
 }
 
 export default Photos

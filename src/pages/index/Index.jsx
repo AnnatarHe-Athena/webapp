@@ -21,7 +21,7 @@ class Index extends React.PureComponent {
   render() {
     return (
       <Div>
-        <Photos categoryID={this.props.params.cid || -1} />
+        <Photos categoryID={this.props.params.cid} />
       </Div>
     )
   }

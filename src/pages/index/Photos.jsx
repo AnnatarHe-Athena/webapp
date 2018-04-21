@@ -60,6 +60,8 @@ const gqlProps = {
           from = categories.getIn([randomIndexItem, 'id'])
           offset = Math.floor(Math.random() * (categories.getIn([randomIndexItem, 'count'])- variables.take))
         }
+
+        offset = offset < 0 ? 0 : offset
         const hideOnly = from === legacyCategory.id
         return fetchMore({
           fetchGirlsQuery,
@@ -83,14 +85,22 @@ const gqlProps = {
 }))
 @graphql(fetchGirlsQuery, gqlProps)
 class Photos extends React.Component {
-  constructor(props) {
-    super(props)
+
+  state = {
+    categoryID: -1
   }
 
   componentWillReceiveProps(np) {
-    if (np.categoryID !== this.props.categoryID) {
+    if (np.categoryID !== this.state.categoryID) {
       this.props.loadNewCategories(np.categoryID)
+      this.setState({
+        categoryID: np.categoryID
+      })
     }
+  }
+
+  static getDerivedStateFromProps(props) {
+    console.log('getDerivedStateFromProps', props)
   }
 
   render() {

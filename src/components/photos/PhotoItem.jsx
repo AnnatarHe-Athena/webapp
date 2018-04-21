@@ -33,7 +33,7 @@ class PhotoItem extends React.PureComponent {
   }
 
   render() {
-    const { id, src, desc, fromID, fromURL, forceDeleteable } = this.props
+    const { id, src, desc, fromID, fromURL, content, forceDeleteable } = this.props
     // TODO: forceDeleteable 真正删除文件，从七牛里面删掉
 
     const bmiddleSrc = getRealSrcLink(src)
@@ -42,7 +42,7 @@ class PhotoItem extends React.PureComponent {
         <source srcSet={bmiddleSrc} onClick={() => { this.setState({ visible: true })}} />
         <img src={bmiddleSrc} alt={desc}  onClick={() => { this.setState({ visible: true })}}/>
         {/*<span>{desc}</span>*/}
-        <Preview data={{ id, src, desc, fromID, fromURL }} visible={this.state.visible} onClose={this.togglePreview} />
+        <Preview data={{ id, src, desc, fromID, fromURL, content }} visible={this.state.visible} onClose={this.togglePreview} />
       </Container>
     )
   }

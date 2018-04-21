@@ -122,7 +122,7 @@ class PreviewImage extends React.PureComponent {
   }
 
   render() {
-    const { src, desc, fromID, fromURL } = this.props
+    const { src, desc, fromID, fromURL, content } = this.props
     if (!src) {
       return null
     }
@@ -163,7 +163,7 @@ class PreviewImage extends React.PureComponent {
           <picture onClick={this.props.onClose}>
             <source srcSet={bigSrc} />
             <img src={bigSrc} alt={desc} />
-            <figcaption>{desc}</figcaption>
+            <figcaption>{content}</figcaption>
           </picture>
         </Figure>
       </div>
