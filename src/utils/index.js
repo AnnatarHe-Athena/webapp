@@ -14,12 +14,20 @@ export function getRealSrcLink(url, type = 'bmiddle') {
   }
   if (url.indexOf('qn://') === 0) {
     const qnBaseURL = url.replace('qn://', 'https://cdn.annatarhe.com/')
+    let resultUrl = ''
     switch (type) {
       case 'bmiddle':
-        return qnBaseURL + '-thumbnails'
+        resultUrl = qnBaseURL + '-thumbnails'
+        break
       case 'large':
-        return qnBaseURL + '-copyrightDB'
+        resultUrl = qnBaseURL + '-copyrightDB'
+        break
     }
+
+    if (isWebpSupported()) {
+      resultUrl += '.webp'
+    }
+    return resultUrl
   }
   return `https://wx3.sinaimg.cn/${type}/${url}`
 }
@@ -48,4 +56,18 @@ export function getTitleHref(origin) {
     return 'https://www.zhihu.com/answer/' + id
   }
   return origin
+}
+
+
+let webpSupported = null
+export function isWebpSupported() {
+  if (webpSupported !== null) {
+    return webpSupported
+  }
+  webpSupported = !![].map &&
+  document
+    .createElement("canvas")
+    .toDataURL("image/webp")
+    .indexOf("data:image/webp") === 0;
+    return webpSupported
 }
