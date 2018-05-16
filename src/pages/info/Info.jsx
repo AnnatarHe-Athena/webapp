@@ -44,9 +44,9 @@ class InfoPage extends React.PureComponent {
     const { userCount, cellCount, fee, email, copyright } = data.info
     return (
       <Container>
-        <Card others={`max-width: 50rem;`}>
+        <Card others={'max-width: 50rem;'}>
           <InfoTip>已有 <strong>{cellCount}</strong> 张图片，和 <strong>{userCount}</strong> 名用户。</InfoTip>
-          <InfoTip>暂无法注册，需要联系 <a href={"mailto:" + email}>{copyright}</a> 申请，如果通过，需要付费可能是 <small>{fee}</small></InfoTip>
+          <InfoTip>暂无法注册，需要联系 <a href={'mailto:' + email}>{copyright}</a> 申请，如果通过，需要付费可能是 <small>{fee}</small></InfoTip>
 
           <hr />
 
