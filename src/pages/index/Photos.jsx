@@ -80,8 +80,8 @@ const gqlProps = {
 }
 
 @connect(store => ({
- categories: store.getIn(['app', 'categories']),
- canRemove: getPermissionObj(store.getIn(['profile', 'info']).toJS()).remove
+  categories: store.getIn(['app', 'categories']),
+  canRemove: getPermissionObj(store.getIn(['profile', 'info']).toJS()).remove
 }))
 @graphql(fetchGirlsQuery, gqlProps)
 class Photos extends React.Component {

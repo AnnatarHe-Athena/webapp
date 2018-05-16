@@ -241,7 +241,7 @@ class CreateItems extends React.PureComponent {
                     permission: this.state.input.get('permission'),
                     fromID: '',
                     fromURL: ''
-                    })
+                  })
                 })
               }}
               disabled={this.state.input.some(x => !x || x === '')}

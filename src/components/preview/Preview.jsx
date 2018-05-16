@@ -137,7 +137,7 @@ class PreviewImage extends React.PureComponent {
 
     const middleTitle = (
       <div>
-        <a href={getTitleHref(fromURL)} target="_blank"><h2>{desc || "主题"}</h2></a>
+        <a href={getTitleHref(fromURL)} target="_blank"><h2>{desc || '主题'}</h2></a>
       </div>
     )
 

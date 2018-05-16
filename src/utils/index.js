@@ -16,12 +16,12 @@ export function getRealSrcLink(url, type = 'bmiddle') {
     const qnBaseURL = url.replace('qn://', 'https://cdn.annatarhe.com/')
     let resultUrl = ''
     switch (type) {
-      case 'bmiddle':
-        resultUrl = qnBaseURL + '-thumbnails'
-        break
-      case 'large':
-        resultUrl = qnBaseURL + '-copyrightDB'
-        break
+    case 'bmiddle':
+      resultUrl = qnBaseURL + '-thumbnails'
+      break
+    case 'large':
+      resultUrl = qnBaseURL + '-copyrightDB'
+      break
     }
 
     if (isWebpSupported()) {
@@ -66,8 +66,8 @@ export function isWebpSupported() {
   }
   webpSupported = !![].map &&
   document
-    .createElement("canvas")
-    .toDataURL("image/webp")
-    .indexOf("data:image/webp") === 0;
-    return webpSupported
+    .createElement('canvas')
+    .toDataURL('image/webp')
+    .indexOf('data:image/webp') === 0
+  return webpSupported
 }
