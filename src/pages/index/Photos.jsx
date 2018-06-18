@@ -18,7 +18,7 @@ const Container = styled.main`
 const gqlProps = {
   options: props => ({
     variables: {
-      from: props.categoryID, take: 20, offset: 0,
+      from: props.categoryID || 1, take: 20, offset: 0,
       hideOnly: false
     },
     fetchPolicy: 'cache-and-network'
