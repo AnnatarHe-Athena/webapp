@@ -9,6 +9,7 @@ import 'react-select/dist/react-select.css'
 import Notification from 'rc-notification'
 import PropTypes from 'prop-types'
 import Card from 'AthenaComponents/card/Card'
+import JSONTextarea from 'AthenaComponents/json-textarea/json-textarea'
 import addGirlCells from 'AthenaSchema/mutations/addGirlCells.graphql'
 
 import PageContainer from 'AthenaComponents/PageContainer'
@@ -98,13 +99,14 @@ class CreateItems extends React.PureComponent {
       loading: false,
       cells: fromJS([]),
       input: fromJS({
-        url: '1', text: '1', cate: props.categories.getIn([0, 'id']) || 11, permission: premissionOptions[0].value,
-        fromID: '1', fromURL: '1'
+        url: '', text: '', cate: props.categories.getIn([0, 'id']) || 11, permission: premissionOptions[0].value,
+        fromID: '', fromURL: ''
       })
     }
-    this.notification = Notification.newInstance({
+    Notification.newInstance({
       prefixCls: 'notification',
-      style: {}
+    }, notification => {
+      this.notification = notification
     })
   }
 
@@ -142,7 +144,6 @@ class CreateItems extends React.PureComponent {
   }
 
   upload = async () => {
-    console.log(this)
     const cells = this.state.cells.map(x => {
       return x.update('img', () => {
         const url = x.get('url')
@@ -160,6 +161,12 @@ class CreateItems extends React.PureComponent {
       })
       return
     }
+
+    await this._uploadAction(cells)
+  }
+
+  _uploadAction = async (cells) => {
+    console.log(this, this.notification)
     this.setState({ loading: true })
     try {
       await this.props.client.mutate({
@@ -179,6 +186,10 @@ class CreateItems extends React.PureComponent {
     }
   }
 
+  uploadJSON = async value => {
+    await this._uploadAction(value)
+  }
+
   componentWillUnmount() {
     this.notification.destroy()
     this.notification = null
@@ -195,6 +206,8 @@ class CreateItems extends React.PureComponent {
       <PageContainer>
         <Card>
           <H2>Create Cells</H2>
+          <Separator />
+          <JSONTextarea onUpload={this.uploadJSON} />
           <Separator />
           <ReadyToUpload>
             <thead>
