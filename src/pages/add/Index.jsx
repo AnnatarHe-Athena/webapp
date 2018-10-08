@@ -186,18 +186,18 @@ class CreateItems extends React.PureComponent {
   }
 
   uploadJSON = async value => {
-    value.map(v => {
-      const newV = Object.assign({}, v, {
+    const newCellList = value.map(v => {
+      return {
         url: (v.url ? v.url : v.img),
         text: (v.text ? v.text : v.content),
         cate: v.cate || 11,
         permission: premissionOptions[0].value,
-      })
-      if (!v.url && v.img) {
-        v.url = v.img
+        fromID: v.fromID,
+        fromURL: v.fromURL,
+        text: v.text
       }
     })
-    await this._uploadAction(value)
+    await this._uploadAction(newCellList)
   }
 
   componentWillUnmount() {
