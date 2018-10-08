@@ -166,7 +166,6 @@ class CreateItems extends React.PureComponent {
   }
 
   _uploadAction = async (cells) => {
-    console.log(this, this.notification)
     this.setState({ loading: true })
     try {
       await this.props.client.mutate({
@@ -187,7 +186,18 @@ class CreateItems extends React.PureComponent {
   }
 
   uploadJSON = async value => {
-    await this._uploadAction(value)
+    const newCellList = value.map(v => {
+      return {
+        url: (v.url ? v.url : v.img),
+        text: (v.text ? v.text : v.content),
+        cate: v.cate || 11,
+        permission: premissionOptions[0].value,
+        fromID: v.fromID,
+        fromURL: v.fromURL,
+        text: v.text
+      }
+    })
+    await this._uploadAction(newCellList)
   }
 
   componentWillUnmount() {
