@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/AnnatarHe-Athena/webapp/compare/v1.0.0...v1.1.0) (2018-10-09)
+
+
+### Bug Fixes
+
+* **add:** fix add cells ([14e87cd](https://github.com/AnnatarHe-Athena/webapp/commit/14e87cd))
+* **add:** fix schema key name ([177a05e](https://github.com/AnnatarHe-Athena/webapp/commit/177a05e))
+* **dev:** hide image in dev mode ([aa1a645](https://github.com/AnnatarHe-Athena/webapp/commit/aa1a645))
+* **index:** fix index page query ([c5eaec2](https://github.com/AnnatarHe-Athena/webapp/commit/c5eaec2))
+* **schema:** fix upload schema ([df038e5](https://github.com/AnnatarHe-Athena/webapp/commit/df038e5))
+
+
+### Features
+
+* **upload:** add json upload method ([56b6166](https://github.com/AnnatarHe-Athena/webapp/commit/56b6166))
+
+
+
 <a name="1.0.0"></a>
 # 1.0.0 (2018-05-16)
 
