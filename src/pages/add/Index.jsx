@@ -188,7 +188,7 @@ class CreateItems extends React.PureComponent {
   uploadJSON = async value => {
     const newCellList = value.map(v => {
       return {
-        url: (v.url ? v.url : v.img),
+        img: v.img,
         text: (v.text ? v.text : v.content),
         cate: v.cate || 11,
         permission: premissionOptions[0].value,
