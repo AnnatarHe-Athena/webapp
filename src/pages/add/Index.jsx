@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { fromJS } from 'immutable'
+import { chunk } from 'lodash'
 // import { Link } from 'react-router'
 import { withApollo } from 'react-apollo'
 import Select from 'AthenaComponents/select/Select'
@@ -197,7 +198,10 @@ class CreateItems extends React.PureComponent {
         text: v.text
       }
     })
-    await this._uploadAction(newCellList)
+    const slice = chunk(newCellList, 20)
+    for (let c of slice) {
+      await this._uploadAction(c)
+    }
   }
 
   componentWillUnmount() {

@@ -12,6 +12,7 @@
     "graphql": "^0.11.7",
     "immutable": "^3.8.1",
     "intersection-observer": "^0.4.0",
+    "lodash": "^4.17.11",
     "rc-notification": "^3.2.0",
     "react": "^16",
     "react-apollo": "^2.0.1",

@@ -39,6 +39,12 @@ const SNSToProfileURLMap = {
 }
 
 export function getUserInfoURL(id, origin) {
+
+  // 微博用户会有自定义子路由，这里做处理
+  if (origin.indexOf('weibo') > 2 && (!/\d+/.test(id))) {
+    return `https://weibo.com/${id}/profile`
+  }
+
   for (let key in SNSToProfileURLMap) {
     if (SNSToProfileURLMap.hasOwnProperty(key)) {
       if (origin.indexOf(key) > 2 && origin.indexOf(key) < 15) {
