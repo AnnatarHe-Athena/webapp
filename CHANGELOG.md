@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.1"></a>
+## [1.1.1](https://github.com/AnnatarHe-Athena/webapp/compare/v1.1.0...v1.1.1) (2018-11-12)
+
+
+### Performance Improvements
+
+* **add:** chunklize json upload data and get better perfmence ([d7c1bb2](https://github.com/AnnatarHe-Athena/webapp/commit/d7c1bb2))
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/AnnatarHe-Athena/webapp/compare/v1.0.0...v1.1.0) (2018-10-09)
 
