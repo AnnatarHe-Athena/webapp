@@ -54,8 +54,9 @@ const gqlProps = {
       },
       loadNewCategories(from) {
         // if is random category, just random params
+        // FIXME: BUG HERE
         let offset = 0
-        if (from === randomCategory.id) {
+        if (from.toString() === randomCategory.id) {
           const randomIndexItem = Math.floor(Math.random() * (categories.size - 1))
           from = categories.getIn([randomIndexItem, 'id'])
           offset = Math.floor(Math.random() * (categories.getIn([randomIndexItem, 'count'])- variables.take))

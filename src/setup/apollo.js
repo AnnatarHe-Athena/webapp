@@ -2,14 +2,11 @@ import { ApolloClient } from 'apollo-client'
 import { HttpLink } from 'apollo-link-http'
 import { ApolloLink, from } from 'apollo-link'
 import { InMemoryCache } from 'apollo-cache-inmemory'
-// import {  } from 'apollo-link-context'
 import { onError } from 'apollo-link-error'
 
 import { sendNotification } from '../utils/notification'
 
-function getPrefix() {
-  return process.env.NODE_ENV === 'production' ? 'https://api.dbg.annatarhe.com' : ''
-}
+const prefix = (process.env.NODE_ENV === 'production' ? 'https://api.dbg.annatarhe.com' : '') + '/graphql/v1'
 
 const authMiddleware = new ApolloLink((operation, forward) => {
   operation.setContext({
@@ -27,7 +24,7 @@ const errorLink = onError(({ graphQLErrors, response }) => {
 })
 
 const link = new HttpLink({
-  uri: `${getPrefix()}/graphql/v1`,
+  uri: `${prefix}/graphql/v1`,
   credentials: 'include'
 })
 

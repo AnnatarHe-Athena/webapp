@@ -7,14 +7,15 @@ import PropTypes from 'prop-types'
 
 const Container = styled.picture`
   flex-grow: 1;
-  min-width: 10rem;
-  min-height: 10rem;
+  // min-width: 10rem;
+  // min-height: 10rem;
 
   @media (min-width: 768px) {
     max-width: 24vw;
   }
   img {
-    width: 100%;
+    width: 400px;
+    height: 500px;
     border-radius: 4px;
   }
 `
