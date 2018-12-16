@@ -6,7 +6,7 @@ import { onError } from 'apollo-link-error'
 
 import { sendNotification } from '../utils/notification'
 
-const prefix = (process.env.NODE_ENV === 'production' ? 'https://api.dbg.annatarhe.com' : '') + '/graphql/v1'
+const prefix = process.env.NODE_ENV === 'production' ? 'https://api.dbg.annatarhe.com' : ''
 
 const authMiddleware = new ApolloLink((operation, forward) => {
   operation.setContext({
