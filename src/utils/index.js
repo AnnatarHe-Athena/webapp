@@ -1,7 +1,7 @@
 
 export function getRealSrcLink(url, type = 'bmiddle') {
   if (__DEV__) {
-    return 'https://via.placeholder.com/450x450'
+    return 'https://via.placeholder.com/400x500'
   }
 
   if (!url) {
@@ -24,7 +24,7 @@ export function getRealSrcLink(url, type = 'bmiddle') {
       break
     }
 
-    if (isWebpSupported()) {
+    if (isWebpSupported() && !url.includes('.gif')) {
       resultUrl += '.webp'
     }
     return resultUrl
