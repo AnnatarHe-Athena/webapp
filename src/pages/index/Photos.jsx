@@ -16,21 +16,32 @@ const Container = styled.main`
 `
 
 const gqlProps = {
-  options: props => ({
-    variables: {
-      from: props.categoryID || 1, take: 20, offset: 0,
-      hideOnly: false
-    },
-    fetchPolicy: 'cache-and-network'
-  }),
-  props({ data: { girls, loading, fetchMore, variables }, ownProps: { categories} }) {
+  options: props => {
+    const { categories } = props
+    let category = props.categoryID
+    let offset = 0
+    if (category === randomCategory.id) {
+      const randomIndexItem = Math.floor(Math.random() * (categories.size - 1))
+      category = categories.getIn([randomIndexItem, 'id'])
+      offset = Math.floor(Math.random() * (~~categories.getIn([randomIndexItem, 'count']) - 20))
+      offset = offset < 0 ? 0 : offset
+    }
+    return {
+      variables: {
+        from: category || 1, take: 20, offset,
+        hideOnly: false
+      },
+      fetchPolicy: 'cache-and-network'
+    }
+  },
+  props({ data: { girls, loading, fetchMore, variables }, ownProps: { categories, categoryID } }) {
     return {
       girls,
       loading,
       categories,
       loadMore() {
         // if is random category, just random params
-        let from = variables.from
+        let from = categoryID
         let offset = girls.length
         if (from === randomCategory.id) {
           const randomIndexItem = Math.floor(Math.random() * (categories.size - 1))
@@ -86,24 +97,6 @@ const gqlProps = {
 }))
 @graphql(fetchGirlsQuery, gqlProps)
 class Photos extends React.Component {
-
-  state = {
-    categoryID: -1
-  }
-
-  componentWillReceiveProps(np) {
-    if (np.categoryID !== this.state.categoryID) {
-      this.props.loadNewCategories(np.categoryID)
-      this.setState({
-        categoryID: np.categoryID
-      })
-    }
-  }
-
-  static getDerivedStateFromProps(props) {
-    console.log('getDerivedStateFromProps', props)
-  }
-
   render() {
     const { loading, loadMore, girls, canRemove, categoryID } = this.props
     return (
