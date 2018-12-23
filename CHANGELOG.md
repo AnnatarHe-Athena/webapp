@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.3"></a>
+## [1.1.3](https://github.com/AnnatarHe-Athena/webapp/compare/v1.1.2...v1.1.3) (2018-12-23)
+
+
+### Bug Fixes
+
+* **random:** try to fix random ([771ac8b](https://github.com/AnnatarHe-Athena/webapp/commit/771ac8b))
+* **url:** fix server prefix ([3ba9a7d](https://github.com/AnnatarHe-Athena/webapp/commit/3ba9a7d))
+
+
+
 <a name="1.1.2"></a>
 ## [1.1.2](https://github.com/AnnatarHe-Athena/webapp/compare/v1.1.1...v1.1.2) (2018-12-16)
 
