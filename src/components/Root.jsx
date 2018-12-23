@@ -30,7 +30,7 @@ const BodyContainer = styled.div`
   updateCategories(categories) { return dispatch(updateCategories(categories)) }
 }))
 @withApollo
-class Root extends React.PureComponent {
+class Root extends React.Component {
   componentDidMount() {
     this.props.client.query({
       query: initialQuery
