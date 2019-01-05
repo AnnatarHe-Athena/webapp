@@ -1,28 +1,30 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import { ApolloProvider } from 'react-apollo'
-import { hot } from 'react-hot-loader'
-import { Router, browserHistory } from 'react-router'
+import { hot } from 'react-hot-loader/root'
+import { Router, Location } from '@reach/router'
 import { apolloClient } from './setup/apollo'
+import Root from './components/Root'
 import store from './store/index'
 import routes from './routes/route'
-import { syncHistoryWithStore } from 'react-router-redux'
 import './styles/index.styl'
-
-const history = syncHistoryWithStore(browserHistory, store, {
-  selectLocationState(store) {
-    return store.get('routing')
-  }
-})
 
 const App = () => {
   return (
     <ApolloProvider client={apolloClient}>
       <Provider store={store}>
-        <Router history={history} routes={routes} />
+        <Location>
+          {({ location }) => (
+            <Root location={location}>
+              <Router location={location}>
+                { routes.map(r => (<r.component key={r.path} path={r.path} />)) }
+              </Router>
+            </Root>
+          )}
+        </Location>
       </Provider>
     </ApolloProvider>
   )
 }
 
-export default hot(module)(App)
+export default hot(App)

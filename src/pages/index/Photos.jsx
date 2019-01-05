@@ -1,4 +1,5 @@
 import React from 'react'
+import Immutable from 'immutable'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 import { graphql } from 'react-apollo'
@@ -65,7 +66,6 @@ const gqlProps = {
       },
       loadNewCategories(from) {
         // if is random category, just random params
-        // FIXME: BUG HERE
         let offset = 0
         if (from.toString() === randomCategory.id) {
           const randomIndexItem = Math.floor(Math.random() * (categories.size - 1))
@@ -97,6 +97,16 @@ const gqlProps = {
 }))
 @graphql(fetchGirlsQuery, gqlProps)
 class Photos extends React.Component {
+
+  static propTypes = {
+    loading: PropTypes.bool,
+    categories: PropTypes.instanceOf(Immutable.List),
+    girls: PropTypes.arrayOf(PropTypes.any),
+    loadMore: PropTypes.func,
+    loadNewCategories: PropTypes.func,
+    categoryID: PropTypes.number
+  }
+
   render() {
     const { loading, loadMore, girls, canRemove, categoryID } = this.props
     return (
@@ -110,15 +120,6 @@ class Photos extends React.Component {
       </Container>
     )
   }
-}
-
-Photos.propTypes = {
-  loading: PropTypes.bool,
-  categories: PropTypes.arrayOf(PropTypes.any),
-  girls: PropTypes.arrayOf(PropTypes.any),
-  loadMore: PropTypes.func,
-  loadNewCategories: PropTypes.func,
-  categoryID: PropTypes.number
 }
 
 export default Photos

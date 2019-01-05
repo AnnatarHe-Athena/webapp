@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 // import { graphql, gql } from 'react-apollo'
 import Loading from '../Loading'
 import PhotoItem from './PhotoItem'
-import { CSSTransitionGroup } from 'react-transition-group'
+import { TransitionGroup } from 'react-transition-group'
 // import Footer from '../footer/Footer'
 import Button from '../button/Button'
 // import fetchGirlsQuery from 'AthenaSchema/fetchGirlsQuery.graphql'
@@ -76,17 +76,20 @@ class Photos extends React.PureComponent {
       )
     })
   }
+
   render() {
     return (
       <Container>
-        <CSSTransitionGroup
+        <TransitionGroup
           component={PhotoLists}
-          transitionName="fade"
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={300}
+          classNames="fade"
+          timeout={{
+            exit: 350,
+            enter: 350
+          }}
         >
           {this.renderPhotos()}
-        </CSSTransitionGroup>
+        </TransitionGroup>
         <Button
           size="large"
           color="red"
@@ -106,7 +109,7 @@ Photos.propTypes = {
     img: PropTypes.string,
     text: PropTypes.string
   })),
-  loading: PropTypes.boolean,
+  loading: PropTypes.bool,
   loadMore: PropTypes.func.isRequired,
   forceDeleteable: PropTypes.bool
 }

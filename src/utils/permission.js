@@ -14,3 +14,7 @@ export function getPermissionObj(user) {
 
   return permissionObj
 }
+
+export function getToken() {
+  return sessionStorage.getItem('athena-token')
+}

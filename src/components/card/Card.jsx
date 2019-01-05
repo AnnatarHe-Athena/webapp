@@ -12,7 +12,7 @@ const Card = styled.div`
 
 Card.propTypes = {
   // 是不是距离顶上很远的那种
-  isFar: PropTypes.boolean,
+  isFar: PropTypes.bool,
   children: PropTypes.array
 }
 

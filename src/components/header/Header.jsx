@@ -1,13 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { CSSTransitionGroup } from 'react-transition-group'
 import { connect } from 'react-redux'
-import { Link } from 'react-router'
+import { Link, navigate } from '@reach/router'
 import Dialog from '../dialog/Dialog'
 import { changeCategory } from '../../actions/category'
 import { randomCategory, legacyCategory } from '../../constants/defaults'
-import { getPermissionObj } from '../../utils/permission'
+import { getPermissionObj, getToken } from '../../utils/permission'
 import Nav from '../Nav'
 
 const HeaderEl = styled.header`
@@ -84,6 +83,19 @@ class Header extends React.PureComponent {
     this.setState({ navVisible: ! this.state.navVisible })
   }
 
+  toAuthOrProfile = () => {
+    const token = getToken()
+
+    if (!token) {
+      return navigate('/auth')
+    }
+
+    const userId = sessionStorage.getItem('athena-user-id')
+    if (token && userId) {
+      return navigate(`/profile/${userId}`)
+    }
+  }
+
   render() {
     const { categories, canRemove } = this.props
     const newCate = categories.concat(canRemove ? [randomCategory, legacyCategory] : randomCategory)
@@ -93,7 +105,7 @@ class Header extends React.PureComponent {
           <Link to="/"><h2>Athena</h2></Link>
           <Menus>
             <MenuItem onClick={this.changeNavVisible}><i className="fa fa-align-justify fa-lg" /> <span>Categories</span></MenuItem>
-            <MenuItem><Link to="/auth"><i className="fa fa-user fa-lg" /><span>User</span></Link></MenuItem>
+            <MenuItem onClick={this.toAuthOrProfile}><i className="fa fa-user fa-lg" /><span>User</span></MenuItem>
           </Menus>
         </Bar>
         <Dialog visible={this.state.navVisible} onClose={this.changeNavVisible}>

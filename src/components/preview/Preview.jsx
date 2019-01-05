@@ -7,7 +7,7 @@ import { withApollo } from 'react-apollo'
 import { getRealSrcLink, getUserInfoURL, getTitleHref } from '../../utils/index'
 import { getPermissionObj } from '../../utils/permission'
 import { liteYellow } from '../../styles/variables'
-import { CSSTransitionGroup } from 'react-transition-group'
+import { CSSTransition } from 'react-transition-group'
 import addCollectionMutation from 'AthenaSchema/mutations/addCollection.graphql'
 import removeGirlCellMutation from 'AthenaSchema/mutations/removeGirlCell.graphql'
 import PropTypes from 'prop-types'
@@ -144,21 +144,14 @@ class PreviewImage extends React.PureComponent {
     const bigSrc = getRealSrcLink(src, 'large')
     return (
       <div>
-        <CSSTransitionGroup
-          component="div"
-          transitionName="slide"
-          transitionEnterTimeout={350}
-          transitionLeaveTimeout={350}
-        >
-          {this.state.extraVisiable ? <Extra>
+        <Extra>
             {leftUserInfo}
             {middleTitle}
             <div>
               <ExtraButton onClick={this.handleCollect}>Collect</ExtraButton>
               { softRemove && <ExtraButton onClick={this.handleDelete}>Delete</ExtraButton> }
             </div>
-          </Extra> : null }
-        </CSSTransitionGroup>
+          </Extra>
         <Figure>
           <picture onClick={this.props.onClose}>
             <source srcSet={bigSrc} />

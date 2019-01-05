@@ -1,9 +1,11 @@
 import React from 'react'
+import Immutable from 'immutable'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { withApollo } from 'react-apollo'
+import { Location } from '@reach/router'
 import PropTypes from 'prop-types'
-import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import { updateCategories } from '../actions/category'
 import initialQuery from 'AthenaSchema/categoriesQuery.graphql'
 
@@ -31,6 +33,15 @@ const BodyContainer = styled.div`
 }))
 @withApollo
 class Root extends React.Component {
+
+  static propTypes = {
+    client: PropTypes.any.isRequired,
+    updateCategories: PropTypes.func,
+    children: PropTypes.element,
+    match: PropTypes.any,
+    categories: PropTypes.instanceOf(Immutable.List)
+  }
+
   componentDidMount() {
     this.props.client.query({
       query: initialQuery
@@ -38,36 +49,23 @@ class Root extends React.Component {
       this.props.updateCategories(result.data.categories)
     })
   }
+
   render() {
-    const { children, params } = this.props
+    const { children, location } = this.props
     return (
       <Container>
-        <Header
-          categoryID={params.categoryID || -1}
-          categories={this.props.categories.toJS()}
-        />
-        <CSSTransitionGroup
-          component={BodyContainer}
-          transitionName="slide"
-          transitionEnterTimeout={350}
-          transitionLeaveTimeout={350}
-        >
-          {React.cloneElement(children, {
-            key: location.pathname
-          })}
-        </CSSTransitionGroup>
+        <Header categories={this.props.categories.toJS()} />
+          <TransitionGroup className="transition-group">
+            <CSSTransition
+              key={location.key}
+              component={BodyContainer}
+              classNames="slide" timeout={350}>
+              {children}
+            </CSSTransition>
+          </TransitionGroup>
       </Container>
     )
   }
 }
-
-Root.propTypes = {
-  client: PropTypes.any.isRequired,
-  updateCategories: PropTypes.func,
-  children: PropTypes.elements,
-  params: PropTypes.any,
-  categories: PropTypes.arrayOf(PropTypes.any)
-}
-
 
 export default Root

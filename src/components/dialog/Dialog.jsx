@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import Card from '../card/Card'
-import { CSSTransitionGroup } from 'react-transition-group'
+import { CSSTransition } from 'react-transition-group'
 
 const Mask = styled.div`
   background-color: rgba(0, 0, 0, .3);
@@ -36,13 +36,15 @@ class InnerDialog extends React.PureComponent {
   render() {
     return (
       <Mask onClick={this.onClose} role="mask">
-        <CSSTransitionGroup
-          transitionName="fade"
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={300}
+        <CSSTransition
+          classNames="fade"
+          timeout={{
+            exit: 350,
+            enter: 350
+          }}
         >
           {this.props.children}
-        </CSSTransitionGroup>
+        </CSSTransition>
       </Mask>
     )
   }
@@ -57,7 +59,7 @@ const Dialog = ({ visible, ...data}) => {
 
 Dialog.propTypes = {
   visibility: PropTypes.bool,
-  children: PropTypes.elements
+  children: PropTypes.element
 }
 
 export default Dialog

@@ -1,9 +1,9 @@
 import { syncToken, logout } from './auth'
-import { fork } from 'redux-saga/effects'
+import { fork, all } from 'redux-saga/effects'
 
 export default function* root () {
-  yield [
+  yield all([
     fork(syncToken),
     fork(logout)
-  ]
+  ])
 }

@@ -144,7 +144,7 @@ class Auth extends React.PureComponent {
                 color="blue"
                 size="medium"
                 onClick={this.doAuth}
-                fill
+                fill={true}
               >
                 <Status loading={this.props.loading} />
               </Button>
