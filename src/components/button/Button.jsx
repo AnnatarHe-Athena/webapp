@@ -55,7 +55,7 @@ const Button = styled.button`
 Button.propTypes = {
   color: PropTypes.string.isRequired,
   size: PropTypes.string.isRequired,
-  fill: PropTypes.boolean
+  fill: PropTypes.bool
 }
 
 export default Button

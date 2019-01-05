@@ -2,11 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { fromJS } from 'immutable'
-import { Link } from 'react-router'
+import { Link, navigate } from '@reach/router'
 import { withApollo } from 'react-apollo'
 import PropTypes from 'prop-types'
 import { profileGot } from '../../actions/auth'
 import { report } from '../../utils/sentry'
+import { getToken } from '../../utils/permission'
 import Card from 'AthenaComponents/card/Card'
 import fetchProfileQuery from 'AthenaSchema/queries/profileWithCollection.graphql'
 
@@ -40,6 +41,11 @@ class Profile extends React.PureComponent {
 
   constructor(props) {
     super(props)
+
+    if (!getToken()) {
+      navigate('/auth', { replace: true })
+    }
+
     this.state = {
       collections: fromJS([])
     }
@@ -58,7 +64,7 @@ class Profile extends React.PureComponent {
     this.props.client.query({
       query: fetchProfileQuery,
       variables: {
-        id: this.props.params.id,
+        id: this.props.id,
         from: this.variableFrom,
         size: 20
       }
@@ -83,7 +89,7 @@ class Profile extends React.PureComponent {
     this.props.client.query({
       query: fetchProfileQuery,
       variables: {
-        id: this.props.params.id,
+        id: this.props.id,
         from: 0,
         size: 20
       }
@@ -115,7 +121,7 @@ class Profile extends React.PureComponent {
           />
           <Separator />
           <AddButton>
-            <Link to={'/profile/' + this.props.params.id + '/create'}>Create</Link>
+            <Link to={'/profile/' + this.props.id + '/create'}>Create</Link>
           </AddButton>
           <Separator />
           <Tab
@@ -134,7 +140,6 @@ Profile.propTypes = {
   user: PropTypes.any,
   client: PropTypes.any,
   syncUserInfo: PropTypes.func,
-  params: PropTypes.any
 }
 
 export default Profile

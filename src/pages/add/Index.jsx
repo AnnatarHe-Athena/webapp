@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
+import { navigate } from "@reach/router"
 import { fromJS } from 'immutable'
 import { chunk } from 'lodash'
 // import { Link } from 'react-router'
 import { withApollo } from 'react-apollo'
-import Select from 'AthenaComponents/select/Select'
-import 'react-select/dist/react-select.css'
 import Notification from 'rc-notification'
+import Select from 'AthenaComponents/select/Select'
 import PropTypes from 'prop-types'
 import Card from 'AthenaComponents/card/Card'
 import JSONTextarea from 'AthenaComponents/json-textarea/json-textarea'
@@ -16,6 +16,7 @@ import addGirlCells from 'AthenaSchema/mutations/addGirlCells.graphql'
 import PageContainer from 'AthenaComponents/PageContainer'
 import Button from 'AthenaComponents/button/Button'
 import Separator from 'AthenaComponents/Separator'
+import { getToken } from '../../utils/permission'
 
 const H2 = styled.h2`
 
@@ -96,6 +97,11 @@ const premissionOptions = [{
 class CreateItems extends React.PureComponent {
   constructor(props) {
     super(props)
+
+    if (!getToken()) {
+      navigate('/auth', { replace: true })
+    }
+
     this.state = {
       loading: false,
       cells: fromJS([]),

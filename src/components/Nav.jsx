@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router'
+import { Link } from '@reach/router'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { randomCategory } from '../constants/defaults'

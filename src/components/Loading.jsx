@@ -38,10 +38,10 @@ const Icon = styled.div`
 // loading types
 const Loading = () => {
   return (
-    <icon>
+    <div>
       <i className="fa fa-spinner fa-pulse fa-3x fa-fw" />
       <span> loading... </span>
-    </icon>
+    </div>
   )
 }
 

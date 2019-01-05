@@ -2,27 +2,25 @@ const webpack = require('webpack')
 const path = require('path')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
-const split2 = [
-  'react-router-redux',
+const vendors = [
   'immutable',
   'redux-saga',
-  'babel-polyfill',
   'whatwg-fetch',
   'redux'
 ]
 
-const split1 = [
+const utils = [
   'react',
   'react-dom',
   'react-redux',
-  'react-router',
+  '@reach/router',
   'react-transition-group',
   'react-apollo',
   'styled-components',
+  'apollo-client'
 ]
 
-const split3 = [
-  'apollo-client',
+const plugins = [
   'apollo-cache-inmemory',
   'apollo-link-error',
   'apollo-link-context',
@@ -31,15 +29,16 @@ const split3 = [
 ]
 
 const config = {
+  mode: process.env.NODE_ENV,
   output: {
     path: path.resolve(__dirname, '..', 'dist'),
     filename: '[name]_[hash].dll.js',
     library: '[name]'
   },
   entry: {
-    utils: split1,
-    vendors: split2,
-    plugins: split3
+    utils: utils,
+    vendors: vendors,
+    plugins: plugins
   },
   devtool: process.env.NODE_ENV !== 'production' ? '#source-map' : false,
   plugins: [

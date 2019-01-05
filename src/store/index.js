@@ -1,8 +1,6 @@
 import { createStore, compose, applyMiddleware } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import { fromJS } from 'immutable'
-import { routerMiddleware } from 'react-router-redux'
-import { browserHistory } from 'react-router'
 import rootReducer from '../reducers/index'
 import sagas from '../sagas/index'
 
@@ -13,7 +11,7 @@ const store = createStore(
   rootReducer,
   fromJS({}),
   composeEnhancers(
-    applyMiddleware(sagaMiddleware, routerMiddleware(browserHistory))
+    applyMiddleware(sagaMiddleware)
   )
 )
 
