@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/AnnatarHe-Athena/webapp/compare/v1.1.3...v1.2.0) (2019-01-06)
+
+
+### Features
+
+* **build:** upgrade all packages and migrate to reach router ([895d1a3](https://github.com/AnnatarHe-Athena/webapp/commit/895d1a3))
+
+
+
 <a name="1.1.3"></a>
 ## [1.1.3](https://github.com/AnnatarHe-Athena/webapp/compare/v1.1.2...v1.1.3) (2018-12-23)
 
