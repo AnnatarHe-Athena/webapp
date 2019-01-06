@@ -11,14 +11,6 @@ config.plugins.push(
             NODE_ENV: '"production"'
         }
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      },
-      uglifyOptions: { ecma: 8 },
-      parallel: true,
-      sourceMap: true
-    }),
     new WebpackPwaManifest({
       name: 'Athena',
       short_name: 'athena',
