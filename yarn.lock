@@ -935,6 +935,11 @@
   resolved "http://registry.npm.taobao.org/@emotion/unitless/download/@emotion/unitless-0.7.3.tgz#6310a047f12d21a1036fb031317219892440416f"
   integrity sha1-YxCgR/EtIaEDb7AxMXIZiSRAQW8=
 
+"@fortawesome/fontawesome-free@^5.7.2":
+  version "5.7.2"
+  resolved "http://registry.npm.taobao.org/@fortawesome/fontawesome-free/download/@fortawesome/fontawesome-free-5.7.2.tgz#1498c3eb78ee7c78c5488418707de90aaf58d5d7"
+  integrity sha1-FJjD63jufHjFSIQYcH3pCq9Y1dc=
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "http://registry.npm.taobao.org/@mrmlnc/readdir-enhanced/download/@mrmlnc/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -8004,6 +8009,11 @@ normalize-url@^3.0.0:
   version "3.3.0"
   resolved "http://registry.npm.taobao.org/normalize-url/download/normalize-url-3.3.0.tgz#b2e1c4dc4f7c6d57743df733a4f5978d18650559"
   integrity sha1-suHE3E98bVd0PfczpPWXjRhlBVk=
+
+normalize.css@^8.0.1:
+  version "8.0.1"
+  resolved "http://registry.npm.taobao.org/normalize.css/download/normalize.css-8.0.1.tgz#9b98a208738b9cc2634caacbc42d131c97487bf3"
+  integrity sha1-m5iiCHOLnMJjTKrLxC0THJdIe/M=
 
 npm-bundled@^1.0.1:
   version "1.0.5"
