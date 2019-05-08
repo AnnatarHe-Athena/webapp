@@ -41,7 +41,12 @@ class PhotoItem extends React.PureComponent {
     return (
       <Container>
         <source srcSet={bmiddleSrc} onClick={() => { this.setState({ visible: true })}} />
-        <img src={bmiddleSrc} alt={desc}  onClick={() => { this.setState({ visible: true })}}/>
+        <img
+          src={bmiddleSrc}
+          alt={desc}
+          onClick={() => { this.setState({ visible: true })}}
+          loading="lazy"
+        />
         {/*<span>{desc}</span>*/}
         <Preview data={{ id, src, desc, fromID, fromURL, content }} visible={this.state.visible} onClose={this.togglePreview} />
       </Container>
