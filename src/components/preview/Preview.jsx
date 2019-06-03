@@ -8,6 +8,7 @@ import { getRealSrcLink, getUserInfoURL, getTitleHref } from '../../utils/index'
 import { getPermissionObj } from '../../utils/permission'
 import { liteYellow } from '../../styles/variables'
 import { CSSTransition } from 'react-transition-group'
+import { HideUntilLoaded } from 'react-animation'
 import addCollectionMutation from 'AthenaSchema/mutations/addCollection.graphql'
 import removeGirlCellMutation from 'AthenaSchema/mutations/removeGirlCell.graphql'
 import PropTypes from 'prop-types'
@@ -153,11 +154,13 @@ class PreviewImage extends React.PureComponent {
             </div>
           </Extra>
         <Figure>
-          <picture onClick={this.props.onClose}>
-            <source srcSet={bigSrc} />
-            <img src={bigSrc} alt={desc} />
-            <figcaption>{content}</figcaption>
-          </picture>
+          <HideUntilLoaded imageToLoad={bigSrc}>
+            <picture onClick={this.props.onClose}>
+              <source srcSet={bigSrc} />
+              <img src={bigSrc} alt={desc} />
+              <figcaption>{content}</figcaption>
+            </picture>
+          </HideUntilLoaded>
         </Figure>
       </div>
     )

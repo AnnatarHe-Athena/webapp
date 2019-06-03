@@ -6,10 +6,11 @@ import { Link, navigate } from '@reach/router'
 import { withApollo } from 'react-apollo'
 import PropTypes from 'prop-types'
 import { profileGot } from '../../actions/auth'
-import { report } from '../../utils/sentry'
+import { report, setUserInfo } from '../../utils/sentry'
 import { getToken } from '../../utils/permission'
 import Card from 'AthenaComponents/card/Card'
 import fetchProfileQuery from 'AthenaSchema/queries/profileWithCollection.graphql'
+import fetchCollectionQuery from 'AthenaSchema/queries/collections.graphql'
 
 import PhotoList from 'AthenaComponents/photos/Photos'
 import PageContainer from 'AthenaComponents/PageContainer'
@@ -79,6 +80,7 @@ class Profile extends React.PureComponent {
       }
       const user = result.data.users
       if (user && user.email) {
+        setUserInfo(user)
         this.props.syncUserInfo(user)
       }
     }).catch(report)
@@ -87,7 +89,7 @@ class Profile extends React.PureComponent {
 
   loadMore = () => {
     this.props.client.query({
-      query: fetchProfileQuery,
+      query: fetchCollectionQuery,
       variables: {
         id: this.props.id,
         from: 0,

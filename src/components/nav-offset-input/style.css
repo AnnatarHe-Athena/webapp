@@ -1,0 +1,16 @@
+.field {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.label {
+    margin-right: .25rem;
+    color: #fff;
+}
+.input {
+    flex: 1;
+    box-sizing: border-box;
+    padding: .5rem .25rem;
+    font-size: 14px;
+}

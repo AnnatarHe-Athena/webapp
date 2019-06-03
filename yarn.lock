@@ -9490,6 +9490,13 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-animation@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.npm.taobao.org/react-animation/download/react-animation-1.0.9.tgz#06999091e30449c052c98118433c75ee1794f192"
+  integrity sha1-BpmQkeMEScBSyYEYQzx17heU8ZI=
+  dependencies:
+    regenerator-runtime "^0.13.1"
+
 react-apollo@^2.5.6:
   version "2.5.6"
   resolved "https://registry.npm.taobao.org/react-apollo/download/react-apollo-2.5.6.tgz#98a59d0eea31432ed001e6a033e11a58139ffc31"
@@ -9857,7 +9864,7 @@ regenerate@^1.4.0:
   resolved "https://registry.npm.taobao.org/regenerate/download/regenerate-1.4.0.tgz#4a856ec4b56e4077c557589cae85e7a4c8869a11"
   integrity sha1-SoVuxLVuQHfFV1icroXnpMiGmhE=
 
-regenerator-runtime@0.13.2, regenerator-runtime@^0.13.2:
+regenerator-runtime@0.13.2, regenerator-runtime@^0.13.1, regenerator-runtime@^0.13.2:
   version "0.13.2"
   resolved "https://registry.npm.taobao.org/regenerator-runtime/download/regenerator-runtime-0.13.2.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fregenerator-runtime%2Fdownload%2Fregenerator-runtime-0.13.2.tgz#32e59c9a6fb9b1a4aff09b4930ca2d4477343447"
   integrity sha1-MuWcmm+5saSv8JtJMMotRHc0NEc=

@@ -8,6 +8,7 @@ import PhotoList from 'AthenaComponents/photos/Photos'
 import fetchGirlsQuery from 'AthenaSchema/fetchGirlsQuery.graphql'
 import { randomCategory, legacyCategory } from '../../constants/defaults'
 import { getPermissionObj } from '../../utils/permission'
+import { STORAGE_OFFSET_KEY } from '../../components/nav-offset-input/index';
 
 const Container = styled.main`
     display: flex;
@@ -50,6 +51,12 @@ const gqlProps = {
           offset = Math.floor(Math.random() * (categories.getIn([randomIndexItem, 'count']) - variables.take))
           offset = offset < 0 ? 0 : offset
         }
+
+        const storageOffset = sessionStorage.getItem(STORAGE_OFFSET_KEY)
+        if (storageOffset) {
+          offset += ~~storageOffset
+        }
+
         const hideOnly = from === legacyCategory.id
         return fetchMore({
           fetchGirlsQuery,

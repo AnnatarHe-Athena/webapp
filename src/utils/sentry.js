@@ -8,7 +8,13 @@ export default function setup() {
 }
 
 export function setUserInfo(info) {
-  console.log('userinfo', info)
+  Sentry.configureScope((scope) => {
+    scope.setUser({
+      email: info.email,
+      username: info.name,
+      id: scope.id
+    })
+  })
 }
 
 export function report(err, info) {

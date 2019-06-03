@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { randomCategory } from '../constants/defaults'
 import { maskCardStyles } from '../styles/variables'
+import NavOffsetInput from './nav-offset-input/index';
 
 const NavContainer = styled.nav`
   ul {
@@ -43,7 +44,9 @@ const Extra = styled.div`
 
 const Nav = ({ categories, onSelected }) => {
   const navs = categories.map(c => {
-    c.name = "hello." + c.id
+    if (__DEV__) {
+      c.name = "hello." + c.id
+    }
     return (
       <li key={c.id} onClick={onSelected}>
         <Link to={'/category/' + c.id }>{c.name}</Link>
@@ -52,6 +55,7 @@ const Nav = ({ categories, onSelected }) => {
   })
   return (
     <NavContainer>
+      <NavOffsetInput />
       <ul>{navs}</ul>
       <Extra>
         <Link to={'/about'}>关于</Link>

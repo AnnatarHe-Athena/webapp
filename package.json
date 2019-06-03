@@ -19,6 +19,7 @@
     "normalize.styl": "^3.0.3",
     "rc-notification": "^3.3.1",
     "react": "^16.8.6",
+    "react-animation": "^1.0.9",
     "react-apollo": "^2.5.6",
     "react-dom": "^16.8.6",
     "react-hot-loader": "^4.9.0",
