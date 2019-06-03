@@ -1,6 +1,24 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [1.2.1](https://github.com/AnnatarHe-Athena/webapp/compare/v1.2.0...v1.2.1) (2019-06-03)
+
+
+### Bug Fixes
+
+* **build:** fix prod build config ([7ad254e](https://github.com/AnnatarHe-Athena/webapp/commit/7ad254e))
+* **dll:** remove babel polyfill ([9aff4e5](https://github.com/AnnatarHe-Athena/webapp/commit/9aff4e5))
+
+
+### Features
+
+* **img:** add native lazy loading effect ([57dacc1](https://github.com/AnnatarHe-Athena/webapp/commit/57dacc1))
+* **index:** add offset option ([f0ec747](https://github.com/AnnatarHe-Athena/webapp/commit/f0ec747))
+* **preload:** add preload func but not using for now ([6b2d94f](https://github.com/AnnatarHe-Athena/webapp/commit/6b2d94f))
+* **project:** update deps ([aa5e6ae](https://github.com/AnnatarHe-Athena/webapp/commit/aa5e6ae))
+
+
 
 <a name="1.2.0"></a>
 # [1.2.0](https://github.com/AnnatarHe-Athena/webapp/compare/v1.1.3...v1.2.0) (2019-01-06)
