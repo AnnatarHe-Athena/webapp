@@ -6,7 +6,6 @@ const vendors = [
   'immutable',
   'redux-saga',
   'whatwg-fetch',
-  'babel-polyfill',
   'lodash',
   'redux'
 ]
