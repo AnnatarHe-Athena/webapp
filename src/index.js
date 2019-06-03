@@ -1,16 +1,16 @@
-import 'normalize.css'
 import '@fortawesome/fontawesome-free/css/all.css'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import App from './App'
-import registerServiceWorker from './registerServiceWorker'
 import './index.css'
 import 'intersection-observer'
 import './utils/offline'
 import setupSentry from './utils/sentry'
 
+
 setupSentry()
+
 
 const rootDOM = document.querySelector('#root')
 

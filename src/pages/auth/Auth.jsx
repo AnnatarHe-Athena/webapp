@@ -95,6 +95,7 @@ class Auth extends React.PureComponent {
         query: authGraphql,
         variables: { email, password: pwd }
       }).then(result => {
+        console.log(result.data)
         const { token, id } = result.data.auth
         this.props.syncToken(token, id)
         this.syncCategory()

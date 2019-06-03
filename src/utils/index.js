@@ -1,7 +1,7 @@
 
 export function getRealSrcLink(url, type = 'bmiddle') {
   if (__DEV__) {
-    return 'https://via.placeholder.com/400x500'
+    return 'https://picsum.photos/400/500'
   }
 
   if (!url) {

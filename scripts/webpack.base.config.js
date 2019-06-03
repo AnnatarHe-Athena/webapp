@@ -12,7 +12,6 @@ const config = {
   mode: process.env.NODE_ENV,
   target: 'web',
   entry: [
-    'babel-polyfill',
     'whatwg-fetch',
     './src/index.js'
   ],

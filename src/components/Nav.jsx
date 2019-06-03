@@ -43,6 +43,7 @@ const Extra = styled.div`
 
 const Nav = ({ categories, onSelected }) => {
   const navs = categories.map(c => {
+    c.name = "hello." + c.id
     return (
       <li key={c.id} onClick={onSelected}>
         <Link to={'/category/' + c.id }>{c.name}</Link>
