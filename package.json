@@ -15,7 +15,7 @@
     "graphql": "^14.3.1",
     "immutable": "^4.0.0-rc.12",
     "intersection-observer": "^0.7.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.13",
     "normalize.styl": "^3.0.3",
     "rc-notification": "^3.3.1",
     "react": "^16.8.6",
