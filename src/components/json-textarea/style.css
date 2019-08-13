@@ -6,7 +6,6 @@
     color: #ffffff;
     border-radius: 4px;
     align-self: flex-end;
-    margin-top: 1rem;
 }
 
 .confirm:disabled {

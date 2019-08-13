@@ -9,14 +9,6 @@ import { randomCategory, legacyCategory } from '../../constants/defaults'
 import { getPermissionObj, getToken } from '../../utils/permission'
 import Nav from '../Nav'
 
-const HeaderEl = styled.header`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: .5rem;
-`
-
 const Bar = styled.div`
     width: 100%;
     display: flex;
@@ -100,7 +92,7 @@ class Header extends React.PureComponent {
     const { categories, canRemove } = this.props
     const newCate = categories.concat(canRemove ? [randomCategory, legacyCategory] : randomCategory)
     return (
-      <HeaderEl>
+      <header className='py-4 content-between flex-col items-center'>
         <Bar>
           <Link to="/"><h2>Athena</h2></Link>
           <Menus>
@@ -111,7 +103,7 @@ class Header extends React.PureComponent {
         <Dialog visible={this.state.navVisible} onClose={this.changeNavVisible}>
           <Nav categories={newCate} onSelected={this.changeNavVisible} />
         </Dialog>
-      </HeaderEl>
+      </header>
     )
   }
 }

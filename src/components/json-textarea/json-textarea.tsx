@@ -54,10 +54,10 @@ function JSONTextarea({ onUpload }: JSONTextareaProp) {
           <p>拷贝进 json array. keys: fromURL, fromID, text, img, cate</p>
         </div>
 
-        <button className={styles.copy} onClick={copyAction}>copy</button>
+        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={copyAction}>copy</button>
       </div>
 
-      <textarea className={styles.editor} onChange={onEditorChange} value={json} />
+      <textarea className={styles.editor + ' my-4 border border-grey-500'} onChange={onEditorChange} value={json} />
       <button disabled={json === ''} className={styles.confirm} onClick={doUpload}>upload</button>
     </section>
   )
