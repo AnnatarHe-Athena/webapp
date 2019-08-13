@@ -98,7 +98,7 @@ class CreateItems extends React.PureComponent {
   constructor(props) {
     super(props)
 
-    if (!getToken()) {
+    if (!__DEV__ && !getToken()) {
       navigate('/auth', { replace: true })
     }
 
@@ -106,8 +106,12 @@ class CreateItems extends React.PureComponent {
       loading: false,
       cells: fromJS([]),
       input: fromJS({
-        url: '', text: '', cate: props.categories.getIn([0, 'id']) || 11, permission: premissionOptions[0].value,
-        fromID: '', fromURL: ''
+        url: '',
+        text: '',
+        cate: props.categories.getIn([0, 'id']) || 11,
+        permission: premissionOptions[0].value,
+        fromID: '',
+        fromURL: ''
       })
     }
     Notification.newInstance({
@@ -138,7 +142,7 @@ class CreateItems extends React.PureComponent {
           {Object.keys(x).map((k, ind) => {
             if (ind === 2) {
               console.log(categories.toJS(), x, k)
-              return <td key={ind}>{categories.find(item => item.get('id') === x[k]).get('name') }</td>
+              return <td key={ind}>{categories.find(item => item.get('id') === x[k]).get('name')}</td>
             }
             if (ind === 3) {
               return <td key={ind}>{premissionOptions.find(item => item.value === x[k]).label}</td>
@@ -183,7 +187,7 @@ class CreateItems extends React.PureComponent {
       this.notification.notice({
         content: 'upload nice'
       })
-    } catch(e) {
+    } catch (e) {
       this.notification.notice({
         content: 'upload Error'
       })

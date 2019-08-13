@@ -1,0 +1,169 @@
+function getUserIDFromUrl(src) {
+  return /weibo.com\/(.*)/.exec(src)[1].replace(/\?.*/, '')
+}
+
+function getImageIDFromUrl(src) {
+  if (src.indexOf('t.cn') > 0) {
+    return src
+  }
+  const imgUrl = src.split('/')
+  return imgUrl[imgUrl.length - 1]
+}
+
+function getWeiboTitle() {
+  return document.querySelector('.WB_feed_detail.clearfix .WB_text.W_f14').textContent.trim()
+}
+
+function fetchFromWeiboComments() {
+  const list = Array.from(document.querySelectorAll('.list_li.S_line1.clearfix'))
+
+  const result = list.map(x => {
+    const _userID = x.querySelector('.WB_text a[href*=weibo]').href
+    const id = getUserIDFromUrl(_userID)
+    const c = x.querySelector('.WB_text').textContent.trim().replace('¡评论配图', '')
+    const _img = x.querySelector('.WB_media_wrap.clearfix img') && x.querySelector('.WB_media_wrap.clearfix img').src
+    if (!_img) {
+      return null
+    }
+    const img = getImageIDFromUrl(_img)
+    return {
+      fromURL: location.href,
+      fromID: id,
+      text: getWeiboTitle(),
+      img,
+      cate: 177
+    }
+  }).filter(x => x)
+
+  return JSON.stringify(result)
+}
+
+function fetchFromHashTag() {
+  const list = Array.from(document.querySelectorAll('#pl_feedlist_index .card-wrap .card'))
+
+  const result = list.reduce((acc, current) => {
+    const avatorDom = current.querySelector('.avator a[href*=weibo]')
+    if (!avatorDom) { return acc }
+    const _userID = avatorDom.href
+    const id = getUserIDFromUrl(_userID)
+    const c = current.querySelector('.content p.txt').textContent.trim()
+    const imgs = current.querySelectorAll('.media img')
+    if (!imgs) {
+      return acc
+    }
+
+    const weiboFeedId = current.querySelector('p.from a[target=_blank]').href.match(/.*\/\d+\/(\w+)\?/)[1]
+
+    const imgsWithData = Array.from(imgs).map(x => {
+      return {
+        fromURL: `https://weibo.com/${id}/${weiboFeedId}`,
+        fromID: id,
+        text: c,
+        img: getImageIDFromUrl(x.src),
+        cate: 177
+      }
+    })
+    acc.push(...imgsWithData)
+    return acc
+  }, []).filter(x => x)
+  return JSON.stringify(result)
+}
+
+function fetchFromInnerComments() {
+  const list = Array.from(document.querySelectorAll('.list_ul[node-type=child_comment] .list_li.S_line1.clearfix'))
+
+  const result = list.map(x => {
+    const _userID = x.querySelector('.WB_text a[href*=weibo]').href
+    const id = getUserIDFromUrl(_userID)
+    const c = x.querySelector('.WB_text').textContent.trim().replace('¡评论配图', '')
+    const _img = x.querySelector('a[action-type=widget_photoview]')
+    if (!_img) {
+      return null
+    }
+    const img = _img.getAttribute('imagecard').replace("pid=", "")
+    return {
+      fromURL: location.href,
+      fromID: id,
+      text: getWeiboTitle(),
+      img,
+      cate: 177
+    }
+  }).filter(x => x)
+
+  return JSON.stringify(result)
+}
+
+function fetchFromUserAblum() {
+  const imgSections = Array.from(document.querySelectorAll('#Pl_Official_AlbumLists__114 a.ph_ar_box'))
+  const result = imgSections
+    .map(dom => {
+      const imgNode = dom.querySelector('img[src*=thumb300].photo_pict')
+      if (!imgNode) { return null }
+      const matched = imgNode.src.match(/thumb300\/(.*)\?/)
+      const imgSrc = matched && matched[1].replace('?')
+      const idMatched = dom.getAttribute('action-data').match(/uid=(\d+)/)
+      return {
+        fromURL: location.href,
+        fromID: idMatched[1],
+        text: document.title.split(' \'')[0],
+        img: imgSrc,
+        cate: 2
+      }
+    })
+    .filter(x => x)
+  return JSON.stringify(result)
+}
+
+function b() {
+  window.scrollTo(0,document.body.scrollHeight);
+}
+
+function getTemp() {
+  const imgs = document.querySelector('.entry').querySelectorAll('img')
+  const result = Array.from(imgs).map(x => ({
+   fromURL: location.href,
+   fromID: '',
+   text: document.title.split('-')[0],
+   img: x.src,
+   cate: 2
+  }))
+  return JSON.stringify(result)
+}
+
+
+function loadMoreMeta(actionType) {
+  return function() {
+    let times = 0
+    let timer = null
+    timer = setInterval(() => {
+      if (times > 100) {
+        clearInterval(timer)
+        timer = null
+      }
+      let dom = document.querySelector(`a[action-type=${actionType}]`)
+      if (dom) {
+        dom.click()
+      }
+      times++
+    },200)
+  }
+}
+
+const loadMoreComments = loadMoreMeta('click_more_comment')
+const loadmoreInnerComments = loadMoreMeta('click_more_child_comment_big')
+
+function fetchFromDOKIRen() {
+  const list = Array.from(document.querySelectorAll('.PersonItem'))
+  const result = list.map(item => {
+    const img = item.querySelector('.profile-img').dataset.src
+    const title = item.querySelector('.title').dataset.src
+    return {
+      fromURL: 'https://web.doki.ren/event1/index.html',
+      fromID: '',
+      text: 'Doki 心动大赛',
+      img: img.replace('480x480', '1000x1000'),
+      cate: 177
+    }
+  })
+  return JSON.stringify(result)
+}

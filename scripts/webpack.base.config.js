@@ -26,6 +26,14 @@ const config = {
       exclude: [path.resolve(__dirname, '..', 'node_modules')],
       use: ['babel-loader']
     }, {
+      test: /.tsx?$/,
+      exclude: [path.resolve(__dirname, '..', 'node_modules')],
+      use: ['ts-loader']
+    }, {
+      test: /\.txt$/i,
+      use: 'raw-loader',
+    },
+    {
       test: /.styl$/,
       exclude: /node_modules/,
       use: [
@@ -48,22 +56,22 @@ const config = {
       ]
     }, {
       test: /\.(png|jpg|jpeg|gif)$/,
-      use: [{loader: 'url-loader', options: {limit: 500, name: '[name]-[hash].[ext]'}}]
+      use: [{ loader: 'url-loader', options: { limit: 500, name: '[name]-[hash].[ext]' } }]
     }, {
       test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
-      use: [{loader: 'url-loader', options: {limit: 10000, mimetype: 'application/font-woff'}}]
+      use: [{ loader: 'url-loader', options: { limit: 10000, mimetype: 'application/font-woff' } }]
     }, {
       test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
-      use: [{loader: 'url-loader', options: {limit: 10000, mimetype: 'application/font-woff'}}]
+      use: [{ loader: 'url-loader', options: { limit: 10000, mimetype: 'application/font-woff' } }]
     }, {
       test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-      use: [{loader: 'url-loader', options: {limit: 10000, mimetype: 'application/octet-stream'}}]
+      use: [{ loader: 'url-loader', options: { limit: 10000, mimetype: 'application/octet-stream' } }]
     }, {
       test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-      use: [{loader: 'file-loader'}]
+      use: [{ loader: 'file-loader' }]
     }, {
       test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-      use: [{loader: 'url-loader', options: {limit: 10000, mimetype: 'image/svg+xml'}}]
+      use: [{ loader: 'url-loader', options: { limit: 10000, mimetype: 'image/svg+xml' } }]
     }, {
       test: /\.(graphql|gql)$/,
       exclude: /node_modules/,
@@ -134,7 +142,7 @@ const config = {
     },
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.styl'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.styl'],
     alias: {
       AthenaSchema: path.resolve(__dirname, '..', '..', 'schema'),
       AthenaComponents: path.resolve(__dirname, '..', 'src', 'components')

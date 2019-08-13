@@ -8,9 +8,7 @@ import 'intersection-observer'
 import './utils/offline'
 import setupSentry from './utils/sentry'
 
-
 setupSentry()
-
 
 const rootDOM = document.querySelector('#root')
 
