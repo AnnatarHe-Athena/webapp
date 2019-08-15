@@ -1,7 +1,6 @@
 import React from 'react'
 import Immutable from 'immutable'
 import { connect } from 'react-redux'
-import styled from 'styled-components'
 import { graphql } from 'react-apollo'
 import PropTypes from 'prop-types'
 import PhotoList from 'AthenaComponents/photos/Photos'
@@ -9,13 +8,6 @@ import fetchGirlsQuery from 'AthenaSchema/fetchGirlsQuery.graphql'
 import { randomCategory, legacyCategory } from '../../constants/defaults'
 import { getPermissionObj } from '../../utils/permission'
 import { STORAGE_OFFSET_KEY } from '../../components/nav-offset-input/index';
-
-const Container = styled.main`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-`
 
 const gqlProps = {
   options: props => {
@@ -77,7 +69,7 @@ const gqlProps = {
         if (from.toString() === randomCategory.id) {
           const randomIndexItem = Math.floor(Math.random() * (categories.size - 1))
           from = categories.getIn([randomIndexItem, 'id'])
-          offset = Math.floor(Math.random() * (categories.getIn([randomIndexItem, 'count'])- variables.take))
+          offset = Math.floor(Math.random() * (categories.getIn([randomIndexItem, 'count']) - variables.take))
         }
 
         offset = offset < 0 ? 0 : offset
@@ -117,14 +109,12 @@ class Photos extends React.Component {
   render() {
     const { loading, loadMore, girls, canRemove, categoryID } = this.props
     return (
-      <Container>
-        <PhotoList
-          loading={loading}
-          loadMore={loadMore}
-          cells={girls}
-          forceDeleteable={canRemove && categoryID === legacyCategory.id}
-        />
-      </Container>
+      <PhotoList
+        loading={loading}
+        loadMore={loadMore}
+        cells={girls}
+        forceDeleteable={canRemove && categoryID === legacyCategory.id}
+      />
     )
   }
 }

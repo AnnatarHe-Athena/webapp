@@ -36,12 +36,6 @@ const NavContainer = styled.nav`
   }
 `
 
-const Extra = styled.div`
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-`
-
 const Nav = ({ categories, onSelected }) => {
   const navs = categories.map(c => {
     if (__DEV__) {
@@ -57,9 +51,9 @@ const Nav = ({ categories, onSelected }) => {
     <NavContainer>
       <NavOffsetInput />
       <ul>{navs}</ul>
-      <Extra>
-        <Link to={'/about'}>关于</Link>
-      </Extra>
+      <div className="absolute bottom-0 right-0 mr-8 mb-8">
+        <Link to={'/about'} className="text-sm text-blue-300">关于</Link>
+      </div>
     </NavContainer>
   )
 }

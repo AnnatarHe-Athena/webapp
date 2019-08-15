@@ -117,7 +117,7 @@ class Profile extends React.PureComponent {
     )
     return (
       <PageContainer>
-        <Card >
+        <div className="p-12 mt-4 rounded-lg shadow-lg bg-white">
           <Information
             user={this.props.user}
           />
@@ -132,7 +132,7 @@ class Profile extends React.PureComponent {
               body: collectionBody
             }]}
           />
-        </Card>
+        </div>
       </PageContainer>
     )
   }

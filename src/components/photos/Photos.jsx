@@ -10,13 +10,6 @@ import { TransitionGroup } from 'react-transition-group'
 import Button from '../button/Button'
 // import fetchGirlsQuery from 'AthenaSchema/fetchGirlsQuery.graphql'
 
-const Container = styled.main`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-`
-
 const PhotoLists = styled.div`
     display: flex;
     justify-content: center;
@@ -79,7 +72,7 @@ class Photos extends React.PureComponent {
 
   render() {
     return (
-      <Container>
+      <main className="flex flex-col content-center items-center">
         <TransitionGroup
           component={PhotoLists}
           classNames="fade"
@@ -90,15 +83,13 @@ class Photos extends React.PureComponent {
         >
           {this.renderPhotos()}
         </TransitionGroup>
-        <Button
-          size="large"
-          color="red"
+        <button
           disabled={this.props.loading}
-          className="athena-obs-more"
+          className="athena-obs-more py-4 px-8 bg-red-600 hover:bg-red-700 rounded transition-fast text-white shadow-lg"
           onClick={this.props.loadMore}
-        >Load More </Button>
+        > 🚥 Loading</button>
         {this.props.loading && (<Loading />)}
-      </Container>
+      </main>
     )
   }
 }

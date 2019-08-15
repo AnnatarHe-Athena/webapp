@@ -41,6 +41,7 @@ const Extra = styled.div`
   padding: 1rem;
   justify-content: space-around;
   align-items: center;
+  z-index: 100;
 
   a, h2 {
     color: #fff;

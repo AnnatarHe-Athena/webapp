@@ -20,15 +20,6 @@ const Bar = styled.div`
         cursor: pointer;
     }
 
-    h2 {
-      font-weight: 400;
-      color: rgba(34, 34, 34, .6);
-      transition: all .35s;
-      &:hover {
-        color: rgba(34, 34, 34, .9);
-      }
-    }
-
     a {
         color: #000;
         &:visited {
@@ -38,25 +29,9 @@ const Bar = styled.div`
     }
 `
 
-const Menus = styled.div`
-  display: flex;
-  flex-direction: row;
-`
-
 const MenuItem = styled.div`
-  margin-right: 1rem;
-  padding: .5rem 1rem;
-  background-color: rgba(255,255,255,.6);
-  transition: all .35s;
   &:last-child {
     margin-right: 0;
-  }
-  &:hover {
-    background-color: rgba(255,255,255,.8);
-    box-shadow: 0 0 .5rem #222;
-  }
-  span {
-    margin-left: .5rem;
   }
 `
 
@@ -94,11 +69,15 @@ class Header extends React.PureComponent {
     return (
       <header className='py-4 content-between flex-col items-center'>
         <Bar>
-          <Link to="/"><h2>Athena</h2></Link>
-          <Menus>
-            <MenuItem onClick={this.changeNavVisible}><i className="fa fa-align-justify fa-lg" /> <span>Categories</span></MenuItem>
-            <MenuItem onClick={this.toAuthOrProfile}><i className="fa fa-user fa-lg" /><span>User</span></MenuItem>
-          </Menus>
+          <Link to="/"><h2 className="text-lg font-medium hover:text-xl transition-fast">Athena</h2></Link>
+          <div className="flex flex-row">
+            <MenuItem className="mr-8 py-2 px-4 bg-gray-300 hover:bg-gray-100 hover:shadow-lg transition-fast rounded" onClick={this.changeNavVisible}>
+               ✨ <span className="ml-2">Categories</span>
+            </MenuItem>
+            <MenuItem className="mr-8 py-2 px-4 bg-gray-300 hover:bg-gray-100 hover:shadow-lg transition-fast rounded" onClick={this.toAuthOrProfile}>
+               🙍‍ <span className="ml-2">User</span>
+            </MenuItem>
+          </div>
         </Bar>
         <Dialog visible={this.state.navVisible} onClose={this.changeNavVisible}>
           <Nav categories={newCate} onSelected={this.changeNavVisible} />
