@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/AnnatarHe-Athena/webapp/compare/v1.2.1...v2.3.0) (2019-08-15)
+
+
+### Features
+
+* **add:** 更新 add 样式视觉 ([c24afad](https://github.com/AnnatarHe-Athena/webapp/commit/c24afad))
+* **tailwind:** add tailwind css ([6490fc8](https://github.com/AnnatarHe-Athena/webapp/commit/6490fc8))
+* **tailwind:** porting app to tailwindcss ([ca9ab32](https://github.com/AnnatarHe-Athena/webapp/commit/ca9ab32))
+
+
+
 ### [1.2.1](https://github.com/AnnatarHe-Athena/webapp/compare/v1.2.0...v1.2.1) (2019-06-03)
 
 
