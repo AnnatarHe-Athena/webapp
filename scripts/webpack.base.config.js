@@ -7,6 +7,7 @@ const values = require('postcss-modules-values')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
 const OfflinePlugin = require('offline-plugin')
+const PurgecssPlugin = require('purgecss-webpack-plugin')
 
 const config = {
   mode: process.env.NODE_ENV,
@@ -117,7 +118,10 @@ const config = {
         }
       }
     }),
-    new webpack.NamedModulesPlugin()
+    new webpack.NamedModulesPlugin(),
+    new PurgecssPlugin({
+      paths: glob.sync(__dirname, 'src')
+    })
   ],
   optimization: {
     runtimeChunk: {
