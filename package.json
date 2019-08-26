@@ -5,7 +5,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.8.2",
     "@reach/router": "^1.2.1",
-    "@sentry/browser": "^5.4.0",
+    "@sentry/browser": "^5.6.2",
     "apollo-cache-inmemory": "^1.6.0",
     "apollo-client": "^2.6.0",
     "apollo-link": "^1.2.11",

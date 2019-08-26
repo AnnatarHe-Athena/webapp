@@ -7,7 +7,8 @@ const vendors = [
   'redux-saga',
   'whatwg-fetch',
   'lodash',
-  'redux'
+  'redux',
+  '@sentry/browser'
 ]
 
 const utils = [
