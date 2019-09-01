@@ -9,7 +9,7 @@ import fetchProfileQuery from 'AthenaSchema/queries/profileWithCollection.graphq
 // @ts-ignore
 import fetchCollectionQuery from 'AthenaSchema/queries/collections.graphql'
 
-const STEP = 1
+const STEP = 20
 
 export function useMyProfile(userID: string) {
     const hasMore = useRef(true)
