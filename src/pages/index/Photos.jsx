@@ -13,17 +13,17 @@ const gqlProps = {
   options: props => {
     const { categories } = props
     let category = props.categoryID
-    let offset = 0
+    let last = 1 << 30
     if (category === randomCategory.id) {
       const randomIndexItem = Math.floor(Math.random() * (categories.size - 1))
       category = categories.getIn([randomIndexItem, 'id'])
-      offset = Math.floor(Math.random() * (~~categories.getIn([randomIndexItem, 'count']) - 20))
-      offset = offset < 0 ? 0 : offset
+      last = Math.floor(Math.random() * (~~categories.getIn([randomIndexItem, 'count']) - 20))
     }
     return {
       variables: {
-        from: category || 1, take: 20, offset,
-        hideOnly: false
+        from: category || 1, take: 20,
+        hideOnly: false,
+        last: last.toString()
       },
       fetchPolicy: 'cache-and-network'
     }
@@ -53,8 +53,9 @@ const gqlProps = {
         return fetchMore({
           fetchGirlsQuery,
           variables: {
-            from, take: variables.take, offset,
-            hideOnly
+            from, take: variables.take,
+            hideOnly,
+            last: girls[girls.length - 1].id
           },
           updateQuery: (pResult, { fetchMoreResult }) => {
             return {

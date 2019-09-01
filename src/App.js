@@ -9,6 +9,8 @@ import Root from './components/Root'
 import store from './store/index'
 import routes from './routes/route'
 import './styles/index.styl'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const App = () => {
   return (
@@ -26,6 +28,7 @@ const App = () => {
           </Location>
         </Provider>
       </ApolloHooksProvider>
+      <ToastContainer />
     </ApolloProvider>
   )
 }

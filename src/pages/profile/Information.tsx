@@ -1,9 +1,11 @@
 import React, { useCallback } from 'react'
 import styled from 'styled-components'
-import { connect, useDispatch } from 'react-redux'
+import { connect, useDispatch, useStore } from 'react-redux'
 import PropTypes from 'prop-types'
 import { defaultAvatar } from '../../constants/defaults'
 import { LOGOUT } from '../../constants/auth'
+import { TUser } from '../../types/user';
+import { useUser } from './use-profile';
 
 const Container = styled.section`
   display: flex;
@@ -28,11 +30,12 @@ const InfoItem = styled.div`
   }
 `
 
-type TInformationProps = {
-  user: any
+type TSchemaCanShow = {
+  column: keyof TUser
+  name: string
 }
 
-const schemaCanShow = [{
+const schemaCanShow: TSchemaCanShow[] = [{
   column: 'email',
   name: 'Email'
 }, {
@@ -43,15 +46,20 @@ const schemaCanShow = [{
   name: 'Bio'
 }]
 
-function Information(props: TInformationProps) {
+function Information() {
+  const user = useUser()
   const dispatch = useDispatch()
   const onLogout = useCallback(() => {
     dispatch({ type: LOGOUT })
   }, [])
 
-  const { user } = props
-  const _avatar = user.get('avatar')
+  const _avatar = user.avatar
   const avatarUrl = (_avatar && _avatar !== 'null') ? _avatar : defaultAvatar
+
+  if (!user.id) {
+    return null
+  }
+
   return (
     <Container>
       <Avatar>
@@ -61,7 +69,7 @@ function Information(props: TInformationProps) {
         {schemaCanShow.map((x, i) => (
           <InfoItem key={i}>
             <span>{x.name}: </span>
-            <span>{user.get(x.column)}</span>
+            <span>{user[x.column]}</span>
           </InfoItem>
         )).concat((
           <InfoItem key={schemaCanShow.length + 1}>
