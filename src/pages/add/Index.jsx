@@ -141,7 +141,6 @@ class CreateItems extends React.PureComponent {
         <tr key={i}>
           {Object.keys(x).map((k, ind) => {
             if (ind === 2) {
-              console.log(categories.toJS(), x, k)
               return <td key={ind}>{categories.find(item => item.get('id') === x[k]).get('name')}</td>
             }
             if (ind === 3) {
@@ -268,7 +267,6 @@ class CreateItems extends React.PureComponent {
               color="ghost"
               size="medium"
               onClick={() => {
-                console.log('input', this.state.input.toJS())
                 this.setState({
                   cells: this.state.cells.push(this.state.input),
                   input: fromJS({
