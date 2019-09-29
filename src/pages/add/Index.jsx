@@ -6,7 +6,6 @@ import { fromJS } from 'immutable'
 import { chunk } from 'lodash'
 // import { Link } from 'react-router'
 import { withApollo } from 'react-apollo'
-import Notification from 'rc-notification'
 import Select from 'AthenaComponents/select/Select'
 import PropTypes from 'prop-types'
 import Card from 'AthenaComponents/card/Card'
@@ -17,6 +16,7 @@ import PageContainer from 'AthenaComponents/PageContainer'
 import Button from 'AthenaComponents/button/Button'
 import Separator from 'AthenaComponents/Separator'
 import { getToken } from '../../utils/permission'
+import { toast } from 'react-toastify'
 
 const H2 = styled.h2`
 
@@ -114,11 +114,6 @@ class CreateItems extends React.PureComponent {
         fromURL: ''
       })
     }
-    Notification.newInstance({
-      prefixCls: 'notification',
-    }, notification => {
-      this.notification = notification
-    })
   }
 
   metaUpdateInput = (type) => e => {
@@ -166,9 +161,7 @@ class CreateItems extends React.PureComponent {
       }).delete('url')
     }).toJS()
     if (cells.length === 0) {
-      this.notification.notice({
-        content: 'need information to upload'
-      })
+      toast.error('need information to upload')
       return
     }
 
@@ -183,13 +176,9 @@ class CreateItems extends React.PureComponent {
         variables: { cells }
       })
 
-      this.notification.notice({
-        content: 'upload nice'
-      })
+      toast.success('😄 upload done!!!')
     } catch (e) {
-      this.notification.notice({
-        content: 'upload Error'
-      })
+      toast.error('🙅‍ upload Error')
     } finally {
       this.setState({ loading: false, cells: fromJS([]) })
     }
@@ -211,11 +200,6 @@ class CreateItems extends React.PureComponent {
     for (let c of slice) {
       await this._uploadAction(c)
     }
-  }
-
-  componentWillUnmount() {
-    this.notification.destroy()
-    this.notification = null
   }
 
   componentDidCatch(info, err) {
