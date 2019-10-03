@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.4.1](https://github.com/AnnatarHe-Athena/webapp/compare/v2.4.0...v2.4.1) (2019-10-03)
+
+
+### Bug Fixes
+
+* **collections:** fix collections ([6e49124](https://github.com/AnnatarHe-Athena/webapp/commit/6e49124))
+* **photos:** fix skip issue ([de4cc85](https://github.com/AnnatarHe-Athena/webapp/commit/de4cc85))
+
+
+
 ## [2.4.0](https://github.com/AnnatarHe-Athena/webapp/compare/v2.3.0...v2.4.0) (2019-09-01)
 
 
