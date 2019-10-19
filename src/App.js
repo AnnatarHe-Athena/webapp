@@ -11,6 +11,7 @@ import routes from './routes/route'
 import './styles/index.styl'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import 'react-tippy/dist/tippy.css'
 
 const App = () => {
   return (

@@ -149,7 +149,7 @@ class Auth extends React.PureComponent {
                 <Status loading={this.props.loading} />
               </Button>
             </Field>
-            <span>不支持用户注册，非盈利项目</span>
+            <span className='text-black'>不支持用户注册，非盈利项目</span>
           </Card>
         </PageContainer>
       )

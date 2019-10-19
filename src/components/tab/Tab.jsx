@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 class Tab extends React.PureComponent {
-
   constructor(props) {
     super(props)
 
