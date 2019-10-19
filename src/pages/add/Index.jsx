@@ -6,7 +6,6 @@ import { fromJS } from 'immutable'
 import { chunk } from 'lodash'
 // import { Link } from 'react-router'
 import { withApollo } from 'react-apollo'
-import Notification from 'rc-notification'
 import Select from 'AthenaComponents/select/Select'
 import PropTypes from 'prop-types'
 import Card from 'AthenaComponents/card/Card'
@@ -17,6 +16,7 @@ import PageContainer from 'AthenaComponents/PageContainer'
 import Button from 'AthenaComponents/button/Button'
 import Separator from 'AthenaComponents/Separator'
 import { getToken } from '../../utils/permission'
+import { toast } from 'react-toastify'
 
 const H2 = styled.h2`
 
@@ -114,11 +114,6 @@ class CreateItems extends React.PureComponent {
         fromURL: ''
       })
     }
-    Notification.newInstance({
-      prefixCls: 'notification',
-    }, notification => {
-      this.notification = notification
-    })
   }
 
   metaUpdateInput = (type) => e => {
@@ -141,7 +136,6 @@ class CreateItems extends React.PureComponent {
         <tr key={i}>
           {Object.keys(x).map((k, ind) => {
             if (ind === 2) {
-              console.log(categories.toJS(), x, k)
               return <td key={ind}>{categories.find(item => item.get('id') === x[k]).get('name')}</td>
             }
             if (ind === 3) {
@@ -167,9 +161,7 @@ class CreateItems extends React.PureComponent {
       }).delete('url')
     }).toJS()
     if (cells.length === 0) {
-      this.notification.notice({
-        content: 'need information to upload'
-      })
+      toast.error('need information to upload')
       return
     }
 
@@ -184,13 +176,9 @@ class CreateItems extends React.PureComponent {
         variables: { cells }
       })
 
-      this.notification.notice({
-        content: 'upload nice'
-      })
+      toast.success('😄 upload done!!!')
     } catch (e) {
-      this.notification.notice({
-        content: 'upload Error'
-      })
+      toast.error('🙅‍ upload Error')
     } finally {
       this.setState({ loading: false, cells: fromJS([]) })
     }
@@ -212,11 +200,6 @@ class CreateItems extends React.PureComponent {
     for (let c of slice) {
       await this._uploadAction(c)
     }
-  }
-
-  componentWillUnmount() {
-    this.notification.destroy()
-    this.notification = null
   }
 
   componentDidCatch(info, err) {
@@ -268,7 +251,6 @@ class CreateItems extends React.PureComponent {
               color="ghost"
               size="medium"
               onClick={() => {
-                console.log('input', this.state.input.toJS())
                 this.setState({
                   cells: this.state.cells.push(this.state.input),
                   input: fromJS({

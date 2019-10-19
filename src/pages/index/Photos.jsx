@@ -36,17 +36,16 @@ const gqlProps = {
       loadMore() {
         // if is random category, just random params
         let from = categoryID
-        let offset = girls.length
         if (from === randomCategory.id) {
           const randomIndexItem = Math.floor(Math.random() * (categories.size - 1))
           from = categories.getIn([randomIndexItem, 'id'])
-          offset = Math.floor(Math.random() * (categories.getIn([randomIndexItem, 'count']) - variables.take))
-          offset = offset < 0 ? 0 : offset
         }
 
-        const storageOffset = sessionStorage.getItem(STORAGE_OFFSET_KEY)
-        if (storageOffset) {
-          offset += ~~storageOffset
+        let lastId = girls[girls.length - 1].id
+        const storageLastId = sessionStorage.getItem(STORAGE_OFFSET_KEY)
+
+        if (storageLastId) {
+          lastId = ~~storageLastId
         }
 
         const hideOnly = from === legacyCategory.id
@@ -55,7 +54,7 @@ const gqlProps = {
           variables: {
             from, take: variables.take,
             hideOnly,
-            last: girls[girls.length - 1].id
+            last: lastId
           },
           updateQuery: (pResult, { fetchMoreResult }) => {
             return {
@@ -66,18 +65,15 @@ const gqlProps = {
       },
       loadNewCategories(from) {
         // if is random category, just random params
-        let offset = 0
         if (from.toString() === randomCategory.id) {
           const randomIndexItem = Math.floor(Math.random() * (categories.size - 1))
           from = categories.getIn([randomIndexItem, 'id'])
-          offset = Math.floor(Math.random() * (categories.getIn([randomIndexItem, 'count']) - variables.take))
         }
 
-        offset = offset < 0 ? 0 : offset
         const hideOnly = from === legacyCategory.id
         return fetchMore({
           fetchGirlsQuery,
-          variables: { from, take: variables.take, offset, hideOnly },
+          variables: { from, take: variables.take, last: 1 << 30, hideOnly },
           updateQuery(pResult, { fetchMoreResult }) {
             return {
               variables: { ...variables, from, offset: 20 },

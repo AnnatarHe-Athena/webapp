@@ -13,6 +13,7 @@ import initialQuery from 'AthenaSchema/categoriesQuery.graphql'
 import PageContainer from '../../components/PageContainer'
 import Separator from '../../components/Separator'
 import Status from './Status'
+import Alert from '../../components/alert'
 
 const innerContainerOtherStyles = `
   h2 {
@@ -149,7 +150,7 @@ class Auth extends React.PureComponent {
                 <Status loading={this.props.loading} />
               </Button>
             </Field>
-            <span className='text-black'>不支持用户注册，非盈利项目</span>
+            <Alert text='不支持用户注册，非盈利项目' />
           </Card>
         </PageContainer>
       )
