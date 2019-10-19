@@ -67,7 +67,7 @@ class Header extends React.PureComponent {
     const { categories, canRemove } = this.props
     const newCate = categories.concat(canRemove ? [randomCategory, legacyCategory] : randomCategory)
     return (
-      <header className='py-4 content-between flex-col items-center'>
+      <header className={`py-4 content-between flex-col items-center`}>
         <Bar>
           <Link to="/"><h2 className="text-lg font-medium hover:text-xl transition-fast">Athena</h2></Link>
           <div className="flex flex-row">

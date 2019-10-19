@@ -1,9 +1,9 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { graphql } from 'react-apollo'
 import infoQuery from 'AthenaSchema/queries/info.graphql'
 import Card from 'AthenaComponents/card/Card'
+import Spinner from 'react-spinkit'
 import { red } from '../../styles/variables'
 
 const Container = styled.main`
@@ -40,7 +40,7 @@ class InfoPage extends React.PureComponent {
     if (loading || (!data) || (!data.info)) {
       return (
       <div className='flex items-center justify-center text-lg text-black'>
-        Loading...
+        <Spinner name='circle' />
       </div>
       )
     }

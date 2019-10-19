@@ -18,10 +18,6 @@ import Separator from 'AthenaComponents/Separator'
 import { getToken } from '../../utils/permission'
 import { toast } from 'react-toastify'
 
-const H2 = styled.h2`
-
-`
-
 const TextTip = styled.span`
   padding: 1rem 0;
   font-size: 14px;
@@ -212,7 +208,7 @@ class CreateItems extends React.PureComponent {
     return (
       <PageContainer>
         <Card>
-          <H2>Create Cells</H2>
+          <h2 className='text-lg text-black-200'>Create Cells</h2>
           <Separator />
           <JSONTextarea onUpload={this.uploadJSON} />
           <Separator />

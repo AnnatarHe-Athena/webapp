@@ -15,17 +15,13 @@ import Separator from '../../components/Separator'
 import Status from './Status'
 import Alert from '../../components/alert'
 
+const styles = require('./auth.css')
+
 const innerContainerOtherStyles = `
   h2 {
     margin: 0;
     color: #222;
     font-weight: 300;
-  }
-
-  span {
-    font-size: 12px;
-    font-style: italic;
-    color: #888;
   }
 `
 
@@ -56,7 +52,7 @@ const Errors = styled.ul`
 `
 
 @connect(
-  null, 
+  null,
   dispatch => ({
     updateCategories(categories) { return dispatch(updateCategories(categories)) },
     syncToken(token, id) { return dispatch(syncAuthStatus(token, id)) }
@@ -64,97 +60,95 @@ const Errors = styled.ul`
 )
 @withApollo
 class Auth extends React.PureComponent {
-    state = {
-      email: '',
-      pwd: '',
-      errors: []
+  state = {
+    email: '',
+    pwd: '',
+    errors: []
+  }
+
+  showError = (msgs) => {
+    this.setState({
+      errors: msgs
+    })
+    let timer = setTimeout(() => {
+      this.setState({ errors: [] })
+      clearTimeout(timer)
+    }, 3000)
+  }
+
+  doAuth = () => {
+    const { email, pwd } = this.state
+    if (email.indexOf('@') === -1) {
+      this.showError(['邮箱不正确'])
+      return
+    }
+    if (pwd.length < 6) {
+      this.showError(['密码不正确'])
+      return
     }
 
-    showError = (msgs) => {
-      this.setState({
-        errors: msgs
-      })
-      let timer = setTimeout(() => {
-        this.setState({ errors: [] })
-        clearTimeout(timer)
-      }, 3000)
-    }
+    // this.props.auth({ email, password: pwd })
+    this.props.client.query({
+      query: authGraphql,
+      variables: { email, password: pwd }
+    }).then(result => {
+      const { token, id } = result.data.auth
+      this.props.syncToken(token, id)
+      this.syncCategory()
+    })
+  }
 
-    doAuth = () => {
-      const { email, pwd } = this.state
-      if (email.indexOf('@') === -1) {
-        this.showError(['邮箱不正确'])
-        return
-      }
-      if (pwd.length < 6) {
-        this.showError(['密码不正确'])
-        return
-      }
+  syncCategory() {
+    return this.props.client.query({
+      query: initialQuery
+    }).then(result => {
+      console.log(result)
+      this.props.updateCategories(result.data.categories)
+    })
+  }
 
-      // this.props.auth({ email, password: pwd })
-      this.props.client.query({
-        query: authGraphql,
-        variables: { email, password: pwd }
-      }).then(result => {
-        const { token, id } = result.data.auth
-        this.props.syncToken(token, id)
-        this.syncCategory()
-      })
-    }
-
-    syncCategory() {
-      return this.props.client.query({
-        query: initialQuery
-      }).then(result => {
-        console.log(result)
-        this.props.updateCategories(result.data.categories)
-      })
-    }
-
-    render() {
-      return (
-        <PageContainer>
-          <Card isFar others={innerContainerOtherStyles}>
-            <h2>Auth</h2>
-            <Separator />
-            <Errors>
-              {this.state.errors.map((e, i) => (
-                <li key={i}>{e}</li>
-              ))}
-            </Errors>
-            <Field>
-              <input
-                value={this.state.email}
-                type="email"
-                onChange={e => { this.setState({ email: e.target.value})}}
-                placeholder="Email"
-              />
-            </Field>
-            <Field>
-              <input
-                value={this.state.pwd}
-                type="password"
-                onChange={e => { this.setState({ pwd: e.target.value})}} 
-                placeholder="Password"
-              />
-            </Field>
-            <Field>
-              <Button
-                disabled={this.props.loading}
-                type="submit"
-                color="blue"
-                size="medium"
-                onClick={this.doAuth}
-                fill={true}
-              >
+  render() {
+    return (
+      <PageContainer>
+        <Card isFar others={innerContainerOtherStyles}>
+          <h2 className='text-lg'>🔑 Auth</h2>
+          <Separator />
+          <Errors>
+            {this.state.errors.map((e, i) => (
+              <li key={i}>{e}</li>
+            ))}
+          </Errors>
+          <Field>
+            <input
+              value={this.state.email}
+              type="email"
+              onChange={e => { this.setState({ email: e.target.value }) }}
+              placeholder="Email"
+            />
+          </Field>
+          <Field>
+            <input
+              value={this.state.pwd}
+              type="password"
+              onChange={e => { this.setState({ pwd: e.target.value }) }}
+              placeholder="Password"
+            />
+          </Field>
+          <Field>
+            <button
+              type='submit'
+              disabled={this.props.loading}
+              onClick={this.doAuth}
+              className={`w-full p-4 rounded shadow-lg ${styles.submit}`}
+            >
                 <Status loading={this.props.loading} />
-              </Button>
-            </Field>
-            <Alert text='不支持用户注册，非盈利项目' />
-          </Card>
-        </PageContainer>
-      )
-    }
+            </button>
+          </Field>
+          <Alert text='不支持用户注册，非盈利项目' />
+        </Card>
+      </PageContainer>
+    )
+  }
 }
 
 Auth.propTypes = {

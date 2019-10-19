@@ -29,9 +29,9 @@ const AlertInfo = {
 function Alert(props: AlertProps) {
   const info = AlertInfo[props.type || 'info']
   return (
-    <div className={`container rounded shadow ${info.bgClass}`}>
+    <div className={`container rounded shadow ${info.bgClass} p-4`}>
       <span className='mr-4 text-lg'>{info.icon}</span>
-      <span className='text-lg text-white'>{props.text}</span>
+      <span className='text-sm text-black'>{props.text}</span>
     </div>
   )
 }

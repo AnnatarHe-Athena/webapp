@@ -12,6 +12,9 @@ import { HideUntilLoaded } from 'react-animation'
 import addCollectionMutation from 'AthenaSchema/mutations/addCollection.graphql'
 import removeGirlCellMutation from 'AthenaSchema/mutations/removeGirlCell.graphql'
 import PropTypes from 'prop-types'
+import {
+  Tooltip,
+} from 'react-tippy'
 
 const Figure = styled.figure`
   border-radius: 4px;
@@ -147,13 +150,13 @@ class PreviewImage extends React.PureComponent {
     return (
       <div>
         <Extra>
-            {leftUserInfo}
-            {middleTitle}
-            <div>
-              <ExtraButton onClick={this.handleCollect}>Collect</ExtraButton>
-              { softRemove && <ExtraButton onClick={this.handleDelete}>Delete</ExtraButton> }
-            </div>
-          </Extra>
+          {leftUserInfo}
+          {middleTitle}
+          <div>
+            <ExtraButton onClick={this.handleCollect}>Collect</ExtraButton>
+            {softRemove && <ExtraButton onClick={this.handleDelete}>Delete</ExtraButton>}
+          </div>
+        </Extra>
         <Figure>
           <HideUntilLoaded imageToLoad={bigSrc}>
             <picture onClick={this.props.onClose}>
@@ -171,7 +174,7 @@ class PreviewImage extends React.PureComponent {
 const Preview = ({ data, visible, onClose }) => {
   return (
     <CommonDialog visible={visible} onClose={onClose}>
-      <PreviewImage {...data} onClose={onClose}/>
+      <PreviewImage {...data} onClose={onClose} />
     </CommonDialog>
   )
 }
