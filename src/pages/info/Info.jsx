@@ -38,7 +38,11 @@ class InfoPage extends React.PureComponent {
   render() {
     const { data, loading } = this.props
     if (loading || (!data) || (!data.info)) {
-      return <div />
+      return (
+      <div className='flex items-center justify-center text-lg text-black'>
+        Loading...
+      </div>
+      )
     }
 
     const { userCount, cellCount, fee, email, copyright } = data.info

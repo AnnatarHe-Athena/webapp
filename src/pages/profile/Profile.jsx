@@ -11,26 +11,26 @@ function Profile(props) {
   const { loadMore, collections } = useMyProfile(props.id)
 
   return (
-      <PageContainer>
-        <div className="p-12 mt-4 rounded-lg shadow-lg bg-white">
-          <Information />
-          <Separator />
-          <Commands isMe={true} />
-          <Separator />
-          <Tab
-            tab={[{
-              title: 'collections',
-              body: (
-                <PhotoList
-                  loading={false}
-                  loadMore={loadMore}
-                  cells={collections}
-                />
-              )
-            }]}
-          />
-        </div>
-      </PageContainer>
+    <PageContainer>
+      <div className="p-12 mt-4 rounded-lg shadow-lg bg-white">
+        <Information />
+        <Separator />
+        <Commands isMe={true} />
+        <Separator />
+        <Tab
+          tab={[{
+            title: 'collections',
+            body: (
+              <PhotoList
+                loading={false}
+                loadMore={loadMore}
+                cells={collections}
+              />
+            )
+          }]}
+        />
+      </div>
+    </PageContainer>
   )
 }
 
