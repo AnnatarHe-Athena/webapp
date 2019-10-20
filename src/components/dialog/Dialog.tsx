@@ -19,31 +19,31 @@ function InnerDialog(props: InnerDialogProps) {
     }
     root.classList.add('gaussian-blur')
     return () => {
-    root.classList.remove('gaussian-blur')
+      root.classList.remove('gaussian-blur')
     }
   }, [])
 
   const onClose = useCallback((e) => {
     if (e.target.getAttribute('role') !== 'mask') {
     }
-      props.onClose()
+    props.onClose()
   }, [props.onClose])
 
   return (
-      <div
-        className={`fixed top-0 left-0 right-0 bottom-0 flex justify-center items-center ${styles.mask}`}
-        onClick={onClose}
-        role="mask">
-        <CSSTransition
-          classNames="fade"
-          timeout={{
-            exit: 350,
-            enter: 350
-          }}
-        >
-          {props.children}
-        </CSSTransition>
-      </div>
+    <div
+      className={`fixed top-0 left-0 right-0 bottom-0 flex justify-center items-center ${styles.mask}`}
+      onClick={onClose}
+      role="mask">
+      <CSSTransition
+        classNames="fade"
+        timeout={{
+          exit: 350,
+          enter: 350
+        }}
+      >
+        {props.children}
+      </CSSTransition>
+    </div>
   )
 }
 
