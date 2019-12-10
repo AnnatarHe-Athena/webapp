@@ -1870,6 +1870,13 @@
     hoist-non-react-statics "^3.3.0"
     redux "^4.0.0"
 
+"@types/react-spinkit@^3.0.5":
+  version "3.0.5"
+  resolved "https://registry.npm.taobao.org/@types/react-spinkit/download/@types/react-spinkit-3.0.5.tgz#446ef206d00bc1c70dcbcf2deafc463774f8c9a8"
+  integrity sha1-RG7yBtALwccNy88t6vxGN3T4yag=
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-transition-group@^4.2.3":
   version "4.2.3"
   resolved "https://registry.npm.taobao.org/@types/react-transition-group/download/@types/react-transition-group-4.2.3.tgz#4924133f7268694058e415bf7aea2d4c21131470"
@@ -10319,7 +10326,7 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-animation@^1.0.9:
+react-animation@^1.2.2:
   version "1.2.2"
   resolved "https://registry.npm.taobao.org/react-animation/download/react-animation-1.2.2.tgz#3188bac430f9ccc5c27845da7662c2a6bbdff52b"
   integrity sha1-MYi6xDD5zMXCeEXadmLCprvf9Ss=

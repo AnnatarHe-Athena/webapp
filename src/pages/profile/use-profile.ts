@@ -12,65 +12,65 @@ import fetchCollectionQuery from 'AthenaSchema/queries/collections.graphql'
 const STEP = 20
 
 export function useMyProfile(userID: string) {
-    const hasMore = useRef(true)
-    const offset = useRef(STEP)
-    const dispatch = useDispatch()
-    const [loading, setLoading] = useState(true)
-    const [collections, setCollections] = useState([] as Collection[])
+  const hasMore = useRef(true)
+  const offset = useRef(STEP)
+  const dispatch = useDispatch()
+  const [loading, setLoading] = useState(true)
+  const [collections, setCollections] = useState([] as Collection[])
 
-    const client = useApolloClient()
+  const client = useApolloClient()
 
-    useEffect(() => {
-        client.query({
-            query: fetchProfileQuery,
-            variables: {
-                id: userID,
-                from: 0,
-                size: STEP
-            }
-        }).then(result => {
-            console.log('result', result)
-            const data = result.data as TUserProfileWithCollection
-            dispatch(profileGot(data.users))
-            setCollections(data.collections)
+  useEffect(() => {
+    client.query({
+      query: fetchProfileQuery,
+      variables: {
+        id: userID,
+        from: 0,
+        size: STEP
+      }
+    }).then(result => {
+      console.log('result', result)
+      const data = result.data as TUserProfileWithCollection
+      dispatch(profileGot(data.users))
+      setCollections(data.collections)
 
-            setLoading(false)
-        })
-    }, [])
+      setLoading(false)
+    })
+  }, [])
 
-    const loadMore = useCallback(() => {
-        if (loading) {
-            return
-        }
-        if ( !hasMore.current) {
-
-            toast.error('🤷‍️️ 没有更多了')
-            return
-        }
-        setLoading(true)
-
-        client.query({
-            query: fetchCollectionQuery,
-            variables: {
-                id: userID,
-                from: offset.current,
-                size: STEP
-            }
-        }).then(result => {
-            if (result.data.collections.length === 0) {
-                hasMore.current = false
-            }
-            setCollections(collections.concat(result.data.collections))
-            setLoading(false)
-            offset.current = offset.current + STEP
-        })
-    }, [loading])
-
-    return {
-        collections,
-        loadMore,
-        loading: loading
+  const loadMore = useCallback(() => {
+    if (loading) {
+      return
     }
+    if (!hasMore.current) {
+
+      toast.error('🤷‍️️ 没有更多了')
+      return
+    }
+    setLoading(true)
+
+    client.query({
+      query: fetchCollectionQuery,
+      variables: {
+        id: userID,
+        from: offset.current,
+        size: STEP
+      }
+    }).then(result => {
+      if (result.data.collections.length === 0) {
+        hasMore.current = false
+      }
+      setCollections(collections.concat(result.data.collections))
+      setLoading(false)
+      offset.current = offset.current + STEP
+    })
+  }, [loading])
+
+  return {
+    collections,
+    loadMore,
+    loading: loading
+  }
 }
 
 export function useUser(): TUser {

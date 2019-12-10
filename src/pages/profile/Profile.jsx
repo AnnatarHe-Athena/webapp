@@ -12,7 +12,7 @@ function Profile(props) {
 
   return (
     <PageContainer>
-      <div className="p-12 mt-4 rounded-lg shadow-lg bg-white">
+      <div className="p-12 mt-4 rounded-lg shadow-lg bg-white w-5/6">
         <Information />
         <Separator />
         <Commands isMe={true} />

@@ -1,12 +1,7 @@
 import React from 'react'
-import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import Photos from './Photos'
 import { report } from '../../utils/sentry'
-
-const Div = styled.div`
-  width: 100%;
-`
 
 // @graphql(helloQuery, {options: { notifyOnNetworkStatusChange: true }})
 class Index extends React.PureComponent {
@@ -20,9 +15,9 @@ class Index extends React.PureComponent {
 
   render() {
     return (
-      <Div>
+      <div className='w-full'>
         <Photos categoryID={this.props.cid} />
-      </Div>
+      </div>
     )
   }
 }

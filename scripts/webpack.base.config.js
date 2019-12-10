@@ -49,7 +49,7 @@ const config = {
       ],
       use: [
         MiniCssExtractPlugin.loader,
-        'css-loader?modules=true&camelCase=true&localIdentName=[name]_[local]-[hash:base64]&sourceMap=true',
+        'css-loader?modules=true&localsConvention=camelCase&sourceMap=true',
         'postcss-loader'
       ]
     }, {

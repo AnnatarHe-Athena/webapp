@@ -9,6 +9,8 @@ import { randomCategory, legacyCategory } from '../../constants/defaults'
 import { getPermissionObj, getToken } from '../../utils/permission'
 import Nav from '../Nav'
 
+import styles from './header.css'
+
 const Bar = styled.div`
     width: 100%;
     display: flex;
@@ -67,7 +69,7 @@ class Header extends React.PureComponent {
     const { categories, canRemove } = this.props
     const newCate = categories.concat(canRemove ? [randomCategory, legacyCategory] : randomCategory)
     return (
-      <header className={`py-4 content-between flex-col items-center`}>
+      <header className={`py-4 content-between flex-col items-center sticky top-0 z-30 ${styles.header}`}>
         <Bar>
           <Link to="/"><h2 className="text-lg font-medium hover:text-xl transition-fast">Athena</h2></Link>
           <div className="flex flex-row">

@@ -43,7 +43,7 @@ const ReadyToUpload = styled.table`
     background-color: #f7f7f7;
   }
   td, th {
-    padding: .6923rem 4.15rem .6923rem 1.077rem;
+    padding: 1rem;
     color: #333333;
     border: 0;
     max-width: 2rem;
@@ -120,7 +120,7 @@ class CreateItems extends React.PureComponent {
   }
 
   renderTableHeader() {
-    return ['图片URL', '图片简单介绍', '分类', '权限', 'fromID', 'fromURL'].map((x, i) => {
+    return ['图片URL', '图片介绍', '分类', '权限', 'fromID', 'fromURL'].map((x, i) => {
       return <th key={i}>{x}</th>
     })
   }

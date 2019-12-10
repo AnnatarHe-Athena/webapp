@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
+import { HideUntilLoaded } from 'react-animation'
 import { defaultAvatar } from '../../constants/defaults'
 import { LOGOUT } from '../../constants/auth'
 import { TUser } from '../../types/user';
@@ -46,7 +47,9 @@ function Information() {
   return (
     <div className='flex'>
       <div className='mr-4'>
-        <img src={avatarUrl} className='rounded w-10 h-10' />
+        <HideUntilLoaded imageToLoad={avatarUrl}>
+          <img src={avatarUrl} className='rounded w-16 h-16' />
+        </HideUntilLoaded>
       </div>
       <div>
         {schemaCanShow.map((x, i) => (
