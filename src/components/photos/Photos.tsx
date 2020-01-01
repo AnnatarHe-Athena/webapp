@@ -8,6 +8,7 @@ import PhotoItem from './PhotoItem'
 import { TransitionGroup } from 'react-transition-group'
 // import Footer from '../footer/Footer'
 import Button from '../button/Button'
+import { CellItem } from '../../types/user'
 // import fetchGirlsQuery from 'AthenaSchema/fetchGirlsQuery.graphql'
 
 const PhotoLists = styled.div`
@@ -22,14 +23,24 @@ const PhotoLists = styled.div`
     }
 `
 
-class Photos extends React.PureComponent {
-  constructor(props) {
+type PhotosProps = {
+  cells: CellItem[]
+  loading: boolean
+  loadMore: () => void
+  forceDeleteable: boolean
+}
+
+class Photos extends React.PureComponent<PhotosProps> {
+  constructor(props: PhotosProps) {
     super(props)
 
     this.state = {
       currentCell: fromJS({})
     }
   }
+
+  root: any = null
+  io: any = null
 
   componentDidMount() {
     this.root = document.querySelector('.athena-obs-more')
@@ -51,9 +62,6 @@ class Photos extends React.PureComponent {
   }
 
   renderPhotos() {
-    if (!this.props.cells || this.props.cells.length === 0) {
-      return null
-    }
     return this.props.cells.map(pic => {
       return (
         <PhotoItem
@@ -94,15 +102,5 @@ class Photos extends React.PureComponent {
   }
 }
 
-Photos.propTypes = {
-  cells: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-    img: PropTypes.string,
-    text: PropTypes.string
-  })),
-  loading: PropTypes.bool,
-  loadMore: PropTypes.func.isRequired,
-  forceDeleteable: PropTypes.bool
-}
 
 export default Photos

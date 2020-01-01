@@ -1,9 +1,9 @@
-export function getPermissionObj(user) {
+export function getPermissionObj(user: any) {
   if (!user || !user.role) {
     return {}
   }
   const role = user.role
-  const permissionObj = {}
+  const permissionObj: any = {}
 
   if (role > 90) {
     permissionObj.softRemove = true

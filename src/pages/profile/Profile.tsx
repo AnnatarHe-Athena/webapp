@@ -7,7 +7,7 @@ import Tab from 'AthenaComponents/tab/Tab'
 import Information from './Information'
 import Separator from 'AthenaComponents/Separator'
 
-function Profile(props) {
+function Profile(props: any) {
   const { loadMore, collections } = useMyProfile(props.id)
 
   return (
@@ -25,6 +25,7 @@ function Profile(props) {
                 loading={false}
                 loadMore={loadMore}
                 cells={collections}
+                forceDeleteable={false}
               />
             )
           }]}

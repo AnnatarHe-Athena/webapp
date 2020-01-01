@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-const colorMap = {
+const colorMap: any = {
   red: {
     bgc: '#e91e63',
     font: '#ffffff'
@@ -16,7 +16,7 @@ const colorMap = {
   }
 }
 
-const sizeMap = {
+const sizeMap: any = {
   large: {
     padding: '2rem 5rem',
     fontSize: '22px'
@@ -27,7 +27,7 @@ const sizeMap = {
   }
 }
 
-const Button = styled.button`
+const Button = styled.button<any>`
     border: none;
     background-color: ${({ color }) => colorMap[color].bgc};
     padding: ${({ size }) => sizeMap[size].padding};
@@ -51,11 +51,5 @@ const Button = styled.button`
         }
     }
 `
-
-Button.propTypes = {
-  color: PropTypes.string.isRequired,
-  size: PropTypes.string.isRequired,
-  fill: PropTypes.bool
-}
 
 export default Button

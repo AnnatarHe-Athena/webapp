@@ -1,5 +1,5 @@
 
-export function getRealSrcLink(url, type = 'bmiddle') {
+export function getRealSrcLink(url: string, type = 'bmiddle') {
   if (__DEV__) {
     return 'https://picsum.photos/400/500'
   }
@@ -32,13 +32,13 @@ export function getRealSrcLink(url, type = 'bmiddle') {
   return `https://wx3.sinaimg.cn/${type}/${url}`
 }
 
-const SNSToProfileURLMap = {
+const SNSToProfileURLMap: any = {
   zhihu: 'https://www.zhihu.com/people/{{ id }}',
   douban: 'https://www.douban.com/people/{{ id }}/',
   weibo: 'https://weibo.com/u/{{ id }}'
 }
 
-export function getUserInfoURL(id, origin) {
+export function getUserInfoURL(id: string, origin: string) {
 
   // 微博用户会有自定义子路由，这里做处理
   if (origin.indexOf('weibo') > 2 && (!/\d+/.test(id))) {
@@ -55,7 +55,7 @@ export function getUserInfoURL(id, origin) {
   return 'javascript:;'
 }
 
-export function getTitleHref(origin) {
+export function getTitleHref(origin: string) {
   if (origin && origin.indexOf('zhihu.com') > 0) {
     const _infoArr = origin.split('/')
     const id = _infoArr[_infoArr.length - 1]
@@ -65,7 +65,7 @@ export function getTitleHref(origin) {
 }
 
 
-let webpSupported = null
+let webpSupported: boolean | null = null
 export function isWebpSupported() {
   if (webpSupported !== null) {
     return webpSupported

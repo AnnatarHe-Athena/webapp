@@ -2,9 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Preview from '../preview/Preview'
 import { getRealSrcLink } from '../../utils/index'
-import { report } from '../../utils/sentry'
 import { HideUntilLoaded } from 'react-animation'
-import PropTypes from 'prop-types'
 
 const Container = styled.picture`
   flex-grow: 1;
@@ -21,17 +19,23 @@ const Container = styled.picture`
   }
 `
 
-class PhotoItem extends React.PureComponent {
+type PhotoItemProps = {
+  id: number
+  src: string
+  desc: string
+  fromURL: string
+  fromID: string
+  content: string
+  forceDeleteable: boolean
+}
+
+class PhotoItem extends React.PureComponent<PhotoItemProps,any> {
   state = {
     visible: false
   }
 
   togglePreview = () => {
-    this.setState(ps => ({ visible: !ps.visible }))
-  }
-
-  componentDidCatch(err, info) {
-    report(err, info)
+    this.setState((ps: any) => ({ visible: !ps.visible }))
   }
 
   render() {
@@ -47,7 +51,6 @@ class PhotoItem extends React.PureComponent {
             src={bmiddleSrc}
             alt={desc}
             onClick={() => { this.setState({ visible: true })}}
-            loading="lazy"
           />
         </HideUntilLoaded>
         {/*<span>{desc}</span>*/}
@@ -55,15 +58,6 @@ class PhotoItem extends React.PureComponent {
       </Container>
     )
   }
-}
-
-PhotoItem.propTypes = {
-  id: PropTypes.number.isRequired,
-  src: PropTypes.string.isRequired,
-  desc: PropTypes.string,
-  onClick: PropTypes.func,
-  fromURL: PropTypes.string,
-  fromID: PropTypes.string
 }
 
 export default PhotoItem

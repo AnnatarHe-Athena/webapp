@@ -13,14 +13,18 @@ export type TUser = {
     name: string
 }
 
-export interface Collection {
-    fromID: string;
-    fromURL: string;
-    id: string;
-    img: string;
-    permission: Permission;
-    text: string;
+export type CellItem = {
+  id: number
+  src: string
+  desc: string
+  fromURL: string
+  fromID: string
+  content: string
+  img: string
+  text: string
 }
+
+export type Collection = CellItem
 
 export type TUserProfileWithCollection = {
     collections: Collection[]
