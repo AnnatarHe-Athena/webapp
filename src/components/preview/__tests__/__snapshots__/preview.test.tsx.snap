@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`preview will ok should be ok 1`] = `
+<div
+  className="fixed top-0 left-0 right-0 bottom-0 flex justify-center items-center undefined"
+  onClick={[Function]}
+  role="mask"
+>
+  <div>
+    <div
+      className="Preview__Extra-fFdmie eICXxT"
+    >
+      <div>
+        <a
+          target="_blank"
+        >
+          <h2>
+            主题
+          </h2>
+        </a>
+      </div>
+      <div>
+        <button
+          className="Preview__ExtraButton-TGVHo AgIxo"
+          onClick={[Function]}
+        >
+          Collect
+        </button>
+      </div>
+    </div>
+    <figure
+      className="Preview__Figure-qrvYn hGbwbJ"
+    >
+      <span
+        style={
+          Object {
+            "display": "inline-block",
+            "position": "relative",
+          }
+        }
+      >
+        <div
+          className="hide-until-loaded-content"
+          style={
+            Object {
+              "opacity": 0,
+              "transition": "none",
+              "visibility": "hidden",
+            }
+          }
+        >
+          <picture
+            onClick={[Function]}
+          >
+            <source
+              srcSet="https://picsum.photos/400/500"
+            />
+            <img
+              src="https://picsum.photos/400/500"
+            />
+            <figcaption />
+          </picture>
+        </div>
+      </span>
+    </figure>
+  </div>
+</div>
+`;

@@ -1,11 +1,11 @@
 import React from 'react'
 import { useMyProfile } from './use-profile'
 import Commands from './Commands'
-import PhotoList from 'AthenaComponents/photos/Photos'
-import PageContainer from 'AthenaComponents/PageContainer'
-import Tab from 'AthenaComponents/tab/Tab'
+import PhotoList from '../../components/photos/Photos'
+import PageContainer from '../../components/PageContainer'
+import Tab from '../../components/tab/Tab'
 import Information from './Information'
-import Separator from 'AthenaComponents/Separator'
+import Separator from '../../components/Separator'
 
 function Profile(props: any) {
   const { loadMore, collections } = useMyProfile(props.id)

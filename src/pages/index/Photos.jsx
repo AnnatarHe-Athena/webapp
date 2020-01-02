@@ -3,11 +3,11 @@ import Immutable from 'immutable'
 import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
 import PropTypes from 'prop-types'
-import PhotoList from 'AthenaComponents/photos/Photos'
 import fetchGirlsQuery from 'AthenaSchema/fetchGirlsQuery.graphql'
 import { randomCategory, legacyCategory } from '../../constants/defaults'
 import { getPermissionObj } from '../../utils/permission'
 import { STORAGE_OFFSET_KEY } from '../../components/nav-offset-input/index';
+import PhotoList from '../../components/photos/Photos'
 
 const gqlProps = {
   options: props => {
