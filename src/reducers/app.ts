@@ -14,7 +14,7 @@ const init = fromJS({
   token: ''
 })
 
-const reducer = (state = init, action) => {
+const reducer = (state = init, action: any) => {
   switch (action.type) {
   case CHANGE_CATEGORIES:
     return state.update('categoryID', () => action.categoryID)

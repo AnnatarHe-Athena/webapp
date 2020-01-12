@@ -18,13 +18,20 @@ function requestPermission() {
   })
 }
 
-export function sendNotification(info) {
-  return requestPermission().then(() => {
+type notificationInfo = {
+  title: string
+  desc?: string
+}
+
+export async function sendNotification(info: notificationInfo) {
+  try {
+    await requestPermission()
     const n = new Notification(info.title, { body: info.desc })
     setTimeout(() => {
       n.close()
     }, 5000)
-  }).catch(err => {
+  }
+  catch (err) {
     alert(`${err}, ${info.title}`)
-  })
+  }
 }

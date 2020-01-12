@@ -5,7 +5,8 @@ import { fromJS } from 'immutable'
 import rootReducer from '../reducers/index'
 import sagas from '../sagas/index'
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const composeEnhancers = (window as any)['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] || compose
+
 const sagaMiddleware = createSagaMiddleware()
 
 const store = createStore(
