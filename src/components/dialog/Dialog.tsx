@@ -1,6 +1,5 @@
 import React, { useEffect, useCallback } from 'react'
 import ReactDOM from 'react-dom'
-import PropTypes from 'prop-types'
 import { CSSTransition } from 'react-transition-group'
 const styles = require('./dialog.css')
 
@@ -25,6 +24,7 @@ function InnerDialog(props: InnerDialogProps) {
 
   const onClose = useCallback((e) => {
     if (e.target.getAttribute('role') !== 'mask') {
+      return
     }
     props.onClose()
   }, [props.onClose])
