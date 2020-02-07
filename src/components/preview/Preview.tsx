@@ -10,6 +10,7 @@ const removeGirlCellMutation = require('AthenaSchema/mutations/removeGirlCell.gr
 import { useApolloClient } from '@apollo/react-hooks'
 import { AppStore } from '../../reducers'
 import { TUser } from '../../types/user'
+import { toast } from 'react-toastify'
 
 type PreviewImageProps = {
   id: string
@@ -98,8 +99,9 @@ function PreviewImage(props: PreviewImageProps) {
       variables: {
         cells: [~~id]
       }
+    }).then(() => {
+      toast.done('已收藏')
     })
-
   }, [id])
   const handleDelete = useCallback(() => {
     client.mutate({
@@ -108,6 +110,10 @@ function PreviewImage(props: PreviewImageProps) {
         cells: [~~id],
         toRemove: false
       }
+    }).then(() => {
+      toast.done('已删除')
+      props.onClose()
+      // TODO: delete from cells locally
     })
   }, [id])
   return (
