@@ -11,16 +11,16 @@ type InnerDialogProps = {
 }
 
 function InnerDialog(props: InnerDialogProps) {
-  useEffect(() => {
-    const root = document.querySelector('#root')
-    if (!root) {
-      return
-    }
-    root.classList.add('gaussian-blur')
-    return () => {
-      root.classList.remove('gaussian-blur')
-    }
-  }, [])
+  // useEffect(() => {
+  //   const root = document.querySelector('#root')
+  //   if (!root) {
+  //     return
+  //   }
+  //   root.classList.add('gaussian-blur')
+  //   return () => {
+  //     root.classList.remove('gaussian-blur')
+  //   }
+  // }, [])
 
   const onClose = useCallback((e) => {
     if (e.target.getAttribute('role') !== 'mask') {

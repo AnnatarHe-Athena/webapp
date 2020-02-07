@@ -5,14 +5,11 @@ import CommonDialog from '../dialog/Dialog'
 import { getRealSrcLink, getUserInfoURL, getTitleHref } from '../../utils/index'
 import { getPermissionObj } from '../../utils/permission'
 import { HideUntilLoaded } from 'react-animation'
-// import addCollectionMutation from 'AthenaSchema/mutations/addCollection.graphql'
 const addCollectionMutation = require('AthenaSchema/mutations/addCollection.graphql')
 const removeGirlCellMutation = require('AthenaSchema/mutations/removeGirlCell.graphql')
-import PropTypes from 'prop-types'
-import {
-  Tooltip,
-} from 'react-tippy'
 import { useApolloClient } from '@apollo/react-hooks'
+import { AppStore } from '../../reducers'
+import { TUser } from '../../types/user'
 
 type PreviewImageProps = {
   id: string
@@ -24,7 +21,6 @@ type PreviewImageProps = {
   content: string
   onClose: () => void
 }
-
 
 const Figure = styled.figure`
   border-radius: 4px;
@@ -45,16 +41,6 @@ const Figure = styled.figure`
 
 const Extra = styled.div`
   background: linear-gradient(0deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, .8));
-  display: flex;
-  position: fixed;
-  box-sizing: border-box;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 1rem;
-  justify-content: space-around;
-  align-items: center;
-  z-index: 100;
 
   a, h2 {
     color: #fff;
@@ -87,9 +73,9 @@ const ExtraButton = styled.button`
 
 function PreviewImage(props: PreviewImageProps) {
   const { id, src, desc, fromID, fromURL, content, onClose } = props
-  const user = useSelector<any, any>(s => s.profile.info)
+  const user = useSelector<AppStore, TUser>(s => s.profile.info)
 
-  const { softRemove } = getPermissionObj(user.toJS())
+  const { softRemove } = getPermissionObj(user)
 
   const leftUserInfo = fromID ? (
     <div>
@@ -126,7 +112,7 @@ function PreviewImage(props: PreviewImageProps) {
   }, [id])
   return (
     <div>
-      <Extra>
+      <Extra className='fixed flex top-0 left-0 right-0 items-center justify-around p-4 box-border'>
         {leftUserInfo}
         {middleTitle}
         <div>

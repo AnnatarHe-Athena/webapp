@@ -15,6 +15,6 @@ module.exports = {
     tailwindcss('./tailwind.config.js'),
     require('postcss-normalize'),
     require('autoprefixer'),
-    purgecss
+    ...(process.env.NODE_ENV === 'production' ? [purgecss] : [])
   ]
 }

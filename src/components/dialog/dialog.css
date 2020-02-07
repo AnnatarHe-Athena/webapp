@@ -1,5 +1,6 @@
 .mask {
-    background-color: rgba(0, 0, 0, .3);
-    /* backdrop-filter: blur(10px); */
+    background-color: rgba(0, 0, 0, .4);
+    backdrop-filter: blur(10px);
     transition: all .35s;
+    z-index: 1000;
 }
