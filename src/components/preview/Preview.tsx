@@ -41,12 +41,6 @@ const Figure = styled.figure`
 
 const Extra = styled.div`
   background: linear-gradient(0deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, .8));
-
-  a, h2 {
-    color: #fff;
-    font-weight: 400;
-    margin: 0;
-  }
 `
 
 const ExtraButton = styled.button`
@@ -79,13 +73,19 @@ function PreviewImage(props: PreviewImageProps) {
 
   const leftUserInfo = fromID ? (
     <div>
-      <a href={getUserInfoURL(fromID, fromURL)} target="_blank">我的信息</a>
+      <a
+        className='text-white text-center font-light' href={getUserInfoURL(fromID, fromURL)}
+        target="_blank">
+        🧙‍♀️ 我的信息
+      </a>
     </div>
   ) : null
 
   const middleTitle = (
-    <div>
-      <a href={getTitleHref(fromURL)} target="_blank"><h2>{desc || '主题'}</h2></a>
+    <div className='w-7/12'>
+      <a href={getTitleHref(fromURL)} target="_blank">
+        <h2 className='text-center font-light text-white'>{desc || '主题'}</h2>
+      </a>
     </div>
   )
 

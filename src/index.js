@@ -3,11 +3,11 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import App from './App'
+import setupSentry from './utils/sentry'
 import './styles/tailwind.css'
 import './index.css'
 import 'intersection-observer'
 import './utils/offline'
-import setupSentry from './utils/sentry'
 
 setupSentry()
 

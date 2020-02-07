@@ -104,7 +104,7 @@ class CreateItems extends React.PureComponent {
       input: fromJS({
         url: '',
         text: '',
-        cate: props.categories.getIn([0, 'id']) || 11,
+        cate: props.categories[0].id || 11,
         permission: premissionOptions[0].value,
         fromID: '',
         fromURL: ''
@@ -132,7 +132,7 @@ class CreateItems extends React.PureComponent {
         <tr key={i}>
           {Object.keys(x).map((k, ind) => {
             if (ind === 2) {
-              return <td key={ind}>{categories.find(item => item.get('id') === x[k]).get('name')}</td>
+              return <td key={ind}>{categories.find(item => item.id === x[k]).get('name')}</td>
             }
             if (ind === 3) {
               return <td key={ind}>{premissionOptions.find(item => item.value === x[k]).label}</td>
@@ -241,7 +241,7 @@ class CreateItems extends React.PureComponent {
               onChange={this.metaUpdateInput('permission')}
             />
           </InputField>
-          <TextTip>强烈推荐使用新浪微博图床上传优秀的照片，其他服务也是允许的。 <a href="https://chrome.google.com/webstore/detail/%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A%E5%9B%BE%E5%BA%8A/fdfdnfpdplfbbnemmmoklbfjbhecpnhf?hl=zh-CN" target="_blank" rel="noopener noreferrer">新浪微博图床</a></TextTip>
+          <TextTip>推荐使用新浪微博图床上传优秀的照片，其他服务也是允许的。 <a href="https://chrome.google.com/webstore/detail/%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A%E5%9B%BE%E5%BA%8A/fdfdnfpdplfbbnemmmoklbfjbhecpnhf?hl=zh-CN" target="_blank" rel="noopener noreferrer">新浪微博图床</a></TextTip>
           <Submits>
             <Button
               color="ghost"
@@ -252,7 +252,7 @@ class CreateItems extends React.PureComponent {
                   input: fromJS({
                     url: '',
                     text: '',
-                    cate: this.props.categories.getIn([0, 'id']),
+                    cate: this.props.categories[0].id,
                     permission: this.state.input.get('permission'),
                     fromID: '',
                     fromURL: ''

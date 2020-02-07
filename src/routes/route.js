@@ -1,10 +1,8 @@
 import React from 'react'
 import Loadable from 'react-loadable'
-import Root from '../components/Root'
 import Index from '../pages/index/Index'
 import Welcome from '../pages/welcome/Welcome'
 import Spinner from 'react-spinkit'
-import { report } from '../utils/sentry'
 
 function asyncLoadComponent(path) {
   return Loadable({
