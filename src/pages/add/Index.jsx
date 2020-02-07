@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { navigate } from "@reach/router"
 import { fromJS } from 'immutable'
-import { chunk } from 'lodash'
+import chunk from 'lodash/chunk'
 // import { Link } from 'react-router'
 import { withApollo } from 'react-apollo'
 import Select from 'AthenaComponents/select/Select'

@@ -5,7 +5,6 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const vendors = [
   'redux-saga',
   'whatwg-fetch',
-  'lodash',
   'redux',
   '@sentry/browser'
 ]
@@ -19,10 +18,12 @@ const utils = [
   'react-apollo',
   '@apollo/react-hooks',
   'styled-components',
+  'react-animation'
 ]
 
 const plugins = [
   'apollo-boost',
+  'sweetalert',
   'apollo-link-error',
 ]
 
