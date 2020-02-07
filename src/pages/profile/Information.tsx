@@ -1,11 +1,11 @@
 import React, { useCallback } from 'react'
 import styled from 'styled-components'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { HideUntilLoaded } from 'react-animation'
 import { defaultAvatar } from '../../constants/defaults'
 import { LOGOUT } from '../../constants/auth'
 import { TUser } from '../../types/user';
-import { useUser } from './use-profile';
+import { AppStore } from '../../reducers'
 
 const InfoItem = styled.div`
   padding: .5rem 0;
@@ -31,7 +31,7 @@ const schemaCanShow: TSchemaCanShow[] = [{
 }]
 
 function Information() {
-  const user = useUser()
+  const user = useSelector<AppStore, TUser>(s => s.profile.info)
   const dispatch = useDispatch()
   const onLogout = useCallback(() => {
     dispatch({ type: LOGOUT })

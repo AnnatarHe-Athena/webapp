@@ -38,7 +38,7 @@ const MenuItem = styled.div`
 `
 
 @connect(store => ({
-  canRemove: getPermissionObj(store.getIn(['profile', 'info']).toJS()).remove
+  canRemove: getPermissionObj(store.profile.info).remove
 }), dispatch => ({
   changeCategory(id) { return dispatch(changeCategory(id)) }
 }))

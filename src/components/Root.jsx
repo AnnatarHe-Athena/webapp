@@ -1,5 +1,4 @@
 import React from 'react'
-import Immutable from 'immutable'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { withApollo } from 'react-apollo'
@@ -27,7 +26,7 @@ const BodyContainer = styled.div`
 `
 
 @connect(state => ({
-  categories: state.getIn(['app', 'categories'])
+  categories: state.app.categories
 }), dispatch => ({
   updateCategories(categories) { return dispatch(updateCategories(categories)) }
 }))
@@ -39,7 +38,7 @@ class Root extends React.Component {
     updateCategories: PropTypes.func,
     children: PropTypes.element,
     match: PropTypes.any,
-    categories: PropTypes.instanceOf(Immutable.List)
+    categories: PropTypes.any
   }
 
   componentDidMount() {
@@ -54,7 +53,7 @@ class Root extends React.Component {
     const { children, location } = this.props
     return (
       <Container>
-        <Header categories={this.props.categories.toJS()} />
+        <Header categories={this.props.categories} />
           <TransitionGroup className="transition-group">
             <CSSTransition
               key={location.key}

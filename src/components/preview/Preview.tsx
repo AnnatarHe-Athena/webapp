@@ -12,7 +12,7 @@ import PropTypes from 'prop-types'
 import {
   Tooltip,
 } from 'react-tippy'
-import { useApolloClient } from 'react-apollo-hooks'
+import { useApolloClient } from '@apollo/react-hooks'
 
 type PreviewImageProps = {
   id: string
@@ -87,7 +87,7 @@ const ExtraButton = styled.button`
 
 function PreviewImage(props: PreviewImageProps) {
   const { id, src, desc, fromID, fromURL, content, onClose } = props
-  const user = useSelector<any, any>(s => s.getIn(['profile', 'info']))
+  const user = useSelector<any, any>(s => s.profile.info)
 
   const { softRemove } = getPermissionObj(user.toJS())
 

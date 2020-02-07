@@ -64,5 +64,7 @@
       "AthenaComponents": ["./src/components"],
       "AthenaSchema": ["../../schema"]
     }
-  }
+  },
+  // "include": ["../schema"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
 }

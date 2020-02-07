@@ -11,4 +11,12 @@ export interface InfoData {
   info: InfoItem;
 }
 
+export type TCategory = {
+  __typename: string
+  count: number
+  id: string
+  name: string
+  src: number
+}
+
 

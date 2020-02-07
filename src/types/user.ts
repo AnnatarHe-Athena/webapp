@@ -1,32 +1,23 @@
+import { CellItem } from "./cell"
+
 export enum Permission {
-    OPEN = 2,
-    CLOSE = 3,
-    WAIT_FOR_DEL = 5
+  OPEN = 2,
+  CLOSE = 3,
+  WAIT_FOR_DEL = 5
 }
 
 export type TUser = {
-    avatar: string
-    bio: string
-    email: string
-    id: string
-    role: number
-    name: string
-}
-
-export type CellItem = {
-  id: number
-  src: string
-  desc: string
-  fromURL: string
-  fromID: string
-  content: string
-  img: string
-  text: string
+  avatar: string
+  bio: string
+  email: string
+  id: string
+  role: number
+  name: string
 }
 
 export type Collection = CellItem
 
 export type TUserProfileWithCollection = {
-    collections: Collection[]
-    users: TUser
+  collections?: Collection[]
+  users: TUser
 }

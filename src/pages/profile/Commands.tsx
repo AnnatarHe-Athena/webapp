@@ -1,13 +1,15 @@
 import React from 'react'
 import { Link } from '@reach/router'
-import { useUser } from './use-profile';
+import { TUser } from '../../types/user';
+import { useSelector } from 'react-redux';
+import { AppStore } from '../../reducers';
 
 type TCommandProps = {
   isMe: boolean
 }
 
 function Command(props: TCommandProps) {
-  const user = useUser()
+  const user = useSelector<AppStore, TUser>(s => s.profile.info)
   const canCreate = user.role > 90
 
   if (!props.isMe) {

@@ -3,7 +3,6 @@ const path = require('path')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 const vendors = [
-  'immutable',
   'redux-saga',
   'whatwg-fetch',
   'lodash',
@@ -18,16 +17,13 @@ const utils = [
   '@reach/router',
   'react-transition-group',
   'react-apollo',
+  '@apollo/react-hooks',
   'styled-components',
-  'apollo-client'
 ]
 
 const plugins = [
-  'apollo-cache-inmemory',
+  'apollo-boost',
   'apollo-link-error',
-  'apollo-link-context',
-  'apollo-link',
-  'graphql'
 ]
 
 const config = {

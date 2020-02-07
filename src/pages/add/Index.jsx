@@ -87,7 +87,7 @@ const premissionOptions = [{
 
 
 @connect(state => ({
-  categories: state.getIn(['app', 'categories'])
+  categories: state.app.categories
 }))
 @withApollo
 class CreateItems extends React.PureComponent {
@@ -127,7 +127,7 @@ class CreateItems extends React.PureComponent {
 
   renderTableContent() {
     const categories = this.props.categories
-    return this.state.cells.toJS().map((x, i) => {
+    return this.state.cells.map((x, i) => {
       return (
         <tr key={i}>
           {Object.keys(x).map((k, ind) => {
@@ -204,7 +204,7 @@ class CreateItems extends React.PureComponent {
   }
 
   render() {
-    const categories = this.props.categories.map(x => ({ value: ~~x.get('id'), label: x.get('name') }))
+    const categories = this.props.categories.map(x => ({ value: ~~x.id, label: x.name }))
     return (
       <PageContainer>
         <Card>
@@ -229,7 +229,7 @@ class CreateItems extends React.PureComponent {
             <Select
               name="categories"
               value={this.state.input.get('cate')}
-              options={categories.toJS()}
+              options={categories}
               placeholder="Category"
               onChange={this.metaUpdateInput('cate')}
             />

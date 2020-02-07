@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import style from './style.css'
+const style = require('./style.css')
+
 export const STORAGE_OFFSET_KEY = 'app:list:offset'
 
 function NavOffsetInput() {
-  const [offset, setOffset] = useState('')
+  const [offset, setOffset] = useState(-1)
 
   useEffect(() => {
     const val = sessionStorage.getItem(STORAGE_OFFSET_KEY)
@@ -26,7 +27,7 @@ function NavOffsetInput() {
           onChange={e => {
             const val = ~~e.target.value
             setOffset(val)
-            sessionStorage.setItem(STORAGE_OFFSET_KEY, val)
+            sessionStorage.setItem(STORAGE_OFFSET_KEY, val.toString())
           }}
         />
       </div>

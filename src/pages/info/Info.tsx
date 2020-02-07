@@ -5,10 +5,8 @@ import Card from 'AthenaComponents/card/Card'
 // @ts-ignore
 import infoQuery from 'AthenaSchema/queries/info.graphql'
 import Spinner from 'react-spinkit'
-import { useQuery } from 'react-apollo-hooks'
+import { useQuery } from '@apollo/react-hooks'
 import { InfoData } from '../../types/info'
-
-
 
 const InfoTip = styled.p`
   padding: 1rem;

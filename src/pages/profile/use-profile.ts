@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react'
 import { useStore, useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
-import { useQuery, useApolloClient } from 'react-apollo-hooks'
+import { useQuery, useApolloClient } from '@apollo/react-hooks'
 import { profileGot } from '../../actions/auth'
 import { TUser, TUserProfileWithCollection, Collection } from '../../types/user'
 // @ts-ignore
@@ -15,65 +15,75 @@ export function useMyProfile(userID: string) {
   const hasMore = useRef(true)
   const offset = useRef(STEP)
   const dispatch = useDispatch()
-  const [loading, setLoading] = useState(true)
-  const [collections, setCollections] = useState([] as Collection[])
 
   const client = useApolloClient()
 
-  useEffect(() => {
-    client.query({
-      query: fetchProfileQuery,
-      variables: {
-        id: userID,
-        from: 0,
-        size: STEP
+  const query = useQuery<TUserProfileWithCollection>(fetchProfileQuery, {
+    variables: {
+      id: userID,
+      from: 0,
+      size: STEP
+    },
+    onCompleted(result) {
+      if (result.collections?.length === 0) {
+        hasMore.current = false
       }
-    }).then(result => {
-      console.log('result', result)
-      const data = result.data as TUserProfileWithCollection
-      dispatch(profileGot(data.users))
-      setCollections(data.collections)
+      offset.current = offset.current + STEP
 
-      setLoading(false)
-    })
-  }, [])
+      console.log('on completed', dispatch, result)
+      dispatch(profileGot(result.users))
+    }
+  })
+
+  console.log('query.data', query.data)
+
+  // useEffect(() => {
+  //   client.query({
+  //     query: fetchProfileQuery,
+  //     variables: {
+  //       id: userID,
+  //       from: 0,
+  //       size: STEP
+  //     }
+  //   }).then(result => {
+  //     console.log('result', result)
+  //     const data = result.data as TUserProfileWithCollection
+  //     dispatch(profileGot(data.users))
+  //     setCollections(data.collections || [])
+  //     setLoading(false)
+  //   })
+  // }, [])
 
   const loadMore = useCallback(() => {
-    if (loading) {
-      return
-    }
     if (!hasMore.current) {
-
       toast.error('🤷‍️️ 没有更多了')
       return
     }
-    setLoading(true)
 
-    client.query({
-      query: fetchCollectionQuery,
+    query.fetchMore({
       variables: {
         id: userID,
         from: offset.current,
         size: STEP
+      },
+      updateQuery(pResult, options) { 
+        return {
+          ...pResult,
+          collections: [
+            ...pResult.collections ?? [],
+            ...options.fetchMoreResult?.collections ?? []
+          ]
+        }
       }
-    }).then(result => {
-      if (result.data.collections.length === 0) {
-        hasMore.current = false
-      }
-      setCollections(collections.concat(result.data.collections))
-      setLoading(false)
-      offset.current = offset.current + STEP
     })
-  }, [loading])
+
+
+  }, [query.data])
+
 
   return {
-    collections,
+    collections: query.data?.collections ?? [],
     loadMore,
-    loading: loading
+    loading: query.loading
   }
-}
-
-export function useUser(): TUser {
-  const store = useStore()
-  return store.getState().getIn(['profile', 'info']).toJS() as TUser
 }

@@ -1,9 +1,17 @@
-export function getPermissionObj(user: any) {
+import { TUser } from "../types/user"
+
+type PermissionObj = {
+  remove: boolean,
+  softRemove: boolean
+}
+
+
+export function getPermissionObj(user: TUser): PermissionObj {
   if (!user || !user.role) {
-    return {}
+    return { remove: false, softRemove: false }
   }
   const role = user.role
-  const permissionObj: any = {}
+  const permissionObj = {} as PermissionObj
 
   if (role > 90) {
     permissionObj.softRemove = true

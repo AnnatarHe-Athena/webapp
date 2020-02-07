@@ -1,7 +1,4 @@
-import { ApolloClient } from 'apollo-client'
-import { HttpLink } from 'apollo-link-http'
-import { ApolloLink, from } from 'apollo-link'
-import { InMemoryCache } from 'apollo-cache-inmemory'
+import { ApolloClient, InMemoryCache, ApolloLink, from, HttpLink } from 'apollo-boost'
 import { onError } from 'apollo-link-error'
 
 import { sendNotification } from '../utils/notification'
@@ -35,7 +32,7 @@ const link = new HttpLink({
 
 const apolloClient = new ApolloClient({
   link: from([authMiddleware, errorLink, link]),
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
 })
 
 export { apolloClient }

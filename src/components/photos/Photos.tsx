@@ -1,5 +1,4 @@
 import React from 'react'
-import { fromJS } from 'immutable'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 // import { graphql, gql } from 'react-apollo'
@@ -8,7 +7,7 @@ import PhotoItem from './PhotoItem'
 import { TransitionGroup } from 'react-transition-group'
 // import Footer from '../footer/Footer'
 import Button from '../button/Button'
-import { CellItem } from '../../types/user'
+import { CellItem } from "../../types/cell"
 // import fetchGirlsQuery from 'AthenaSchema/fetchGirlsQuery.graphql'
 
 const PhotoLists = styled.div`
@@ -35,7 +34,7 @@ class Photos extends React.PureComponent<PhotosProps> {
     super(props)
 
     this.state = {
-      currentCell: fromJS({})
+      currentCell: {}
     }
   }
 
@@ -66,7 +65,7 @@ class Photos extends React.PureComponent<PhotosProps> {
       return (
         <PhotoItem
           key={pic.id}
-          id={pic.id}
+          id={~~pic.id}
           src={pic.img}
           desc={pic.text}
           fromID={pic.fromID}

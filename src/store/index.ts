@@ -1,7 +1,6 @@
 import { createStore, compose, applyMiddleware } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import logger from 'redux-logger'
-import { fromJS } from 'immutable'
 import rootReducer from '../reducers/index'
 import sagas from '../sagas/index'
 
@@ -11,7 +10,7 @@ const sagaMiddleware = createSagaMiddleware()
 
 const store = createStore(
   rootReducer,
-  fromJS({}),
+  {},
   composeEnhancers(
     applyMiddleware(logger, sagaMiddleware)
   )

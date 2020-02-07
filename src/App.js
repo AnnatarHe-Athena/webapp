@@ -1,7 +1,7 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import { ApolloProvider } from 'react-apollo'
-import { ApolloProvider as ApolloHooksProvider } from 'react-apollo-hooks'
+import { ApolloProvider as ApolloHooksProvider } from '@apollo/react-hooks'
 import { hot } from 'react-hot-loader/root'
 import { Router, Location } from '@reach/router'
 import { apolloClient } from './setup/apollo'
