@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.7.0](https://github.com/AnnatarHe-Athena/webapp/compare/v2.6.0...v2.7.0) (2020-02-07)
+
+
+### Bug Fixes
+
+* **profile:** fix profile style ([a8e1600](https://github.com/AnnatarHe-Athena/webapp/commit/a8e1600))
+
+
+### Features
+
+* **preview:** add action feedback ([8fc9289](https://github.com/AnnatarHe-Athena/webapp/commit/8fc9289))
+
+
+
 ## [2.6.0](https://github.com/AnnatarHe-Athena/webapp/compare/v2.5.0...v2.6.0) (2020-02-07)
 
 
