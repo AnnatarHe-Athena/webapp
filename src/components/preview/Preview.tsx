@@ -112,7 +112,7 @@ function PreviewImage(props: PreviewImageProps) {
   }, [id])
   return (
     <div>
-      <Extra className='fixed flex top-0 left-0 right-0 items-center justify-around p-4 box-border'>
+      <Extra className='fixed flex top-0 left-0 right-0 items-center justify-around p-4 box-border z-10'>
         {leftUserInfo}
         {middleTitle}
         <div>
