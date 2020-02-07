@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.6.0](https://github.com/AnnatarHe-Athena/webapp/compare/v2.5.0...v2.6.0) (2020-02-07)
+
+
+### Bug Fixes
+
+* **dialog:** fix dialog close event emiter ([ce397e6](https://github.com/AnnatarHe-Athena/webapp/commit/ce397e6))
+
+
+### Features
+
+* **package:** upgrade packages version ([1f6e0c4](https://github.com/AnnatarHe-Athena/webapp/commit/1f6e0c4))
+* **style:** upgrade some styles ([836252c](https://github.com/AnnatarHe-Athena/webapp/commit/836252c))
+* **test:** setup jest ([c0e41bf](https://github.com/AnnatarHe-Athena/webapp/commit/c0e41bf))
+* **ts:** migrate some components to tsx ([0ca6501](https://github.com/AnnatarHe-Athena/webapp/commit/0ca6501))
+
+
+### Tests
+
+* **app:** 新增测试 ([4c8d2ba](https://github.com/AnnatarHe-Athena/webapp/commit/4c8d2ba))
+
+
+
 ## [2.5.0](https://github.com/AnnatarHe-Athena/webapp/compare/v2.4.1...v2.5.0) (2019-10-20)
 
 
