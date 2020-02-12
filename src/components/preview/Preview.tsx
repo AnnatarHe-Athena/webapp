@@ -100,7 +100,7 @@ function PreviewImage(props: PreviewImageProps) {
         cells: [~~id]
       }
     }).then(() => {
-      toast.done('已收藏')
+      toast.info('已收藏')
     })
   }, [id])
   const handleDelete = useCallback(() => {
@@ -111,7 +111,7 @@ function PreviewImage(props: PreviewImageProps) {
         toRemove: false
       }
     }).then(() => {
-      toast.done('已删除')
+      toast.info('已删除')
       props.onClose()
       // TODO: delete from cells locally
     })
