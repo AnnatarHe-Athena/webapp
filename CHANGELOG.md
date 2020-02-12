@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.7.1](https://github.com/AnnatarHe-Athena/webapp/compare/v2.7.0...v2.7.1) (2020-02-12)
+
+
+### Bug Fixes
+
+* **build:** add toastify css ([d2fb36a](https://github.com/AnnatarHe-Athena/webapp/commit/d2fb36a))
+* **preview:** fix toast in preview action ([bf0a484](https://github.com/AnnatarHe-Athena/webapp/commit/bf0a484))
+
+
+
 ## [2.7.0](https://github.com/AnnatarHe-Athena/webapp/compare/v2.6.0...v2.7.0) (2020-02-07)
 
 
