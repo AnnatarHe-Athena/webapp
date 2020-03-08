@@ -4,7 +4,7 @@ import Index from '../pages/index/Index'
 import Welcome from '../pages/welcome/Welcome'
 import Spinner from 'react-spinkit'
 
-function asyncLoadComponent(path) {
+function asyncLoadComponent(path: string) {
   return Loadable({
     loader: () => import('../pages/' + path),
     loading: () => (
