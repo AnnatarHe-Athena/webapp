@@ -1,10 +1,8 @@
 import React from 'react'
 import { Link } from '@reach/router'
 import styled from 'styled-components'
-import PropTypes from 'prop-types'
-import { randomCategory } from '../constants/defaults'
 import { maskCardStyles } from '../styles/variables'
-import NavOffsetInput from './nav-offset-input/index';
+import NavOffsetInput from './nav-offset-input/index'
 
 const NavContainer = styled.nav`
   ul {
@@ -36,7 +34,15 @@ const NavContainer = styled.nav`
   }
 `
 
-const Nav = ({ categories, onSelected }) => {
+type NavProps = {
+  categories: {
+    id: string,
+    name: string
+  }[],
+  onSelected: () => void
+}
+
+function Nav ({ categories, onSelected }: NavProps) {
   const navs = categories.map(c => {
     if (__DEV__) {
       c.name = "hello." + c.id
@@ -56,10 +62,6 @@ const Nav = ({ categories, onSelected }) => {
       </div>
     </NavContainer>
   )
-}
-
-Nav.propTypes = {
-  categories: PropTypes.arrayOf(PropTypes.any)
 }
 
 export default Nav

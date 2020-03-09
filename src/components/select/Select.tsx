@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import PropTypes from 'prop-types'
 
 const SelectStyleContainer = styled.div`
   display: flex;
@@ -16,7 +15,6 @@ const SelectStyleContainer = styled.div`
     padding: .5rem;
   }
 `
-
 /*
   <Select
     name="Premission"
@@ -27,11 +25,18 @@ const SelectStyleContainer = styled.div`
   />
 */
 
-class Select extends React.PureComponent {
-  constructor(props) {
-    super(props)
-  }
+type SelectProps = {
+  options: {
+    value: string,
+    label: string
+  }[],
+  value: string
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
+  placeholder?: string
+  name: string
+}
 
+class Select extends React.PureComponent<SelectProps, any> {
   renderOptions() {
     return this.props.options.map((x, i) => {
       return (
@@ -42,7 +47,7 @@ class Select extends React.PureComponent {
     })
   }
 
-    handleChange = e => {
+    handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
       this.props.onChange(e)
     }
 
@@ -57,17 +62,6 @@ class Select extends React.PureComponent {
         </SelectStyleContainer>
       )
     }
-}
-
-Select.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.shape({
-    value: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired
-  })),
-  value: PropTypes.number.isRequired,
-  onChange: PropTypes.func.isRequired,
-  placeholder: PropTypes.string,
-  name: PropTypes.string
 }
 
 export default Select
