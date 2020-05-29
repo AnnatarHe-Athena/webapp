@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.7.2](https://github.com/AnnatarHe-Athena/webapp/compare/v2.7.1...v2.7.2) (2020-05-29)
+
+
+### Features
+
+* **deps:** update deps ([c612549](https://github.com/AnnatarHe-Athena/webapp/commit/c612549dba2bfd593fcc512b650f4c47bbd81870))
+
+
+### Bug Fixes
+
+* **image:** try to fix weibo images ([e51d754](https://github.com/AnnatarHe-Athena/webapp/commit/e51d754da4757af690bffba6a7e8e8936c2129ce))
+
 ### [2.7.1](https://github.com/AnnatarHe-Athena/webapp/compare/v2.7.0...v2.7.1) (2020-02-12)
 
 
