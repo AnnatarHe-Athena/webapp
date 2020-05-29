@@ -12,11 +12,6 @@ import { TUser } from '../../types/user'
 const fetchGirlsQuery = require('../../../../schema/fetchGirlsQuery.graphql')
 
 type PhotosProps = {
-  loading: boolean
-  categories: any
-  girls: CellItem[]
-  loadMore: () => void
-  loadNewCategories: () => void
   categoryID: number
 }
 
