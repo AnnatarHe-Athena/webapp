@@ -51,6 +51,8 @@ class PhotoItem extends React.PureComponent<PhotoItemProps,any> {
             src={bmiddleSrc}
             alt={desc}
             onClick={() => { this.setState({ visible: true })}}
+            crossOrigin="anonymous"
+            referrerPolicy={bmiddleSrc?.startsWith('https://cdn.annatarhe.com') ? 'origin' : 'no-referrer'}
           />
         </HideUntilLoaded>
         {/*<span>{desc}</span>*/}

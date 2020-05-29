@@ -130,7 +130,12 @@ function PreviewImage(props: PreviewImageProps) {
         <HideUntilLoaded imageToLoad={bigSrc}>
           <picture onClick={onClose}>
             <source srcSet={bigSrc} />
-            <img src={bigSrc} alt={desc} />
+            <img
+              src={bigSrc}
+              alt={desc}
+              crossOrigin="anonymous"
+              referrerPolicy={bigSrc?.startsWith('https://cdn.annatarhe.com') ? 'origin' : 'no-referrer'}
+            />
             <figcaption>{content}</figcaption>
           </picture>
         </HideUntilLoaded>
