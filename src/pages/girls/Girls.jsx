@@ -20,7 +20,7 @@ const gqlProps = {
         return fetchMore({
           query: fetchGirlsQuery,
           variables: {
-            from: variables.from, take: variables.take, offset: girls.length,
+            from: ~~variables.from, take: variables.take, offset: girls.length,
             hideOnly: false
           },
           updateQuery: (pResult, { fetchMoreResult }) => {
@@ -34,11 +34,11 @@ const gqlProps = {
         return fetchMore({
           query: fetchGirlsQuery,
           variables: {
-            from , take: variables.take, offset: 0
+            from: ~~from, take: variables.take, offset: 0
           },
           updateQuery(pResult, { fetchMoreResult }) {
             return {
-              variables: { ...variables, from, offset: 20 },
+              variables: { ...variables, from: ~~from, offset: 20 },
               girls: fetchMoreResult.girls
             }
           }
@@ -87,6 +87,5 @@ Girls.propTypes = {
   loadMore: PropTypes.func,
   loadNewCategories: PropTypes.func
 }
-
 
 export default Girls

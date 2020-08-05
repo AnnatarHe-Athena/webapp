@@ -20,7 +20,7 @@ function Photos(props: PhotosProps) {
 
   const query = useQuery<TCellsResponse>(fetchGirlsQuery, {
     variables: {
-      from: props.categoryID || 1, take: 17,
+      from: ~~props.categoryID || 1, take: 17,
       hideOnly: false,
       last: (1 << 30).toString()
     },
@@ -39,7 +39,7 @@ function Photos(props: PhotosProps) {
     }
     query.fetchMore({
       variables: {
-        from: props.categoryID || 1, take: 20,
+        from: ~~props.categoryID || 1, take: 20,
         hideOnly: false,
         last: lastId
       },
