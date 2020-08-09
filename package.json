@@ -18,7 +18,7 @@
     "graphql": "^15.0.0",
     "immutable": "^4.0.0-rc.12",
     "intersection-observer": "^0.10.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "normalize.styl": "^3.0.3",
     "react": "^16.13.1",
     "react-animation": "^1.2.2",
