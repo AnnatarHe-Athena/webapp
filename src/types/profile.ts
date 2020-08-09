@@ -4,18 +4,16 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: info
+// GraphQL fragment: profile
 // ====================================================
 
-export interface info_info {
-  __typename: "Info";
-  userCount: number;
-  cellCount: number;
-  fee: string;
+export interface profile {
+  __typename: "User";
+  id: string;
   email: string;
-  copyright: string;
-}
-
-export interface info {
-  info: info_info;
+  name: string;
+  pwd: string;
+  avatar: string;
+  bio: string;
+  role: number;
 }

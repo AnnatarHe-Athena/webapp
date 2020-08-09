@@ -4,18 +4,16 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: info
+// GraphQL fragment: fetchGirls
 // ====================================================
 
-export interface info_info {
-  __typename: "Info";
-  userCount: number;
-  cellCount: number;
-  fee: string;
-  email: string;
-  copyright: string;
-}
-
-export interface info {
-  info: info_info;
+export interface fetchGirls {
+  __typename: "Girl";
+  id: string;
+  img: string;
+  content: string;
+  text: string;
+  permission: number;
+  fromID: string;
+  fromURL: string;
 }

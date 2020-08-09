@@ -6,7 +6,8 @@ import Card from 'AthenaComponents/card/Card'
 import infoQuery from 'AthenaSchema/queries/info.graphql'
 import Spinner from 'react-spinkit'
 import { useQuery } from '@apollo/react-hooks'
-import { InfoData } from '../../types/info'
+import { info } from '../../types/info'
+// import { InfoData } from '../../types/info'
 
 const InfoTip = styled.p`
   padding: 1rem;
@@ -17,7 +18,7 @@ const InfoTip = styled.p`
 
 function InfoPage() {
 
-  const { data, loading } = useQuery<InfoData>(infoQuery)
+  const { data, loading } = useQuery<info>(infoQuery)
 
   if (loading || !data) {
     return (
