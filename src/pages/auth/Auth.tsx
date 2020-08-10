@@ -4,7 +4,7 @@ import { connect, useDispatch } from 'react-redux'
 import { withApollo, useApolloClient, useLazyQuery } from 'react-apollo'
 import { useFormik, ErrorMessage } from 'formik'
 import PropTypes from 'prop-types'
-import Yup from 'yup'
+import * as Yup from 'yup'
 import fp from 'fingerprintjs2'
 import { syncAuthStatus } from '../../actions/auth'
 import { red } from '../../styles/variables'
@@ -20,6 +20,9 @@ import Alert from '../../components/alert'
 import { auth_auth, auth, authVariables } from '../../types/auth'
 import { Device } from '../../types/globalTypes'
 import { useTitle } from '../../hooks/title'
+import { toast } from 'react-toastify'
+import { syncToken } from '../../sagas/auth'
+import { initialVariables } from '../../types/initial'
 
 const styles = require('./auth.css')
 
@@ -89,22 +92,36 @@ function AuthPage() {
     },
     validationSchema: signupSchema,
     validateOnMount: false,
-    onSubmit: async (value) => {
+    onSubmit: async (values) => {
+      if (values.email === '' || values.pwd === '' || Object.keys(f.errors).length > 0) {
+        toast.error('data required')
+        return
+      }
+
       await doAuth({
         variables: {
-          email: f.values.email,
-          password: f.values.pwd,
+          email: values.email,
+          password: values.pwd,
           device: device || ({} as Device)
         }
       })
 
-      return
+      return true
     }
   })
 
   useTitle('Auth')
 
   const [doAuth, { data }] = useLazyQuery<auth, authVariables>(authGraphql)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (!data) {
+      return
+    }
+    const { token, id } = data.auth
+    dispatch(syncAuthStatus(token, id))
+  }, [data])
 
   return (
     <PageContainer>
@@ -127,8 +144,12 @@ function AuthPage() {
               onChange={f.handleChange}
               placeholder="Email"
             />
+            {
+              f.errors.email && (
+                <span className='bg-red-400 w-full block p-2 with-fade-in'>{f.errors.email}</span>
+              )
+            }
           </div>
-          <ErrorMessage name='email' />
           <div className='w-full mb-2'>
             <input
               className='p-2 w-full focus:outline-none rounded-sm'
@@ -138,8 +159,12 @@ function AuthPage() {
               onChange={f.handleChange}
               placeholder="Password"
             />
+            {
+              f.errors.pwd && (
+                <span className='bg-red-400 w-full block p-2 with-fade-in'>{f.errors.pwd}</span>
+              )
+            }
           </div>
-          {/* <ErrorMessage name='pwd' /> */}
           <div>
             <button
               type='submit'

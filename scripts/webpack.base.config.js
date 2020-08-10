@@ -50,7 +50,7 @@ const config = {
       ],
       use: [
         MiniCssExtractPlugin.loader,
-        'css-loader?modules=true&localsConvention=camelCase&sourceMap=true',
+        'css-loader?modules=true&sourceMap=true',
         'postcss-loader'
       ]
     }, {
@@ -71,23 +71,23 @@ const config = {
       exclude: /node_modules/,
     }, {
       test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
-      exclude: /node_modules/,
+      // exclude: /node_modules/,
       use: [{ loader: 'url-loader', options: { limit: 10000, mimetype: 'application/font-woff' } }]
     }, {
       test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
-      exclude: /node_modules/,
+      // exclude: /node_modules/,
       use: [{ loader: 'url-loader', options: { limit: 10000, mimetype: 'application/font-woff' } }]
     }, {
       test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-      exclude: /node_modules/,
+      // exclude: /node_modules/,
       use: [{ loader: 'url-loader', options: { limit: 10000, mimetype: 'application/octet-stream' } }]
     }, {
       test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-      exclude: /node_modules/,
+      // exclude: /node_modules/,
       use: [{ loader: 'file-loader' }]
     }, {
       test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-      exclude: /node_modules/,
+      // exclude: /node_modules/,
       use: [{ loader: 'url-loader', options: { limit: 10000, mimetype: 'image/svg+xml' } }]
     }, {
       test: /\.(graphql|gql)$/,
