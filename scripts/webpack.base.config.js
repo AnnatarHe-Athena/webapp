@@ -25,15 +25,16 @@ const config = {
   module: {
     rules: [{
       test: /.jsx?$/,
-      exclude: [path.resolve(__dirname, '..', 'node_modules')],
+      exclude: /node_modules/,
       use: ['babel-loader']
     }, {
       test: /.tsx?$/,
-      exclude: [path.resolve(__dirname, '..', 'node_modules')],
+      exclude: /node_modules/,
       use: ['ts-loader']
     }, {
       test: /\.txt$/i,
       use: 'raw-loader',
+      exclude: /node_modules/,
     },
     {
       test: /.styl$/,
@@ -66,21 +67,27 @@ const config = {
       ]
     }, {
       test: /\.(png|jpg|jpeg|gif)$/,
-      use: [{ loader: 'url-loader', options: { limit: 500, name: '[name]-[hash].[ext]' } }]
+      use: [{ loader: 'url-loader', options: { limit: 500, name: '[name]-[hash].[ext]' } }],
+      exclude: /node_modules/,
     }, {
       test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
+      exclude: /node_modules/,
       use: [{ loader: 'url-loader', options: { limit: 10000, mimetype: 'application/font-woff' } }]
     }, {
       test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
+      exclude: /node_modules/,
       use: [{ loader: 'url-loader', options: { limit: 10000, mimetype: 'application/font-woff' } }]
     }, {
       test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+      exclude: /node_modules/,
       use: [{ loader: 'url-loader', options: { limit: 10000, mimetype: 'application/octet-stream' } }]
     }, {
       test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+      exclude: /node_modules/,
       use: [{ loader: 'file-loader' }]
     }, {
       test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+      exclude: /node_modules/,
       use: [{ loader: 'url-loader', options: { limit: 10000, mimetype: 'image/svg+xml' } }]
     }, {
       test: /\.(graphql|gql)$/,

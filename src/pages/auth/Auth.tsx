@@ -19,6 +19,7 @@ import Status from './Status'
 import Alert from '../../components/alert'
 import { auth_auth, auth, authVariables } from '../../types/auth'
 import { Device } from '../../types/globalTypes'
+import { useTitle } from '../../hooks/title'
 
 const styles = require('./auth.css')
 
@@ -69,15 +70,15 @@ function useDevice() {
 }
 
 const signupSchema = Yup.object().shape({
-   email: Yup.string()
-     .min(6, 'Too Short!')
-     .max(50, 'Too Long!')
-     .required('Required'),
-   pwd: Yup.string()
-     .min(6, 'Too Short!')
-     .max(50, 'Too Long!')
-     .required('Required'),
- });
+  email: Yup.string()
+    .min(6, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
+  pwd: Yup.string()
+    .min(6, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
+});
 
 function AuthPage() {
   const device = useDevice()
@@ -100,23 +101,26 @@ function AuthPage() {
       return
     }
   })
+
+  useTitle('Auth')
+
   const [doAuth, { data }] = useLazyQuery<auth, authVariables>(authGraphql)
 
   return (
     <PageContainer>
       <div
-       className='mt-24 p-4 rounded shadow w-1/2 lg:w-1/3 lg:mt-32'
-       style={{
-         backgroundColor: 'rgba(255,255,255, .7)',
-         backdropFilter: 'blur(10px)'
-       }}
-       >
+        className='mt-24 p-4 rounded shadow w-1/2 lg:w-1/3 lg:mt-32'
+        style={{
+          backgroundColor: 'rgba(255,255,255, .7)',
+          backdropFilter: 'blur(10px)'
+        }}
+      >
         <h2 className='text-lg text-center'>🔑 Auth</h2>
         <Separator />
         <form onSubmit={f.handleSubmit}>
           <div className='w-full mb-2'>
             <input
-            className='p-2 w-full focus:outline-none rounded-sm'
+              className='p-2 w-full focus:outline-none rounded-sm'
               value={f.values.email}
               name='email'
               type="email"
@@ -124,10 +128,10 @@ function AuthPage() {
               placeholder="Email"
             />
           </div>
-          {/* <ErrorMessage name='email' /> */}
+          <ErrorMessage name='email' />
           <div className='w-full mb-2'>
             <input
-            className='p-2 w-full focus:outline-none rounded-sm'
+              className='p-2 w-full focus:outline-none rounded-sm'
               value={f.values.pwd}
               type="password"
               name='pwd'
