@@ -7,7 +7,6 @@ import { TUser, TUserProfileWithCollection, Collection } from '../../types/user'
 // @ts-ignore
 import fetchProfileQuery from 'AthenaSchema/queries/profileWithCollection.graphql'
 // @ts-ignore
-import fetchCollectionQuery from 'AthenaSchema/queries/collections.graphql'
 
 const STEP = 20
 
@@ -16,8 +15,6 @@ export function useMyProfile(userID: string) {
   const offset = useRef(STEP)
   const dispatch = useDispatch()
 
-  const client = useApolloClient()
-
   const query = useQuery<TUserProfileWithCollection>(fetchProfileQuery, {
     variables: {
       id: userID,
@@ -25,34 +22,18 @@ export function useMyProfile(userID: string) {
       size: STEP
     },
     onCompleted(result) {
+      dispatch(profileGot(result.users))
+      if (!result.collections) {
+        hasMore.current = false
+        return
+      }
       if (result.collections?.length === 0) {
         hasMore.current = false
+        return
       }
       offset.current = offset.current + STEP
-
-      console.log('on completed', dispatch, result)
-      dispatch(profileGot(result.users))
     }
   })
-
-  console.log('query.data', query.data)
-
-  // useEffect(() => {
-  //   client.query({
-  //     query: fetchProfileQuery,
-  //     variables: {
-  //       id: userID,
-  //       from: 0,
-  //       size: STEP
-  //     }
-  //   }).then(result => {
-  //     console.log('result', result)
-  //     const data = result.data as TUserProfileWithCollection
-  //     dispatch(profileGot(data.users))
-  //     setCollections(data.collections || [])
-  //     setLoading(false)
-  //   })
-  // }, [])
 
   const loadMore = useCallback(() => {
     if (!hasMore.current) {

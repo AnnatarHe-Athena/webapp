@@ -1,7 +1,5 @@
 import { ApolloClient, InMemoryCache, ApolloLink, from, HttpLink } from 'apollo-boost'
 import { onError } from 'apollo-link-error'
-
-import { sendNotification } from '../utils/notification'
 import { toast } from 'react-toastify'
 
 const prefix = process.env.NODE_ENV === 'production' ? 'https://api.dbg.annatarhe.com' : ''

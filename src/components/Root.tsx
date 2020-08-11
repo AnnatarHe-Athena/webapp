@@ -41,7 +41,6 @@ function Root(props: any) {
     if (!q.data) {
       return
     }
-    console.log(q.data)
     dispatch(updateCategories(q.data.categories))
   }, [q.data])
 

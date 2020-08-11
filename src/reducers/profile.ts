@@ -8,7 +8,14 @@ export type ProfileStoreType = {
 }
 
 const init: ProfileStoreType = {
-  info: {} as TUser
+  info: {
+    id: '5',
+    email: 'i@annatarhe.com',
+    avatar: '',
+    bio: '',
+    role: 0,
+    name: ''
+  } as TUser
 }
 
 function profileReducer(state: ProfileStoreType = init, action: any) {

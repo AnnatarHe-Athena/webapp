@@ -8,7 +8,6 @@ function asyncLoadComponent(path: string) {
   return Loadable({
     loader: () => import('../pages/' + path),
     loading: (props) => {
-      console.error(props.error)
       return (
       <div className='flex items-center justify-center h-full w-full'>
         <Spinner name='circle' />

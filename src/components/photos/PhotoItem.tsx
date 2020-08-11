@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import Preview from '../preview/Preview'
-import { getRealSrcLink } from '../../utils/index'
+import { getRealSrcLink, getAESKeyFromUserEmail, decryptData, getAESIVFromUserEmail } from '../../utils/index'
 import { HideUntilLoaded } from 'react-animation'
+import { useSelector } from 'react-redux'
+import { AppStore } from '../../reducers'
 
 const Container = styled.picture`
   flex-grow: 1;
@@ -29,37 +31,60 @@ type PhotoItemProps = {
   forceDeleteable: boolean
 }
 
-class PhotoItem extends React.PureComponent<PhotoItemProps,any> {
-  state = {
-    visible: false
+function useImageDestLink(src: string) {
+  const email = useSelector<AppStore, string | undefined>(s => s.profile.info.email)
+
+  if (!email) {
+    return 'https://picsum.photos/200/300'
   }
 
-  togglePreview = () => {
-    this.setState((ps: any) => ({ visible: !ps.visible }))
-  }
+  const key = getAESKeyFromUserEmail(email)
+  const iv = getAESIVFromUserEmail(email)
+  
+  return decryptData(key, src)
+}
 
-  render() {
-    const { id, src, desc, fromID, fromURL, content, forceDeleteable } = this.props
-    // TODO: forceDeleteable 真正删除文件，从七牛里面删掉
+function PhotoItem(props: PhotoItemProps) {
+  const {
+    id,
+    src,
+    desc,
+    fromID,
+    fromURL,
+    content
+  } = props
 
-    const bmiddleSrc = getRealSrcLink(src)
-    return (
-      <Container>
-        <HideUntilLoaded imageToLoad={bmiddleSrc}>
-          <source srcSet={bmiddleSrc} onClick={() => { this.setState({ visible: true })}} />
-          <img
-            src={bmiddleSrc}
-            alt={desc}
-            onClick={() => { this.setState({ visible: true })}}
-            crossOrigin="anonymous"
-            referrerPolicy={bmiddleSrc?.startsWith('https://cdn.annatarhe.com') ? 'origin' : 'no-referrer'}
-          />
-        </HideUntilLoaded>
-        {/*<span>{desc}</span>*/}
-        <Preview data={{ id, src, desc, fromID, fromURL, content }} visible={this.state.visible} onClose={this.togglePreview} />
-      </Container>
-    )
-  }
+  const [vis, setVis] = useState(false)
+
+  console.log("src", src)
+
+  const basedLink = useImageDestLink(src)
+
+  const bmiddleSrc = getRealSrcLink(atob(basedLink.trim()))
+
+  return (
+    <Container>
+      <HideUntilLoaded imageToLoad={bmiddleSrc}>
+        <source
+          srcSet={bmiddleSrc}
+          onClick={() => setVis(true)}
+        />
+        <img
+          src={bmiddleSrc}
+          alt={desc}
+          onClick={() => setVis(true)}
+          crossOrigin="anonymous"
+          referrerPolicy={bmiddleSrc?.startsWith('https://cdn.annatarhe.com') ? 'origin' : 'no-referrer'}
+        />
+      </HideUntilLoaded>
+      {/*<span>{desc}</span>*/}
+      <Preview
+        data={{ id, src, desc, fromID, fromURL, content }}
+        visible={vis}
+        onClose={() => setVis(false)}
+      />
+    </Container>
+  )
 }
 
 export default PhotoItem

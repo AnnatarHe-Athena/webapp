@@ -1,14 +1,56 @@
+import aesjs from 'aes-js'
+
+const AES_BLOCK_SIZE = 16
+function base64ToHex(str: string) {
+  const raw = atob(str);
+  let result = '';
+  for (let i = 0; i < raw.length; i++) {
+    const hex = raw.charCodeAt(i).toString(16);
+    result += (hex.length === 2 ? hex : '0' + hex);
+  }
+  return result.toUpperCase();
+}
+
+export function getAESIVFromUserEmail(email: string): Uint8Array {
+  const result = new TextEncoder().encode(email.repeat(AES_BLOCK_SIZE))
+  return result.slice(0, AES_BLOCK_SIZE)
+}
+
+export function getAESKeyFromUserEmail(email: string): Uint8Array {
+  let result = ""
+
+  for (let i = 0; i < 32; i++) {
+    if (result.length > 32) {
+      break
+    }
+
+    result = result + "|||" + email
+  }
+
+  return (new TextEncoder().encode(result)).slice(0, 32)
+}
+
+export function decryptData(key: Uint8Array, encryptedHex: string): string {
+  const bb = base64ToHex(encryptedHex)
+  const encryptedBytes = aesjs.utils.hex.toBytes(bb)
+  const iv = encryptedBytes.slice(0, 16)
+
+  const aesCfb = new aesjs.ModeOfOperation.cfb(key, iv, AES_BLOCK_SIZE)
+  const t = encryptedBytes.slice(16)
+  const decryptedBytes = aesCfb.decrypt(t)
+  const decryptedText = aesjs.utils.utf8.fromBytes(decryptedBytes)
+  return decryptedText.trim()
+}
 
 export function getRealSrcLink(url: string, type = 'bmiddle') {
-  if (__DEV__) {
-    return 'https://picsum.photos/400/500'
-  }
+  // if (__DEV__) {
+  //   return 'https://picsum.photos/400/500'
+  // }
 
   if (!url) {
     throw new Error('must provide a url')
-    return
   }
-  url = window.atob(url)
+  // url = window.atob(url)
   if (url.indexOf('http') === 0) {
     return url
   }
@@ -16,12 +58,12 @@ export function getRealSrcLink(url: string, type = 'bmiddle') {
     const qnBaseURL = url.replace('qn://', 'https://cdn.annatarhe.com/')
     let resultUrl = ''
     switch (type) {
-    case 'bmiddle':
-      resultUrl = qnBaseURL + '-thumbnails'
-      break
-    case 'large':
-      resultUrl = qnBaseURL + '-copyrightDB'
-      break
+      case 'bmiddle':
+        resultUrl = qnBaseURL + '-thumbnails'
+        break
+      case 'large':
+        resultUrl = qnBaseURL + '-copyrightDB'
+        break
     }
 
     if (isWebpSupported() && !url.includes('.gif')) {
@@ -71,9 +113,9 @@ export function isWebpSupported() {
     return webpSupported
   }
   webpSupported = !![].map &&
-  document
-    .createElement('canvas')
-    .toDataURL('image/webp')
-    .indexOf('data:image/webp') === 0
+    document
+      .createElement('canvas')
+      .toDataURL('image/webp')
+      .indexOf('data:image/webp') === 0
   return webpSupported
 }
