@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.8.0](https://github.com/AnnatarHe-Athena/webapp/compare/v2.7.2...v2.8.0) (2020-08-13)
+
+
+### Features
+
+* **aes:** add aes decryption ([a9997e5](https://github.com/AnnatarHe-Athena/webapp/commit/a9997e5708761ef650ce5a72f29ffcc3f0e97f3b))
+* **deps:** update deps ([51d71a4](https://github.com/AnnatarHe-Athena/webapp/commit/51d71a4717db59b7057b61c834c825f602d8dd14))
+
+
+### Bug Fixes
+
+* **auth:** fixing auth page ([6636b6b](https://github.com/AnnatarHe-Athena/webapp/commit/6636b6baf0bdc324034a4df18628dd1dd4116ad0))
+* **auth:** remove debug config ([936b807](https://github.com/AnnatarHe-Athena/webapp/commit/936b8072df1d5941c615a3bd989843651793e867))
+* **css:** purge css ([5cceb14](https://github.com/AnnatarHe-Athena/webapp/commit/5cceb14218fd1d5aaf7c06cad4abb84651de5784))
+* **index:** fix index page props ([5b9c38b](https://github.com/AnnatarHe-Athena/webapp/commit/5b9c38be759708bfb98d34a1d0d369263c0cb8a5))
+* **query:** fix query types ([6854377](https://github.com/AnnatarHe-Athena/webapp/commit/68543777ef518797ef63937ae7c8b30b59659fc5))
+
 ### [2.7.2](https://github.com/AnnatarHe-Athena/webapp/compare/v2.7.1...v2.7.2) (2020-05-29)
 
 
