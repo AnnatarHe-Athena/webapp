@@ -11,6 +11,9 @@ import { useApolloClient } from '@apollo/react-hooks'
 import { AppStore } from '../../reducers'
 import { TUser } from '../../types/user'
 import { toast } from 'react-toastify'
+import { useImageDestLink } from '../../hooks/useImageDestLink'
+import { removeGirl, removeGirlVariables } from '../../types/removeGirl'
+import { addToCollection, addToCollectionVariables } from '../../types/addToCollection'
 
 type PreviewImageProps = {
   id: string
@@ -90,24 +93,26 @@ function PreviewImage(props: PreviewImageProps) {
     </div>
   )
 
-  const bigSrc = getRealSrcLink(src, 'large')
+  const basedLink = useImageDestLink(src)
+  const bigSrc = getRealSrcLink(atob(basedLink))
+  // const bigSrc = getRealSrcLink(src, 'large')
   const client = useApolloClient()
 
   const handleCollect = useCallback(() => {
-    client.mutate({
+    client.mutate<addToCollection, addToCollectionVariables>({
       mutation: addCollectionMutation,
       variables: {
-        cells: [~~id]
+        cells: [id.toString()]
       }
     }).then(() => {
       toast.info('已收藏')
     })
   }, [id])
   const handleDelete = useCallback(() => {
-    client.mutate({
+    client.mutate<removeGirl, removeGirlVariables>({
       mutation: removeGirlCellMutation,
       variables: {
-        cells: [~~id],
+        cells: [id.toString()],
         toRemove: false
       }
     }).then(() => {

@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import Preview from '../preview/Preview'
-import { getRealSrcLink, getAESKeyFromUserEmail, decryptData, getAESIVFromUserEmail } from '../../utils/index'
+import { getRealSrcLink, getAESIVFromUserEmail } from '../../utils/index'
 import { HideUntilLoaded } from 'react-animation'
-import { useSelector } from 'react-redux'
-import { AppStore } from '../../reducers'
+import { useImageDestLink } from '../../hooks/useImageDestLink'
 
 const Container = styled.picture`
   flex-grow: 1;
@@ -31,19 +30,6 @@ type PhotoItemProps = {
   forceDeleteable: boolean
 }
 
-function useImageDestLink(src: string) {
-  const email = useSelector<AppStore, string | undefined>(s => s.profile.info.email)
-
-  if (!email) {
-    return btoa('https://picsum.photos/200/300')
-  }
-
-  const key = getAESKeyFromUserEmail(email)
-  const iv = getAESIVFromUserEmail(email)
-  
-  return decryptData(key, src)
-}
-
 function PhotoItem(props: PhotoItemProps) {
   const {
     id,
@@ -56,7 +42,7 @@ function PhotoItem(props: PhotoItemProps) {
 
   const [vis, setVis] = useState(false)
   const basedLink = useImageDestLink(src)
-  const bmiddleSrc = getRealSrcLink(atob(basedLink.trim()))
+  const bmiddleSrc = getRealSrcLink(atob(basedLink))
 
   return (
     <Container>
