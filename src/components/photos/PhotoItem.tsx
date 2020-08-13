@@ -35,7 +35,7 @@ function useImageDestLink(src: string) {
   const email = useSelector<AppStore, string | undefined>(s => s.profile.info.email)
 
   if (!email) {
-    return 'https://picsum.photos/200/300'
+    return btoa('https://picsum.photos/200/300')
   }
 
   const key = getAESKeyFromUserEmail(email)
@@ -55,11 +55,7 @@ function PhotoItem(props: PhotoItemProps) {
   } = props
 
   const [vis, setVis] = useState(false)
-
-  console.log("src", src)
-
   const basedLink = useImageDestLink(src)
-
   const bmiddleSrc = getRealSrcLink(atob(basedLink.trim()))
 
   return (

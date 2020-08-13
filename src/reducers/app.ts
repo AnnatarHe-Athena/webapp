@@ -18,7 +18,7 @@ export type AppStoreType = {
 const init: AppStoreType = {
   categories: [],
   categoryID: -1,
-  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUiLCJkZXZpY2VJZCI6IjEyNC4wNDM0NDg4NDM5NTY4NyIsImV4cCI6MTYxMjcwODc3MiwiaXNzIjoiZGV4cCJ9.MX65BwavUX8T4x1g3EFtgKtBcD9QPZ-ql2IeBEOwi3M'
+  token: ''
 }
 
 const reducer = (state: AppStoreType = init, action: any) => {

@@ -9,8 +9,8 @@ export type ProfileStoreType = {
 
 const init: ProfileStoreType = {
   info: {
-    id: '5',
-    email: 'i@annatarhe.com',
+    id: '-1',
+    email: '',
     avatar: '',
     bio: '',
     role: 0,
