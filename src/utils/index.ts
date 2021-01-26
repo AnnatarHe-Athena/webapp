@@ -60,10 +60,10 @@ export function getRealSrcLink(url: string, type = 'bmiddle') {
     switch (type) {
       case 'bmiddle':
         resultUrl = qnBaseURL + '-thumbnails'
-        break
+      break
       case 'large':
         resultUrl = qnBaseURL + '-copyrightDB'
-        break
+      break
     }
 
     if (isWebpSupported() && !url.includes('.gif')) {
@@ -71,7 +71,8 @@ export function getRealSrcLink(url: string, type = 'bmiddle') {
     }
     return resultUrl
   }
-  return `https://wx3.sinaimg.cn/${type}/${url}`
+  // return `https://wx3.sinaimg.cn/${type}/${url}`
+  return `https://sina-img.annatarhe.cn/${type}/${url}`
 }
 
 const SNSToProfileURLMap: any = {
