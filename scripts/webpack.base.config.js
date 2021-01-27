@@ -164,7 +164,7 @@ const config = {
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.styl'],
     alias: {
-      AthenaSchema: path.resolve(__dirname, '..', '..', 'schema'),
+      AthenaSchema: path.resolve(__dirname, '..', process.env.DO_APPS_CI === 'true' ? 'schema' : '../schema'),
       AthenaComponents: path.resolve(__dirname, '..', 'src', 'components')
     }
   }
