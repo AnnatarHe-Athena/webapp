@@ -92,7 +92,7 @@
     "babel-jest": "^26.3.0",
     "babel-loader": "^8.1.0",
     "babel-plugin-styled-components": "^1.11.1",
-    "bestzip": "^2.1.5",
+    "bestzip": "^2.1.7",
     "bundle-analyzer": "^0.0.6",
     "cross-env": "^7.0.2",
     "css-loader": "^4.2.1",
