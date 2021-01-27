@@ -62,7 +62,7 @@
     "baseUrl": ".",
     "paths": {
       "AthenaComponents": ["./src/components"],
-      "AthenaSchema": ["../../schema"]
+      "AthenaSchema": ["../schema"]
     }
   },
   // "include": ["../schema"],
