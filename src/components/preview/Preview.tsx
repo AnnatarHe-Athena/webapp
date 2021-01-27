@@ -139,7 +139,6 @@ function PreviewImage(props: PreviewImageProps) {
               src={bigSrc}
               alt={desc}
               crossOrigin="anonymous"
-              referrerPolicy={bigSrc?.startsWith('https://cdn.annatarhe.com') ? 'origin' : 'no-referrer'}
             />
             <figcaption>{content}</figcaption>
           </picture>

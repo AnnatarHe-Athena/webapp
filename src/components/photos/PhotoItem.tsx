@@ -56,7 +56,6 @@ function PhotoItem(props: PhotoItemProps) {
           alt={desc}
           onClick={() => setVis(true)}
           crossOrigin="anonymous"
-          referrerPolicy={bmiddleSrc?.startsWith('https://cdn.annatarhe.com') ? 'origin' : 'no-referrer'}
         />
       </HideUntilLoaded>
       {/*<span>{desc}</span>*/}
