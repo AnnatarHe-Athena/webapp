@@ -72,7 +72,7 @@ export function getRealSrcLink(url: string, type = 'bmiddle') {
     return resultUrl
   }
   // return `https://wx3.sinaimg.cn/${type}/${url}`
-  return `https://sina-img.annatarhe.cn/${type}/${url}`
+  return `https://wispy-math-1563.annatarhe.workers.dev/${type}/${url}`
 }
 
 const SNSToProfileURLMap: any = {
