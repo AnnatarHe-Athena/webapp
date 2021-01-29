@@ -1,5 +1,5 @@
-import { ApolloClient, InMemoryCache, ApolloLink, from, HttpLink } from 'apollo-boost'
-import { onError } from 'apollo-link-error'
+import { ApolloClient, InMemoryCache, ApolloLink, from, HttpLink } from '@apollo/react-hooks'
+import { onError } from "@apollo/client/link/error"
 import { toast } from 'react-toastify'
 
 export const prefix = process.env.NODE_ENV === 'production' ? 'https://api.dbg.annatarhe.com' : 'http://localhost:9009'

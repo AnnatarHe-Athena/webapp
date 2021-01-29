@@ -2,7 +2,7 @@ import React from 'react'
 import Nav from 'AthenaComponents/Nav'
 import PropTypes from 'prop-types'
 import fetchGirlsQuery from 'AthenaSchema/fetchGirlsQuery.graphql'
-import { graphql } from 'react-apollo'
+import { graphql } from '@apollo/react-hooks'
 
 const gqlProps = {
   options: () => ({

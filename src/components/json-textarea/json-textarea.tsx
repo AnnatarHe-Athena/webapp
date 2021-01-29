@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react'
 import swal from 'sweetalert'
 
-const styles = require('./style.css')
+const styles = require('./style.css').default
 const scriptText = require('./script.txt').default
 
 type JSONTextareaProp = {

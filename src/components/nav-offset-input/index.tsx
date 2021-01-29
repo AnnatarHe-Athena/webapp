@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-const style = require('./style.css')
+const style = require('./style.css').default
 
 export const STORAGE_OFFSET_KEY = 'app:list:offset'
 

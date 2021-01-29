@@ -12,7 +12,7 @@ import { AppStore } from '../../reducers'
 import { TUser } from '../../types/user'
 import { fetchCategories } from '../../types/fetchCategories'
 
-const styles = require('./header.css')
+const styles = require('./header.css').default
 
 const Bar = styled.div`
     width: 100%;

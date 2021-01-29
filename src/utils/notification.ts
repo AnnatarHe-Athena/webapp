@@ -5,12 +5,12 @@ function requestPermission() {
       reject('你浏览器太烂了，换了吧')
     }
     if (Notification.permission === 'granted') {
-      resolve()
+      resolve(1)
     }
 
     Notification.requestPermission(permission => {
       if (permission === 'granted') {
-        resolve()
+        resolve(1)
       } else {
         reject('你得开推送通知，不然我没办法及时给你发消息啊')
       }

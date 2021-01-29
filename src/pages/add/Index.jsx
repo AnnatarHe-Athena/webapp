@@ -5,7 +5,7 @@ import { navigate } from "@reach/router"
 import { fromJS } from 'immutable'
 import chunk from 'lodash/chunk'
 // import { Link } from 'react-router'
-import { withApollo } from 'react-apollo'
+import { withApollo } from '@apollo/react-hooks'
 import Select from 'AthenaComponents/select/Select'
 import PropTypes from 'prop-types'
 import Card from 'AthenaComponents/card/Card'

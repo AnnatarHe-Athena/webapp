@@ -3,6 +3,7 @@ import createSagaMiddleware from 'redux-saga'
 import logger from 'redux-logger'
 import rootReducer from '../reducers/index'
 import sagas from '../sagas/index'
+import { __DEV__ } from '../constants/app'
 
 const composeEnhancers = (window as any)['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] || compose
 

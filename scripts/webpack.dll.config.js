@@ -15,16 +15,13 @@ const utils = [
   'react-redux',
   '@reach/router',
   'react-transition-group',
-  'react-apollo',
   '@apollo/react-hooks',
   'styled-components',
   'react-animation'
 ]
 
 const plugins = [
-  'apollo-boost',
   'sweetalert',
-  'apollo-link-error',
 ]
 
 const config = {

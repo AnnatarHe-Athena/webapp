@@ -5,8 +5,7 @@ import Preview from '../Preview'
 import { apolloClient } from '../../../setup/apollo'
 import store from '../../../store/index'
 import { Provider } from 'react-redux'
-import { ApolloProvider } from 'react-apollo'
-import { ApolloProvider as ApolloHooksProvider } from '@apollo/react-hooks'
+import { ApolloProvider } from '@apollo/react-hooks'
 
 describe('preview will ok', () => {
   beforeAll(() => {
@@ -21,11 +20,9 @@ describe('preview will ok', () => {
   it('should be ok', () => {
     const tree = renderer.create(
       <ApolloProvider client={apolloClient}>
-        <ApolloHooksProvider client={apolloClient}>
           <Provider store={store}>
             <Preview data={{}} visible onClose={() => { }} />
           </Provider>
-        </ApolloHooksProvider>
       </ApolloProvider>
     )
       .toJSON()

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { connect, useDispatch } from 'react-redux'
-import { withApollo, useApolloClient, useLazyQuery } from 'react-apollo'
+import { useLazyQuery } from '@apollo/react-hooks'
 import { useFormik, ErrorMessage } from 'formik'
 import PropTypes from 'prop-types'
 import * as Yup from 'yup'
@@ -9,10 +9,6 @@ import fp from 'fingerprintjs2'
 import { syncAuthStatus } from '../../actions/auth'
 import { red } from '../../styles/variables'
 import authGraphql from 'AthenaSchema/queries/auth.graphql'
-import Button from '../../components/button/Button'
-import Card from '../../components/card/Card'
-import { updateCategories } from '../../actions/category'
-import initialQuery from 'AthenaSchema/categoriesQuery.graphql'
 import PageContainer from '../../components/PageContainer'
 import Separator from '../../components/Separator'
 import Status from './Status'
@@ -24,7 +20,7 @@ import { toast } from 'react-toastify'
 import { syncToken } from '../../sagas/auth'
 import { initialVariables } from '../../types/initial'
 
-const styles = require('./auth.css')
+const styles = require('./auth.css').default
 
 const innerContainerOtherStyles = `
   h2 {

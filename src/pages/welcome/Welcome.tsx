@@ -1,5 +1,5 @@
 import React from 'react'
-const styles = require('./page.css')
+const styles = require('./page.css').default
 
 function Welcome() {
   return (

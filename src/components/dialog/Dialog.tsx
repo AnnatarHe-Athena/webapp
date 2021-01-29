@@ -1,7 +1,8 @@
 import React, { useEffect, useCallback } from 'react'
 import ReactDOM from 'react-dom'
 import { CSSTransition } from 'react-transition-group'
-const styles = require('./dialog.css')
+const styles = require('./dialog.css').default
+console.log(styles)
 
 const dom = document.querySelector('#preview')!
 
