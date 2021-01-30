@@ -138,7 +138,6 @@ function PreviewImage(props: PreviewImageProps) {
             <img
               src={bigSrc}
               alt={desc}
-              crossOrigin="anonymous"
             />
             <figcaption>{content}</figcaption>
           </picture>
