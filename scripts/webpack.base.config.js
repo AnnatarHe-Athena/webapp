@@ -122,11 +122,10 @@ const config = {
       debug: true,
       stylus: {
         default: {
-          use: [poststylus([require('autoprefixer')])]
+          use: [poststylus()]
         }
       }
     }),
-    new webpack.NamedModulesPlugin(),
     // new PurgecssPlugin({
     //   paths: glob.sync(path.join(__dirname, '..', 'src') + '/**/.[j|t]sx')
     // })
