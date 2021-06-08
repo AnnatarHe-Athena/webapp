@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.9.0](https://github.com/AnnatarHe-Athena/webapp/compare/v2.8.0...v2.9.0) (2021-06-08)
+
+
+### Features
+
+* **app:** migrate app and fix some bugs ([5d9f5e6](https://github.com/AnnatarHe-Athena/webapp/commit/5d9f5e6a5026a92081666d16112fd72ed29aba8b))
+* **deps:** upgrade deps ([2f06258](https://github.com/AnnatarHe-Athena/webapp/commit/2f062586a116cb91cafba10a5263a995b81e3786))
+* **deps:** upgrade deps ([6fa4c3f](https://github.com/AnnatarHe-Athena/webapp/commit/6fa4c3fdb7bc3e23771c3fabf1003a3462a53f5b))
+* **yarn:** remove yarn ([4042c99](https://github.com/AnnatarHe-Athena/webapp/commit/4042c9964a74a2972f5148ec795fd555dafd551e))
+
+
+### Bug Fixes
+
+* **build:** fix do build issue ([7bb204b](https://github.com/AnnatarHe-Athena/webapp/commit/7bb204ba59a0683b96bb4c3ff8b271c92683ea79))
+* **build:** remove autoprefixer ([531fc49](https://github.com/AnnatarHe-Athena/webapp/commit/531fc49ff513a919919ca461dc50a887bf1af16c))
+* **build:** remove autoprefixer in prod build ([578eadf](https://github.com/AnnatarHe-Athena/webapp/commit/578eadfde8fb335988bb31c2391092449d072ad6))
+* **build:** remove go mod ([60852f6](https://github.com/AnnatarHe-Athena/webapp/commit/60852f61b5b01e866d58812cb1adf7db0e380905))
+* **html:** remove no referrer ([28c83ad](https://github.com/AnnatarHe-Athena/webapp/commit/28c83ad83e9f023af9d1c54289875d9cbf0a0a13))
+* **image:** fix sina image error by add proxy ([df8641d](https://github.com/AnnatarHe-Athena/webapp/commit/df8641d77cd69739682a5325f1c9f5d32ecff938))
+* **img:** remove referrer policy ([330e028](https://github.com/AnnatarHe-Athena/webapp/commit/330e0286fa6f0dedd129bc5117460dba7f51449e))
+* **img:** use self host image proxy ([9c73213](https://github.com/AnnatarHe-Athena/webapp/commit/9c73213f82f12c77351c0eb6cc28c3c0043c7752))
+* **preview:** remove img attr ([0c009a9](https://github.com/AnnatarHe-Athena/webapp/commit/0c009a940ff459ca18e9588f825b5e248c68e037))
+* **referrer:** fix weibo referrer ([e95f8b2](https://github.com/AnnatarHe-Athena/webapp/commit/e95f8b21f1737e745c1db5780faddaaff5258c68))
+* **schema:** fix schema ([1219b45](https://github.com/AnnatarHe-Athena/webapp/commit/1219b456aa112d467438d6a42c533cf109b349ee))
+* **schema:** fix schema location ([be3542e](https://github.com/AnnatarHe-Athena/webapp/commit/be3542e2cd0ac1f115608571c35d6b6626422553))
+* **sina:** add sina image proxy ([e163a6f](https://github.com/AnnatarHe-Athena/webapp/commit/e163a6f841e940c4451d1a27e7199ce6c5bf451f))
+
 ## [2.8.0](https://github.com/AnnatarHe-Athena/webapp/compare/v2.7.2...v2.8.0) (2020-08-13)
 
 
