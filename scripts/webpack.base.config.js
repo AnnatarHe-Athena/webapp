@@ -3,12 +3,9 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const AddAssertHtmlPlugin = require('add-asset-html-webpack-plugin')
 const poststylus = require('poststylus')
-const values = require('postcss-modules-values')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
-const OfflinePlugin = require('offline-plugin')
-const PurgecssPlugin = require('purgecss-webpack-plugin')
-const glob = require('glob')
+// const OfflinePlugin = require('offline-plugin')
 
 const config = {
   mode: process.env.NODE_ENV,
@@ -20,16 +17,16 @@ const config = {
   output: {
     path: path.resolve(__dirname, '..', 'dist'),
     publicPath: '/',
-    filename: 'bundle.[hash].js'
+    filename: 'bundle.[contenthash].js'
   },
   module: {
     rules: [{
       test: /.jsx?$/,
-      exclude: /node_modules/,
+      exclude: [/node_modules/, /__tests__/],
       use: ['babel-loader']
     }, {
       test: /.tsx?$/,
-      exclude: /node_modules/,
+      exclude: [/node_modules/, /__tests__/],
       use: ['ts-loader']
     }, {
       test: /\.txt$/i,
@@ -147,7 +144,7 @@ const config = {
           chunks: 'initial',
           priority: -10,
           reuseExistingChunk: false,
-          test: /node_modules\/(.*)\.js/,
+          // test: /node_modules\/(.*)\.js/,
         },
         styles: {
           name: 'styles',
@@ -180,6 +177,6 @@ dllRefs.forEach(x => {
   )
 })
 
-config.plugins.push(new OfflinePlugin())
+// config.plugins.push(new OfflinePlugin())
 
 module.exports = config

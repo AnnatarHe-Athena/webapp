@@ -2,7 +2,11 @@ import React from 'react'
 import Loadable from 'react-loadable'
 import Index from '../pages/index/Index'
 import Welcome from '../pages/welcome/Welcome'
-import Spinner from 'react-spinkit'
+import AuthPage from '../pages/auth/Auth'
+import ProfilePage from '../pages/profile/Profile'
+import ProfileCellCreatePage from '../pages/add/Index'
+import About from '../pages/info/Info'
+// import Spinner from 'react-spinkit'
 
 function asyncLoadComponent(path: string) {
   return Loadable({
@@ -10,7 +14,7 @@ function asyncLoadComponent(path: string) {
     loading: (props) => {
       return (
       <div className='flex items-center justify-center h-full w-full'>
-        <Spinner name='circle' />
+        {/* <Spinner name='circle' /> */}
         <span className='ml-4'>Loading...</span>
       </div>
     )
@@ -21,10 +25,10 @@ function asyncLoadComponent(path: string) {
 const r = [
   { path: '/', component: Welcome },
   { path: '/category/:cid', component: Index },
-  { path: '/auth', component: asyncLoadComponent('auth/Auth') },
-  { path: '/profile/:id', component: asyncLoadComponent('profile/Profile') },
-  { path: '/profile/:id/create', component: asyncLoadComponent('add/Index') },
-  { path: '/about', component: asyncLoadComponent('info/Info') }
+  { path: '/auth', component: AuthPage },
+  { path: '/profile/:id', component: ProfilePage },
+  { path: '/profile/:id/create', component: ProfileCellCreatePage },
+  { path: '/about', component: About }
 ]
 
 export default r

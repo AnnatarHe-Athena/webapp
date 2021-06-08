@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Card from 'AthenaComponents/card/Card'
 // @ts-ignore
 import infoQuery from 'AthenaSchema/queries/info.graphql'
-import Spinner from 'react-spinkit'
+// import Spinner from 'react-spinkit'
 import { useQuery } from '@apollo/react-hooks'
 import { info } from '../../types/info'
 // import { InfoData } from '../../types/info'
@@ -16,6 +16,8 @@ const InfoTip = styled.p`
   border-radius: 4px;
 `
 
+console.log('hello info')
+
 function InfoPage() {
 
   const { data, loading } = useQuery<info>(infoQuery)
@@ -23,7 +25,7 @@ function InfoPage() {
   if (loading || !data) {
     return (
     <div className='flex items-center justify-center text-lg text-black'>
-      <Spinner name='circle' />
+      {/* <Spinner name='circle' /> */}
     </div>
     )
   }

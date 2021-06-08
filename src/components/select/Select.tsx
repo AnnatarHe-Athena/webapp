@@ -27,10 +27,10 @@ const SelectStyleContainer = styled.div`
 
 type SelectProps = {
   options: {
-    value: string,
+    value: string | number,
     label: string
   }[],
-  value: string
+  value: string | number
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
   placeholder?: string
   name: string
@@ -56,7 +56,7 @@ class Select extends React.PureComponent<SelectProps, any> {
       return (
         <SelectStyleContainer>
           <span>{name}: </span>
-          <select value={value} onChange={this.handleChange}>
+          <select value={value} name={name} onChange={this.handleChange}>
             {this.renderOptions()}
           </select>
         </SelectStyleContainer>

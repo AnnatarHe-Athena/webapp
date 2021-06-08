@@ -5,7 +5,7 @@ const styles = require('./style.css').default
 const scriptText = require('./script.txt').default
 
 type JSONTextareaProp = {
-  onUpload(val: string): void
+  onUpload(val: any[]): void
 }
 
 function doCopy(text: string) {

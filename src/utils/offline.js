@@ -1,5 +1,5 @@
-import * as OfflinePluginRuntime from 'offline-plugin/runtime'
+// import * as OfflinePluginRuntime from 'offline-plugin/runtime'
 
-if (!__DEV__) {
-  OfflinePluginRuntime.install()
-}
+// if (!__DEV__) {
+//   OfflinePluginRuntime.install()
+// }

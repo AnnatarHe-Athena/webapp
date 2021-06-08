@@ -28,7 +28,7 @@ const config = {
   mode: process.env.NODE_ENV,
   output: {
     path: path.resolve(__dirname, '..', 'dist'),
-    filename: '[name]_[hash].dll.js',
+    filename: '[name]_[contenthash].dll.js',
     library: '[name]'
   },
   entry: {
@@ -36,7 +36,7 @@ const config = {
     vendors: vendors,
     plugins: plugins
   },
-  devtool: process.env.NODE_ENV !== 'production' ? '#source-map' : false,
+  devtool: process.env.NODE_ENV !== 'production' ? 'eval-cheap-module-source-map' : false,
   plugins: [
     new webpack.DllPlugin({
       path: path.resolve(__dirname, '..', 'dist', '[name]-manifest.json'),

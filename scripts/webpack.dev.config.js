@@ -3,10 +3,10 @@ const webpack = require('webpack')
 const config = require('./webpack.base.config')
 
 config.target = 'web'
-config.devtool = 'inline-source-map'
+config.devtool = 'eval-cheap-module-source-map'
 config.plugins.push(
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin()
+    // new webpack.NamedModulesPlugin()
 )
 
 config.devServer = {
