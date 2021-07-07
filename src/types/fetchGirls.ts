@@ -16,4 +16,5 @@ export interface fetchGirls {
   permission: number;
   fromID: string;
   fromURL: string;
+  isCollected: boolean;
 }

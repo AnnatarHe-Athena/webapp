@@ -16,6 +16,7 @@ export interface FetchCollections_collections {
   permission: number;
   fromID: string;
   fromURL: string;
+  isCollected: boolean;
 }
 
 export interface FetchCollections {

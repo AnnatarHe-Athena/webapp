@@ -12,6 +12,7 @@ import { Device } from "./globalTypes";
 export interface auth_auth {
   __typename: "AuthResponse";
   token: string;
+  refreshToken: string;
   id: string;
 }
 

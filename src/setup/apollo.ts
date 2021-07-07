@@ -6,9 +6,14 @@ export const prefix = process.env.NODE_ENV === 'production' ? 'https://api.dbg.a
 
 // const prefix = 'https://api.dbg.annatarhe.com'
 
+
 const authMiddleware = new ApolloLink((operation, forward) => {
+  const localToken = sessionStorage.getItem('athena-token') || ''
   operation.setContext({
-    headers: { 'athena-token': sessionStorage.getItem('athena-token') || '' }
+    headers: {
+      Authorization: `Bearer ${localToken}`,
+      'X-Platform': 'web',
+    }
   })
   return forward(operation)
 })

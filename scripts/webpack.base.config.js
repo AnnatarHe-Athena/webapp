@@ -12,7 +12,7 @@ const config = {
   target: 'web',
   entry: [
     'whatwg-fetch',
-    './src/index.js'
+    './src/index.jsx'
   ],
   output: {
     path: path.resolve(__dirname, '..', 'dist'),

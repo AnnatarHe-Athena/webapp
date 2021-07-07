@@ -18,6 +18,7 @@ export interface addGirlCells_addGirls {
   permission: number;
   fromID: string;
   fromURL: string;
+  isCollected: boolean;
 }
 
 export interface addGirlCells {

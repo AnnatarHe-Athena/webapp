@@ -15,7 +15,7 @@ const rootDOM = document.querySelector('#root')
 
 ReactDOM.render(
   // <AppContainer>
-    <App />,
+  <App />,
   // </AppContainer>,
   rootDOM
 )

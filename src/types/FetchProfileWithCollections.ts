@@ -27,10 +27,11 @@ export interface FetchProfileWithCollections_collections {
   permission: number;
   fromID: string;
   fromURL: string;
+  isCollected: boolean;
 }
 
 export interface FetchProfileWithCollections {
-  users: FetchProfileWithCollections_users | null;
+  users: FetchProfileWithCollections_users;
   collections: FetchProfileWithCollections_collections[];
 }
 

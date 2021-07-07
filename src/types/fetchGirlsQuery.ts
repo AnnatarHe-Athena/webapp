@@ -16,6 +16,7 @@ export interface fetchGirlsQuery_girls {
   permission: number;
   fromID: string;
   fromURL: string;
+  isCollected: boolean;
 }
 
 export interface fetchGirlsQuery {

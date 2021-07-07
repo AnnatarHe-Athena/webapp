@@ -16,6 +16,7 @@ export interface initial_girls {
   permission: number;
   fromID: string;
   fromURL: string;
+  isCollected: boolean;
 }
 
 export interface initial_categories {
