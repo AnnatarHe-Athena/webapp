@@ -15,7 +15,7 @@ const utils = [
   'react-redux',
   '@reach/router',
   'react-transition-group',
-  '@apollo/react-hooks',
+  '@apollo/client',
   'styled-components',
   'react-animation'
 ]

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
-import { useQuery } from '@apollo/react-hooks'
+import { useQuery } from '@apollo/client'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import { updateCategories } from '../actions/category'
 import initialQuery from 'AthenaSchema/categoriesQuery.graphql'

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react'
 import { useStore, useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
-import { useQuery, useApolloClient } from '@apollo/react-hooks'
+import { useQuery, useApolloClient } from '@apollo/client'
 import { profileGot } from '../../actions/auth'
 import { TUser, TUserProfileWithCollection, Collection } from '../../types/user'
 // @ts-ignore

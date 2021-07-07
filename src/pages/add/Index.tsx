@@ -5,7 +5,7 @@ import { navigate } from "@reach/router"
 import { fromJS } from 'immutable'
 import chunk from 'lodash/chunk'
 // import { Link } from 'react-router'
-import { useMutation } from '@apollo/react-hooks'
+import { useMutation } from '@apollo/client'
 import Select from '../../components/select/Select'
 import PropTypes from 'prop-types'
 import Card from '../../components/card/Card'

@@ -5,7 +5,7 @@ import Card from 'AthenaComponents/card/Card'
 // @ts-ignore
 import infoQuery from 'AthenaSchema/queries/info.graphql'
 // import Spinner from 'react-spinkit'
-import { useQuery } from '@apollo/react-hooks'
+import { useQuery } from '@apollo/client'
 import { info } from '../../types/info'
 // import { InfoData } from '../../types/info'
 

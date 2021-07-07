@@ -5,7 +5,7 @@ import Preview from '../Preview'
 import { apolloClient } from '../../../setup/apollo'
 import store from '../../../store/index'
 import { Provider } from 'react-redux'
-import { ApolloProvider } from '@apollo/react-hooks'
+import { ApolloProvider } from '@apollo/client'
 
 describe('preview will ok', () => {
   beforeAll(() => {

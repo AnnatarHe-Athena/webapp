@@ -7,7 +7,7 @@ import { getPermissionObj } from '../../utils/permission'
 import { HideUntilLoaded } from 'react-animation'
 const addCollectionMutation = require('AthenaSchema/mutations/addCollection.graphql')
 const removeGirlCellMutation = require('AthenaSchema/mutations/removeGirlCell.graphql')
-import { useApolloClient } from '@apollo/react-hooks'
+import { useApolloClient } from '@apollo/client'
 import { AppStore } from '../../reducers'
 import { TUser } from '../../types/user'
 import { toast } from 'react-toastify'

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { useQuery } from '@apollo/react-hooks'
+import { useQuery } from '@apollo/client'
 import { legacyCategory } from '../../constants/defaults'
 import { getPermissionObj } from '../../utils/permission'
 import { STORAGE_OFFSET_KEY } from '../../components/nav-offset-input/index'
