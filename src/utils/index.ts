@@ -56,20 +56,20 @@ export function getRealSrcLink(url: string, type = 'bmiddle') {
     return url
   }
   if (url.indexOf('qn://') === 0) {
-    const qnBaseURL = url.replace('qn://', 'https://cdn.annatarhe.com/')
-    let resultUrl = ''
-    switch (type) {
-      case 'bmiddle':
-        resultUrl = qnBaseURL + '-thumbnails'
-      break
-      case 'large':
-        resultUrl = qnBaseURL + '-copyrightDB'
-      break
-    }
+    const qnBaseURL = url.replace('qn://', 'https://cdn-lc.annatarhe.cn/')
+    const resultUrl = qnBaseURL
+    // switch (type) {
+    //   case 'bmiddle':
+    //     resultUrl = qnBaseURL + '-thumbnails'
+    //   break
+    //   case 'large':
+    //     resultUrl = qnBaseURL + '-copyrightDB'
+    //   break
+    // }
 
-    if (isWebpSupported() && !url.includes('.gif')) {
-      resultUrl += '.webp'
-    }
+    // if (isWebpSupported() && !url.includes('.gif')) {
+    //   resultUrl += '.webp'
+    // }
     return resultUrl
   }
   // return `https://wx3.sinaimg.cn/${type}/${url}`
