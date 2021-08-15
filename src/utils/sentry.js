@@ -4,7 +4,7 @@ export default function setup() {
   if (__DEV__) {
     return
   }
-  Sentry.init({ dsn: 'https://c11f932d316c4a2aa7b99e43cd950678@sentry.io/238843' });
+  Sentry.init({ dsn: 'https://c11f932d316c4a2aa7b99e43cd950678@sentry.io/238843' })
 }
 
 export function setUserInfo(info) {
