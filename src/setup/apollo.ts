@@ -2,9 +2,9 @@ import { ApolloClient, InMemoryCache, ApolloLink, from, HttpLink } from '@apollo
 import { onError } from '@apollo/client/link/error'
 import { toast } from 'react-toastify'
 
-export const prefix = process.env.NODE_ENV === 'production' ? 'https://api.dbg.annatarhe.com' : 'http://localhost:9009'
+export const prefix = process.env.NODE_ENV === 'production' ? 'https://dbg-api.annatarhe.com' : 'http://localhost:9009'
 
-// const prefix = 'https://api.dbg.annatarhe.com'
+// const prefix = 'https://dbg-api.annatarhe.com'
 
 
 const authMiddleware = new ApolloLink((operation, forward) => {

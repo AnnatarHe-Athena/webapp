@@ -17,7 +17,7 @@ config.devServer = {
     proxy: {
         '/graphql/v1/*': {
             target: 'http://127.0.0.1:9009',
-            // target: 'https://api.dbg.annatarhe.com',
+            // target: 'https://dbg-api.annatarhe.com',
             secure: false
         },
         '/public/*': {
