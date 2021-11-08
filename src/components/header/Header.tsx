@@ -12,8 +12,6 @@ import { AppStore } from '../../reducers'
 import { TUser } from '../../types/user'
 import { fetchCategories } from '../../types/fetchCategories'
 
-const styles = require('./header.css').default
-
 const Bar = styled.div`
     width: 100%;
     display: flex;
@@ -59,7 +57,7 @@ function Header() {
 
   const [vis, setVis] = useState(false)
   return (
-    <header className={`py-4 content-between flex-col items-center sticky top-0 z-30 ${styles.header}`}>
+    <header className='py-4 content-between flex-col items-center sticky top-0 bg-gray-50 bg-opacity-10 backdrop-blur-md z-30'>
       <Bar>
         <Link to="/"><h2 className="text-lg font-medium hover:text-xl transition-fast">Athena</h2></Link>
         <div className="flex flex-row">

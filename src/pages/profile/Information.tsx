@@ -1,11 +1,11 @@
 import React, { useCallback } from 'react'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
-import { HideUntilLoaded } from 'react-animation'
 import { defaultAvatar } from '../../constants/defaults'
 import { LOGOUT } from '../../constants/auth'
 import { TUser } from '../../types/user';
 import { AppStore } from '../../reducers'
+import HideUntilLoaded from '../../components/HideUntilLoaded'
 
 const InfoItem = styled.div`
   padding: .5rem 0;

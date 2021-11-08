@@ -1,8 +1,8 @@
 import React, { useState, useCallback } from 'react'
 import swal from 'sweetalert'
 
-const styles = require('./style.css').default
-const scriptText = require('./script.txt').default
+import styles from './style.module.css'
+import scriptText from './script.txt'
 
 type JSONTextareaProp = {
   onUpload(val: any[]): void
@@ -18,7 +18,7 @@ function doCopy(text: string) {
   if (document.execCommand('copy')) {
     document.execCommand('copy')
   }
-  document.body.removeChild(input);
+  document.body.removeChild(input)
 }
 
 function JSONTextarea({ onUpload }: JSONTextareaProp) {

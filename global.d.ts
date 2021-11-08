@@ -17,10 +17,25 @@ type RequestIdleCallbackDeadline = {
 
 // declare global {
 interface Window {
-  requestIdleCallback: ((
-    callback: ((deadline: RequestIdleCallbackDeadline) => void),
-    opts?: RequestIdleCallbackOptions,
-  ) => RequestIdleCallbackHandle);
-  cancelIdleCallback: ((handle: RequestIdleCallbackHandle) => void);
+  __SNOWPACK_ENV__: any
+  // requestIdleCallback: ((
+  //   callback: ((deadline: RequestIdleCallbackDeadline) => void),
+  //   opts?: RequestIdleCallbackOptions,
+  // ) => RequestIdleCallbackHandle);
+  // cancelIdleCallback: ((handle: RequestIdleCallbackHandle) => void);
 }
 // }
+
+declare global {
+  interface ImportMeta {
+      hot: {
+          accept: Function;
+          dispose: Function;
+      };
+      env: {
+          MODE: string;
+          SNOWPACK_PUBLIC_API_URL: string;
+          SNOWPACK_PUBLIC_IMAGES_URL: string;
+      };
+  }
+}

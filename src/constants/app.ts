@@ -1,1 +1,3 @@
-export const __DEV__ = process.env.NODE_ENV !== 'production'
+import.meta.hot;
+
+export const __DEV__ = __SNOWPACK_ENV__.NODE_ENV !== 'production'

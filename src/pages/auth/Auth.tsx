@@ -14,8 +14,6 @@ import { Device } from '../../types/globalTypes'
 import { useTitle } from '../../hooks/title'
 import { toast } from 'react-toastify'
 
-const styles = require('./auth.css').default
-
 function useDevice() {
   const [device, setDevice] = useState<Device | null>(null)
 
@@ -138,7 +136,7 @@ function AuthPage() {
             <button
               type='submit'
               disabled={f.isSubmitting}
-              className={`w-full p-4 rounded shadow-lg focus:outline-none bg-gradient-to-tr from-green-400 to-blue-500 ${styles.submit}`}
+              className='w-full p-4 rounded shadow-lg focus:outline-none bg-gradient-to-tr from-green-400 to-blue-500'
             >
               <Status loading={f.isSubmitting} />
             </button>

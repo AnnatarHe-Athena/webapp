@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import Preview from '../preview/Preview'
 import { getRealSrcLink, getAESIVFromUserEmail } from '../../utils/index'
-import { HideUntilLoaded } from 'react-animation'
 import { useImageDestLink } from '../../hooks/useImageDestLink'
+import HideUntilLoaded from '../HideUntilLoaded'
 
 const Container = styled.picture`
   flex-grow: 1;

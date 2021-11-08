@@ -1,9 +1,8 @@
 import React, { useEffect, useCallback } from 'react'
 import ReactDOM from 'react-dom'
 import { CSSTransition } from 'react-transition-group'
-const styles = require('./dialog.css').default
 
-const dom = document.querySelector('#preview')!
+const dom = document.querySelector('#preview')
 
 type InnerDialogProps = {
   children: JSX.Element
@@ -28,10 +27,9 @@ function InnerDialog(props: InnerDialogProps) {
     }
     props.onClose()
   }, [props.onClose])
-
   return (
     <div
-      className={`fixed top-0 left-0 right-0 bottom-0 flex justify-center items-center ${styles.mask}`}
+      className={'fixed top-0 left-0 right-0 bottom-0 flex justify-center items-center bg-gray-900 bg-opacity-30 backdrop-blur-lg z-50'}
       onClick={onClose}
       role="mask">
       <CSSTransition
@@ -51,7 +49,7 @@ function Dialog({ visible, ...data }: any) {
   if (!visible) { return null }
   return ReactDOM.createPortal(
     <InnerDialog {...data} />
-    , dom)
+    , dom!)
 }
 
 export default Dialog

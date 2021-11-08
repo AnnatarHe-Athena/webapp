@@ -1,8 +1,13 @@
+// eslint-disable-next-line semi
+import.meta.hot;
+
 import { ApolloClient, InMemoryCache, ApolloLink, from, HttpLink } from '@apollo/client'
 import { onError } from '@apollo/client/link/error'
 import { toast } from 'react-toastify'
 
-export const prefix = process.env.NODE_ENV === 'production' ? 'https://dbg-api.annatarhe.com' : 'http://localhost:9009'
+console.log(__SNOWPACK_ENV__.NODE_ENV)
+
+export const prefix = __SNOWPACK_ENV__.NODE_ENV === 'production' ? 'https://dbg-api.annatarhe.com' : 'http://localhost:9009'
 
 // const prefix = 'https://dbg-api.annatarhe.com'
 
