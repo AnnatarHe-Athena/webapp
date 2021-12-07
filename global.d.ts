@@ -26,16 +26,16 @@ interface Window {
 }
 // }
 
-declare global {
-  interface ImportMeta {
-      hot: {
-          accept: Function;
-          dispose: Function;
-      };
-      env: {
-          MODE: string;
-          SNOWPACK_PUBLIC_API_URL: string;
-          SNOWPACK_PUBLIC_IMAGES_URL: string;
-      };
-  }
-}
+// declare global {
+//   interface ImportMeta {
+//       hot: {
+//           accept: Function;
+//           dispose: Function;
+//       };
+//       env: {
+//           MODE: string;
+//           SNOWPACK_PUBLIC_API_URL: string;
+//           SNOWPACK_PUBLIC_IMAGES_URL: string;
+//       };
+//   }
+// }

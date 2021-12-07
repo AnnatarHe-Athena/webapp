@@ -10,7 +10,8 @@ module.exports = {
   plugins: [
     '@snowpack/plugin-typescript',
     '@snowpack/plugin-postcss',
-    '@snowpack/plugin-react-refresh'
+    '@snowpack/plugin-react-refresh',
+    './plugins/snowpack-graphql-tag'
   ],
   packageOptions: {
     knownEntrypoints: [
