@@ -15,17 +15,17 @@ import 'react-tippy/dist/tippy.css'
 const App = () => {
   return (
     <ApolloProvider client={apolloClient}>
-        <Provider store={store}>
-          <Location>
-            {({ location }) => (
-              <Root location={location}>
-                <Router location={location}>
-                  {routes.map(r => (<r.component key={r.path} path={r.path} />))}
-                </Router>
-              </Root>
-            )}
-          </Location>
-        </Provider>
+      <Provider store={store}>
+        <Location>
+          {({ location }) => (
+            <Root location={location}>
+              <Router location={location}>
+                {routes.map(r => (<r.component key={r.path} path={r.path} />))}
+              </Router>
+            </Root>
+          )}
+        </Location>
+      </Provider>
       <ToastContainer />
     </ApolloProvider>
   )

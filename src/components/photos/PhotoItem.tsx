@@ -47,6 +47,7 @@ function PhotoItem(props: PhotoItemProps) {
   return (
     <Container>
       <HideUntilLoaded imageToLoad={bmiddleSrc}>
+        <React.Fragment>
         <source
           srcSet={bmiddleSrc}
           onClick={() => setVis(true)}
@@ -57,6 +58,7 @@ function PhotoItem(props: PhotoItemProps) {
           onClick={() => setVis(true)}
           crossOrigin="anonymous"
         />
+        </React.Fragment>
       </HideUntilLoaded>
       {/*<span>{desc}</span>*/}
       <Preview
