@@ -2,7 +2,6 @@ import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { connect, useSelector } from 'react-redux'
-import { Link, navigate } from '@reach/router'
 import Dialog from '../dialog/Dialog'
 import { changeCategory } from '../../actions/category'
 import { randomCategory, legacyCategory } from '../../constants/defaults'
@@ -11,6 +10,7 @@ import Nav from '../Nav'
 import { AppStore } from '../../reducers'
 import { TUser } from '../../types/user'
 import { fetchCategories } from '../../types/fetchCategories'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Bar = styled.div`
     width: 100%;
@@ -43,6 +43,7 @@ function Header() {
   const token = useSelector<AppStore, string>(s => s.app.token)
   const categories = useSelector<AppStore, fetchCategories[]>(s => s.app.categories)
   const canRemove = getPermissionObj(info).remove
+  const navigate = useNavigate()
 
   const onProfileClick = useCallback(() => {
     if (!token) {

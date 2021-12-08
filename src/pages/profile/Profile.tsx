@@ -6,9 +6,11 @@ import PageContainer from '../../components/PageContainer'
 import Tab from '../../components/tab/Tab'
 import Information from './Information'
 import Separator from '../../components/Separator'
+import { useParams } from 'react-router'
 
-function Profile(props: any) {
-  const { loadMore, collections } = useMyProfile(props.id)
+function Profile() {
+  const params = useParams()
+  const { loadMore, collections } = useMyProfile(params.id!)
 
   return (
     <PageContainer>

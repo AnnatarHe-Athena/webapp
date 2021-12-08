@@ -57,7 +57,7 @@ function JSONTextarea({ onUpload }: JSONTextareaProp) {
         <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={copyAction}>copy</button>
       </div>
 
-      <textarea className='w-full min-h-screen my-4 border border-grey-500' onChange={onEditorChange} value={json} />
+      <textarea className='w-full h-72 my-4 border border-grey-500' onChange={onEditorChange} value={json} />
       <button
         disabled={json === ''}
         className='px-2 py-4 bg-green-400 border-0 transition-colors duration-300 text-white rounded-lg self-end disabled:bg-grey-400 hover:disabled:bg-grey-400 hover:bg-green-500'

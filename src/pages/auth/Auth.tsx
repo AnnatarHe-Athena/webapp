@@ -13,6 +13,7 @@ import { auth, authVariables } from '../../types/auth'
 import { Device } from '../../types/globalTypes'
 import { useTitle } from '../../hooks/title'
 import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router'
 
 function useDevice() {
   const [device, setDevice] = useState<Device | null>(null)
@@ -52,6 +53,7 @@ const signupSchema = Yup.object().shape({
 
 function AuthPage() {
   const device = useDevice()
+  const navigate = useNavigate()
   const f = useFormik({
     initialValues: {
       email: '',
@@ -71,6 +73,10 @@ function AuthPage() {
           password: values.pwd,
           device: device || ({} as Device)
         }
+      }).then(res => {
+        setTimeout(() => {
+          navigate(`/profile/${res.data?.auth.id}`)
+        }, 100)
       })
 
       return true
