@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-const style = require('./style.css').default
 
 export const STORAGE_OFFSET_KEY = 'app:list:offset'
 
@@ -17,12 +16,12 @@ function NavOffsetInput() {
 
   return (
     <React.Fragment>
-      <div className={style.field}>
-        <label className={style.label} htmlFor="">跳过</label>
+      <div className='w-full flex justify-center items-center'>
+        <label className='mr-1 text-white' htmlFor="">跳过</label>
         <input
           type="number"
           placeholder="offset"
-          className={style.input}
+          className='flex-1 box-border px-1 py-2 text-lg'
           value={offset}
           onChange={e => {
             const val = ~~e.target.value

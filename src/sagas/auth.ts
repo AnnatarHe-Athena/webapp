@@ -3,7 +3,6 @@ import {
   SYNC_AUTH_TOKEN,
   LOGOUT
 } from '../constants/auth'
-import { navigate } from '@reach/router'
 import { put, take, call } from 'redux-saga/effects'
 
 export function* syncToken() {
@@ -19,7 +18,8 @@ export function* syncToken() {
   // 4. set to request header
   // 5. in auth section you should async to fetch user info
   // 6. redirect to profile page
-  yield call(navigate as any, `/profile/${id}`)
+  // FIXME: redirect
+  // yield call(navigate as any, `/profile/${id}`)
 }
 
 export function* logout() {
@@ -29,5 +29,6 @@ export function* logout() {
   yield put({ type: SYNC_AUTH_TOKEN, token: '' })
   localStorage.removeItem('athena-token')
   localStorage.removeItem('athena-user-id')
-  yield call(navigate as any, '/auth', { replace: true })
+  // FIXME: redirect
+  // yield call(navigate as any, '/auth', { replace: true })
 }

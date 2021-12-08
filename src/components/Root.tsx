@@ -48,7 +48,7 @@ function Root(props: any) {
         <Header />
           <TransitionGroup className="transition-group">
             <CSSTransition
-              key={props.location.key}
+              // key={props.location.key}
               component={BodyContainer}
               classNames="slide" timeout={350}>
               {props.children}

@@ -1,8 +1,8 @@
 import React from 'react'
-import { Link } from '@reach/router'
 import { TUser } from '../../types/user';
 import { useSelector } from 'react-redux';
 import { AppStore } from '../../reducers';
+import { Link } from 'react-router-dom';
 
 type TCommandProps = {
   isMe: boolean

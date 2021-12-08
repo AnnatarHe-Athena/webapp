@@ -1,8 +1,6 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import { ApolloProvider } from '@apollo/client'
-// import { hot } from 'react-hot-loader/root'
-import { Router, Location } from '@reach/router'
 import { apolloClient } from './setup/apollo'
 import Root from './components/Root'
 import store from './store/index'
@@ -11,21 +9,22 @@ import './styles/index.styl'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import 'react-tippy/dist/tippy.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 const App = () => {
   return (
     <ApolloProvider client={apolloClient}>
-        <Provider store={store}>
-          <Location>
-            {({ location }) => (
-              <Root location={location}>
-                <Router location={location}>
-                  {routes.map(r => (<r.component key={r.path} path={r.path} />))}
-                </Router>
-              </Root>
-            )}
-          </Location>
-        </Provider>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Root>
+            <Routes>
+              {routes.map(r => (
+                <Route path={r.path} key={r.path} element={React.createElement(r.component)} />
+              ))}
+            </Routes>
+          </Root>
+        </BrowserRouter>
+      </Provider>
       <ToastContainer />
     </ApolloProvider>
   )

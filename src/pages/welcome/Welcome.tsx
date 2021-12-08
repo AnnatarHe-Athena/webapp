@@ -1,9 +1,8 @@
 import React from 'react'
-const styles = require('./page.css').default
 
 function Welcome() {
   return (
-    <section className={styles.container}>
+    <section className='flex justify-center items-center w-full'>
       <h2> welcome </h2>
     </section>
   )

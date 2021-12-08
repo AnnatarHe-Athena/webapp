@@ -13,8 +13,7 @@ import { auth, authVariables } from '../../types/auth'
 import { Device } from '../../types/globalTypes'
 import { useTitle } from '../../hooks/title'
 import { toast } from 'react-toastify'
-
-const styles = require('./auth.css').default
+import { useNavigate } from 'react-router'
 
 function useDevice() {
   const [device, setDevice] = useState<Device | null>(null)
@@ -54,6 +53,7 @@ const signupSchema = Yup.object().shape({
 
 function AuthPage() {
   const device = useDevice()
+  const navigate = useNavigate()
   const f = useFormik({
     initialValues: {
       email: '',
@@ -73,6 +73,10 @@ function AuthPage() {
           password: values.pwd,
           device: device || ({} as Device)
         }
+      }).then(res => {
+        setTimeout(() => {
+          navigate(`/profile/${res.data?.auth.id}`)
+        }, 100)
       })
 
       return true
@@ -138,7 +142,7 @@ function AuthPage() {
             <button
               type='submit'
               disabled={f.isSubmitting}
-              className={`w-full p-4 rounded shadow-lg focus:outline-none bg-gradient-to-tr from-green-400 to-blue-500 ${styles.submit}`}
+              className='w-full p-4 rounded shadow-lg focus:outline-none bg-gradient-to-tr from-green-400 to-blue-500'
             >
               <Status loading={f.isSubmitting} />
             </button>

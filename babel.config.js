@@ -29,12 +29,6 @@ module.exports = function (api) {
     presets,
     "plugins": [
       [
-        "babel-plugin-styled-components",
-        {
-          "ssr": false
-        }
-      ],
-      [
         "@babel/plugin-proposal-decorators",
         {
           "legacy": true

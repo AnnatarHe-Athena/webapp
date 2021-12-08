@@ -1,4 +1,5 @@
 import React from 'react'
+import { useParams } from 'react-router'
 import Photos from './Photos'
 
 type IndexProps = {
@@ -6,13 +7,12 @@ type IndexProps = {
 }
 
 function Index(props: IndexProps) {
+  const params = useParams()
   return (
     <div className='w-full'>
-      <Photos categoryID={props.cid} />
+      <Photos categoryID={~~(params.cid!)} />
     </div>
   )
 }
-
-// @graphql(helloQuery, {options: { notifyOnNetworkStatusChange: true }})
 
 export default Index

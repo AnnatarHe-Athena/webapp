@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import Preview from '../preview/Preview'
 import { getRealSrcLink, getAESIVFromUserEmail } from '../../utils/index'
-import { HideUntilLoaded } from 'react-animation'
 import { useImageDestLink } from '../../hooks/useImageDestLink'
+import HideUntilLoaded from '../HideUntilLoaded'
 
 const Container = styled.picture`
   flex-grow: 1;
@@ -47,6 +47,7 @@ function PhotoItem(props: PhotoItemProps) {
   return (
     <Container>
       <HideUntilLoaded imageToLoad={bmiddleSrc}>
+        <React.Fragment>
         <source
           srcSet={bmiddleSrc}
           onClick={() => setVis(true)}
@@ -57,6 +58,7 @@ function PhotoItem(props: PhotoItemProps) {
           onClick={() => setVis(true)}
           crossOrigin="anonymous"
         />
+        </React.Fragment>
       </HideUntilLoaded>
       {/*<span>{desc}</span>*/}
       <Preview

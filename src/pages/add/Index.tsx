@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { navigate } from "@reach/router"
 import { fromJS } from 'immutable'
 import chunk from 'lodash/chunk'
 // import { Link } from 'react-router'

@@ -1,9 +1,9 @@
 import React from 'react'
-import { Link } from '@reach/router'
 import styled from 'styled-components'
 import { maskCardStyles } from '../styles/variables'
 import NavOffsetInput from './nav-offset-input/index'
 import { __DEV__ } from '../constants/app'
+import { Link } from 'react-router-dom'
 
 const NavContainer = styled.nav`
   ul {

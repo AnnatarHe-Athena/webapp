@@ -4,9 +4,10 @@ import styled from 'styled-components'
 import CommonDialog from '../dialog/Dialog'
 import { getRealSrcLink, getUserInfoURL, getTitleHref } from '../../utils/index'
 import { getPermissionObj } from '../../utils/permission'
-import { HideUntilLoaded } from 'react-animation'
-const addCollectionMutation = require('AthenaSchema/mutations/addCollection.graphql')
-const removeGirlCellMutation = require('AthenaSchema/mutations/removeGirlCell.graphql')
+// const addCollectionMutation = require('AthenaSchema/mutations/addCollection.graphql')
+// const removeGirlCellMutation = require('AthenaSchema/mutations/removeGirlCell.graphql')
+import addCollectionMutation from 'AthenaSchema/mutations/addCollection.graphql'
+import removeGirlCellMutation from 'AthenaSchema/mutations/removeGirlCell.graphql'
 import { useApolloClient } from '@apollo/client'
 import { AppStore } from '../../reducers'
 import { TUser } from '../../types/user'
@@ -14,6 +15,7 @@ import { toast } from 'react-toastify'
 import { useImageDestLink } from '../../hooks/useImageDestLink'
 import { removeGirl, removeGirlVariables } from '../../types/removeGirl'
 import { addToCollection, addToCollectionVariables } from '../../types/addToCollection'
+import HideUntilLoaded from '../HideUntilLoaded'
 
 type PreviewImageProps = {
   id: string
