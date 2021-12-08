@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react'
-import swal from 'sweetalert'
+// import swal from 'sweetalert'
 
 // import scriptText from './script.txt'
 
@@ -38,10 +38,10 @@ function JSONTextarea({ onUpload }: JSONTextareaProp) {
   }, [json])
 
   const copyAction = useCallback(() => {
-    swal({
-      icon: 'warning',
-      title: '暂未实现该功能'
-    })
+    // swal({
+    //   icon: 'warning',
+    //   title: '暂未实现该功能'
+    // })
     // doCopy(scriptText)
   }, [])
   // }, [scriptText])
