@@ -6,8 +6,6 @@ import App from './App'
 import setupSentry from './utils/sentry'
 import 'intersection-observer'
 import './styles/tailwind.css'
-import './utils/offline'
-import './index.css'
 
 setupSentry()
 

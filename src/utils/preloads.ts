@@ -1,5 +1,5 @@
 
-export function preloadImage(url) {
+export function preloadImage(url?: string) {
   if (!url) {
     return
   }
@@ -14,7 +14,7 @@ export function preloadImage(url) {
 }
 
 // 考虑到我比较穷，如果所有图片都加载大图可能付不起钱，还是不调用好了。
-export function preloadImages(urls) {
+export function preloadImages(urls: string[]) {
   urls.forEach(url => {
     preloadImage(url)
   })

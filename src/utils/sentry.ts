@@ -7,19 +7,19 @@ export default function setup() {
   Sentry.init({ dsn: 'https://c11f932d316c4a2aa7b99e43cd950678@sentry.io/238843' })
 }
 
-export function setUserInfo(info) {
+export function setUserInfo(info: any) {
   Sentry.configureScope((scope) => {
     scope.setUser({
       email: info.email,
       username: info.name,
-      id: scope.id
+      id: info.id
     })
   })
 }
 
-export function report(err, info) {
+export function report(err: Error, info: any) {
   if (__DEV__) {
     console.log(err, info) // eslint-disable-line no-console
   }
-  Sentry.captureEvent(err, {extra: info})
+  Sentry.captureException(err, {extra: info})
 }

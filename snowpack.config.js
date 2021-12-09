@@ -29,6 +29,7 @@ module.exports = {
     }
   ],
   buildOptions: {
+    out: './public/'
   },
   alias: {
     AthenaComponents: './src/components'
