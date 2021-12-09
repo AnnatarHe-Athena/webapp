@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react'
 import Nav from 'AthenaComponents/Nav'
-import PropTypes from 'prop-types'
-import queryInitial from 'AthenaSchema/initial.graphql'
+import queryInitial from '../../schema/initial.graphql'
 import { useQuery } from '@apollo/client'
 import { initial, initialVariables } from '../../types/initial'
 

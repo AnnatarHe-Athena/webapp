@@ -9,7 +9,7 @@ import Select from '../../components/select/Select'
 import PropTypes from 'prop-types'
 import Card from '../../components/card/Card'
 import JSONTextarea from '../../components/json-textarea/json-textarea'
-import addGirlCellsMutation from 'AthenaSchema/mutations/addGirlCells.graphql'
+import addGirlCellsMutation from '../../schema/mutations/addGirlCells.graphql'
 
 import PageContainer from '../../components/PageContainer'
 import Button from '../../components/button/Button'

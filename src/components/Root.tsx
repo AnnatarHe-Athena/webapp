@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { useQuery } from '@apollo/client'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import { updateCategories } from '../actions/category'
-import initialQuery from 'AthenaSchema/categoriesQuery.graphql'
+import initialQuery from '../schema/categoriesQuery.graphql'
 
 import { liteYellow, liteBlue } from '../styles/variables'
 

@@ -4,9 +4,7 @@ import { toast } from 'react-toastify'
 import { useQuery, useApolloClient } from '@apollo/client'
 import { profileGot } from '../../actions/auth'
 import { TUser, TUserProfileWithCollection, Collection } from '../../types/user'
-// @ts-ignore
-import fetchProfileQuery from 'AthenaSchema/queries/profileWithCollection.graphql'
-// @ts-ignore
+import fetchProfileQuery from '../../schema/queries/profileWithCollection.graphql'
 
 const STEP = 20
 

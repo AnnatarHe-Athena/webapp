@@ -3,7 +3,7 @@ import styled from 'styled-components'
 // @ts-ignore
 import Card from 'AthenaComponents/card/Card'
 // @ts-ignore
-import infoQuery from 'AthenaSchema/queries/info.graphql'
+import infoQuery from '../../schema/queries/info.graphql'
 // import Spinner from 'react-spinkit'
 import { useQuery } from '@apollo/client'
 import { info } from '../../types/info'

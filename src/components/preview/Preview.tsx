@@ -6,8 +6,8 @@ import { getRealSrcLink, getUserInfoURL, getTitleHref } from '../../utils/index'
 import { getPermissionObj } from '../../utils/permission'
 // const addCollectionMutation = require('AthenaSchema/mutations/addCollection.graphql')
 // const removeGirlCellMutation = require('AthenaSchema/mutations/removeGirlCell.graphql')
-import addCollectionMutation from 'AthenaSchema/mutations/addCollection.graphql'
-import removeGirlCellMutation from 'AthenaSchema/mutations/removeGirlCell.graphql'
+import addCollectionMutation from '../../schema/mutations/addCollection.graphql'
+import removeGirlCellMutation from '../../schema/mutations/removeGirlCell.graphql'
 import { useApolloClient } from '@apollo/client'
 import { AppStore } from '../../reducers'
 import { TUser } from '../../types/user'

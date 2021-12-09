@@ -4,7 +4,6 @@ const gql = require('graphql-tag')
 
 function onTransformGraphqlFile(content) {
   // const exportDefault = 'export default `' + gql(content) + '`'
-
   // return exportDefault
   return `export default ${JSON.stringify(gql(content))}`
 }

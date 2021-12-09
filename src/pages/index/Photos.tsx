@@ -9,7 +9,7 @@ import { CellItem, TCellsResponse } from "../../types/cell"
 import { AppStore } from '../../reducers'
 import { TUser } from '../../types/user'
 
-import fetchGirlsQuery from 'AthenaSchema/fetchGirlsQuery.graphql'
+import fetchGirlsQuery from '../../schema/fetchGirlsQuery.graphql'
 
 type PhotosProps = {
   categoryID: number
