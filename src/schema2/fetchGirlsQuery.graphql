@@ -1,0 +1,18 @@
+#import "./fetchGirls.graphql"
+
+query fetchGirlsQuery($from: Int!, $take: Int!, $hideOnly: Boolean!, $last: ID!) {
+    girls(from: $from, take: $take, hideOnly: $hideOnly, last: $last) {
+        ...fetchGirls
+    }
+}
+
+fragment fetchGirls on Girl {
+    id,
+    img,
+    content,
+    text,
+    permission,
+    fromID,
+    fromURL,
+    isCollected
+}

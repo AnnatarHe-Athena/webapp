@@ -31,8 +31,7 @@ module.exports = {
   buildOptions: {
   },
   alias: {
-    AthenaComponents: './src/components',
-    AthenaSchema: './src/schema'
+    AthenaComponents: './src/components'
   },
   // env: {
   //   NODE_ENV: process.env.NODE_ENV
