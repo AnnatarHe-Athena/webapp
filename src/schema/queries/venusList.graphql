@@ -1,0 +1,13 @@
+query fetchVenusList($pagination: Pagination!, $source: venusSource) {
+    venusList(pagination: $pagination, source: $source) {
+        count
+        edges {
+            id
+            uid
+            name
+            source
+            avatar
+            bio
+        }
+    }
+}
