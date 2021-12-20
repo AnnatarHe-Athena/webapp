@@ -14,8 +14,8 @@ function VenusPage(props: VenusPageProps) {
   const { data, refetch } = useQuery<fetchVenusList, fetchVenusListVariables>(venusListQuery, {
     variables: {
       pagination: {
-        limit: 0,
-        lastID: 1 << 31
+        limit: 20,
+        lastID: 1 << 30
       }
     }
   })
