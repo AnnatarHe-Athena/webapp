@@ -6,6 +6,7 @@ import AuthPage from '../pages/auth/Auth'
 import ProfilePage from '../pages/profile/Profile'
 import ProfileCellCreatePage from '../pages/add/Index'
 import About from '../pages/info/Info'
+import VenusPage from '../pages/venus/venus'
 // import Spinner from 'react-spinkit'
 
 function asyncLoadComponent(path: string) {
@@ -27,6 +28,7 @@ const r = [
   { path: '/category/:cid', component: Index },
   { path: '/auth', component: AuthPage },
   { path: '/profile/:id', component: ProfilePage },
+  { path: '/profile/:id/venus', component: VenusPage },
   { path: '/profile/:id/create', component: ProfileCellCreatePage },
   { path: '/about', component: About }
 ]
