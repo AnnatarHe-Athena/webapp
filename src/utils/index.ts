@@ -52,7 +52,10 @@ export function getRealSrcLink(url: string, type = 'bmiddle') {
     throw new Error('must provide a url')
   }
   // url = window.atob(url)
-  if (url.indexOf('http') === 0) {
+  if (url.startsWith('http')) {
+    if (!url.startsWith('https')) {
+      url = url.replace('http', 'https')
+    }
     return url
   }
   if (url.indexOf('qn://') === 0) {
