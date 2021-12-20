@@ -29,12 +29,12 @@ function VenusPage(props: VenusPageProps) {
     }
 
     const uidReqList = vs
+      .filter(x => x)
       .map(v => new URL(v).pathname)
       .map(x => {
         const xs = x.split('/')
         return xs[xs.length - 1]
       })
-      .filter(x => x)
       .map(x => doAdd({
         variables: {
           uid: x,
