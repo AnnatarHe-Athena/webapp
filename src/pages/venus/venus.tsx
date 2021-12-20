@@ -28,15 +28,19 @@ function VenusPage(props: VenusPageProps) {
       return
     }
 
-    const uidReqList = vs.map(v => new URL(v).pathname).map(x => {
-      const xs = x.split('/')
-      return xs[xs.length - 1]
-    }).map(x => doAdd({
-      variables: {
-        uid: x,
-        source: venusSource.weibo
-      }
-    }))
+    const uidReqList = vs
+      .map(v => new URL(v).pathname)
+      .map(x => {
+        const xs = x.split('/')
+        return xs[xs.length - 1]
+      })
+      .filter(x => x)
+      .map(x => doAdd({
+        variables: {
+          uid: x,
+          source: venusSource.weibo
+        }
+      }))
 
     Promise.allSettled(uidReqList).then(res => {
       console.log(res)
