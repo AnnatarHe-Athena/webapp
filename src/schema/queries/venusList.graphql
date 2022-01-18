@@ -1,5 +1,5 @@
-query fetchVenusList($pagination: Pagination!, $source: venusSource) {
-    venusList(pagination: $pagination, source: $source) {
+query fetchVenusList($pagination: Pagination!, $source: venusSource, $hasRemarks: Boolean) {
+    venusList(pagination: $pagination, source: $source, hasRemarks: $hasRemarks) {
         count
         edges {
             id

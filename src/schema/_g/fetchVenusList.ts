@@ -32,4 +32,5 @@ export interface fetchVenusList {
 export interface fetchVenusListVariables {
   readonly pagination: Pagination;
   readonly source?: venusSource | null;
+  readonly hasRemarks?: boolean | null;
 }

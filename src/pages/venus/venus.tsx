@@ -13,6 +13,7 @@ type VenusPageProps = {
 function VenusPage(props: VenusPageProps) {
   const { data, refetch } = useQuery<fetchVenusList, fetchVenusListVariables>(venusListQuery, {
     variables: {
+      hasRemarks: false,
       pagination: {
         limit: 20,
         lastID: 1 << 30
@@ -43,7 +44,6 @@ function VenusPage(props: VenusPageProps) {
       }))
 
     Promise.allSettled(uidReqList).then(res => {
-      console.log(res)
       toast.info('done')
       refetch()
       setWaitingList('')
@@ -51,7 +51,7 @@ function VenusPage(props: VenusPageProps) {
   }, [doAdd, waitingVenusListText, refetch])
 
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col m-auto justify-center items-center'>
       <div className='flex'>
         <textarea
           value={waitingVenusListText}
