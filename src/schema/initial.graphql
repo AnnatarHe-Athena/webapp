@@ -20,6 +20,15 @@ fragment fetchGirls on Girl {
     fromID,
     fromURL,
     isCollected
+    venus {
+        id
+        uid
+        source
+        name
+        avatar
+        bio
+        remarks
+    }
 }
 fragment fetchCategories on Category {
     id, name, src, count

@@ -19,6 +19,15 @@ fragment fetchGirls on Girl {
     fromID,
     fromURL,
     isCollected
+    venus {
+        id
+        uid
+        source
+        name
+        avatar
+        bio
+        remarks
+    }
 }
 fragment profile on User {
   id, email, name, pwd, avatar, bio, role

@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { venusSource } from "./globalTypes";
+
 // ====================================================
 // GraphQL query operation: FetchProfileWithCollections
 // ====================================================
@@ -18,6 +20,17 @@ export interface FetchProfileWithCollections_users {
   readonly role: number;
 }
 
+export interface FetchProfileWithCollections_collections_venus {
+  readonly __typename: "Venus";
+  readonly id: number;
+  readonly uid: string;
+  readonly source: venusSource;
+  readonly name: string;
+  readonly avatar: string;
+  readonly bio: string;
+  readonly remarks: string;
+}
+
 export interface FetchProfileWithCollections_collections {
   readonly __typename: "Girl";
   readonly id: string;
@@ -28,6 +41,7 @@ export interface FetchProfileWithCollections_collections {
   readonly fromID: string;
   readonly fromURL: string;
   readonly isCollected: boolean;
+  readonly venus: FetchProfileWithCollections_collections_venus | null;
 }
 
 export interface FetchProfileWithCollections {

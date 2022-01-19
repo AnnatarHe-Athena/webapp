@@ -3,9 +3,22 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { venusSource } from "./globalTypes";
+
 // ====================================================
 // GraphQL query operation: initial
 // ====================================================
+
+export interface initial_girls_venus {
+  readonly __typename: "Venus";
+  readonly id: number;
+  readonly uid: string;
+  readonly source: venusSource;
+  readonly name: string;
+  readonly avatar: string;
+  readonly bio: string;
+  readonly remarks: string;
+}
 
 export interface initial_girls {
   readonly __typename: "Girl";
@@ -17,6 +30,7 @@ export interface initial_girls {
   readonly fromID: string;
   readonly fromURL: string;
   readonly isCollected: boolean;
+  readonly venus: initial_girls_venus | null;
 }
 
 export interface initial_categories {
