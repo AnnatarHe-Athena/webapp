@@ -25,7 +25,7 @@ export function getAESKeyFromUserEmail(email: string): Uint8Array {
       break
     }
 
-    result = result + "|||" + email
+    result = result + '|||' + email
   }
 
   return (new TextEncoder().encode(result)).slice(0, 32)
@@ -74,6 +74,9 @@ export function getRealSrcLink(url: string, type = 'bmiddle') {
     //   resultUrl += '.webp'
     // }
     return resultUrl
+  }
+  if (url.startsWith('//ci.xiaohongshu.com')) {
+    return `https:${url}`
   }
   // return `https://wx3.sinaimg.cn/${type}/${url}`
   return `${prefix}/img-proxy/${type}/${url}`
