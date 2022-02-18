@@ -1,5 +1,5 @@
 import aesjs from 'aes-js'
-import { prefix } from '../setup/apollo'
+import { imagePrefix, prefix } from '../setup/apollo'
 
 const AES_BLOCK_SIZE = 16
 function base64ToHex(str: string) {
@@ -79,7 +79,7 @@ export function getRealSrcLink(url: string, type = 'bmiddle') {
     return `https:${url}`
   }
   // return `https://wx3.sinaimg.cn/${type}/${url}`
-  return `${prefix}/img-proxy/${type}/${url}`
+  return `${imagePrefix}/${type}/${url}`
 }
 
 const SNSToProfileURLMap: any = {
