@@ -16,10 +16,7 @@ const InfoTip = styled.p`
   border-radius: 4px;
 `
 
-console.log('hello info')
-
 function InfoPage() {
-
   const { data, loading } = useQuery<info>(infoQuery)
 
   if (loading || !data) {

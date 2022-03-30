@@ -8,6 +8,6 @@ you can review my code but do not depoly this project.
 
 
 ```
-apollo client:download-schema --endpoint="http://localhost:9009/graphql/v1" --header="Authorization: Bearer vA9Cf4ubJL0U+wiYqzlThqv0b6weO1HeWYx0ReYLWR9vjBTfHihe81xdslelCxBiWtBhN6pw4WRUcGXq299GfytjJ7CbaVrNxr8MW8pdxAR6nmKypv6uW1itLlaMuN3/XnIZ1jSSeUH7Ag4NWDnXmc94iU4fCeqDmYY0zzm5F9MG07fnxW8HTPJ0d+VQxhuXfRqjeN+ZzspL10+73VN/f05g1RZ4BsheQVpnEmbcuRe4FvB8uNWar0RjRllH3Y+RDCFg3JlKcjjExDgudYSO/Q6rMqWkIstBA12TEpq7lDuTT3ttoCvjzT1/6kzOCpuNFthuGX2rRFfqtU0U08yCqRuJ4ylXFIyFRnMw3yFFeahhxlT3QgVs1k35S8PjezuaNiKM5ZpsgKoKsPxbJedmyE9unuFFFtOk220cJW3E+u972ESX/pqBx5I7NOip+8fpiWCh53cYWjKmlmQyqGAV/g==" src/schema/schema.json
+apollo client:download-schema --endpoint="http://localhost:9009/graphql/v1" --header="Authorization: Bearer 2N/+mmviPCTUY71QOCnDYCmcWIDlGuG9wmqYF0UVNPKnDqo3h0igua3d4VcSr0YCggUv+GdxSgxfdK0nilm4ezA5P46X9tAD58Me8B39vlJRB6qi0ODFDLLtoR6N7ZaPjnXmOnY9mxtHWCwtS8nOnL/ltDpupvFlsiRy5JwxYSY4b+E2Tzq0Ns7Xdl2otOHOzm8R6N4QwMFCd3ebV0+ApSYmtkkkIug/nUxrbx9UCOAsYvDlVuBShcmC5zn8BOZEuT/1PGwzAx5uOMQOqRUm5xCnRM7NZ0ErBHy2zj9qv9VLIqfSZrx7tHXGB++Lk6mO79kzqebteKHADQuW4KcL5iQvCgEr5QVAyH9jNh4cFTFzZtckmiHucw6dXBC/UDFQQCchsAwf9aa0lG7I4FmPbOTkICI5lODmU4PlVVt5x6aw3nY7wF/vQAe+XMAU8WFr7qCuCjK/smB1rrvr0rL1SA==" src/schema/schema.json
 apollo codegen:generate --target=typescript --localSchemaFile="./src/schema/schema.json" --includes="./src/schema/**/*.graphql" --useReadOnlyTypes src/schema/_g --outputFlat
 ```

@@ -1,21 +1,16 @@
 // import '@fortawesome/fontawesome-free/css/all.css'
 import React from 'react'
-import ReactDOM from 'react-dom'
-// import { AppContainer } from 'react-hot-loader'
-import App from './App'
+import { createRoot } from 'react-dom/client'
 import setupSentry from './utils/sentry'
 import 'intersection-observer'
 import './styles/tailwind.css'
+import App from './App'
 
 setupSentry()
 
 const rootDOM = document.querySelector('#root')
 
-ReactDOM.render(
-  // <AppContainer>
-  <App />,
-  // </AppContainer>,
-  rootDOM
-)
 // registerServiceWorker()
 
+const root = createRoot(rootDOM)
+root.render(<App />)
