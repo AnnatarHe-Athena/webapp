@@ -1,4 +1,5 @@
 import * as Sentry from '@sentry/browser'
+import { __DEV__ } from '../constants/app'
 
 export default function setup() {
   if (__DEV__) {
