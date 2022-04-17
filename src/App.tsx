@@ -25,7 +25,7 @@ const App = () => {
           </Root>
         </BrowserRouter>
       </Provider>
-      <ToastContainer />
+      <ToastContainer position='bottom-right' />
     </ApolloProvider>
   )
 }

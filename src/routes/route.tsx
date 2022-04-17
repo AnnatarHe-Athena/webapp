@@ -9,20 +9,6 @@ import About from '../pages/info/Info'
 import VenusPage from '../pages/venus/venus'
 // import Spinner from 'react-spinkit'
 
-function asyncLoadComponent(path: string) {
-  return Loadable({
-    loader: () => import('../pages/' + path),
-    loading: (props) => {
-      return (
-      <div className='flex items-center justify-center h-full w-full'>
-        {/* <Spinner name='circle' /> */}
-        <span className='ml-4'>Loading...</span>
-      </div>
-    )
-  },
-  })
-}
-
 const r = [
   { path: '/', component: Welcome },
   { path: '/category/:cid', component: Index },

@@ -5,6 +5,7 @@ import { useQuery, useApolloClient } from '@apollo/client'
 import { profileGot } from '../../actions/auth'
 import { TUser, TUserProfileWithCollection, Collection } from '../../types/user'
 import fetchProfileQuery from '../../schema/queries/profileWithCollection.graphql'
+import { FetchProfileWithCollections } from '../../schema/_g/FetchProfileWithCollections'
 
 const STEP = 20
 
@@ -13,7 +14,7 @@ export function useMyProfile(userID: string) {
   const offset = useRef(STEP)
   const dispatch = useDispatch()
 
-  const query = useQuery<TUserProfileWithCollection>(fetchProfileQuery, {
+  const query = useQuery<FetchProfileWithCollections>(fetchProfileQuery, {
     variables: {
       id: userID,
       from: 0,

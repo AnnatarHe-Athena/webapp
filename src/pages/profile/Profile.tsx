@@ -14,7 +14,7 @@ function Profile() {
 
   return (
     <PageContainer>
-      <div className="p-12 mt-4 rounded-lg shadow-lg bg-white w-5/6 my-20">
+      <div className="p-12 rounded-lg shadow-lg w-full backdrop-blur-3xl dark:bg-gray-800 dark:text-gray-200 bg-purple-700">
         <Information />
         <Separator />
         <Commands isMe={true} />
@@ -26,7 +26,7 @@ function Profile() {
               <PhotoList
                 loading={false}
                 loadMore={loadMore}
-                cells={collections}
+                cells={Array.from(collections)}
                 forceDeleteable={false}
               />
             )

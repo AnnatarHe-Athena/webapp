@@ -1,104 +1,59 @@
-import React from 'react'
-import styled from 'styled-components'
-import PropTypes from 'prop-types'
-// import { graphql, gql } from 'react-apollo'
+import React, { useEffect, useRef } from 'react'
 import Loading from '../Loading'
 import PhotoItem from './PhotoItem'
-import { TransitionGroup } from 'react-transition-group'
-// import Footer from '../footer/Footer'
-import Button from '../button/Button'
-import { CellItem } from "../../types/cell"
-// import fetchGirlsQuery from 'AthenaSchema/fetchGirlsQuery.graphql'
-
-const PhotoLists = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-
-    &:after {
-      content: '';
-      flex-grow: 999999999;
-    }
-`
+import { fetchGirls } from '../../schema/_g/fetchGirls'
 
 type PhotosProps = {
-  cells: CellItem[]
+  cells: fetchGirls[]
   loading: boolean
   loadMore: () => void
   forceDeleteable: boolean
 }
 
-class Photos extends React.PureComponent<PhotosProps> {
-  constructor(props: PhotosProps) {
-    super(props)
+function Photos(props: PhotosProps) {
+  const loadingRef = useRef(false)
+  useEffect(() => {
+    loadingRef.current = props.loading
+  }, [props.loading])
 
-    this.state = {
-      currentCell: {}
+  useEffect(() => {
+    const root = document.querySelector('.athena-obs-more')
+    if (!root) {
+      return
     }
-  }
-
-  root: any = null
-  io: any = null
-
-  componentDidMount() {
-    this.root = document.querySelector('.athena-obs-more')
-    this.io = new IntersectionObserver(entries => {
+    const io = new IntersectionObserver(entries => {
       const e = entries[0]
-      if (e.intersectionRatio <= 0 || this.props.loading) {
+      if (e.intersectionRatio <= 0 || loadingRef.current) {
         return
       }
-      this.props.loadMore()
+      props.loadMore()
     })
-    this.io.observe(this.root)
-  }
+    io.observe(root)
+    return () => {
+      io.unobserve(root)
+      io.disconnect()
+    }
+  }, [props.loadMore])
 
-  componentWillUnmount() {
-    this.io.unobserve(this.root)
-    this.io.disconnect()
-    this.root = null
-    this.io = null
-  }
-
-  renderPhotos() {
-    return this.props.cells.map(pic => {
-      return (
-        <PhotoItem
-          key={pic.id}
-          id={~~pic.id}
-          src={pic.img}
-          desc={pic.text}
-          fromID={pic.fromID}
-          fromURL={pic.fromURL}
-          content={pic.content}
-          forceDeleteable={this.props.forceDeleteable}
-        />
-      )
-    })
-  }
-
-  render() {
-    return (
-      <main className="flex flex-col content-center items-center">
-        <TransitionGroup
-          component={PhotoLists}
-          classNames="fade"
-          timeout={{
-            exit: 350,
-            enter: 350
-          }}
-        >
-          {this.renderPhotos()}
-        </TransitionGroup>
-        <button
-          disabled={this.props.loading}
-          className="athena-obs-more py-4 px-8 bg-red-600 hover:bg-red-700 rounded transition-fast text-white shadow-lg"
-          onClick={this.props.loadMore}
-        > 🚥 Loading</button>
-        {this.props.loading && (<Loading />)}
-      </main>
-    )
-  }
+  return (
+    <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 2xl:grid-cols-4">
+      {props.cells.map(pic => {
+        return (
+          <PhotoItem
+            key={pic.id}
+            cell={pic}
+            forceDeleteable={props.forceDeleteable}
+          />
+        )
+      })}
+      <button
+        disabled={props.loading}
+        className="athena-obs-more py-4 px-8 bg-red-600 hover:bg-red-700 rounded transition-fast text-white shadow-lg"
+        onClick={props.loadMore}
+      > 🚥 Loading</button>
+      {props.loading && (<Loading />)}
+    </main>
+  )
 }
 
 

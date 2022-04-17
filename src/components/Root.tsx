@@ -5,19 +5,8 @@ import { useQuery } from '@apollo/client'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import { updateCategories } from '../actions/category'
 import initialQuery from '../schema/initial.graphql'
-
-import { liteYellow, liteBlue } from '../styles/variables'
-
 import Header from './header/Header'
-import { initialVariables, initial } from '../types/initial'
-
-const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    min-height: 100vh;
-    background: linear-gradient(45deg, ${liteYellow}, ${liteBlue});
-`
+import { initial, initialVariables } from '../schema/_g/initial'
 
 const BodyContainer = styled.div`
     display: flex;
@@ -25,7 +14,6 @@ const BodyContainer = styled.div`
 `
 
 function Root(props: any) {
-
   const q = useQuery<initial, initialVariables>(initialQuery, {
     variables: {
       from: 2,
@@ -42,9 +30,8 @@ function Root(props: any) {
     }
     dispatch(updateCategories(q.data.categories))
   }, [q.data])
-
   return (
-      <Container>
+      <div className='flex flex-col min-h-screen dark:bg-gray-900 bg-purple-700'>
         <Header />
           <TransitionGroup className="transition-group">
             <CSSTransition
@@ -54,7 +41,7 @@ function Root(props: any) {
               {props.children}
             </CSSTransition>
           </TransitionGroup>
-      </Container>
+      </div>
   )
 }
 

@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import Nav from 'AthenaComponents/Nav'
 import queryInitial from '../../schema/initial.graphql'
 import { useQuery } from '@apollo/client'
-import { initial, initialVariables } from '../../types/initial'
+import { initial, initialVariables } from '../../schema/_g/initial'
 
 function _Girls(props: any) {
   const { data, refetch, fetchMore } = useQuery<initial, initialVariables>(queryInitial, {
@@ -19,7 +19,10 @@ function _Girls(props: any) {
 
   return (
     <div>
-      <Nav categories={data?.categories || []} onSelected={onChangeCategory} />
+      <Nav
+        categories={data?.categories.map(x => ({ id: x.id, name: x.name })) ?? []}
+        onSelected={onChangeCategory}
+      />
     </div>
   )
 }

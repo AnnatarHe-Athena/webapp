@@ -5,11 +5,12 @@ import { legacyCategory } from '../../constants/defaults'
 import { getPermissionObj } from '../../utils/permission'
 import { STORAGE_OFFSET_KEY } from '../../components/nav-offset-input/index'
 import PhotoList from '../../components/photos/Photos'
-import { CellItem, TCellsResponse } from "../../types/cell"
 import { AppStore } from '../../reducers'
 import { TUser } from '../../types/user'
 
-import fetchGirlsQuery from '../../schema/fetchGirlsQuery.graphql'
+import fetchGirlsQueryQuery from '../../schema/fetchGirlsQuery.graphql'
+import { fetchGirls } from '../../schema/_g/fetchGirls'
+import { fetchGirlsQuery } from '../../schema/_g/fetchGirlsQuery'
 
 type PhotosProps = {
   categoryID: number
@@ -18,7 +19,7 @@ type PhotosProps = {
 function Photos(props: PhotosProps) {
   const user = useSelector<AppStore, TUser>(s => s.profile.info)
 
-  const query = useQuery<TCellsResponse>(fetchGirlsQuery, {
+  const query = useQuery<fetchGirlsQuery>(fetchGirlsQueryQuery, {
     variables: {
       from: ~~props.categoryID || 1, take: 17,
       hideOnly: false,
@@ -27,7 +28,7 @@ function Photos(props: PhotosProps) {
   })
 
   const loadMore = () => {
-    const cells = query.data?.girls || []
+    const cells = query.data?.girls ?? []
     if (cells.length === 0) {
       return
     }
@@ -58,7 +59,7 @@ function Photos(props: PhotosProps) {
     <PhotoList
       loading={query.loading}
       loadMore={loadMore}
-      cells={query.data?.girls ?? []}
+      cells={Array.from(query.data?.girls ?? [])}
       forceDeleteable={getPermissionObj(user).remove && props.categoryID.toString() === legacyCategory.id}
     />
   )

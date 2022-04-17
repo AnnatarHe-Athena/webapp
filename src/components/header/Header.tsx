@@ -9,8 +9,8 @@ import { getPermissionObj, getToken } from '../../utils/permission'
 import Nav from '../Nav'
 import { AppStore } from '../../reducers'
 import { TUser } from '../../types/user'
-import { fetchCategories } from '../../types/fetchCategories'
 import { Link, useNavigate } from 'react-router-dom'
+import { fetchCategories } from '../../schema/_g/fetchCategories'
 
 const Bar = styled.div`
     width: 100%;
@@ -30,12 +30,6 @@ const Bar = styled.div`
         }
 
     }
-`
-
-const MenuItem = styled.div`
-  &:last-child {
-    margin-right: 0;
-  }
 `
 
 function Header() {
@@ -62,18 +56,18 @@ function Header() {
       <Bar>
         <Link to="/"><h2 className="text-lg font-medium hover:text-xl transition-fast">Athena</h2></Link>
         <div className="flex flex-row">
-          <MenuItem
-            className="mr-8 py-2 px-4 bg-gray-300 hover:bg-gray-100 hover:shadow-lg transition-fast rounded"
+          <div
+            className="mr-8 py-2 px-4 bg-gray-300 hover:bg-gray-100 hover:shadow-lg transition-all duration-300 rounded"
             onClick={() => setVis(true)}
           >
             ✨ <span className="ml-2">Categories</span>
-          </MenuItem>
-          <MenuItem
-            className="mr-8 py-2 px-4 bg-gray-300 hover:bg-gray-100 hover:shadow-lg transition-fast rounded"
+          </div>
+          <div
+            className="mr-8 py-2 px-4 bg-gray-300 hover:bg-gray-100 hover:shadow-lg transition-all duration-300 rounded"
             onClick={onProfileClick}
           >
             🙍‍ <span className="ml-2">User</span>
-          </MenuItem>
+          </div>
         </div>
       </Bar>
       <Dialog visible={vis} onClose={() => setVis(false)}>

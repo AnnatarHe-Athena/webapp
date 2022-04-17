@@ -1,11 +1,9 @@
-import styled from 'styled-components'
+import React from 'react'
 
-const Separator = styled.hr`
-    margin: 1rem 0;
-    border: none;
-    background-color: #d8d7d7;
-    height: 1px;
-    width: 100%;
-`
+function Separator() {
+  return (
+    <hr className='my-4 border-none bg-gray-400 dark:bg-gray-500 h-0.5 w-full' />
+  )
+}
 
 export default Separator

@@ -45,7 +45,7 @@ function Information() {
   }
 
   return (
-    <div className='flex'>
+    <div className='flex justify-center items-center'>
       <div className='mr-4'>
         <HideUntilLoaded imageToLoad={avatarUrl}>
           <img src={avatarUrl} className='rounded w-16 h-16' />

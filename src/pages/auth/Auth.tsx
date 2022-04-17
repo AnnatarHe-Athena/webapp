@@ -99,18 +99,14 @@ function AuthPage() {
   return (
     <PageContainer>
       <div
-        className='mt-24 p-4 rounded shadow w-1/2 lg:w-1/3 lg:mt-32'
-        style={{
-          backgroundColor: 'rgba(255,255,255, .7)',
-          backdropFilter: 'blur(10px)'
-        }}
+        className='mt-24 p-4 rounded shadow w-1/2 lg:w-1/3 lg:mt-32 bg-blue-400 bg-opacity-25 backdrop-blur-3xl'
       >
         <h2 className='text-lg text-center'>🔑 Auth</h2>
         <Separator />
         <form onSubmit={f.handleSubmit}>
           <div className='w-full mb-2'>
             <input
-              className='p-2 w-full focus:outline-none rounded-sm'
+              className='p-2 w-full focus:outline-none rounded-sm bg-gray-200 bg-opacity-20'
               value={f.values.email}
               name='email'
               type="email"
@@ -125,7 +121,7 @@ function AuthPage() {
           </div>
           <div className='w-full mb-2'>
             <input
-              className='p-2 w-full focus:outline-none rounded-sm'
+              className='p-2 w-full focus:outline-none rounded-sm bg-gray-200 bg-opacity-20'
               value={f.values.pwd}
               type="password"
               name='pwd'
@@ -142,7 +138,7 @@ function AuthPage() {
             <button
               type='submit'
               disabled={f.isSubmitting}
-              className='w-full p-4 rounded shadow-lg focus:outline-none bg-gradient-to-tr from-green-400 to-blue-500'
+              className='w-full p-4 rounded shadow-lg focus:outline-none bg-gradient-to-tr from-gray-400 to-blue-400'
             >
               <Status loading={f.isSubmitting} />
             </button>

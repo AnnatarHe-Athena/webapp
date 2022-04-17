@@ -4,48 +4,29 @@ import Preview from '../preview/Preview'
 import { getRealSrcLink, getAESIVFromUserEmail } from '../../utils/index'
 import { useImageDestLink } from '../../hooks/useImageDestLink'
 import HideUntilLoaded from '../HideUntilLoaded'
-
-const Container = styled.picture`
-  flex-grow: 1;
-  // min-width: 10rem;
-  // min-height: 10rem;
-
-  @media (min-width: 768px) {
-    max-width: 24vw;
-  }
-  img {
-    width: 400px;
-    height: 500px;
-    border-radius: 4px;
-  }
-`
+import { fetchGirls } from '../../schema/_g/fetchGirls'
 
 type PhotoItemProps = {
-  id: number
-  src: string
-  desc: string
-  fromURL: string
-  fromID: string
-  content: string
+  cell: fetchGirls
   forceDeleteable: boolean
 }
 
 function PhotoItem(props: PhotoItemProps) {
   const {
     id,
-    src,
-    desc,
+    img,
+    text,
     fromID,
     fromURL,
     content
-  } = props
+  } = props.cell
 
   const [vis, setVis] = useState(false)
-  const basedLink = useImageDestLink(src)
+  const basedLink = useImageDestLink(img)
   const bmiddleSrc = getRealSrcLink(atob(basedLink))
 
   return (
-    <Container>
+    <picture className=' rounded'>
       <HideUntilLoaded imageToLoad={bmiddleSrc}>
         <React.Fragment>
         <source
@@ -54,19 +35,26 @@ function PhotoItem(props: PhotoItemProps) {
         />
         <img
           src={bmiddleSrc}
-          alt={desc}
+          alt={text}
           onClick={() => setVis(true)}
           crossOrigin="anonymous"
+          className=' rounded object-cover h-full mx-auto'
+          style={{
+            maxHeight: '650px'
+          }}
         />
         </React.Fragment>
       </HideUntilLoaded>
-      {/*<span>{desc}</span>*/}
       <Preview
-        data={{ id, src, desc, fromID, fromURL, content }}
+        // data={{ id, src, desc, fromID, fromURL, content }}
+        data={{
+          cell: props.cell,
+          onClose: () => {}
+        }}
         visible={vis}
         onClose={() => setVis(false)}
       />
-    </Container>
+    </picture>
   )
 }
 
