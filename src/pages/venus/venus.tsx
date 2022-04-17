@@ -51,24 +51,24 @@ function VenusPage(props: VenusPageProps) {
   }, [doAdd, waitingVenusListText, refetch])
 
   return (
-    <div className='flex flex-col m-auto justify-center items-center'>
-      <div className='flex'>
+    <div className='flex flex-col m-auto justify-center items-center pt-10 container'>
+      <div className='flex flex-col w-full mb-4'>
         <textarea
           value={waitingVenusListText}
           onChange={v => setWaitingList(v.target.value)}
-          className='w-full'
+          className='w-full bg-gray-200 bg-opacity-20 rounded p-4 dark:text-gray-200 text-gray-800'
           rows={10}
         />
         <button
-          className='p-4 ml-2 bg-blue-400 hover:bg-blue-500'
+          className='py-4 w-full bg-blue-400 hover:bg-blue-500 mt-4 text-gray-800 rounded'
           disabled={waitingVenusListText.length === 0}
           onClick={submitVenusToServer}
         >
           submit venus to server
         </button>
       </div>
-      <span>count: {data?.venusList.count}</span>
-      <ul>
+      <span className='dark:text-gray-200'>count: {data?.venusList.count}</span>
+      <ul className='dark:text-gray-200'>
         {data?.venusList.edges.map(v => (
           <li key={v.id} className='my-2'>
             <p>{v.source} {v.name.length > 2 ? v.name : v.uid}</p>
