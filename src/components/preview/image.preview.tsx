@@ -113,12 +113,12 @@ function PreviewImage(props: PreviewImageProps) {
       </Extra>
       <HideUntilLoaded imageToLoad={bigSrc}>
         <div
-          className='rounded p-10 shadow-lg flex bg-gray-600 bg-opacity-30 m-10 overflow-scroll'
+          className='rounded p-10 shadow-lg flex bg-gray-600 bg-opacity-30 m-10 overflow-auto'
           style={{
             maxHeight: '95vh'
           }}
         >
-          <figure className='bg-gray-900 bg-opacity-10 max-h-screen overflow-scroll'>
+          <figure className='bg-gray-900 bg-opacity-10 max-h-screen overflow-auto'>
             <picture onClick={onClose}>
               <source srcSet={bigSrc} />
               <img
