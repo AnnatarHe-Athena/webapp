@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from '@apollo/client'
 import venusListQuery from '../../schema/queries/venusList.graphql'
 import addVenusListMutation from '../../schema/mutations/venusAdd.graphql'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import { venusSource } from '../../schema/_g/globalTypes'
 import { addVenusMutation, addVenusMutationVariables } from '../../schema/_g/addVenusMutation'
@@ -49,6 +49,37 @@ function VenusPage(props: VenusPageProps) {
       setWaitingList('')
     })
   }, [doAdd, waitingVenusListText, refetch])
+
+  useEffect(() => {
+    const regexp = /weibo\.c\w{1,2}\/u\/(\d{10})/
+    async function onVisibilityChange() {
+      if (document.hidden) {
+        return
+      }
+      const text = await navigator.clipboard.readText()
+      const matched = text.match(regexp)
+      if (!matched) {
+        return
+      }
+      if (matched.length != 2) {
+        return
+      }
+
+      const uid = matched[1]
+      setWaitingList(w => {
+        if (w.includes(uid)) {
+          return w
+        }
+        return w + `https://weibo.com/u/${uid}\n`
+      })
+      toast.info('read from clipboard')
+    }
+
+    document.addEventListener('visibilitychange', onVisibilityChange)
+    return () => {
+      document.removeEventListener('visibilitychange', onVisibilityChange)
+    }
+  }, [])
 
   return (
     <div className='flex flex-col m-auto justify-center items-center pt-10 container'>
