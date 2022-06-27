@@ -41,7 +41,7 @@ export function useMyProfile(userID: string) {
       return
     }
 
-    let cid: number | null = null
+    let cid: number = 1<<30
 
     if (query.data?.collections && query.data.collections.edges.length > 0) {
       cid = query.data.collections.edges[query.data.collections.edges.length - 1].id
