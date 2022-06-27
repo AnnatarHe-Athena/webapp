@@ -50,7 +50,7 @@ export function useMyProfile(userID: string) {
     query.fetchMore({
       variables: {
         id: userID,
-        from: offset.current,
+        from: 0,
         size: STEP,
         cursor: cid
       },
