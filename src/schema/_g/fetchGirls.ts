@@ -30,5 +30,5 @@ export interface fetchGirls {
   readonly fromID: string;
   readonly fromURL: string;
   readonly isCollected: boolean;
-  readonly venus: fetchGirls_venus | null;
+  readonly venus: fetchGirls_venus;
 }

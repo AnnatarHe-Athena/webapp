@@ -30,7 +30,7 @@ export interface initial_girls {
   readonly fromID: string;
   readonly fromURL: string;
   readonly isCollected: boolean;
-  readonly venus: initial_girls_venus | null;
+  readonly venus: initial_girls_venus;
 }
 
 export interface initial_categories {

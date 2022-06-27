@@ -30,7 +30,7 @@ export interface addGirlCells_addGirls {
   readonly fromID: string;
   readonly fromURL: string;
   readonly isCollected: boolean;
-  readonly venus: addGirlCells_addGirls_venus | null;
+  readonly venus: addGirlCells_addGirls_venus;
 }
 
 export interface addGirlCells {

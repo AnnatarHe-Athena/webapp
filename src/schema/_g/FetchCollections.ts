@@ -30,7 +30,7 @@ export interface FetchCollections_collections {
   readonly fromID: string;
   readonly fromURL: string;
   readonly isCollected: boolean;
-  readonly venus: FetchCollections_collections_venus | null;
+  readonly venus: FetchCollections_collections_venus;
 }
 
 export interface FetchCollections {
@@ -38,7 +38,7 @@ export interface FetchCollections {
 }
 
 export interface FetchCollectionsVariables {
-  readonly id: string;
   readonly from: number;
   readonly size: number;
+  readonly cursor?: number | null;
 }

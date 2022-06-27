@@ -1,7 +1,7 @@
 #import "../fetchGirls.graphql"
 
-query FetchCollections($id: ID!, $from: Int!, $size: Int!) {
-    collections(id: $id, from: $from, size: $size) {
+query FetchCollections($from: Int!, $size: Int!, $cursor: Int) {
+    collections(from: $from, size: $size, cursor: $cursor) {
         ...fetchGirls
    }
 }

@@ -5,7 +5,7 @@ import { useQuery, useApolloClient } from '@apollo/client'
 import { profileGot } from '../../actions/auth'
 import { TUser, TUserProfileWithCollection, Collection } from '../../types/user'
 import fetchProfileQuery from '../../schema/queries/profileWithCollection.graphql'
-import { FetchProfileWithCollections } from '../../schema/_g/FetchProfileWithCollections'
+import { FetchProfileWithCollections, FetchProfileWithCollectionsVariables } from '../../schema/_g/FetchProfileWithCollections'
 
 const STEP = 20
 
@@ -14,11 +14,11 @@ export function useMyProfile(userID: string) {
   const offset = useRef(STEP)
   const dispatch = useDispatch()
 
-  const query = useQuery<FetchProfileWithCollections>(fetchProfileQuery, {
+  const query = useQuery<FetchProfileWithCollections, FetchProfileWithCollectionsVariables>(fetchProfileQuery, {
     variables: {
       id: userID,
       from: 0,
-      size: STEP
+      size: STEP,
     },
     onCompleted(result) {
       dispatch(profileGot(result.users))
@@ -40,11 +40,18 @@ export function useMyProfile(userID: string) {
       return
     }
 
+    let cid: number | null = null
+
+    if (query.data?.collections && query.data.collections.length > 0) {
+      cid = ~~query.data.collections[query.data.collections.length - 1].id
+    } 
+
     query.fetchMore({
       variables: {
         id: userID,
         from: offset.current,
-        size: STEP
+        size: STEP,
+        cursor: cid
       },
       updateQuery(pResult, options) { 
         return {

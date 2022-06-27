@@ -30,7 +30,7 @@ export interface fetchGirlsQuery_girls {
   readonly fromID: string;
   readonly fromURL: string;
   readonly isCollected: boolean;
-  readonly venus: fetchGirlsQuery_girls_venus | null;
+  readonly venus: fetchGirlsQuery_girls_venus;
 }
 
 export interface fetchGirlsQuery {

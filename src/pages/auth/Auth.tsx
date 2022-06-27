@@ -9,11 +9,11 @@ import authGraphql from '../../schema/queries/auth.graphql'
 import PageContainer from '../../components/PageContainer'
 import Separator from '../../components/Separator'
 import Status from './Status'
-import { auth, authVariables } from '../../types/auth'
-import { Device } from '../../types/globalTypes'
 import { useTitle } from '../../hooks/title'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router'
+import { Device } from '../../schema/_g/globalTypes'
+import { auth, authVariables } from '../../schema/_g/auth'
 
 function useDevice() {
   const [device, setDevice] = useState<Device | null>(null)

@@ -41,7 +41,7 @@ export interface FetchProfileWithCollections_collections {
   readonly fromID: string;
   readonly fromURL: string;
   readonly isCollected: boolean;
-  readonly venus: FetchProfileWithCollections_collections_venus | null;
+  readonly venus: FetchProfileWithCollections_collections_venus;
 }
 
 export interface FetchProfileWithCollections {
@@ -53,4 +53,5 @@ export interface FetchProfileWithCollectionsVariables {
   readonly id: string;
   readonly from: number;
   readonly size: number;
+  readonly cursor?: number | null;
 }
