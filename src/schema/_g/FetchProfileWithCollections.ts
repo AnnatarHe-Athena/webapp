@@ -20,7 +20,7 @@ export interface FetchProfileWithCollections_users {
   readonly role: number;
 }
 
-export interface FetchProfileWithCollections_collections_venus {
+export interface FetchProfileWithCollections_collections_edges_cell_venus {
   readonly __typename: "Venus";
   readonly id: number;
   readonly uid: string;
@@ -31,7 +31,7 @@ export interface FetchProfileWithCollections_collections_venus {
   readonly remarks: string;
 }
 
-export interface FetchProfileWithCollections_collections {
+export interface FetchProfileWithCollections_collections_edges_cell {
   readonly __typename: "Girl";
   readonly id: string;
   readonly img: string;
@@ -41,17 +41,29 @@ export interface FetchProfileWithCollections_collections {
   readonly fromID: string;
   readonly fromURL: string;
   readonly isCollected: boolean;
-  readonly venus: FetchProfileWithCollections_collections_venus;
+  readonly venus: FetchProfileWithCollections_collections_edges_cell_venus;
+}
+
+export interface FetchProfileWithCollections_collections_edges {
+  readonly __typename: "Collection";
+  readonly id: number;
+  readonly cell: FetchProfileWithCollections_collections_edges_cell;
+}
+
+export interface FetchProfileWithCollections_collections {
+  readonly __typename: "Collections";
+  readonly count: number;
+  readonly edges: ReadonlyArray<FetchProfileWithCollections_collections_edges>;
 }
 
 export interface FetchProfileWithCollections {
   readonly users: FetchProfileWithCollections_users;
-  readonly collections: ReadonlyArray<FetchProfileWithCollections_collections>;
+  readonly collections: FetchProfileWithCollections_collections;
 }
 
 export interface FetchProfileWithCollectionsVariables {
   readonly id: string;
   readonly from: number;
   readonly size: number;
-  readonly cursor?: number | null;
+  readonly cursor: number;
 }

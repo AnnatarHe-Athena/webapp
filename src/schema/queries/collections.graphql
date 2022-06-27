@@ -1,8 +1,14 @@
 #import "../fetchGirls.graphql"
 
-query FetchCollections($from: Int!, $size: Int!, $cursor: Int) {
+query FetchCollections($from: Int!, $size: Int!, $cursor: Int!) {
     collections(from: $from, size: $size, cursor: $cursor) {
-        ...fetchGirls
+        count
+        edges {
+            id
+            cell {
+                ...fetchGirls
+            }
+        }
    }
 }
 

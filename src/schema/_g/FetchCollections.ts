@@ -9,7 +9,7 @@ import { venusSource } from "./globalTypes";
 // GraphQL query operation: FetchCollections
 // ====================================================
 
-export interface FetchCollections_collections_venus {
+export interface FetchCollections_collections_edges_cell_venus {
   readonly __typename: "Venus";
   readonly id: number;
   readonly uid: string;
@@ -20,7 +20,7 @@ export interface FetchCollections_collections_venus {
   readonly remarks: string;
 }
 
-export interface FetchCollections_collections {
+export interface FetchCollections_collections_edges_cell {
   readonly __typename: "Girl";
   readonly id: string;
   readonly img: string;
@@ -30,15 +30,27 @@ export interface FetchCollections_collections {
   readonly fromID: string;
   readonly fromURL: string;
   readonly isCollected: boolean;
-  readonly venus: FetchCollections_collections_venus;
+  readonly venus: FetchCollections_collections_edges_cell_venus;
+}
+
+export interface FetchCollections_collections_edges {
+  readonly __typename: "Collection";
+  readonly id: number;
+  readonly cell: FetchCollections_collections_edges_cell;
+}
+
+export interface FetchCollections_collections {
+  readonly __typename: "Collections";
+  readonly count: number;
+  readonly edges: ReadonlyArray<FetchCollections_collections_edges>;
 }
 
 export interface FetchCollections {
-  readonly collections: ReadonlyArray<FetchCollections_collections>;
+  readonly collections: FetchCollections_collections;
 }
 
 export interface FetchCollectionsVariables {
   readonly from: number;
   readonly size: number;
-  readonly cursor?: number | null;
+  readonly cursor: number;
 }

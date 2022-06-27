@@ -1,12 +1,18 @@
 #import "../fragments/profile.graphql"
 #import "../fetchGirls.graphql"
 
-query FetchProfileWithCollections($id: ID!, $from: Int!, $size: Int!, $cursor: Int) {
+query FetchProfileWithCollections($id: ID!, $from: Int!, $size: Int!, $cursor: Int!) {
     users(id: $id) {
         ...profile
     }
     collections(from: $from, size: $size, cursor: $cursor) {
-        ...fetchGirls
+        count
+        edges {
+            id
+            cell {
+                ...fetchGirls
+            }
+        }
     }
 }
 

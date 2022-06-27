@@ -26,7 +26,7 @@ function Profile() {
               <PhotoList
                 loading={false}
                 loadMore={loadMore}
-                cells={Array.from(collections)}
+                cells={collections.map(x => x.cell)}
                 forceDeleteable={false}
               />
             )

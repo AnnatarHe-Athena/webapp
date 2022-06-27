@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react'
 import { useStore, useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
-import { useQuery, useApolloClient } from '@apollo/client'
+import { useQuery, useApolloClient, FetchMoreQueryOptions } from '@apollo/client'
 import { profileGot } from '../../actions/auth'
 import { TUser, TUserProfileWithCollection, Collection } from '../../types/user'
 import fetchProfileQuery from '../../schema/queries/profileWithCollection.graphql'
@@ -19,6 +19,7 @@ export function useMyProfile(userID: string) {
       id: userID,
       from: 0,
       size: STEP,
+      cursor: 1<<30
     },
     onCompleted(result) {
       dispatch(profileGot(result.users))
@@ -26,7 +27,7 @@ export function useMyProfile(userID: string) {
         hasMore.current = false
         return
       }
-      if (result.collections?.length === 0) {
+      if (result.collections?.edges.length === 0) {
         hasMore.current = false
         return
       }
@@ -42,8 +43,8 @@ export function useMyProfile(userID: string) {
 
     let cid: number | null = null
 
-    if (query.data?.collections && query.data.collections.length > 0) {
-      cid = ~~query.data.collections[query.data.collections.length - 1].id
+    if (query.data?.collections && query.data.collections.edges.length > 0) {
+      cid = query.data.collections.edges[query.data.collections.edges.length - 1].id
     } 
 
     query.fetchMore({
@@ -53,13 +54,20 @@ export function useMyProfile(userID: string) {
         size: STEP,
         cursor: cid
       },
-      updateQuery(pResult, options) { 
+      updateQuery(pResult:any, options) { 
         return {
           ...pResult,
-          collections: [
-            ...pResult.collections ?? [],
-            ...options.fetchMoreResult?.collections ?? []
-          ]
+          collections: {
+            count: options.fetchMoreResult?.collections.count,
+            edges: [
+              ...(pResult.collections.edges ?? []),
+              ...(options.fetchMoreResult?.collections.edges ?? [])
+            ]
+          }
+          // collections: [
+          //   ...pResult.collections ?? [],
+          //   ...options.fetchMoreResult?.collections ?? []
+          // ]
         }
       }
     })
@@ -69,7 +77,7 @@ export function useMyProfile(userID: string) {
 
 
   return {
-    collections: query.data?.collections ?? [],
+    collections: query.data?.collections.edges ?? [],
     loadMore,
     loading: query.loading
   }
