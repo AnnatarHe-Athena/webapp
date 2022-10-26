@@ -1,11 +1,15 @@
-import styled from 'styled-components'
+import React from 'react'
 
-const PageContainer = styled.div`
-    display: flex;
-    min-height: 60vh;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-`
+type PageContainerProps = {
+  children: React.ReactElement
+}
+
+function PageContainer(props: PageContainerProps) {
+  return (
+    <div className='flex items-center flex-col w-full min-h-[60vh]'>
+      {props.children}
+    </div>
+  )
+}
 
 export default PageContainer
