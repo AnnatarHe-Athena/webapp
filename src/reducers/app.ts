@@ -6,8 +6,7 @@ import {
 import {
   SYNC_AUTH_TOKEN
 } from '../constants/auth'
-import { fetchCategories } from '../types/fetchCategories'
-// import { TCategory } from '../types/info'
+import { fetchCategories } from '../schema/_g/fetchCategories'
 
 export type AppStoreType = {
   categories: fetchCategories[],

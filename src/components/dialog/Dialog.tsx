@@ -21,8 +21,8 @@ function InnerDialog(props: InnerDialogProps) {
   //   }
   // }, [])
 
-  const onClose = useCallback((e) => {
-    if (e.target.getAttribute('role') !== 'mask') {
+  const onClose = useCallback((e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if ((e.target as any).getAttribute('role') !== 'mask') {
       return
     }
     props.onClose()

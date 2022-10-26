@@ -18,8 +18,8 @@ import { getToken } from '../../utils/permission'
 import { toast } from 'react-toastify'
 import { useSelector } from 'react-redux'
 import { useFormik } from 'formik'
-import { initCategories_categories } from '../../types/initCategories'
-import { addGirlCells, addGirlCellsVariables } from '../../types/addGirlCells'
+import { initCategories_categories } from '../../schema/_g/initCategories'
+import { addGirlCells, addGirlCellsVariables } from '../../schema/_g/addGirlCells'
 
 const TextTip = styled.span`
   padding: 1rem 0;

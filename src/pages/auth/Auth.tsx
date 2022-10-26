@@ -138,7 +138,7 @@ function AuthPage() {
             <button
               type='submit'
               disabled={f.isSubmitting}
-              className='w-full p-4 rounded shadow-lg focus:outline-none bg-gradient-to-tr from-gray-400 to-blue-400'
+              className='w-full p-4 rounded shadow-lg focus:outline-none bg-gradient-to-tr from-gray-400 to-blue-400 disabled:from-gray-300 disabled:to-gray-300'
             >
               <Status loading={f.isSubmitting} />
             </button>

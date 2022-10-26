@@ -1,4 +1,3 @@
-import { CellItem } from "./cell"
 
 export enum Permission {
   OPEN = 2,
@@ -15,7 +14,7 @@ export type TUser = {
   name: string
 }
 
-export type Collection = CellItem
+export type Collection = any
 
 export type TUserProfileWithCollection = {
   collections?: Collection[]
