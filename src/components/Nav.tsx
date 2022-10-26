@@ -60,7 +60,7 @@ function Nav ({ categories, onSelected }: NavProps) {
       <NavOffsetInput />
       <ul>{navs}</ul>
       <div className="absolute bottom-0 right-0 mr-8 mb-8">
-        <Link to={'/about'} className="text-sm text-blue-300">关于</Link>
+        <Link to='/about' className="text-sm text-blue-300">关于</Link>
       </div>
     </NavContainer>
   )

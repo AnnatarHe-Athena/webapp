@@ -43,7 +43,7 @@ export function decryptData(key: Uint8Array, encryptedHex: string): string {
   return decryptedText.trim()
 }
 
-export function getRealSrcLink(url: string, type = 'bmiddle') {
+export function getRealSrcLink(url: string, type = 'large') {
   // if (__DEV__) {
   //   return 'https://picsum.photos/400/500'
   // }

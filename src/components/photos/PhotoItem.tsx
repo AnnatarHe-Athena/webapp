@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
 import Preview from '../preview/Preview'
 import { getRealSrcLink, getAESIVFromUserEmail } from '../../utils/index'
 import { useImageDestLink } from '../../hooks/useImageDestLink'

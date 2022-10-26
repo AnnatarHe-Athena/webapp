@@ -48,7 +48,13 @@ const link = new HttpLink({
 
 const apolloClient = new ApolloClient({
   link: from([authMiddleware, errorLink, link]),
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    typePolicies: {
+      'Girl': {
+        // id merge
+      }
+    }
+  }),
 })
 
 export { apolloClient }

@@ -36,16 +36,18 @@ function Photos(props: PhotosProps) {
   }, [props.loadMore])
 
   return (
-    <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 2xl:grid-cols-4">
-      {props.cells.map(pic => {
-        return (
-          <PhotoItem
-            key={pic.id}
-            cell={pic}
-            forceDeleteable={props.forceDeleteable}
-          />
-        )
-      })}
+    <main className='w-full'>
+      <section className=" w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 2xl:grid-cols-4">
+        {props.cells.map(pic => {
+          return (
+            <PhotoItem
+              key={pic.id}
+              cell={pic}
+              forceDeleteable={props.forceDeleteable}
+            />
+          )
+        })}
+      </section>
       <button
         disabled={props.loading}
         className="athena-obs-more py-4 px-8 bg-red-600 hover:bg-red-700 rounded transition-fast text-white shadow-lg"
