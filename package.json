@@ -38,8 +38,8 @@
     "yup": "^0.32.9"
   },
   "scripts": {
-    "dev": "snowpack dev",
-    "prod": "snowpack build",
+    "dev": "vite",
+    "prod": "vite build",
     "release:base": "standard-version --commit-all",
     "release": "npm run release:base --",
     "release:pre": "npm run release:base -- --prerelease alpha",
@@ -71,9 +71,10 @@
     "offline-plugin": "^5.0.7",
     "postcss-normalize": "^10.0.0",
     "poststylus": "^1.0.1",
-    "snowpack": "^3.8.8",
     "standard-version": "^9.3.0",
     "stylus": "^0.58.1",
-    "typescript": "^4.7.3"
+    "typescript": "^4.7.3",
+    "vite": "^3.2.0",
+    "vite-plugin-simple-gql": "^0.5.0"
   }
 }
