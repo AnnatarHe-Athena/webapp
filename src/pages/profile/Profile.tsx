@@ -6,7 +6,7 @@ import PageContainer from '../../components/PageContainer'
 import Tab from '../../components/tab/Tab'
 import Information from './Information'
 import Separator from '../../components/Separator'
-import { useParams } from 'react-router'
+import { useParams } from 'react-router-dom'
 
 function Profile() {
   const params = useParams()

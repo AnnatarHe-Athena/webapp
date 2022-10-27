@@ -11,7 +11,7 @@ import Separator from '../../components/Separator'
 import Status from './Status'
 import { useTitle } from '../../hooks/title'
 import { toast } from 'react-toastify'
-import { useNavigate } from 'react-router'
+import { useNavigate } from 'react-router-dom'
 import { Device } from '../../schema/_g/globalTypes'
 import { auth, authVariables } from '../../schema/_g/auth'
 
