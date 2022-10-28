@@ -4,7 +4,6 @@ import React from 'react'
 const Loading = () => {
   return (
     <div>
-      <i className="fa fa-spinner fa-pulse fa-3x fa-fw" />
       <span> loading... </span>
     </div>
   )

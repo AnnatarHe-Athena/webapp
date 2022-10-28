@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 // @ts-ignore
 import infoQuery from '../../schema/queries/info.graphql'
-// import Spinner from 'react-spinkit'
 import { useQuery } from '@apollo/client'
 import { info } from '../../schema/_g/info'
 import Card from '../../components/card/Card'

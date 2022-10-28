@@ -48,12 +48,16 @@ function Photos(props: PhotosProps) {
           )
         })}
       </section>
+      <div className='w-full text-center'>
       <button
         disabled={props.loading}
         className="athena-obs-more py-4 px-8 bg-red-600 hover:bg-red-700 rounded transition-fast text-white shadow-lg"
         onClick={props.loadMore}
-      > 🚥 Loading</button>
-      {props.loading && (<Loading />)}
+      >
+         🚥 
+         Loading
+         </button>
+      </div>
     </main>
   )
 }

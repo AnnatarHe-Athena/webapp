@@ -1,5 +1,4 @@
 import React from 'react'
-import Loadable from 'react-loadable'
 import Index from '../pages/index/Index'
 import Welcome from '../pages/welcome/Welcome'
 import AuthPage from '../pages/auth/Auth'
@@ -7,7 +6,6 @@ import ProfilePage from '../pages/profile/Profile'
 import ProfileCellCreatePage from '../pages/add/Index'
 import About from '../pages/info/Info'
 import VenusPage from '../pages/venus/venus'
-// import Spinner from 'react-spinkit'
 
 const r = [
   { path: '/', component: Welcome },

@@ -101,7 +101,7 @@ function AuthPage() {
       <div
         className='mt-24 p-4 rounded shadow w-1/2 lg:w-1/3 lg:mt-32 bg-blue-400 bg-opacity-25 backdrop-blur-3xl'
       >
-        <h2 className='text-lg text-center'>🔑 Auth</h2>
+        <h2 className='text-lg text-center dark:text-white'>🔑 Auth</h2>
         <Separator />
         <form onSubmit={f.handleSubmit}>
           <div className='w-full mb-2'>
@@ -137,7 +137,7 @@ function AuthPage() {
           <div>
             <button
               type='submit'
-              disabled={f.isSubmitting}
+              disabled={f.isSubmitting || !f.isValid}
               className='w-full p-4 rounded shadow-lg focus:outline-none bg-gradient-to-tr from-gray-400 to-blue-400 disabled:from-gray-300 disabled:to-gray-300'
             >
               <Status loading={f.isSubmitting} />

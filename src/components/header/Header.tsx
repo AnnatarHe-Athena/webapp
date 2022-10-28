@@ -15,6 +15,7 @@ function Header() {
   const canRemove = getPermissionObj(info).remove
 
   const [vis, setVis] = useState(false)
+
   return (
     <header className='py-4 content-between flex-col items-center sticky top-0 bg-gray-50 bg-opacity-10 backdrop-blur-md z-30'>
       <div className=' w-full flex flex-row items-center justify-around'>
@@ -34,7 +35,7 @@ function Header() {
             className="mr-8 py-2 px-4 bg-gray-300 hover:bg-gray-100 hover:shadow-lg transition-all duration-300 rounded dark:bg-gray-700 hover:dark:bg-gray-600 dark:text-gray-200 cursor-pointer"
             to={token ? `/profile/${info.id}` : '/auth'}
           >
-            🙍‍ <span className="ml-2">{info.name ?? 'Login'}</span>
+            🙍‍ <span className="ml-2">{info.name ? info.name : 'Login'}</span>
           </Link>
         </div>
       </div>
