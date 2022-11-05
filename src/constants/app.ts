@@ -1,2 +1,2 @@
 // @ts-ignore
-export const __DEV__ = import.meta.env.PROD
+export const __DEV__ = import.meta.env.DEV
