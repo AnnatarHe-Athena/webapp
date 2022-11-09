@@ -6,8 +6,7 @@ import Root from './components/Root'
 import store from './store/index'
 import routes from './routes/route'
 import './styles/index.styl'
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { Toaster } from 'react-hot-toast'
 import 'react-tippy/dist/tippy.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
@@ -25,7 +24,7 @@ const App = () => {
           </Root>
         </BrowserRouter>
       </Provider>
-      <ToastContainer position='bottom-right' />
+      <Toaster position='bottom-right' />
     </ApolloProvider>
   )
 }

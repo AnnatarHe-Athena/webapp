@@ -1,7 +1,7 @@
 import { useApolloClient } from '@apollo/client'
 import React, { useCallback } from 'react'
 import { useSelector } from 'react-redux'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 import styled from 'styled-components'
 import addCollectionMutation from '../../schema/mutations/addCollection.graphql'
 import removeGirlCellMutation from '../../schema/mutations/removeGirlCell.graphql'
@@ -83,7 +83,7 @@ function PreviewImage(props: PreviewImageProps) {
         cells: [id.toString()]
       }
     }).then(() => {
-      toast.info('已收藏')
+      toast.success('已收藏')
     })
   }, [id])
   const handleDelete = useCallback(() => {
@@ -94,7 +94,7 @@ function PreviewImage(props: PreviewImageProps) {
         toRemove: false
       }
     }).then(() => {
-      toast.info('已删除')
+      toast.success('已删除')
       props.onClose()
       // client.resetStore()
       // TODO: delete from cells locally

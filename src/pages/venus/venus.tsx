@@ -2,7 +2,7 @@ import { useMutation, useQuery } from '@apollo/client'
 import venusListQuery from '../../schema/queries/venusList.graphql'
 import addVenusListMutation from '../../schema/mutations/venusAdd.graphql'
 import React, { useCallback, useEffect, useState } from 'react'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 import { venusSource } from '../../schema/_g/globalTypes'
 import { addVenusMutation, addVenusMutationVariables } from '../../schema/_g/addVenusMutation'
 import { fetchVenusList, fetchVenusListVariables } from '../../schema/_g/fetchVenusList'
@@ -44,7 +44,7 @@ function VenusPage(props: VenusPageProps) {
       }))
 
     Promise.allSettled(uidReqList).then(res => {
-      toast.info('done')
+      toast.success('done')
       refetch()
       setWaitingList('')
     })
@@ -72,7 +72,7 @@ function VenusPage(props: VenusPageProps) {
         }
         return w + `https://weibo.com/u/${uid}\n`
       })
-      toast.info('read from clipboard')
+      toast.success('read from clipboard')
     }
 
     document.addEventListener('visibilitychange', onVisibilityChange)

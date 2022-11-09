@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react'
 import { useStore, useDispatch } from 'react-redux'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 import { useQuery, useApolloClient, FetchMoreQueryOptions } from '@apollo/client'
 import { profileGot } from '../../actions/auth'
 import { TUser, TUserProfileWithCollection, Collection } from '../../types/user'
@@ -19,7 +19,7 @@ export function useMyProfile(userID: string) {
       id: userID,
       from: 0,
       size: STEP,
-      cursor: 1<<30
+      cursor: 1 << 30
     },
     onCompleted(result) {
       dispatch(profileGot(result.users))
@@ -41,11 +41,11 @@ export function useMyProfile(userID: string) {
       return
     }
 
-    let cid: number = 1<<30
+    let cid: number = 1 << 30
 
     if (query.data?.collections && query.data.collections.edges.length > 0) {
       cid = query.data.collections.edges[query.data.collections.edges.length - 1].id
-    } 
+    }
 
     query.fetchMore({
       variables: {
@@ -54,7 +54,7 @@ export function useMyProfile(userID: string) {
         size: STEP,
         cursor: cid
       },
-      updateQuery(pResult:any, options) { 
+      updateQuery(pResult: any, options) {
         return {
           ...pResult,
           collections: {
@@ -62,7 +62,12 @@ export function useMyProfile(userID: string) {
             edges: [
               ...(pResult.collections.edges ?? []),
               ...(options.fetchMoreResult?.collections.edges ?? [])
-            ]
+            ].reduce<any[]>((acc, x) => {
+              if (!acc.find(z => z.id === x.id)) {
+                acc.push(x)
+              }
+              return acc
+            }, [])
           }
           // collections: [
           //   ...pResult.collections ?? [],

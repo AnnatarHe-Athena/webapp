@@ -10,7 +10,7 @@ import PageContainer from '../../components/PageContainer'
 import Separator from '../../components/Separator'
 import Status from './Status'
 import { useTitle } from '../../hooks/title'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 import { Device } from '../../schema/_g/globalTypes'
 import { auth, authVariables } from '../../schema/_g/auth'
@@ -67,7 +67,7 @@ function AuthPage() {
         return
       }
 
-      await doAuth({
+      return doAuth({
         variables: {
           email: values.email,
           password: values.pwd,
@@ -78,8 +78,6 @@ function AuthPage() {
           navigate(`/profile/${res.data?.auth.id}`)
         }, 100)
       })
-
-      return true
     }
   })
 

@@ -3,19 +3,23 @@ import queryInitial from '../../schema/initial.graphql'
 import { useQuery } from '@apollo/client'
 import { initial, initialVariables } from '../../schema/_g/initial'
 import Nav from '../../components/Nav'
+import { useSetAtom } from 'jotai'
+import { beautyListFetchOffset } from '../../store/beauty'
 
-function _Girls(props: any) {
-  const { data, refetch, fetchMore } = useQuery<initial, initialVariables>(queryInitial, {
+function BeautyList(props: any) {
+  const { data, refetch } = useQuery<initial, initialVariables>(queryInitial, {
     variables: {
       from: 0,
       take: 20,
-      last: (1 << 31).toString()
+      last: (1 << 30).toString()
     }
   })
 
+  const setLastIdOffset = useSetAtom(beautyListFetchOffset)
   const onChangeCategory = useCallback(() => {
     refetch()
-  }, [])
+    setLastIdOffset(undefined)
+  }, [setLastIdOffset, refetch])
 
   return (
     <div>
@@ -27,4 +31,4 @@ function _Girls(props: any) {
   )
 }
 
-export default _Girls
+export default BeautyList
