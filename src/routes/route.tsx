@@ -15,7 +15,7 @@ const r = [
   { path: '/profile/:id', component: ProfilePage },
   { path: '/profile/:id/venus', component: VenusPage },
   { path: '/profile/:id/create', component: ProfileCellCreatePage },
-  { path: '/about', component: About }
+  { path: '/about', component: About },
   { path: '/privacy', component: PrivacyPage }
 ]
 
