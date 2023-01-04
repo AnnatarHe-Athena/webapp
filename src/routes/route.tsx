@@ -6,6 +6,7 @@ import ProfilePage from '../pages/profile/Profile'
 import ProfileCellCreatePage from '../pages/add/Index'
 import About from '../pages/info/Info'
 import VenusPage from '../pages/venus/venus'
+import PrivacyPage from '../pages/privacy/privacy'
 
 const r = [
   { path: '/', component: Welcome },
@@ -15,6 +16,7 @@ const r = [
   { path: '/profile/:id/venus', component: VenusPage },
   { path: '/profile/:id/create', component: ProfileCellCreatePage },
   { path: '/about', component: About }
+  { path: '/privacy', component: PrivacyPage }
 ]
 
 export default r
