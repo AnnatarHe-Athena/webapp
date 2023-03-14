@@ -3,8 +3,8 @@ import styled from 'styled-components'
 // @ts-ignore
 import infoQuery from '../../schema/queries/info.graphql'
 import { useQuery } from '@apollo/client'
-import { info } from '../../schema/_g/info'
 import Card from '../../components/card/Card'
+import { useInfoQuery } from '../../schema/generated'
 
 const InfoTip = styled.p`
   padding: 1rem;
@@ -14,7 +14,7 @@ const InfoTip = styled.p`
 `
 
 function InfoPage() {
-  const { data, loading } = useQuery<info>(infoQuery)
+  const { data, loading } = useInfoQuery()
 
   if (loading || !data) {
     return (

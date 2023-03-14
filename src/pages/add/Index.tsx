@@ -17,8 +17,7 @@ import { getToken } from '../../utils/permission'
 import toast from 'react-hot-toast'
 import { useSelector } from 'react-redux'
 import { useFormik } from 'formik'
-import { initCategories_categories } from '../../schema/_g/initCategories'
-import { addGirlCells, addGirlCellsVariables } from '../../schema/_g/addGirlCells'
+import { Category, useAddGirlCellsMutation } from '../../schema/generated'
 
 const TextTip = styled.span`
   padding: 1rem 0;
@@ -101,8 +100,8 @@ type cellInput = {
 // }
 
 function CreateItems(props: any) {
-  const categories = useSelector<any, initCategories_categories[]>(s => s.app.categories).map(x => ({ ...x, id: ~~x.id }))
-  const [doAddCells, { loading }] = useMutation<addGirlCells, addGirlCellsVariables>(addGirlCellsMutation)
+  const categories = useSelector<any, Category[]>(s => s.app.categories).map(x => ({ ...x, id: ~~x.id }))
+  const [doAddCells, { loading }] = useAddGirlCellsMutation()
   const [cells, setCells] = useState<cellInput[]>([])
 
   const formikData = useFormik<cellInput>({

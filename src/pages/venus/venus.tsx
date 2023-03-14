@@ -3,15 +3,13 @@ import venusListQuery from '../../schema/queries/venusList.graphql'
 import addVenusListMutation from '../../schema/mutations/venusAdd.graphql'
 import React, { useCallback, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
-import { venusSource } from '../../schema/_g/globalTypes'
-import { addVenusMutation, addVenusMutationVariables } from '../../schema/_g/addVenusMutation'
-import { fetchVenusList, fetchVenusListVariables } from '../../schema/_g/fetchVenusList'
+import { useAddVenusMutationMutation, useFetchVenusListQuery, VenusSource } from '../../schema/generated'
 
 type VenusPageProps = {
 }
 
 function VenusPage(props: VenusPageProps) {
-  const { data, refetch } = useQuery<fetchVenusList, fetchVenusListVariables>(venusListQuery, {
+  const { data, refetch } = useFetchVenusListQuery({
     variables: {
       hasRemarks: false,
       pagination: {
@@ -21,8 +19,9 @@ function VenusPage(props: VenusPageProps) {
     },
     pollInterval: 20_000
   })
+  
 
-  const [doAdd] = useMutation<addVenusMutation, addVenusMutationVariables>(addVenusListMutation)
+  const [doAdd] = useAddVenusMutationMutation()
   const [waitingVenusListText, setWaitingList] = useState('')
   const submitVenusToServer = useCallback(() => {
     const vs = waitingVenusListText.split('\n')
@@ -40,7 +39,7 @@ function VenusPage(props: VenusPageProps) {
       .map(x => doAdd({
         variables: {
           uid: x,
-          source: venusSource.weibo
+          source: VenusSource.Weibo
         }
       }))
 

@@ -7,10 +7,9 @@ import PhotoList from '../../components/photos/Photos'
 import { AppStore } from '../../reducers'
 import { TUser } from '../../types/user'
 
-import fetchGirlsQueryQuery from '../../schema/fetchGirlsQuery.graphql'
-import { fetchGirlsQuery, fetchGirlsQueryVariables } from '../../schema/_g/fetchGirlsQuery'
 import { useAtomValue } from 'jotai'
 import { beautyListFetchOffset } from '../../store/beauty'
+import { useFetchGirlsQueryQuery } from '../../schema/generated'
 
 type PhotosProps = {
   categoryID: number
@@ -20,7 +19,7 @@ function Photos(props: PhotosProps) {
   const user = useSelector<AppStore, TUser>(s => s.profile.info)
   const offset = useAtomValue(beautyListFetchOffset)
 
-  const query = useQuery<fetchGirlsQuery, fetchGirlsQueryVariables>(fetchGirlsQueryQuery, {
+  const query = useFetchGirlsQueryQuery({
     variables: {
       from: ~~props.categoryID || 1, take: 17,
       hideOnly: false,

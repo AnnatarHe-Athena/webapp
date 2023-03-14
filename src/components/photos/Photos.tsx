@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react'
+import { FetchGirlsFragment } from '../../schema/generated'
 import Loading from '../Loading'
 import PhotoItem from './PhotoItem'
-import { fetchGirls } from '../../schema/_g/fetchGirls'
 
 type PhotosProps = {
-  cells: fetchGirls[]
+  cells: FetchGirlsFragment[]
   loading: boolean
   loadMore: () => void
   forceDeleteable: boolean

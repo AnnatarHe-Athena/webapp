@@ -4,9 +4,8 @@ import { useDispatch } from 'react-redux'
 import { useQuery } from '@apollo/client'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import { updateCategories } from '../actions/category'
-import initialQuery from '../schema/initial.graphql'
 import Header from './header/Header'
-import { initial, initialVariables } from '../schema/_g/initial'
+import { useInitialQuery } from '../schema/generated'
 
 const BodyContainer = styled.div`
     display: flex;
@@ -14,7 +13,7 @@ const BodyContainer = styled.div`
 `
 
 function Root(props: any) {
-  const q = useQuery<initial, initialVariables>(initialQuery, {
+  const q = useInitialQuery({
     variables: {
       from: 2,
       take: 20,
@@ -31,17 +30,17 @@ function Root(props: any) {
     dispatch(updateCategories(q.data.categories))
   }, [q.data])
   return (
-      <div className='flex flex-col min-h-screen dark:bg-gray-900 bg-purple-700'>
-        <Header />
-          <TransitionGroup className="transition-group">
-            <CSSTransition
-              // key={props.location.key}
-              component={BodyContainer}
-              classNames="slide" timeout={350}>
-              {props.children}
-            </CSSTransition>
-          </TransitionGroup>
-      </div>
+    <div className='flex flex-col min-h-screen dark:bg-gray-900 bg-purple-700'>
+      <Header />
+      <TransitionGroup className="transition-group">
+        <CSSTransition
+          // key={props.location.key}
+          component={BodyContainer}
+          classNames="slide" timeout={350}>
+          {props.children}
+        </CSSTransition>
+      </TransitionGroup>
+    </div>
   )
 }
 

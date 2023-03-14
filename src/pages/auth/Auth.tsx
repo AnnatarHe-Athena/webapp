@@ -12,8 +12,7 @@ import Status from './Status'
 import { useTitle } from '../../hooks/title'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
-import { Device } from '../../schema/_g/globalTypes'
-import { auth, authVariables } from '../../schema/_g/auth'
+import { Device, useAuthLazyQuery } from '../../schema/generated'
 
 function useDevice() {
   const [device, setDevice] = useState<Device | null>(null)
@@ -87,7 +86,7 @@ function AuthPage() {
 
   useTitle('Auth')
 
-  const [doAuth, { data }] = useLazyQuery<auth, authVariables>(authGraphql)
+  const [doAuth, { data }] = useAuthLazyQuery()
   const dispatch = useDispatch()
 
   useEffect(() => {

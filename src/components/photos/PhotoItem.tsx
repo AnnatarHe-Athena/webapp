@@ -3,10 +3,10 @@ import Preview from '../preview/Preview'
 import { getRealSrcLink, getAESIVFromUserEmail } from '../../utils/index'
 import { useImageDestLink } from '../../hooks/useImageDestLink'
 import HideUntilLoaded from '../HideUntilLoaded'
-import { fetchGirls } from '../../schema/_g/fetchGirls'
+import { FetchGirlsFragment } from '../../schema/generated'
 
 type PhotoItemProps = {
-  cell: fetchGirls
+  cell: FetchGirlsFragment
   forceDeleteable: boolean
 }
 

@@ -1,4 +1,4 @@
-import { useApolloClient } from '@apollo/client'
+import { useApolloClient, useMutation } from '@apollo/client'
 import React, { useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
@@ -7,16 +7,14 @@ import addCollectionMutation from '../../schema/mutations/addCollection.graphql'
 import removeGirlCellMutation from '../../schema/mutations/removeGirlCell.graphql'
 import { useImageDestLink } from '../../hooks/useImageDestLink'
 import { AppStore } from '../../reducers'
-import { addToCollection, addToCollectionVariables } from '../../schema/_g/addToCollection'
-import { fetchGirls } from '../../schema/_g/fetchGirls'
-import { removeGirl, removeGirlVariables } from '../../schema/_g/removeGirl'
 import { TUser } from '../../types/user'
 import { getUserInfoURL, getTitleHref, getRealSrcLink } from '../../utils'
 import { getPermissionObj } from '../../utils/permission'
 import HideUntilLoaded from '../HideUntilLoaded'
+import { FetchGirlsFragment, useAddToCollectionMutation, useRemoveGirlMutation } from '../../schema/generated'
 
 type PreviewImageProps = {
-  cell: fetchGirls
+  cell: FetchGirlsFragment
   onClose: () => void
 }
 
@@ -76,30 +74,24 @@ function PreviewImage(props: PreviewImageProps) {
   // const bigSrc = getRealSrcLink(src, 'large')
   const client = useApolloClient()
 
-  const handleCollect = useCallback(() => {
-    client.mutate<addToCollection, addToCollectionVariables>({
-      mutation: addCollectionMutation,
-      variables: {
-        cells: [id.toString()]
-      }
-    }).then(() => {
+  const [handleCollect] = useAddToCollectionMutation({
+    variables: {
+      cells: [id.toString()]
+    },
+    onCompleted() {
       toast.success('已收藏')
-    })
-  }, [id])
-  const handleDelete = useCallback(() => {
-    client.mutate<removeGirl, removeGirlVariables>({
-      mutation: removeGirlCellMutation,
-      variables: {
-        cells: [id.toString()],
-        toRemove: false
-      }
-    }).then(() => {
+    }
+  })
+  const [handleDelete] = useRemoveGirlMutation({
+    variables: {
+      cells: [id.toString()],
+      toRemove: false
+    },
+    onCompleted() {
       toast.success('已删除')
       props.onClose()
-      // client.resetStore()
-      // TODO: delete from cells locally
-    })
-  }, [id])
+    }
+  })
   return (
     <div>
       <Extra className='fixed flex top-0 left-0 right-0 items-center justify-around p-4 box-border z-10'>
@@ -107,8 +99,17 @@ function PreviewImage(props: PreviewImageProps) {
         {middleTitle}
         <div>
           <ExtraButton onClick={props.onClose}>Close</ExtraButton>
-          <ExtraButton onClick={handleCollect}>Collect</ExtraButton>
-          {softRemove && <ExtraButton onClick={handleDelete}>Delete</ExtraButton>}
+          <ExtraButton onClick={() => handleCollect({ variables: { cells: [id.toString()] } })}>Collect</ExtraButton>
+          {softRemove && <ExtraButton
+            onClick={() => handleDelete({
+              variables: {
+                cells: [id.toString()],
+                toRemove: false
+              }
+            })}
+          >
+            Delete
+          </ExtraButton>}
         </div>
       </Extra>
       <HideUntilLoaded imageToLoad={bigSrc}>

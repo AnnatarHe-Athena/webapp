@@ -1,11 +1,8 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react'
 import { useStore, useDispatch } from 'react-redux'
 import toast from 'react-hot-toast'
-import { useQuery, useApolloClient, FetchMoreQueryOptions } from '@apollo/client'
 import { profileGot } from '../../actions/auth'
-import { TUser, TUserProfileWithCollection, Collection } from '../../types/user'
-import fetchProfileQuery from '../../schema/queries/profileWithCollection.graphql'
-import { FetchProfileWithCollections, FetchProfileWithCollectionsVariables } from '../../schema/_g/FetchProfileWithCollections'
+import { useFetchProfileWithCollectionsQuery } from '../../schema/generated'
 
 const STEP = 20
 
@@ -14,27 +11,26 @@ export function useMyProfile(userID: string) {
   const offset = useRef(STEP)
   const dispatch = useDispatch()
 
-  const query = useQuery<FetchProfileWithCollections, FetchProfileWithCollectionsVariables>(fetchProfileQuery, {
-    variables: {
-      id: userID,
-      from: 0,
-      size: STEP,
-      cursor: 1 << 30
-    },
-    onCompleted(result) {
-      dispatch(profileGot(result.users))
-      if (!result.collections) {
-        hasMore.current = false
-        return
+  const query = useFetchProfileWithCollectionsQuery({
+      variables: {
+        id: userID,
+        from: 0,
+        size: STEP,
+        cursor: 1 << 30
+      },
+      onCompleted(result) {
+        dispatch(profileGot(result.users))
+        if (!result.collections) {
+          hasMore.current = false
+          return
+        }
+        if (result.collections?.edges.length === 0) {
+          hasMore.current = false
+          return
+        }
+        offset.current = offset.current + STEP
       }
-      if (result.collections?.edges.length === 0) {
-        hasMore.current = false
-        return
-      }
-      offset.current = offset.current + STEP
-    }
-  })
-
+    })
   const loadMore = useCallback(() => {
     if (!hasMore.current) {
       toast.error('🤷‍️️ 没有更多了')

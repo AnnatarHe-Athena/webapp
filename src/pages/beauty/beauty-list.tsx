@@ -1,13 +1,13 @@
 import React, { useCallback } from 'react'
 import queryInitial from '../../schema/initial.graphql'
 import { useQuery } from '@apollo/client'
-import { initial, initialVariables } from '../../schema/_g/initial'
 import Nav from '../../components/Nav'
 import { useSetAtom } from 'jotai'
 import { beautyListFetchOffset } from '../../store/beauty'
+import { useInitialQuery } from '../../schema/generated'
 
 function BeautyList(props: any) {
-  const { data, refetch } = useQuery<initial, initialVariables>(queryInitial, {
+  const { data, refetch } = useInitialQuery({
     variables: {
       from: 0,
       take: 20,

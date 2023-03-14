@@ -6,12 +6,12 @@ import Nav from '../Nav'
 import { AppStore } from '../../reducers'
 import { TUser } from '../../types/user'
 import { Link, useNavigate } from 'react-router-dom'
-import { fetchCategories } from '../../schema/_g/fetchCategories'
+import { Category } from '../../schema/generated'
 
 function Header() {
   const info = useSelector<AppStore, TUser>(s => s.profile.info)
   const token = useSelector<AppStore, string>(s => s.app.token)
-  const categories = useSelector<AppStore, fetchCategories[]>(s => s.app.categories)
+  const categories = useSelector<AppStore, Category[]>(s => s.app.categories)
   const canRemove = getPermissionObj(info).remove
 
   const [vis, setVis] = useState(false)
