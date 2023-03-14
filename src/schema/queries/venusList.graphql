@@ -8,6 +8,7 @@ query fetchVenusList($pagination: Pagination!, $source: venusSource, $hasRemarks
             source
             avatar
             bio
+            priority
         }
     }
 }

@@ -23,5 +23,6 @@ fragment fetchGirls on Girl {
         avatar
         bio
         remarks
+        priority
     }
 }

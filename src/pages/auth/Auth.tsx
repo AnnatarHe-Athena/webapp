@@ -74,6 +74,10 @@ function AuthPage() {
           device: device || ({} as Device)
         }
       }).then(res => {
+        if (!res.data?.auth.id){
+          toast.error('no auth info')
+          return
+        }
         setTimeout(() => {
           navigate(`/profile/${res.data?.auth.id}`)
         }, 100)

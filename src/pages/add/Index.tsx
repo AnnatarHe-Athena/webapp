@@ -6,7 +6,6 @@ import chunk from 'lodash/chunk'
 // import { Link } from 'react-router'
 import { useMutation } from '@apollo/client'
 import Select from '../../components/select/Select'
-import PropTypes from 'prop-types'
 import Card from '../../components/card/Card'
 import JSONTextarea from '../../components/json-textarea/json-textarea'
 import addGirlCellsMutation from '../../schema/mutations/addGirlCells.graphql'
@@ -96,8 +95,12 @@ type cellInput = {
   fromID: string
   fromURL: string
 }
+// CreateItems.propTypes = {
+//   client: PropTypes.any,
+//   categories: PropTypes.arrayOf(PropTypes.any)
+// }
 
-function CreateItems() {
+function CreateItems(props: any) {
   const categories = useSelector<any, initCategories_categories[]>(s => s.app.categories).map(x => ({ ...x, id: ~~x.id }))
   const [doAddCells, { loading }] = useMutation<addGirlCells, addGirlCellsVariables>(addGirlCellsMutation)
   const [cells, setCells] = useState<cellInput[]>([])
@@ -267,10 +270,5 @@ function CreateItems() {
   )
 }
 
-
-CreateItems.propTypes = {
-  client: PropTypes.any,
-  categories: PropTypes.arrayOf(PropTypes.any)
-}
 
 export default CreateItems

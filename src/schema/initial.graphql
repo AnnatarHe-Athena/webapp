@@ -2,34 +2,30 @@
 #import "./fetchGirls.graphql"
 
 query initial($from: Int!, $take: Int!, $last: ID!) {
-    girls(from: $from, take: $take, last: $last, hideOnly: false) {
-        ...fetchGirls
-    }
-    categories {
-        ...fetchCategories
-    }
-}
-
-
-fragment fetchGirls on Girl {
-    id,
-    img,
-    content,
-    text,
-    permission,
-    fromID,
-    fromURL,
-    isCollected
-    venus {
-        id
-        uid
-        source
-        name
-        avatar
-        bio
-        remarks
-    }
-}
-fragment fetchCategories on Category {
-    id, name, src, count
+  girls(from: $from, take: $take, last: $last, hideOnly: false) {
+    # id
+    # img
+    # content
+    # text
+    # permission
+    # fromID
+    # fromURL
+    # isCollected
+    # venus {
+    #   id
+    #   uid
+    #   source
+    #   name
+    #   avatar
+    #   bio
+    #   remarks
+    # }
+    ...fetchGirls
+  }
+  categories {
+    id
+    name
+    src
+    count
+  }
 }

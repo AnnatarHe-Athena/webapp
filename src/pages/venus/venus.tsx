@@ -18,7 +18,8 @@ function VenusPage(props: VenusPageProps) {
         limit: 20,
         lastID: 1 << 30
       }
-    }
+    },
+    pollInterval: 20_000
   })
 
   const [doAdd] = useMutation<addVenusMutation, addVenusMutationVariables>(addVenusListMutation)

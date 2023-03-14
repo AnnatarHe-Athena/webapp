@@ -1,40 +1,28 @@
 #import "../fragments/profile.graphql"
 #import "../fetchGirls.graphql"
 
-query FetchProfileWithCollections($id: ID!, $from: Int!, $size: Int!, $cursor: Int!) {
-    users(id: $id) {
-        ...profile
+query FetchProfileWithCollections(
+  $id: ID!
+  $from: Int!
+  $size: Int!
+  $cursor: Int!
+) {
+  users(id: $id) {
+    id
+    email
+    name
+    pwd
+    avatar
+    bio
+    role
+  }
+  collections(from: $from, size: $size, cursor: $cursor) {
+    count
+    edges {
+      id
+      cell {
+        ...fetchGirls
+      }
     }
-    collections(from: $from, size: $size, cursor: $cursor) {
-        count
-        edges {
-            id
-            cell {
-                ...fetchGirls
-            }
-        }
-    }
-}
-
-fragment fetchGirls on Girl {
-    id,
-    img,
-    content,
-    text,
-    permission,
-    fromID,
-    fromURL,
-    isCollected
-    venus {
-        id
-        uid
-        source
-        name
-        avatar
-        bio
-        remarks
-    }
-}
-fragment profile on User {
-  id, email, name, pwd, avatar, bio, role
+  }
 }
