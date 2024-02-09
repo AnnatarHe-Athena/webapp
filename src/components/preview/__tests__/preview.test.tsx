@@ -6,7 +6,7 @@ import { apolloClient } from '../../../setup/apollo'
 import store from '../../../store/index'
 import { Provider } from 'react-redux'
 import { ApolloProvider } from '@apollo/client'
-import { VenusSource } from '../../../schema/generated'
+import { VenusSource } from '../../../schema/_g/graphql'
 
 describe('preview will ok', () => {
   beforeAll(() => {
@@ -43,7 +43,6 @@ describe('preview will ok', () => {
                   source: VenusSource.Weibo,
                   avatar: '',
                   remarks: '',
-                  priority: 100
                 }
               },
               onClose: () => { }

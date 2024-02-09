@@ -117,14 +117,9 @@ function PreviewImage(props: PreviewImageProps) {
         {middleTitle}
         <div>
           <ExtraButton onClick={props.onClose}>Close</ExtraButton>
-          <ExtraButton onClick={() => handleCollect({ variables: { cells: [id.toString()] } })}>Collect</ExtraButton>
+          <ExtraButton onClick={() => handleCollect()}>Collect</ExtraButton>
           {softRemove && <ExtraButton
-            onClick={() => handleDelete({
-              variables: {
-                cells: [id.toString()],
-                toRemove: false
-              }
-            })}
+            onClick={() => handleDelete()}
           >
             Delete
           </ExtraButton>}

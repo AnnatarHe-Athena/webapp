@@ -1,14 +1,18 @@
-query fetchVenusList($pagination: Pagination!, $source: venusSource, $hasRemarks: Boolean) {
-    venusList(pagination: $pagination, source: $source, hasRemarks: $hasRemarks) {
-        count
-        edges {
-            id
-            uid
-            name
-            source
-            avatar
-            bio
-            priority
-        }
+query fetchVenusList(
+  $pagination: Pagination!
+  $source: venusSource
+  $hasRemarks: Boolean
+) {
+  venusList(pagination: $pagination, source: $source, hasRemarks: $hasRemarks) {
+    count
+    edges {
+      id
+      uid
+      name
+      source
+      avatar
+      bio
+      priority
     }
+  }
 }

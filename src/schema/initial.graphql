@@ -8,6 +8,5 @@ query initial($from: Int!, $take: Int!, $last: ID!) {
     id
     name
     src
-    count
   }
 }
