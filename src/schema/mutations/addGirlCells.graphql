@@ -2,13 +2,6 @@
 
 mutation addGirlCells($cells: [CellInput!]!) {
   addGirls(cells: $cells) {
-    id
-    img
-    content
-    text
-    permission
-    fromID
-    fromURL
-    isCollected
+    ...fetchGirls
   }
 }

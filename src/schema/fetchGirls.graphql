@@ -1,0 +1,19 @@
+fragment fetchGirls on Girl {
+    id,
+    img,
+    content,
+    text,
+    permission,
+    fromID,
+    fromURL,
+    isCollected
+    venus {
+        id
+        uid
+        source
+        name
+        avatar
+        bio
+        remarks
+    }
+}

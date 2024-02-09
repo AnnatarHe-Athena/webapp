@@ -1,17 +1,23 @@
-import { useApolloClient, useMutation } from '@apollo/client'
-import React, { useCallback } from 'react'
-import { useSelector } from 'react-redux'
-import toast from 'react-hot-toast'
-import styled from 'styled-components'
-import addCollectionMutation from '../../schema/mutations/addCollection.graphql'
-import removeGirlCellMutation from '../../schema/mutations/removeGirlCell.graphql'
-import { useImageDestLink } from '../../hooks/useImageDestLink'
-import { AppStore } from '../../reducers'
-import { TUser } from '../../types/user'
-import { getUserInfoURL, getTitleHref, getRealSrcLink } from '../../utils'
-import { getPermissionObj } from '../../utils/permission'
-import HideUntilLoaded from '../HideUntilLoaded'
-import { FetchGirlsFragment, useAddToCollectionMutation, useRemoveGirlMutation } from '../../schema/generated'
+import { useApolloClient } from "@apollo/client";
+import React, { useCallback } from "react";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import styled from "styled-components";
+import { useImageDestLink } from "../../hooks/useImageDestLink";
+import { AppStore } from "../../reducers";
+import { TUser } from "../../types/user";
+import { getUserInfoURL, getTitleHref, getRealSrcLink } from "../../utils";
+import { getPermissionObj } from "../../utils/permission";
+import HideUntilLoaded from "../HideUntilLoaded";
+import {
+  AddToCollectionDocument,
+  AddToCollectionMutation,
+  AddToCollectionMutationVariables,
+  FetchGirlsFragment,
+  RemoveGirlDocument,
+  RemoveGirlMutation,
+  RemoveGirlMutationVariables,
+} from "src/schema/_g/graphql";
 
 type PreviewImageProps = {
   cell: FetchGirlsFragment
@@ -19,82 +25,94 @@ type PreviewImageProps = {
 }
 
 const Extra = styled.div`
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, .8));
-`
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
+`;
 
 const ExtraButton = styled.button`
   border: 0;
   outline: 0;
-  padding: .5rem;
+  padding: 0.5rem;
   border-radius: 1px;
   color: #fff;
   font-weight: 300;
   box-shadow: 0 0 0.5rem #888;
-  background: rgba(255,255,255,.1);
-  margin-right: .5rem;
-  transition: all .35s;
+  background: rgba(255, 255, 255, 0.1);
+  margin-right: 0.5rem;
+  transition: all 0.35s;
   font-size: 12px;
 
   &:hover {
-    background: rgba(255,255,255,.3);
+    background: rgba(255, 255, 255, 0.3);
   }
 
   &:last-child {
     margin-right: 0;
   }
-`
+`;
 
 function PreviewImage(props: PreviewImageProps) {
-  const { id, img, text, fromID, fromURL, content } = props.cell
-  const onClose = props.onClose
-  const user = useSelector<AppStore, TUser>(s => s.profile.info)
+  const { id, img, text, fromID, fromURL, content } = props.cell;
+  const onClose = props.onClose;
+  const user = useSelector<AppStore, TUser>((s) => s.profile.info);
 
-  const { softRemove } = getPermissionObj(user)
+  const { softRemove } = getPermissionObj(user);
 
   const leftUserInfo = fromID ? (
     <div>
       <a
-        className='text-white text-center font-light' href={getUserInfoURL(fromID, fromURL)}
-        target="_blank">
+        className="text-center font-light text-white"
+        href={getUserInfoURL(fromID, fromURL)}
+        target="_blank"
+      >
         🧙‍♀️ 我的信息
       </a>
     </div>
-  ) : null
+  ) : null;
 
   const middleTitle = (
-    <div className='w-7/12'>
+    <div className="w-7/12">
       <a href={getTitleHref(fromURL)} target="_blank">
-        <h2 className='text-center font-light text-white'>{text || '主题'}</h2>
+        <h2 className="text-center font-light text-white">{text || "主题"}</h2>
       </a>
     </div>
-  )
+  );
 
-  const basedLink = useImageDestLink(img)
-  const bigSrc = getRealSrcLink(atob(basedLink))
+  const basedLink = useImageDestLink(img);
+  const bigSrc = getRealSrcLink(atob(basedLink));
   // const bigSrc = getRealSrcLink(src, 'large')
-  const client = useApolloClient()
+  const client = useApolloClient();
 
-  const [handleCollect] = useAddToCollectionMutation({
-    variables: {
-      cells: [id.toString()]
-    },
-    onCompleted() {
-      toast.success('已收藏')
-    }
-  })
-  const [handleDelete] = useRemoveGirlMutation({
-    variables: {
-      cells: [id.toString()],
-      toRemove: false
-    },
-    onCompleted() {
-      toast.success('已删除')
-      props.onClose()
-    }
-  })
+  const handleCollect = useCallback(() => {
+    client
+      .mutate<AddToCollectionMutation, AddToCollectionMutationVariables>({
+        mutation: AddToCollectionDocument,
+        variables: {
+          cells: [id.toString()],
+        },
+      })
+      .then(() => {
+        toast.info("已收藏");
+      });
+  }, [id]);
+  const handleDelete = useCallback(() => {
+    client
+      .mutate<RemoveGirlMutation, RemoveGirlMutationVariables>({
+        mutation: RemoveGirlDocument,
+        variables: {
+          cells: [id.toString()],
+          toRemove: false,
+        },
+      })
+      .then(() => {
+        toast.info("已删除");
+        props.onClose();
+        // client.resetStore()
+        // TODO: delete from cells locally
+      });
+  }, [id]);
   return (
     <div>
-      <Extra className='fixed flex top-0 left-0 right-0 items-center justify-around p-4 box-border z-10'>
+      <Extra className="fixed left-0 right-0 top-0 z-10 box-border flex items-center justify-around p-4">
         {leftUserInfo}
         {middleTitle}
         <div>
@@ -114,25 +132,23 @@ function PreviewImage(props: PreviewImageProps) {
       </Extra>
       <HideUntilLoaded imageToLoad={bigSrc}>
         <div
-          className='rounded p-10 shadow-lg flex bg-gray-600 bg-opacity-30 m-10 overflow-auto'
+          className="m-10 flex overflow-auto rounded bg-gray-600 bg-opacity-30 p-10 shadow-lg"
           style={{
-            maxHeight: '95vh'
+            maxHeight: "95vh",
           }}
         >
-          <figure className='bg-gray-900 bg-opacity-10 max-h-screen overflow-auto'>
+          <figure className="max-h-screen overflow-auto bg-gray-900 bg-opacity-10">
             <picture onClick={onClose}>
               <source srcSet={bigSrc} />
-              <img
-                src={bigSrc}
-                alt={text}
-                className='w-full rounded'
-              />
+              <img src={bigSrc} alt={text} className="w-full rounded" />
             </picture>
           </figure>
-          <div className='w-52 flex items-end justify-between flex-col'>
-            <p className=' text-right text-xs p-1 dark:text-gray-200'>{content}</p>
+          <div className="flex w-52 flex-col items-end justify-between">
+            <p className=" p-1 text-right text-xs dark:text-gray-200">
+              {content}
+            </p>
             {props.cell.venus ? (
-              <div className=' dark:text-gray-200 text-gray-800 text-right text-sm'>
+              <div className=" text-right text-sm text-gray-800 dark:text-gray-200">
                 {/* TODO: show avatar */}
                 <p>#{props.cell.venus?.uid}</p>
                 <h2>{props.cell.venus?.name}</h2>
@@ -144,7 +160,7 @@ function PreviewImage(props: PreviewImageProps) {
         </div>
       </HideUntilLoaded>
     </div>
-  )
+  );
 }
 
-export default PreviewImage
+export default PreviewImage;

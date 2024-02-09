@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from 'react'
-import { FetchGirlsFragment } from '../../schema/generated'
-import Loading from '../Loading'
-import PhotoItem from './PhotoItem'
+import React, { useEffect, useRef } from "react";
+import { FetchGirlsFragment } from "src/schema/_g/graphql";
+import Loading from "../Loading";
+import PhotoItem from "./PhotoItem";
 
 type PhotosProps = {
   cells: FetchGirlsFragment[]
@@ -11,29 +11,29 @@ type PhotosProps = {
 }
 
 function Photos(props: PhotosProps) {
-  const loadingRef = useRef(false)
+  const loadingRef = useRef(false);
   useEffect(() => {
-    loadingRef.current = props.loading
-  }, [props.loading])
+    loadingRef.current = props.loading;
+  }, [props.loading]);
 
   useEffect(() => {
-    const root = document.querySelector('.athena-obs-more')
+    const root = document.querySelector(".athena-obs-more");
     if (!root) {
-      return
+      return;
     }
-    const io = new IntersectionObserver(entries => {
-      const e = entries[0]
+    const io = new IntersectionObserver((entries) => {
+      const e = entries[0];
       if (e.intersectionRatio <= 0 || loadingRef.current) {
-        return
+        return;
       }
-      props.loadMore()
-    })
-    io.observe(root)
+      props.loadMore();
+    });
+    io.observe(root);
     return () => {
-      io.unobserve(root)
-      io.disconnect()
-    }
-  }, [props.loadMore])
+      io.unobserve(root);
+      io.disconnect();
+    };
+  }, [props.loadMore]);
 
   return (
     <main className='w-full'>
@@ -49,18 +49,17 @@ function Photos(props: PhotosProps) {
         })}
       </section>
       <div className='w-full text-center'>
-      <button
-        disabled={props.loading}
-        className="athena-obs-more py-4 px-8 bg-red-600 hover:bg-red-700 rounded transition-fast text-white shadow-lg"
-        onClick={props.loadMore}
-      >
-         🚥 
-         Loading
-         </button>
+        <button
+          disabled={props.loading}
+          className="athena-obs-more transition-fast rounded bg-red-600 px-8 py-4 text-white shadow-lg hover:bg-red-700"
+          onClick={props.loadMore}
+        >
+          🚥
+          Loading
+        </button>
       </div>
     </main>
-  )
+  );
 }
 
-
-export default Photos
+export default Photos;

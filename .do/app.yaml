@@ -1,0 +1,7 @@
+domains:
+  - domain: athena.annatarhe.com
+    type: PRIMARY
+  - domain: athena.fanyijing.love
+    type: ALIAS
+name: webapp
+region: sgp

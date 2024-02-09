@@ -1,2 +1,1 @@
-// @ts-ignore
-export const __DEV__ = import.meta.env.DEV
+export const __DEV__ = import.meta.env.MODE !== "production";

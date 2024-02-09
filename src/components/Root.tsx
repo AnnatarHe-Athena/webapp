@@ -1,34 +1,39 @@
-import React, { useEffect } from 'react'
-import styled from 'styled-components'
-import { useDispatch } from 'react-redux'
-import { useQuery } from '@apollo/client'
-import { TransitionGroup, CSSTransition } from 'react-transition-group'
-import { updateCategories } from '../actions/category'
-import Header from './header/Header'
-import { useInitialQuery } from '../schema/generated'
+import React, { useEffect } from "react";
+import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { useQuery } from "@apollo/client";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { updateCategories } from "../actions/category";
+import Header from "./header/Header";
+import {
+  InitialDocument,
+  InitialQuery,
+  InitialQueryVariables,
+} from "src/schema/_g/graphql";
+import { Outlet } from "react-router-dom";
 
 const BodyContainer = styled.div`
-    display: flex;
-    flex: 1;
-`
+  display: flex;
+  flex: 1;
+`;
 
-function Root(props: any) {
-  const q = useInitialQuery({
+function Root() {
+  const q = useQuery<InitialQuery, InitialQueryVariables>(InitialDocument, {
     variables: {
       from: 2,
       take: 20,
       last: (1 << 20).toString(),
-    }
-  })
+    },
+  });
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!q.data) {
-      return
+      return;
     }
-    dispatch(updateCategories(q.data.categories))
-  }, [q.data])
+    dispatch(updateCategories(q.data.categories));
+  }, [q.data]);
   return (
     <div className='flex flex-col min-h-screen dark:bg-gray-900 bg-purple-700'>
       <Header />
@@ -37,7 +42,7 @@ function Root(props: any) {
           // key={props.location.key}
           component={BodyContainer}
           classNames="slide" timeout={350}>
-          {props.children}
+          <Outlet />
         </CSSTransition>
       </TransitionGroup>
     </div>

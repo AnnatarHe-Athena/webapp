@@ -6,13 +6,13 @@ type IndexProps = {
   cid: number
 }
 
-function Index(props: IndexProps) {
-  const params = useParams()
+function Index() {
+  const params = useParams();
   return (
-    <div className='w-full'>
-      <Photos categoryID={~~(params.cid!)} />
+    <div className="w-full">
+      <Photos categoryID={~~params.cid!} />
     </div>
-  )
+  );
 }
 
-export default Index
+export default Index;

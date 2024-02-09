@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
-import Preview from '../preview/Preview'
-import { getRealSrcLink, getAESIVFromUserEmail } from '../../utils/index'
-import { useImageDestLink } from '../../hooks/useImageDestLink'
-import HideUntilLoaded from '../HideUntilLoaded'
-import { FetchGirlsFragment } from '../../schema/generated'
+import React, { useState } from "react";
+import styled from "styled-components";
+import Preview from "../preview/Preview";
+import { getRealSrcLink, getAESIVFromUserEmail } from "../../utils/index";
+import { useImageDestLink } from "../../hooks/useImageDestLink";
+import HideUntilLoaded from "../HideUntilLoaded";
+import { FetchGirlsFragment } from "src/schema/_g/graphql";
 
 type PhotoItemProps = {
   cell: FetchGirlsFragment
@@ -11,50 +12,40 @@ type PhotoItemProps = {
 }
 
 function PhotoItem(props: PhotoItemProps) {
-  const {
-    id,
-    img,
-    text,
-    fromID,
-    fromURL,
-    content
-  } = props.cell
+  const { id, img, text, fromID, fromURL, content } = props.cell;
 
-  const [vis, setVis] = useState(false)
-  const basedLink = useImageDestLink(img)
-  const bmiddleSrc = getRealSrcLink(atob(basedLink))
+  const [vis, setVis] = useState(false);
+  const basedLink = useImageDestLink(img);
+  const bmiddleSrc = getRealSrcLink(atob(basedLink));
 
   return (
-    <picture className=' rounded'>
+    <picture className=" rounded">
       <HideUntilLoaded imageToLoad={bmiddleSrc}>
         <React.Fragment>
-        <source
-          srcSet={bmiddleSrc}
-          onClick={() => setVis(true)}
-        />
-        <img
-          src={bmiddleSrc}
-          alt={text}
-          onClick={() => setVis(true)}
-          crossOrigin="anonymous"
-          className=' rounded object-cover h-full mx-auto'
-          style={{
-            maxHeight: '650px'
-          }}
-        />
+          <source srcSet={bmiddleSrc} onClick={() => setVis(true)} />
+          <img
+            src={bmiddleSrc}
+            alt={text}
+            onClick={() => setVis(true)}
+            crossOrigin="anonymous"
+            className=" mx-auto h-full rounded object-cover"
+            style={{
+              maxHeight: "650px",
+            }}
+          />
         </React.Fragment>
       </HideUntilLoaded>
       <Preview
         // data={{ id, src, desc, fromID, fromURL, content }}
         data={{
           cell: props.cell,
-          onClose: () => {}
+          onClose: () => { },
         }}
         visible={vis}
         onClose={() => setVis(false)}
       />
     </picture>
-  )
+  );
 }
 
-export default PhotoItem
+export default PhotoItem;

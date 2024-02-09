@@ -22,4 +22,5 @@ yarn-error.log*
 go.mod
 tsconfig.tsbuildinfo
 public
+_g/
 src/schema/generated.ts

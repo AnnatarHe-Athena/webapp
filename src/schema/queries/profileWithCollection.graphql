@@ -1,4 +1,3 @@
-#import "../fragments/profile.graphql"
 #import "../fetchGirls.graphql"
 
 query FetchProfileWithCollections(
@@ -25,4 +24,14 @@ query FetchProfileWithCollections(
       }
     }
   }
+}
+
+fragment profile on User {
+  id
+  email
+  name
+  pwd
+  avatar
+  bio
+  role
 }
