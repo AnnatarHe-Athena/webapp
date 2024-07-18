@@ -2,7 +2,6 @@ import { ApolloClient, InMemoryCache, ApolloLink, from, HttpLink } from '@apollo
 import { onError } from '@apollo/client/link/error'
 import toast from 'react-hot-toast'
 
-// export const prefix = __SNOWPACK_ENV__.NODE_ENV === 'production' ? 'https://dbg-api.annatarhe.com' : 'http://localhost:9009'
 export const prefix = "https://dbg-api.annatarhe.com";
 export const imagePrefix = "https://wispy-math-1563.annatarhe.workers.dev";
 
