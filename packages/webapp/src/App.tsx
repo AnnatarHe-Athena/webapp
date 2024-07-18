@@ -1,8 +1,7 @@
 import React from "react";
 import { Provider } from "react-redux";
 import { ApolloProvider } from "@apollo/client";
-import { apolloClient } from "./setup/apollo";
-import Root from "./components/Root";
+import { apolloClient } from "../../network/apollo";
 import store from "./store/index";
 import routes from "./routes/route";
 import "./styles/index.styl";

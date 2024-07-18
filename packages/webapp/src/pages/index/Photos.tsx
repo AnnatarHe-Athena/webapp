@@ -1,19 +1,18 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useQuery } from "@apollo/client";
-import { legacyCategory } from "../../constants/defaults";
-import { getPermissionObj } from "../../utils/permission";
-import { STORAGE_OFFSET_KEY } from "../../components/nav-offset-input/index";
-import PhotoList from "../../components/photos/Photos";
-import { AppStore } from "../../reducers";
-import { TUser } from "../../types/user";
+import { legacyCategory } from "@athena/utils/constants/defaults";
+import { getPermissionObj } from "@athena/utils/utils/permission"
+import PhotoList from "@athena/components/photos/Photos";
+import { AppStore } from "@athena/utils/reducers";
+import { TUser } from "@athena/utils/types/user"
 import {
   FetchGirlsQueryDocument,
   FetchGirlsQueryQuery,
   FetchGirlsQueryQueryVariables,
-} from "src/schema/_g/graphql";
+} from "@athena/network/_g/graphql"
 import { useAtomValue } from 'jotai'
-import { beautyListFetchOffset } from '../../store/beauty'
+import { beautyListFetchOffset } from '@athena/utils/beauty'
 
 type PhotosProps = {
   categoryID: number;
@@ -40,7 +39,7 @@ function Photos(props: PhotosProps) {
     if (cells.length === 0) {
       return;
     }
-    let lastId = cells[cells.length - 1].id
+    let lastId = (cells[cells.length - 1] as any).id
     if (offset && (~~lastId) > offset) {
       lastId = offset.toString()
     }
@@ -63,7 +62,7 @@ function Photos(props: PhotosProps) {
     <PhotoList
       loading={query.loading}
       loadMore={loadMore}
-      cells={Array.from(query.data?.girls ?? [])}
+      cells={Array.from(query.data?.girls ?? []) as any}
       forceDeleteable={
         getPermissionObj(user).remove &&
         props.categoryID.toString() === legacyCategory.id

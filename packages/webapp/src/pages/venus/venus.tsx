@@ -9,7 +9,7 @@ import {
   FetchVenusListQuery,
   FetchVenusListQueryVariables,
   VenusSource,
-} from "src/schema/_g/graphql";
+} from "@athena/network/_g/graphql"
 
 type VenusPageProps = {};
 

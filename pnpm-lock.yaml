@@ -6,6 +6,18 @@ settings:
 
 importers:
 
+  packages/components:
+    dependencies:
+      '@athena/network':
+        specifier: workspace:*
+        version: link:../network
+      '@athena/utils':
+        specifier: workspace:*
+        version: link:../utils
+      react:
+        specifier: ^18.3.1
+        version: 18.3.1
+
   packages/desktop:
     dependencies:
       '@tanstack/react-query':
@@ -82,20 +94,51 @@ importers:
         specifier: 1.6.0
         version: 1.6.0(@types/node@20.14.10)(happy-dom@14.12.3)(stylus@0.63.0)
 
+  packages/network:
+    dependencies:
+      '@apollo/client':
+        specifier: ^3.10.8
+        version: 3.10.8(@types/react@18.3.3)(graphql-ws@5.16.0(graphql@16.9.0))(graphql@16.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+    devDependencies:
+      '@graphql-codegen/cli':
+        specifier: 5.0.2
+        version: 5.0.2(@types/node@20.14.10)(graphql@16.9.0)(typescript@5.5.3)
+      '@graphql-codegen/client-preset':
+        specifier: 4.3.2
+        version: 4.3.2(graphql@16.9.0)
+      '@graphql-codegen/introspection':
+        specifier: 4.0.3
+        version: 4.0.3(graphql@16.9.0)
+
+  packages/utils:
+    dependencies:
+      '@athena/network':
+        specifier: workspace:*
+        version: link:../network
+      '@athena/utils':
+        specifier: workspace:*
+        version: 'link:'
+      aes-js:
+        specifier: ^3.1.2
+        version: 3.1.2
+
   packages/webapp:
     dependencies:
       '@apollo/client':
         specifier: ^3.10.8
         version: 3.10.8(@types/react@18.3.3)(graphql-ws@5.16.0(graphql@16.9.0))(graphql@16.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@athena/components':
+        specifier: workspace:*
+        version: link:../components
+      '@athena/network':
+        specifier: workspace:*
+        version: link:../network
+      '@athena/utils':
+        specifier: workspace:*
+        version: link:../utils
       '@sentry/browser':
         specifier: ^8.18.0
         version: 8.18.0
-      '@types/react-loadable':
-        specifier: ^5.5.5
-        version: 5.5.11
-      '@types/react-transition-group':
-        specifier: ^4.4.1
-        version: 4.4.10
       aes-js:
         specifier: ^3.1.2
         version: 3.1.2
@@ -184,24 +227,6 @@ importers:
         specifier: ^1.4.0
         version: 1.4.0
     devDependencies:
-      '@graphql-codegen/cli':
-        specifier: 5.0.2
-        version: 5.0.2(@types/node@20.14.10)(graphql@16.9.0)(typescript@5.5.3)
-      '@graphql-codegen/client-preset':
-        specifier: 4.3.2
-        version: 4.3.2(graphql@16.9.0)
-      '@graphql-codegen/introspection':
-        specifier: 4.0.3
-        version: 4.0.3(graphql@16.9.0)
-      '@snowpack/plugin-postcss':
-        specifier: ^1.4.3
-        version: 1.4.3(postcss@8.4.39)
-      '@snowpack/plugin-react-refresh':
-        specifier: ^2.5.0
-        version: 2.5.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@snowpack/plugin-typescript':
-        specifier: ^1.2.1
-        version: 1.2.1(typescript@5.5.3)
       '@types/aes-js':
         specifier: ^3.1.1
         version: 3.1.4
@@ -220,6 +245,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.0
         version: 18.3.0
+      '@types/react-loadable':
+        specifier: ^5.5.5
+        version: 5.5.11
       '@types/react-redux':
         specifier: ^7.1.23
         version: 7.1.33
@@ -229,6 +257,9 @@ importers:
       '@types/react-test-renderer':
         specifier: ^18.3.0
         version: 18.3.0
+      '@types/react-transition-group':
+        specifier: ^4.4.1
+        version: 4.4.10
       '@types/redux-immutable':
         specifier: ^4.0.1
         version: 4.0.6
@@ -1446,22 +1477,6 @@ packages:
 
   '@sinonjs/fake-timers@10.3.0':
     resolution: {integrity: sha512-V4BG07kuYSUkTCSBHG8G8TNhM+F19jXFWnQtzj+we8DrkpSBCee9Z3Ms8yiGer/dlmhe35/Xdgyo3/0rQKg7YA==}
-
-  '@snowpack/plugin-postcss@1.4.3':
-    resolution: {integrity: sha512-RJGYagse6Pi86Bqm8vPukhCwFVa92VIB81qP3PXPQ/ITQy5gVWDYi4oU+r1A6hsEZ9scUNZevfw6ISya+oiMNQ==}
-    peerDependencies:
-      postcss: '*'
-
-  '@snowpack/plugin-react-refresh@2.5.0':
-    resolution: {integrity: sha512-3rYkwayAA+65IIYLXMEFqQwtBGbII9IidMJo1yXuj35kTEg9TdZrofoqcHaSts2sv2Nz0TD6v7BWRPdvCU0uIw==}
-    peerDependencies:
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
-
-  '@snowpack/plugin-typescript@1.2.1':
-    resolution: {integrity: sha512-wU+JNaMVkqGsqTaUY7TnEMhGt/3URTgA9dpMCtZX6wn/ceA7Gwlmue/sOLynf0OTNLygHPvjiQECQYkEi3LTtg==}
-    peerDependencies:
-      typescript: '*'
 
   '@swc/core-darwin-arm64@1.7.0':
     resolution: {integrity: sha512-2ylhM7f0HwUwLrFYZAe/dse8PCbPsYcJS3Dt7Q8NT3PUn7vy6QOMxNcOPPuDrnmaXqQQO3oxdmRapguTxaat9g==}
@@ -4281,18 +4296,6 @@ packages:
     peerDependencies:
       postcss: ^8.4.21
 
-  postcss-load-config@3.1.4:
-    resolution: {integrity: sha512-6DiM4E7v4coTE4uzA8U//WhtPwyhiim3eyjEMFCnUpzbrkK9wJHgKDT2mR+HbtSrd/NubVaYTOpSpjUl8NQeRg==}
-    engines: {node: '>= 10'}
-    peerDependencies:
-      postcss: '>=8.0.9'
-      ts-node: '>=9.0.0'
-    peerDependenciesMeta:
-      postcss:
-        optional: true
-      ts-node:
-        optional: true
-
   postcss-load-config@4.0.2:
     resolution: {integrity: sha512-bSVhyJGL00wMVoPUzAVAnbEoWyqRxkjv64tUl427SKnPrENtq6hJwUojroMz2VB+Q1edmi4IfrAPpami5VVgMQ==}
     engines: {node: '>= 14'}
@@ -4478,10 +4481,6 @@ packages:
 
   react-refresh@0.14.2:
     resolution: {integrity: sha512-jCvmsr+1IUSMUyzOkRcvnVbX3ZYC6g9TDrDbFuFmRDq7PD4yaGbLKNQL6k2jnArV8hjYxh7hVhAZB6s9HDGpZA==}
-    engines: {node: '>=0.10.0'}
-
-  react-refresh@0.9.0:
-    resolution: {integrity: sha512-Gvzk7OZpiqKSkxsQvO/mbTN1poglhmAV7gR/DdIrRrSMXraRQQlfikRJOr3Nb9GTMPC5kof948Zy6jJZIFtDvQ==}
     engines: {node: '>=0.10.0'}
 
   react-router-dom@6.25.1:
@@ -5418,9 +5417,6 @@ packages:
   wordwrap@1.0.0:
     resolution: {integrity: sha512-gvVzJFlPycKc5dZN4yPkP8w7Dc37BtP1yczEneOb4uq34pXZcvrtRTmWV8W+Ume+XCxKgbjM+nevkyFPMybd4Q==}
 
-  workerpool@6.5.1:
-    resolution: {integrity: sha512-Fs4dNYcsdpYSAfVxhnl1L5zTksjvOJxtC5hzMNl+1t9B8hTJTdKDyZ5ju7ztgPy+ft9tBFXoOlDNiOT9WUXZlA==}
-
   wrap-ansi@6.2.0:
     resolution: {integrity: sha512-r6lPcBGxZXlIcymEu7InxDMhdW0KDxpLgoFLcguasxCaJ/SOIZwINatK9KY/tf+ZrlywOKU0UDj3ATXUBfxJXA==}
     engines: {node: '>=8'}
@@ -5475,10 +5471,6 @@ packages:
 
   yaml-ast-parser@0.0.43:
     resolution: {integrity: sha512-2PTINUwsRqSd+s8XxKaJWQlUuEMHJQyEuh2edBbW8KNJz0SJPwUSD2zRWqezFEdN7IzAgeuYHFUCF7o8zRdZ0A==}
-
-  yaml@1.10.2:
-    resolution: {integrity: sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==}
-    engines: {node: '>= 6'}
 
   yaml@2.4.5:
     resolution: {integrity: sha512-aBx2bnqDzVOyNKfsysjA2ms5ZlnjSAW2eG3/L5G/CSujfjLJTJsEw1bGw8kCf04KodQWk1pxlGnZ56CRxiawmg==}
@@ -7060,32 +7052,6 @@ snapshots:
   '@sinonjs/fake-timers@10.3.0':
     dependencies:
       '@sinonjs/commons': 3.0.1
-
-  '@snowpack/plugin-postcss@1.4.3(postcss@8.4.39)':
-    dependencies:
-      minimatch: 3.1.2
-      normalize-path: 3.0.0
-      postcss: 8.4.39
-      postcss-load-config: 3.1.4(postcss@8.4.39)
-      workerpool: 6.5.1
-    transitivePeerDependencies:
-      - ts-node
-
-  '@snowpack/plugin-react-refresh@2.5.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@babel/core': 7.24.9
-      '@babel/plugin-syntax-class-properties': 7.12.13(@babel/core@7.24.9)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      react-refresh: 0.9.0
-    transitivePeerDependencies:
-      - supports-color
-
-  '@snowpack/plugin-typescript@1.2.1(typescript@5.5.3)':
-    dependencies:
-      execa: 5.1.1
-      npm-run-path: 4.0.1
-      typescript: 5.5.3
 
   '@swc/core-darwin-arm64@1.7.0':
     optional: true
@@ -10444,13 +10410,6 @@ snapshots:
       camelcase-css: 2.0.1
       postcss: 8.4.39
 
-  postcss-load-config@3.1.4(postcss@8.4.39):
-    dependencies:
-      lilconfig: 2.1.0
-      yaml: 1.10.2
-    optionalDependencies:
-      postcss: 8.4.39
-
   postcss-load-config@4.0.2(postcss@8.4.39):
     dependencies:
       lilconfig: 3.1.2
@@ -10622,8 +10581,6 @@ snapshots:
       redux: 5.0.1
 
   react-refresh@0.14.2: {}
-
-  react-refresh@0.9.0: {}
 
   react-router-dom@6.25.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
@@ -11619,8 +11576,6 @@ snapshots:
 
   wordwrap@1.0.0: {}
 
-  workerpool@6.5.1: {}
-
   wrap-ansi@6.2.0:
     dependencies:
       ansi-styles: 4.3.0
@@ -11661,8 +11616,6 @@ snapshots:
   yallist@4.0.0: {}
 
   yaml-ast-parser@0.0.43: {}
-
-  yaml@1.10.2: {}
 
   yaml@2.4.5: {}
 

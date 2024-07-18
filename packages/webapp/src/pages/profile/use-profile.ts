@@ -3,20 +3,13 @@ import { useStore, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import {
   useQuery,
-  useApolloClient,
-  FetchMoreQueryOptions,
 } from "@apollo/client";
-import { profileGot } from "../../actions/auth";
-import {
-  TUser,
-  TUserProfileWithCollection,
-  Collection,
-} from "../../types/user";
+import { profileGot } from "@athena/utils/actions/auth";
 import {
   FetchProfileWithCollectionsDocument,
   FetchProfileWithCollectionsQuery,
   FetchProfileWithCollectionsQueryVariables,
-} from "src/schema/_g/graphql";
+} from "@athena/network/_g/graphql"
 
 const STEP = 20;
 

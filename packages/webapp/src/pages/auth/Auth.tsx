@@ -4,11 +4,11 @@ import { useLazyQuery } from "@apollo/client";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import fp from "fingerprintjs2";
-import { syncAuthStatus } from "../../actions/auth";
-import PageContainer from "../../components/PageContainer";
-import Separator from "../../components/Separator";
+import { syncAuthStatus } from "@athena/utils/actions/auth";
+import PageContainer from "@athena/components/PageContainer";
+import Separator from "@athena/components/Separator";
 import Status from "./Status";
-import { useTitle } from "../../hooks/title";
+import { useTitle } from "@athena/utils/hooks/title";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 // import { auth, authVariables } from '../../schema/_g/auth'
@@ -17,7 +17,7 @@ import {
   AuthQuery,
   AuthQueryVariables,
   Device,
-} from "src/schema/_g/graphql";
+} from '@athena/network/_g/graphql'
 
 function useDevice() {
   const [device, setDevice] = useState<Device | null>(null);

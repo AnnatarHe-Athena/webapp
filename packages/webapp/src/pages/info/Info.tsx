@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import Card from "AthenaComponents/card/Card";
+import Card from "@athena/components/card/Card";
 import { useQuery } from "@apollo/client";
 import {
   InfoDocument,
   InfoQuery,
   InfoQueryVariables,
-} from "src/schema/_g/graphql";
+} from "@athena/network/_g/graphql"
 
 const InfoTip = styled.p`
   padding: 1rem;

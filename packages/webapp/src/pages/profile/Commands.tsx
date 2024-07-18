@@ -1,7 +1,7 @@
 import React from 'react'
-import { TUser } from '../../types/user'
+import { TUser } from '../../../../utils/types/user'
 import { useSelector } from 'react-redux'
-import { AppStore } from '../../reducers'
+import { AppStore } from '@athena/utils/reducers'
 import { Link } from 'react-router-dom'
 
 type TCommandProps = {

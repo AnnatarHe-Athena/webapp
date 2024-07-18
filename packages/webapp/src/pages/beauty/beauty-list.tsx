@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react'
 import { useQuery } from '@apollo/client'
-import Nav from '../../components/Nav'
+import Nav from '@athena/components/Nav'
 import { useSetAtom } from 'jotai'
-import { beautyListFetchOffset } from '../../store/beauty'
-import { InitialDocument, InitialQuery, InitialQueryVariables } from '../../schema/_g/graphql'
+import { beautyListFetchOffset } from '@athena/utils/beauty'
+import { InitialDocument, InitialQuery, InitialQueryVariables } from '@athena/network/_g/graphql'
 
 function BeautyList(props: any) {
   const { data, refetch } = useQuery<InitialQuery, InitialQueryVariables>(InitialDocument, {

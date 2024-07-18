@@ -1,11 +1,11 @@
 import React, { useCallback } from 'react'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
-import { defaultAvatar } from '../../constants/defaults'
-import { LOGOUT } from '../../constants/auth'
-import { TUser } from '../../types/user';
-import { AppStore } from '../../reducers'
-import HideUntilLoaded from '../../components/HideUntilLoaded'
+import { defaultAvatar } from '@athena/utils/constants/defaults'
+import { LOGOUT } from '@athena/utils/constants/auth'
+import { TUser } from '../../../../utils/types/user';
+import { AppStore } from '@athena/utils/reducers'
+import HideUntilLoaded from '@athena/components/HideUntilLoaded'
 
 const InfoItem = styled.div`
   padding: .5rem 0;

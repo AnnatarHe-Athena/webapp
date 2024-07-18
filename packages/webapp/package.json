@@ -5,8 +5,6 @@
     "dependencies": {
         "@apollo/client": "^3.10.8",
         "@sentry/browser": "^8.18.0",
-        "@types/react-loadable": "^5.5.5",
-        "@types/react-transition-group": "^4.4.1",
         "aes-js": "^3.1.2",
         "browserslist": "^4.23.2",
         "fingerprintjs2": "^2.1.4",
@@ -35,6 +33,9 @@
         "tailwindcss": "^3.4.6",
         "vite": "^5.3.4",
         "whatwg-fetch": "^3.6.2",
+        "@athena/network": "workspace:*",
+        "@athena/components": "workspace:*",
+        "@athena/utils": "workspace:*",
         "yup": "^1.4.0"
     },
     "scripts": {
@@ -48,12 +49,8 @@
         "codegen": "graphql-codegen --config codegen.ts"
     },
     "devDependencies": {
-        "@graphql-codegen/cli": "5.0.2",
-        "@graphql-codegen/client-preset": "4.3.2",
-        "@graphql-codegen/introspection": "4.0.3",
-        "@snowpack/plugin-postcss": "^1.4.3",
-        "@snowpack/plugin-react-refresh": "^2.5.0",
-        "@snowpack/plugin-typescript": "^1.2.1",
+        "@types/react-loadable": "^5.5.5",
+        "@types/react-transition-group": "^4.4.1",
         "@types/aes-js": "^3.1.1",
         "@types/fingerprintjs2": "^2.0.0",
         "@types/jest": "^29.5.12",

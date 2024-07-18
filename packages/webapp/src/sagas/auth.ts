@@ -2,7 +2,7 @@ import {
   SAGA_SYNC_AUTH_TOKEN,
   SYNC_AUTH_TOKEN,
   LOGOUT
-} from '../constants/auth'
+} from '@athena/utils/constants/auth'
 import { put, take, call } from 'redux-saga/effects'
 
 export function* syncToken() {

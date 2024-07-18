@@ -1,3 +1,4 @@
+import { defineConfig, searchForWorkspaceRoot } from 'vite'
 import path from "path";
 import react from "@vitejs/plugin-react";
 import jotaiDebugLabel from "jotai/babel/plugin-debug-label";
@@ -14,6 +15,11 @@ export default {
     // gql(),
     react({ babel: { plugins: [jotaiDebugLabel, jotaiReactRefresh] } }),
   ],
+  server: {
+    fs: {
+      allow: [searchForWorkspaceRoot(path.resolve(__dirname, '..', '..'))],
+    }
+  },
   resolve: {
     alias: {
       AthenaComponents: path.resolve(__dirname, "./src/components"),

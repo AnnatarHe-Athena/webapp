@@ -2,14 +2,13 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import chunk from "lodash/chunk";
 import { useMutation } from "@apollo/client";
-import Select from "../../components/select/Select";
-import PropTypes from "prop-types";
-import Card from "../../components/card/Card";
-import JSONTextarea from "../../components/json-textarea/json-textarea";
+import Select from "@athena/components/select/Select"
+import Card from "@athena/components/card/Card";
+import JSONTextarea from "@athena/components/json-textarea/json-textarea";
 
-import PageContainer from "../../components/PageContainer";
-import Button from "../../components/button/Button";
-import Separator from "../../components/Separator";
+import PageContainer from "@athena/components/PageContainer";
+import Button from "@athena/components/button/Button";
+import Separator from "@athena/components/Separator";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { useFormik } from "formik";
@@ -18,7 +17,7 @@ import {
   AddGirlCellsMutation,
   AddGirlCellsMutationVariables,
   Category,
-} from "../../schema/_g/graphql";
+} from "@athena/network/_g/graphql"
 
 const TextTip = styled.span`
   padding: 1rem 0;
