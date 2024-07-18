@@ -2,7 +2,7 @@ import { app } from 'electron'
 import './security-restrictions'
 import { platform } from 'node:process'
 import updater from 'electron-updater'
-import { restoreOrCreateWindow } from '/@/mainWindow'
+import { restoreOrCreateWindow } from './mainWindow'
 import { initWeiboImageProtocol, weiboImageProtocolHandler } from './protocol/image'
 
 /**
