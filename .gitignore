@@ -23,4 +23,4 @@ go.mod
 tsconfig.tsbuildinfo
 public
 _g/
-src/schema/generated.ts
+*/schema/generated.ts
