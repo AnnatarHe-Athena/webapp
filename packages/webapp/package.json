@@ -1,5 +1,5 @@
 {
-    "name": "athena-webapp",
+    "name": "@athena/webapp",
     "version": "2.9.0",
     "private": true,
     "dependencies": {
@@ -45,8 +45,7 @@
         "release:base": "standard-version --commit-all",
         "release": "npm run release:base --",
         "release:pre": "npm run release:base -- --prerelease alpha",
-        "test": "jest",
-        "codegen": "graphql-codegen --config codegen.ts"
+        "test": "jest"
     },
     "devDependencies": {
         "@types/aes-js": "^3.1.1",
