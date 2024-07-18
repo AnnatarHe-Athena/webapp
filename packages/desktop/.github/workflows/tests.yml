@@ -1,0 +1,41 @@
+name: Tests
+on: [workflow_call]
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: 'bash'
+
+jobs:
+  tests:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4 # v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          cache: 'pnpm'
+      - run: pnpm i
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+      - run: pnpm run test:main --if-present
+      - run: pnpm run test:preload --if-present
+      - run: pnpm run test:renderer --if-present
+
+      # I ran into problems trying to run an electron window in ubuntu due to a missing graphics server.
+      # That's why this special command for Ubuntu is here
+      - run: xvfb-run --auto-servernum --server-args="-screen 0 1280x960x24" -- npm run test:e2e --if-present
+        if: matrix.os == 'ubuntu-latest'
+
+      - run: pnpm run test:e2e --if-present
+        if: matrix.os != 'ubuntu-latest'
