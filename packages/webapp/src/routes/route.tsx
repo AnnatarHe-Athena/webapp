@@ -7,7 +7,7 @@ import ProfileCellCreatePage from "../pages/add/Index";
 import About from "../pages/info/Info";
 import VenusPage from "../pages/venus/venus";
 import { createBrowserRouter } from "react-router-dom";
-import Root from '@athena/components/Root'
+import Root from '@athena/components/src/Root'
 import PrivacyPage from '../pages/privacy/privacy'
 // import Spinner from 'react-spinkit'
 

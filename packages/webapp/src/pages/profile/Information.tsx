@@ -5,7 +5,7 @@ import { defaultAvatar } from '@athena/utils/constants/defaults'
 import { LOGOUT } from '@athena/utils/constants/auth'
 import { TUser } from '../../../../utils/types/user';
 import { AppStore } from '@athena/utils/reducers'
-import HideUntilLoaded from '@athena/components/HideUntilLoaded'
+import HideUntilLoaded from '@athena/components/src/HideUntilLoaded'
 
 const InfoItem = styled.div`
   padding: .5rem 0;

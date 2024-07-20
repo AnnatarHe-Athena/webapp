@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import { FetchGirlsFragment } from '@athena/network/_g/graphql'
-import Loading from "../Loading";
 import PhotoItem from "./PhotoItem";
 
 type PhotosProps = {

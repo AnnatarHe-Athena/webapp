@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import chunk from "lodash/chunk";
 import { useMutation } from "@apollo/client";
-import Select from "@athena/components/select/Select"
-import Card from "@athena/components/card/Card";
-import JSONTextarea from "@athena/components/json-textarea/json-textarea";
+import Select from "@athena/components/src/select/Select"
+import Card from "@athena/components/src/card/Card";
+import JSONTextarea from "@athena/components/src/json-textarea/json-textarea";
 
-import PageContainer from "@athena/components/PageContainer";
-import Button from "@athena/components/button/Button";
-import Separator from "@athena/components/Separator";
+import PageContainer from "@athena/components/src/PageContainer";
+import Button from "@athena/components/src/button/Button";
+import Separator from "@athena/components/src/Separator";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { useFormik } from "formik";

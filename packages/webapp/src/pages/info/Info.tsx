@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Card from "@athena/components/card/Card";
+import Card from "@athena/components/src/card/Card";
 import { useQuery } from "@apollo/client";
 import {
   InfoDocument,

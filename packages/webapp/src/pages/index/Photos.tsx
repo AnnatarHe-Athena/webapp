@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useQuery } from "@apollo/client";
 import { legacyCategory } from "@athena/utils/constants/defaults";
 import { getPermissionObj } from "@athena/utils/utils/permission"
-import PhotoList from "@athena/components/photos/Photos";
+import PhotoList from "@athena/components/src/photos/Photos";
 import { AppStore } from "@athena/utils/reducers";
 import { TUser } from "@athena/utils/types/user"
 import {

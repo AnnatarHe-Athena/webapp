@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { useQuery } from '@apollo/client'
-import Nav from '@athena/components/Nav'
+import Nav from '@athena/components/src/Nav'
 import { useSetAtom } from 'jotai'
 import { beautyListFetchOffset } from '@athena/utils/beauty'
 import { InitialDocument, InitialQuery, InitialQueryVariables } from '@athena/network/_g/graphql'
