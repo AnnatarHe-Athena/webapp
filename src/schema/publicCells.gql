@@ -1,0 +1,12 @@
+query PublicCells($category: Int!, $take: Int!, $last: Int!) {
+  publicCells(category: $category, take: $take, last: $last) {
+    id
+    img
+    text
+    cate
+    permission
+    createdAt
+    content
+    isCollected
+  }
+}

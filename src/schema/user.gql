@@ -1,0 +1,10 @@
+query FetchUser($id: ID) {
+  users(id: $id) {
+    id
+    email
+    name
+    avatar
+    bio
+    role
+  }
+}

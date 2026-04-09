@@ -1,0 +1,5 @@
+mutation AddCollection($cells: [ID!]!) {
+  addCollection(cells: $cells) {
+    isOk
+  }
+}

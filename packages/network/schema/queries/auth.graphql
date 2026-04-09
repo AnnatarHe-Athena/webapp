@@ -1,7 +1,0 @@
-query auth($email: String!, $password: String!, $device: Device!) {
-    auth(email: $email, password: $password, device: $device) {
-        token
-        refreshToken
-        id
-    }
-}

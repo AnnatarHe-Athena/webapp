@@ -1,0 +1,19 @@
+query VenusList($pagination: Pagination!, $source: venusSource, $loaded: Boolean, $hasRemarks: Boolean, $priority: Int) {
+  venusList(pagination: $pagination, source: $source, loaded: $loaded, hasRemarks: $hasRemarks, priority: $priority) {
+    count
+    edges {
+      id
+      uid
+      source
+      name
+      avatar
+      bio
+      initLoaded
+      rawData
+      createdAt
+      updatedAt
+      remarks
+      priority
+    }
+  }
+}

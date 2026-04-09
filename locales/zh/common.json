@@ -1,0 +1,23 @@
+{
+  "welcome": "欢迎来到 Athena",
+  "login": "登录",
+  "signup": "注册",
+  "email": "邮箱",
+  "password": "密码",
+  "submit": "提交",
+  "loading": "加载中...",
+  "categories": "分类",
+  "collections": "收藏",
+  "profile": "个人中心",
+  "about": "关于",
+  "privacy": "隐私",
+  "auth": "认证",
+  "venus": "博主",
+  "create": "创建",
+  "logout": "退出",
+  "save": "保存",
+  "cancel": "取消",
+  "delete": "删除",
+  "edit": "编辑",
+  "noData": "暂无数据"
+}

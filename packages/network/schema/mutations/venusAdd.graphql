@@ -1,5 +1,0 @@
-mutation addVenusMutation($uid: String!, $source: venusSource!, $name: String, $avatar: String, $bio: String, $rawData: String) {
-    addVenus(uid: $uid, source: $source, name: $name, avatar: $avatar, bio: $bio, rawData: $rawData) {
-        id
-    }
-}

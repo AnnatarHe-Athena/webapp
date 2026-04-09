@@ -1,0 +1,8 @@
+mutation UpdateUserInfo($username: String, $avatar: String, $bio: String) {
+  updateUserInfo(username: $username, avatar: $avatar, bio: $bio) {
+    id
+    name
+    avatar
+    bio
+  }
+}

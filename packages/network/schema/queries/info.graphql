@@ -1,5 +1,0 @@
-query info {
-    info {
-      userCount, cellCount, fee, email, copyright
-    }
-}

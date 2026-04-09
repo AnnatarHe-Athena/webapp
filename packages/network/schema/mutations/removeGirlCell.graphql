@@ -1,5 +1,0 @@
-mutation removeGirl($cells: [ID!]!, $toRemove: Boolean!) {
-    removeGirl(cells: $cells, toRemove: $toRemove) {
-        isOk
-    }
-}

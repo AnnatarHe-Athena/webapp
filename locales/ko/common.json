@@ -1,0 +1,23 @@
+{
+  "welcome": "Welcome to Athena",
+  "login": "Login",
+  "signup": "Sign Up",
+  "email": "Email",
+  "password": "Password",
+  "submit": "Submit",
+  "loading": "Loading...",
+  "categories": "Categories",
+  "collections": "Collections",
+  "profile": "Profile",
+  "about": "About",
+  "privacy": "Privacy",
+  "auth": "Authentication",
+  "venus": "Venus",
+  "create": "Create",
+  "logout": "Logout",
+  "save": "Save",
+  "cancel": "Cancel",
+  "delete": "Delete",
+  "edit": "Edit",
+  "noData": "No data available"
+}

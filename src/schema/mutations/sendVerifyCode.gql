@@ -1,0 +1,3 @@
+mutation SendVerifyCode($email: String!, $captcha: WithCaptcha!) {
+  sendVerifyCode(email: $email, captcha: $captcha)
+}
