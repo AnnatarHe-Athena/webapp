@@ -3,6 +3,7 @@ const nextConfig = {
   experimental: {
     viewTransition: true,
   },
+  serverExternalPackages: ['postgres', 'ioredis'],
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: '**.annatarhe.com' },

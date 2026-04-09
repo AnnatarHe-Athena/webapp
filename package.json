@@ -3,16 +3,17 @@
   "version": "3.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --port 4399 --turbo",
-    "build": "next build",
-    "start": "next start",
-    "g": "graphql-codegen",
+    "dev": "bun next dev --port 4399 --turbo",
+    "build": "bun next build",
+    "start": "bun next start",
     "lint": "oxlint src/",
     "lint:fix": "oxlint --fix src/",
     "format": "oxfmt --write src/",
     "format:check": "oxfmt --check src/",
     "test": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "db:generate": "bunx drizzle-kit generate",
+    "db:studio": "bunx drizzle-kit studio"
   },
   "dependencies": {
     "next": "^16.2.0",
@@ -33,9 +34,15 @@
     "tailwind-merge": "^3.0.0",
     "lucide-react": "^0.468.0",
     "react-hot-toast": "^2.4.1",
-    "@sentry/nextjs": "^9.0.0"
+    "@sentry/nextjs": "^9.0.0",
+    "graphql-yoga": "^5.10.0",
+    "drizzle-orm": "^0.38.0",
+    "postgres": "^3.4.5",
+    "ioredis": "^5.4.2",
+    "jose": "^6.0.8"
   },
   "devDependencies": {
+    "drizzle-kit": "^0.30.0",
     "typescript": "^5.7.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",

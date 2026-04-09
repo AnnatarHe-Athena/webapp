@@ -2,11 +2,9 @@ import { ApolloLink, HttpLink, InMemoryCache } from '@apollo/client'
 import { onError } from '@apollo/client/link/error'
 import toast from 'react-hot-toast'
 
-const API_HOST = process.env.NEXT_PUBLIC_API_HOST || 'https://dbg-api.annatarhe.com'
-
 const httpLink = new HttpLink({
-  uri: `${API_HOST}/graphql/v1`,
-  credentials: 'include',
+  uri: '/api/graphql',
+  credentials: 'same-origin',
 })
 
 const authLink = new ApolloLink((operation, forward) => {
@@ -50,4 +48,4 @@ export const apolloCacheConfig = new InMemoryCache({
   },
 })
 
-export { httpLink, authLink, errorLink, API_HOST }
+export { httpLink, authLink, errorLink }
