@@ -1,0 +1,27 @@
+mutation AddVenus($uid: String!, $source: venusSource!, $name: String, $avatar: String, $bio: String, $rawData: String) {
+  addVenus(uid: $uid, source: $source, name: $name, avatar: $avatar, bio: $bio, rawData: $rawData) {
+    id
+    uid
+    source
+    name
+  }
+}
+
+mutation RemoveVenus($id: Int, $weiboUid: [String!]) {
+  removeVenus(id: $id, weiboUid: $weiboUid)
+}
+
+mutation UpdateVenus($id: Int!, $name: String, $avatar: String, $bio: String, $initLoaded: Boolean, $rawData: String, $remarks: String) {
+  updateVenus(id: $id, name: $name, avatar: $avatar, bio: $bio, initLoaded: $initLoaded, rawData: $rawData, remarks: $remarks) {
+    id
+    uid
+    source
+    name
+    avatar
+    bio
+    initLoaded
+    rawData
+    remarks
+    priority
+  }
+}

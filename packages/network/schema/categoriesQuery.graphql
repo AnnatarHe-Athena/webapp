@@ -1,7 +1,0 @@
-
-
-query initCategories {
-    categories {
-        id, name, src, count
-    }
-}

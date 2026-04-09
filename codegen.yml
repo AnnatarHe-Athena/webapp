@@ -1,0 +1,10 @@
+schema: ../athena-api-server/schema/schema.gql
+documents: 'src/**/*.gql'
+generates:
+  src/gql/:
+    preset: client
+    presetConfig:
+      fragmentMasking: false
+    config:
+      scalars:
+        ID: string

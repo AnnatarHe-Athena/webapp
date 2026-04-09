@@ -1,0 +1,21 @@
+query FetchCell($id: Int!) {
+  cell(id: $id) {
+    id
+    img
+    text
+    cate
+    permission
+    createdAt
+    fromID
+    fromURL
+    content
+    isCollected
+    venus {
+      id
+      uid
+      source
+      name
+      avatar
+    }
+  }
+}

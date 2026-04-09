@@ -1,0 +1,9 @@
+query Info {
+  info {
+    userCount
+    cellCount
+    fee
+    email
+    copyright
+  }
+}

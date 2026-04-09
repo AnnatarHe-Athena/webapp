@@ -1,0 +1,8 @@
+mutation AddGirls($cells: [CellInput!]!) {
+  addGirls(cells: $cells) {
+    id
+    img
+    text
+    cate
+  }
+}

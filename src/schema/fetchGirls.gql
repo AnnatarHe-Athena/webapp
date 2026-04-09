@@ -1,0 +1,21 @@
+query FetchGirls($from: Int, $take: Int!, $hideOnly: Boolean!, $last: ID, $venusId: Int) {
+  girls(from: $from, take: $take, hideOnly: $hideOnly, last: $last, venusId: $venusId) {
+    id
+    img
+    text
+    cate
+    permission
+    createdAt
+    fromID
+    fromURL
+    content
+    isCollected
+    venus {
+      id
+      uid
+      source
+      name
+      avatar
+    }
+  }
+}

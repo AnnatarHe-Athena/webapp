@@ -1,0 +1,7 @@
+mutation RefreshUserToken($refreshToken: String!, $device: Device!) {
+  refreshUserToken(refreshToken: $refreshToken, device: $device) {
+    token
+    refreshToken
+    id
+  }
+}

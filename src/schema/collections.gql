@@ -1,0 +1,18 @@
+query Collections($from: Int!, $size: Int!, $cursor: Int!) {
+  collections(from: $from, size: $size, cursor: $cursor) {
+    count
+    edges {
+      id
+      cell {
+        id
+        img
+        text
+        cate
+        permission
+        createdAt
+        content
+        isCollected
+      }
+    }
+  }
+}
