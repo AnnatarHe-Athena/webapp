@@ -1,13 +1,29 @@
-## douban-girls-webapp
+# Athena
 
-a douban-girls web client
+Full-stack image curation platform built with Next.js 16, Bun, and GraphQL.
 
-build with React, Apollo, React-Router and Redux.
+## Tech Stack
 
-you can review my code but do not depoly this project.
+- **Runtime**: Bun
+- **Framework**: Next.js 16 (App Router)
+- **Frontend**: React 19, Apollo Client 4, TailwindCSS v4
+- **Backend**: graphql-yoga (API route at `/api/graphql`)
+- **Database**: PostgreSQL (Drizzle ORM)
+- **Cache**: Redis (ioredis)
 
+## Getting Started
 
+```bash
+bun install
+bun run dev      # http://localhost:4399
 ```
-apollo client:download-schema --endpoint="http://localhost:9009/graphql/v1" --header="Authorization: Bearer kIdoubx5KYoZT3p+VtD1gTnBI/i49lSPaiZVH5bMXwuyaj78iEsnkssaFY/j38dpaBgaKAKshy4CIHATPO2Qsg7ziSPcaRVs6d5cEJBslChOf1iECzanQuWd3E/9wpuy+FS3m08pRj0ibeThdm5CWbk9snaC/9YnWS4pQIeXNvRPirzKvMPj19Zz5pXLU7/65Rkf/ILQEwkZHd5dke664dKaJosa585qnnJ4t9KBEL1db+D3IOqQP3U9XiM1S6dAPHR4DvczH+uh4bUMLx+y8XUt9cF+w6UetOuWCnkeohSiEmsrBVwOJwRKosQOdNk8G85fA5Xswui6aHUruu8MUtnqkPpiKEtgDw7z9R0q9qLWshtcWE5bRRsLhJSRBpl2KTCtld3QWR3vOWqIpML02sYTq9mC8aE76YNa3TXWGzBfZWAbKAEY1xOEvsEp/FGoqvGcwgF0jeHTKpfvuVhHDg==" src/schema/schema.json
-apollo codegen:generate --target=typescript --localSchemaFile="./src/schema/schema.json" --includes="./src/schema/**/*.graphql" --useReadOnlyTypes src/schema/_g --outputFlat
+
+## Scripts
+
+```bash
+bun run build          # Production build
+bun run lint           # Lint with oxlint
+bun run format         # Format with oxfmt
+bun run test           # Run tests (vitest)
+bun run db:studio      # Open Drizzle Studio
 ```
