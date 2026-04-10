@@ -1,6 +1,6 @@
 'use client'
 
-import { ApolloProvider } from '@apollo/client'
+import { ApolloProvider } from '@apollo/client/react'
 import { makeClient } from '@/service/apollo.client'
 import LoginForm from '@/components/auth/login-form'
 import Separator from '@/components/ui/separator'

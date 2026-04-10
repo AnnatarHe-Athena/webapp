@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { ApolloProvider, useMutation } from '@apollo/client'
+import { ApolloProvider, useMutation } from '@apollo/client/react'
 import { makeClient } from '@/service/apollo.client'
 import Button from '@/components/ui/button'
 import Input from '@/components/ui/input'
@@ -20,7 +20,7 @@ function CreateContent() {
   const [cells, setCells] = useState([
     { img: '', text: '', cate: 1, permission: 2, fromID: '', fromURL: '' },
   ])
-  const [addGirls, { loading }] = useMutation(ADD_GIRLS)
+  const [addGirls, { loading }] = useMutation<any>(ADD_GIRLS)
 
   const updateCell = (index: number, field: string, value: string | number) => {
     const updated = [...cells]

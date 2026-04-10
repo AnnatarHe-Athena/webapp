@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useCallback } from 'react'
-import { ApolloProvider, useQuery, useMutation } from '@apollo/client'
+import { ApolloProvider, useQuery, useMutation } from '@apollo/client/react'
 import { makeClient } from '@/service/apollo.client'
 import { getUid } from '@/service/token'
 import Information from '@/components/profile/information'
@@ -57,16 +57,16 @@ function ProfileContent({ userId }: { userId: string }) {
   const currentUid = typeof window !== 'undefined' ? getUid() : ''
   const isMe = currentUid === userId
 
-  const userQuery = useQuery(FETCH_USER, {
+  const userQuery = useQuery<any>(FETCH_USER, {
     variables: { id: userId },
   })
 
-  const collectionsQuery = useQuery(FETCH_COLLECTIONS, {
+  const collectionsQuery = useQuery<any>(FETCH_COLLECTIONS, {
     variables: { from: 0, size: 20, cursor: 1 << 30 },
     skip: !isMe,
   })
 
-  const [updateUser] = useMutation(UPDATE_USER)
+  const [updateUser] = useMutation<any>(UPDATE_USER)
 
   const loadMoreCollections = useCallback(() => {
     const edges = collectionsQuery.data?.collections?.edges ?? []

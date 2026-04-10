@@ -3,13 +3,23 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { useLazyQuery } from '@apollo/client'
+import { useLazyQuery } from '@apollo/client/react'
+import { gql } from '@apollo/client'
 import { useRouter } from 'next/navigation'
 import { setTokens } from '@/service/token'
 import Button from '@/components/ui/button'
 import Input from '@/components/ui/input'
 import toast from 'react-hot-toast'
-import { AuthDocument } from '@/gql/graphql'
+
+const AuthDocument = gql`
+  query Auth($email: String!, $password: String!, $device: Device!) {
+    auth(email: $email, password: $password, device: $device) {
+      id
+      token
+      refreshToken
+    }
+  }
+`
 
 const loginSchema = z.object({
   email: z.string().email('Invalid email').min(6, 'Too short'),
@@ -24,7 +34,7 @@ export default function LoginForm() {
     resolver: zodResolver(loginSchema),
   })
 
-  const [doAuth] = useLazyQuery(AuthDocument)
+  const [doAuth] = useLazyQuery<any>(AuthDocument)
 
   const onSubmit = async (values: LoginFormValues) => {
     try {

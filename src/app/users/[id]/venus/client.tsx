@@ -1,6 +1,6 @@
 'use client'
 
-import { ApolloProvider, useQuery, useMutation } from '@apollo/client'
+import { ApolloProvider, useQuery, useMutation } from '@apollo/client/react'
 import { makeClient } from '@/service/apollo.client'
 import VenusList from '@/components/venus/venus-list'
 import Loading from '@/components/ui/loading'
@@ -48,13 +48,13 @@ const UPDATE_VENUS = gql`
 const client = makeClient()
 
 function VenusContent() {
-  const { data, loading, fetchMore, refetch } = useQuery(VENUS_LIST, {
+  const { data, loading, fetchMore, refetch } = useQuery<any>(VENUS_LIST, {
     variables: { pagination: { lastID: 1 << 30, limit: 20 } },
   })
 
-  const [addVenus] = useMutation(ADD_VENUS)
-  const [removeVenus] = useMutation(REMOVE_VENUS)
-  const [updateVenus] = useMutation(UPDATE_VENUS)
+  const [addVenus] = useMutation<any>(ADD_VENUS)
+  const [removeVenus] = useMutation<any>(REMOVE_VENUS)
+  const [updateVenus] = useMutation<any>(UPDATE_VENUS)
 
   if (loading) return <Loading />
 

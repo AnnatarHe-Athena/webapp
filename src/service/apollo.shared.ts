@@ -22,14 +22,10 @@ const authLink = new ApolloLink((operation, forward) => {
   return forward(operation)
 })
 
-const errorLink = onError(({ graphQLErrors }) => {
-  if (graphQLErrors) {
-    graphQLErrors.forEach((err) => {
-      console.error('[GraphQL Error]', err.message)
-      if (typeof window !== 'undefined') {
-        toast.error(err.message)
-      }
-    })
+const errorLink = onError(({ error }) => {
+  console.error('[GraphQL Error]', error.message)
+  if (typeof window !== 'undefined') {
+    toast.error(error.message)
   }
 })
 

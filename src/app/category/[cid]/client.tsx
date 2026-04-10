@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useCallback } from 'react'
-import { ApolloProvider, useQuery } from '@apollo/client'
+import { ApolloProvider, useQuery } from '@apollo/client/react'
 import { makeClient } from '@/service/apollo.client'
 import PhotoGrid from '@/components/photos/photo-grid'
 import CategoryTabs from '@/components/category/category-tabs'
@@ -41,9 +41,9 @@ const client = makeClient()
 function CategoryContent({ cid }: { cid: string }) {
   const [previewImg, setPreviewImg] = useState<string | null>(null)
 
-  const categoriesQuery = useQuery(FETCH_CATEGORIES)
+  const categoriesQuery = useQuery<any>(FETCH_CATEGORIES)
 
-  const girlsQuery = useQuery(FETCH_GIRLS, {
+  const girlsQuery = useQuery<any>(FETCH_GIRLS, {
     variables: {
       from: parseInt(cid) || 1,
       take: 20,

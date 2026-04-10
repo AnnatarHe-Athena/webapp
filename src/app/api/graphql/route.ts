@@ -9,5 +9,5 @@ const yoga = createYoga({
   fetchAPI: { Response },
 })
 
-export const GET = yoga
-export const POST = yoga
+export const GET = (request: Request) => yoga.fetch(request)
+export const POST = (request: Request) => yoga.fetch(request)
